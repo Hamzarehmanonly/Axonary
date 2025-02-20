@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.makemecenter{
+    position: sticky;
+    z-index: 100;
+    top: 0%;
+}
