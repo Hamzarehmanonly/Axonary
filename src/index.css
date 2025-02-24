@@ -2,8 +2,210 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth transitions */
+* {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Custom scroll behavior */
+html {
+  scroll-behavior: smooth;
+  @apply overflow-hidden;
+}
+
+/* Smooth reveal animation */
+[data-scroll-section] {
+  will-change: transform;
+}
+
+/* Gradient text effect */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-purple-700;
+}
+
+/* Hover effect for cards */
+.hover-card {
+  @apply transform transition-all duration-300 hover:-translate-y-2;
+}
+
+/* Mobile menu animations */
+.mobile-menu-overlay {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Hamburger menu lines */
+.hamburger-line {
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Menu item hover effect */
+.menu-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: theme('colors.purple.500');
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-item:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Grid background */
+.grid-background {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: background-image 0.3s ease;
+}
+
+/* Grid dots */
+.grid-dot {
+  width: 1px;
+  height: 1px;
+  background-color: #2E2E2E;
+  border-radius: 50%;
+}
+
+/* Grid cell */
+.grid-cell {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+/* Grid hover effect */
+.hover-grid-section {
+  position: relative;
+}
+
+.hover-grid-section::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.hover-grid-section:hover::before {
+  opacity: 1;
+}
+
+/* Mouse glow effect */
+.mouse-glow {
+  pointer-events: none;
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Floating bubble animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.floating-bubble {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progress bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: theme('colors.purple.500');
+  transform-origin: 0%;
+}
+
 .makemecenter{
     position: sticky;
     z-index: 100;
     top: 0%;
+}
+
+/* Responsive text sizes */
+@screen sm {
+  .heading-text {
+    @apply text-7xl;
+  }
+  .card-title {
+    @apply text-2xl;
+  }
+  .card-text {
+    @apply text-base;
+  }
+}
+
+@screen lg {
+  .heading-text {
+    @apply text-8xl;
+  }
+  .card-title {
+    @apply text-2xl;
+  }
+  .card-text {
+    @apply text-lg;
+  }
+}
+
+@screen xl {
+  .heading-text {
+    @apply text-[10rem];
+  }
+}
+
+/* Content hover effects */
+.content-section {
+  transition: all 0.3s ease;
+}
+
+.content-section:hover {
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.03);
 }
