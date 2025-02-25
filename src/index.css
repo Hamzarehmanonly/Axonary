@@ -13,6 +13,25 @@ html {
   @apply overflow-hidden;
 }
 
+
+/* Custom futuristic scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #13111C; /* Dark background for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #33323E; /* Neon gradient effect */
+  transition: background 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #33323E;
+}
+
 /* Smooth reveal animation */
 [data-scroll-section] {
   will-change: transform;
@@ -209,3 +228,4 @@ html {
   background: rgba(255, 255, 255, 0.03);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.03);
 }
+
