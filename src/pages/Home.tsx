@@ -32,9 +32,8 @@ const GridBackground = () => {
     </div>
   );
 };
-
 // Animated section component for reuse
-const AnimatedSection = ({ children, className = "" }) => {
+const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.3 });
 
@@ -50,9 +49,8 @@ const AnimatedSection = ({ children, className = "" }) => {
     </motion.section>
   );
 };
-
 // Service Card Component
-const ServiceCard = ({ title, description, icon, delay = 0 }) => {
+const ServiceCard = ({ title, description, icon, delay = 0 }: { title: string; description: string; icon: React.ReactNode; delay?: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -66,9 +64,8 @@ const ServiceCard = ({ title, description, icon, delay = 0 }) => {
     </motion.div>
   );
 };
-
 // Project Card Component
-const ProjectCard = ({ title, category, imageUrl, delay = 0 }) => {
+const ProjectCard = ({ title, category, imageUrl, delay = 0 }: { title: string; category: string; imageUrl: string; delay?: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -78,6 +75,7 @@ const ProjectCard = ({ title, category, imageUrl, delay = 0 }) => {
     >
       <div className="aspect-video bg-gray-800 w-full overflow-hidden">
         <div
+        
           className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
           style={{ backgroundImage: `url(${imageUrl})` }}
         />
@@ -89,9 +87,8 @@ const ProjectCard = ({ title, category, imageUrl, delay = 0 }) => {
     </motion.div>
   );
 };
-
 // Testimonial Card Component
-const TestimonialCard = ({ quote, author, position, company, delay = 0 }) => {
+const TestimonialCard = ({ quote, author, position, company, delay = 0 }: { quote: string; author: string; position: string; company: string; delay?: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -108,9 +105,8 @@ const TestimonialCard = ({ quote, author, position, company, delay = 0 }) => {
     </motion.div>
   );
 };
-
 // Team Member Card Component
-const TeamMemberCard = ({ name, position, imageUrl, delay = 0 }) => {
+const TeamMemberCard = ({ name, position, imageUrl, delay = 0 }: { name: string; position: string; imageUrl: string; delay?: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -129,9 +125,8 @@ const TeamMemberCard = ({ name, position, imageUrl, delay = 0 }) => {
     </motion.div>
   );
 };
-
 // Stats Component
-const StatItem = ({ number, label, delay = 0 }) => {
+const StatItem = ({ number, label, delay = 0 }: { number: string; label: string; delay?: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -144,9 +139,8 @@ const StatItem = ({ number, label, delay = 0 }) => {
     </motion.div>
   );
 };
-
 // Blog Post Card Component
-const BlogPostCard = ({ title, excerpt, category, date, imageUrl, delay = 0 }) => {
+const BlogPostCard = ({ title, excerpt, category, date, imageUrl, delay = 0 }: { title: string; excerpt: string; category: string; date: string; imageUrl: string; delay?: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -177,9 +171,8 @@ const BlogPostCard = ({ title, excerpt, category, date, imageUrl, delay = 0 }) =
     </motion.div>
   );
 };
-
 // Technology Item Component
-const TechnologyItem = ({ name, icon, delay = 0 }) => {
+const TechnologyItem = ({ name, icon, delay = 0 }: { name: string; icon: JSX.Element; delay?: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -192,9 +185,8 @@ const TechnologyItem = ({ name, icon, delay = 0 }) => {
     </motion.div>
   );
 };
-
 // FAQ Item Component
-const FAQItem = ({ question, answer, delay = 0 }) => {
+const FAQItem = ({ question, answer, delay = 0 }: { question: string; answer: string; delay?: number }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -274,7 +266,7 @@ const ContactForm = () => {
         <label htmlFor="message" className="block text-white font-medium mb-2">Message</label>
         <textarea
           id="message"
-          rows="5"
+          rows={5}
           className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500"
           placeholder="Your message"
         ></textarea>
@@ -290,7 +282,7 @@ const ContactForm = () => {
 };
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [, setIsLoading] = useState(true);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -309,7 +301,7 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <div className="h-screen bg-black overflow-hidden relative">
+      <div className=" bg-black relative">
         {/* Grid Background */}
         <GridBackground />
 
@@ -622,20 +614,19 @@ const Home = () => {
               <p className="text-gray-400 text-lg">We leverage cutting-edge technologies to build scalable and future-proof solutions.</p>
             </motion.div>
           </div>
-
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            <TechnologyItem name="React" icon="⚛️" delay={0.1} />
-            <TechnologyItem name="Node.js" icon="🟢" delay={0.15} />
-            <TechnologyItem name="Next.js" icon="▲" delay={0.2} />
-            <TechnologyItem name="TypeScript" icon="📘" delay={0.25} />
-            <TechnologyItem name="Python" icon="🐍" delay={0.3} />
-            <TechnologyItem name="AWS" icon="☁️" delay={0.35} />
-            <TechnologyItem name="Firebase" icon="🔥" delay={0.4} />
-            <TechnologyItem name="Figma" icon="🎨" delay={0.45} />
-            <TechnologyItem name="GraphQL" icon="◼️" delay={0.5} />
-            <TechnologyItem name="MongoDB" icon="🍃" delay={0.55} />
-            <TechnologyItem name="Tailwind CSS" icon="💨" delay={0.6} />
-            <TechnologyItem name="Flutter" icon="📱" delay={0.65} />
+            <TechnologyItem name="React" icon={<span>⚛️</span>} delay={0.1} />
+            <TechnologyItem name="Node.js" icon={<span>🟢</span>} delay={0.15} />
+            <TechnologyItem name="Next.js" icon={<span>▲</span>} delay={0.2} />
+            <TechnologyItem name="TypeScript" icon={<span>📘</span>} delay={0.25} />
+            <TechnologyItem name="Python" icon={<span>🐍</span>} delay={0.3} />
+            <TechnologyItem name="AWS" icon={<span>☁️</span>} delay={0.35} />
+            <TechnologyItem name="Firebase" icon={<span>🔥</span>} delay={0.4} />
+            <TechnologyItem name="Figma" icon={<span>🎨</span>} delay={0.45} />
+            <TechnologyItem name="GraphQL" icon={<span>◼️</span>} delay={0.5} />
+            <TechnologyItem name="MongoDB" icon={<span>🍃</span>} delay={0.55} />
+            <TechnologyItem name="Tailwind CSS" icon={<span>💨</span>} delay={0.6} />
+            <TechnologyItem name="Flutter" icon={<span>📱</span>} delay={0.65} />
           </div>
         </div>
       </AnimatedSection>
