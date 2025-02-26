@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth transitions */
-* {
-  @apply transition-all duration-300 ease-in-out;
-}
-
-/* Custom scroll behavior */
-html {
-  scroll-behavior: smooth;
-  @apply overflow-hidden;
-}
-
 
 /* Custom futuristic scrollbar */
 ::-webkit-scrollbar {

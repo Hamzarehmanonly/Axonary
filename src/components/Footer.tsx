@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
   return (
@@ -14,15 +15,33 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#home" className="hover:text-gray-300">Home</a></li>
-              <li><a href="#about" className="hover:text-gray-300">About us</a></li>
-              <li><a href="#contact" className="hover:text-gray-300">Contact us</a></li>
+              <li>         
+                <Link
+                  to="/"
+                  className="hover:text-gray-300">
+                  Home
+                </Link>
+              </li>
+              <li>         
+                <Link
+                  to="/about"
+                  className="hover:text-gray-300">
+                  About us
+                </Link>
+              </li>
+              <li>         
+                <Link
+                  to="/contact"
+                  className="hover:text-gray-300">
+                  Contact us
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Services Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4">Solutions</h3>
             <ul className="space-y-2">
               <li><a href="#ui-ux" className="hover:text-gray-300">UI UX CX Design</a></li>
               <li><a href="#web-dev" className="hover:text-gray-300">Website Development</a></li>
@@ -37,10 +56,21 @@ const Footer: React.FC = () => {
           {/* Resources Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li><a href="#blog" className="hover:text-gray-300">Blog</a></li>
-              <li><a href="#case-studies" className="hover:text-gray-300">Case Studies</a></li>
-              <li><a href="#faqs" className="hover:text-gray-300">FAQs</a></li>
+            <ul className="space-y-2"> 
+              <li>         
+                <Link
+                  to="/blog"
+                  className="hover:text-gray-300">
+                  Blog
+                </Link>
+              </li>
+              <li>         
+                <Link
+                  to="/casestudies"
+                  className="hover:text-gray-300">
+                  Case Studies
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

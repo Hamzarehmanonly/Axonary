@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,55 +35,75 @@ const Navbar: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-bold text-white"
         >
-          AXONARY
+          <Link
+              to="/"
+              className="text-2xl font-bold text-white">
+                AXONARY
+          </Link>
         </motion.div>
         
         <nav className="hidden md:flex items-center space-x-8">
           <motion.a
             whileHover={{ scale: 1.05 }}
-            href="#about"
-            className="hover:text-purple-500 text-white transition-colors"
           >
-            About
+            <Link
+              to="/about"
+              className="hover:text-purple-500 text-white transition-colors">
+              About
+            </Link>
           </motion.a>
+
           <motion.a
             whileHover={{ scale: 1.05 }}
-            href="#work"
-            className="hover:text-purple-500 text-white transition-colors"
           >
-            Work
+           <Link
+              to="/work"
+              className="hover:text-purple-500 text-white transition-colors">
+              Work
+            </Link>
           </motion.a>
+          
           <motion.a
             whileHover={{ scale: 1.05 }}
-            href="#solutions"
-            className="hover:text-purple-500 text-white transition-colors"
           >
-            Solutions
+            <Link
+              to="/solutions"
+              className="hover:text-purple-500 text-white transition-colors">
+              Solutions
+            </Link>
           </motion.a>
+
           <motion.a
             whileHover={{ scale: 1.05 }}
-            href="#approach"
-            className="hover:text-purple-500 text-white transition-colors"
           >
-            Our Approach
+            <Link
+              to="/approach"
+              className="hover:text-purple-500 text-white transition-colors">
+              Our Approach
+            </Link>
           </motion.a>
+
           <motion.a
             whileHover={{ scale: 1.05 }}
-            href="#blog"
-            className="hover:text-purple-500 text-white transition-colors"
           >
-            Blog
+            <Link
+              to="/blog"
+              className="hover:text-purple-500 text-white transition-colors">
+              Blog
+            </Link>
           </motion.a>
         </nav>
 
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="hidden md:block bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors"
         >
-          Contact Us →
+          <Link
+              to="/contact"
+              className="hidden md:block bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                Contact Us →
+          </Link>
         </motion.button>
 
         {/* Mobile Menu Button */}
