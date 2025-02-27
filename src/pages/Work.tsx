@@ -1,19 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
-// Register the ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
+// Register the plugins
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-const Work = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [activeProject, setActiveProject] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+// Define TypeScript interfaces
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  year: string;
+  description: string;
+  tags: string[];
+  color: string;
+  image: string;
+}
+
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+const Work: React.FC = () => {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [activeProject, setActiveProject] = useState<number>(0);
+  const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const contentRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<Array<HTMLElement | null>>([]);
+  const projectsRef = useRef<(HTMLElement | null)[]>([]);
   
   // Enhanced project data with more details
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: "Indian Navy",
@@ -68,16 +86,25 @@ const Work = () => {
 
     if (!contentRef.current) return;
 
+    // Clear any existing ScrollTriggers
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
     // GSAP setup for each project
     projectsRef.current.forEach((section, index) => {
       if (!section) return;
+
+      // Initial state - all start below the viewport
+      gsap.set(section, { 
+        y: index === 0 ? 0 : '100%', // First project starts visible, others start below
+        opacity: index === 0 ? 1 : 0.3, // First project starts visible, others slightly hidden
+      });
 
       // Create timeline for each project
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top bottom", // Animation starts when top of section hits bottom of viewport
-          end: "center center", // Animation ends when center of section hits center of viewport
+          end: "top 20%", // Animation ends when top of section is 20% from the top
           scrub: 1, // Smooth scrubbing effect
           markers: false, // Set to true for debugging
           onEnter: () => setActiveProject(index),
@@ -85,13 +112,7 @@ const Work = () => {
         }
       });
 
-      // Initial state (hidden)
-      gsap.set(section, { 
-        y: index === 0 ? 0 : 100, // First project starts visible, others start below
-        opacity: index === 0 ? 1 : 0, // First project starts visible, others start invisible
-      });
-
-      // Animation timeline
+      // Animation timeline - slide up and fade in
       tl.to(section, {
         y: 0,
         opacity: 1,
@@ -122,9 +143,9 @@ const Work = () => {
         const elementsTl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
-            start: "top 80%",
-            end: "top 20%",
-            scrub: 1
+            start: "top 60%", // Start when the section is 60% from the top of the viewport
+            end: "top 20%", // End when the section is 20% from the top
+            scrub: 0.5 // Smoother scrubbing for elements
           }
         });
 
@@ -135,6 +156,35 @@ const Work = () => {
           .to(tags, { y: 0, opacity: 1, duration: 0.3 }, "-=0.1")
           .to(button, { y: 0, opacity: 1, duration: 0.3 }, "-=0.1")
           .to(image, { scale: 1, opacity: 1, duration: 0.5 }, "-=0.3");
+      }
+
+      // Create a separate ScrollTrigger for each project to handle the exit animation
+      if (index < projectsRef.current.length - 1) {
+        const nextSection = projectsRef.current[index + 1];
+        if (nextSection) {
+          ScrollTrigger.create({
+            trigger: nextSection,
+            start: "top bottom",
+            end: "top 70%",
+            scrub: 1,
+            onEnter: () => {
+              gsap.to(section, {
+                y: "-30%",
+                opacity: 0.3,
+                duration: 1,
+                ease: "power2.in"
+              });
+            },
+            onLeaveBack: () => {
+              gsap.to(section, {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out"
+              });
+            }
+          });
+        }
       }
     });
 
@@ -250,16 +300,19 @@ const Work = () => {
         </div>
       </div>
       
-      {/* Main content with enhanced project sections */}
+      {/* Main content with improved project sections */}
       <div className="min-h-screen">
         {projects.map((project, index) => (
           <section 
             key={project.id}
-            ref={el => projectsRef.current[index] = el}
-            className="relative min-h-screen flex items-center transition-all duration-700"
+            ref={el => { projectsRef.current[index] = el as HTMLElement; }}
+            className="relative min-h-screen flex items-center"
             style={{
-              marginTop: index === 0 ? '0' : '-90vh', // Overlap effect
-              zIndex: index + 1,
+              position: index === 0 ? 'relative' : 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              zIndex: 10 - index,
             }}
           >
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 px-6 md:px-12">
@@ -404,30 +457,8 @@ const Work = () => {
         ))}
         
         {/* Extra space for scrolling */}
-        <div style={{ height: '70vh' }}></div>
+        <div style={{ height: '100vh' }}></div>
       </div>
-      
-      {/* Global styles for animations */}
-      <style className='global' contextMenu='jsx'>{`
-        @keyframes grain {
-          0%, 100% { transform: translate(0, 0); }
-          10% { transform: translate(-5%, -5%); }
-          20% { transform: translate(-10%, 5%); }
-          30% { transform: translate(5%, -10%); }
-          40% { transform: translate(-5%, 15%); }
-          50% { transform: translate(-10%, 5%); }
-          60% { transform: translate(15%, 0%); }
-          70% { transform: translate(0%, 10%); }
-          80% { transform: translate(-15%, 0%); }
-          90% { transform: translate(10%, 5%); }
-        }
-        
-        .svg-path {
-          stroke-dasharray: 300;
-          stroke-dashoffset: 300;
-          transition: stroke-dashoffset 1.2s ease;
-        }
-      `}</style>
     </div>
   );
 };

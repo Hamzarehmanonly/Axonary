@@ -169,9 +169,10 @@ const Navbar: React.FC = () => {
                 variants={itemVariants}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-8 bg-purple-600 text-white px-8 py-3 rounded-lg text-xl hover:bg-purple-700 transition-colors"
               >
+                <Link to={"/contact"} className="mt-8 bg-purple-600 text-white px-8 py-3 rounded-lg text-xl hover:bg-purple-700 transition-colors">
                 Contact Us →
+                </Link>
               </motion.button>
             </motion.div>
           </motion.div>
