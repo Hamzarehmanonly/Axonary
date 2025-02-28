@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Children, useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 // Team member component with hover effect
@@ -386,15 +386,16 @@ const About = () => {
                 ))}
               </motion.div>
             </div>
-              <ParallaxSection>
+            <ParallaxSection>
               <div className="relative h-full min-h-[400px] overflow-hidden rounded-lg">
                 <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black/50" />
-                <img 
+                <img
                   src="/api/placeholder/800/800" 
                   alt="Our workspace"
                   className="w-full h-full object-cover"
                 />
                 
+
                 <motion.div 
                   className="absolute inset-0 flex items-center justify-center"
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -408,7 +409,7 @@ const About = () => {
                   </div>
                 </motion.div>
               </div>
-              </ParallaxSection>
+            </ParallaxSection>
           </div>
         </div>
       </section>
