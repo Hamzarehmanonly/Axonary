@@ -138,7 +138,7 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 md:hidden"
+            className="fixed inset-0 bg-black/90 backdrop-blur-lg z-40 md:hidden"
           >
             <motion.div
               variants={menuVariants}

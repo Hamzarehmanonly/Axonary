@@ -286,3 +286,16 @@
   width: 100%;
   border: 1px solid red;
 }
+
+
+/* Loader Styles */
+
+.loaderdiv{
+  width: 30px;
+  height: 100vh;
+  background-color: #000000;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: 10000;
+}
