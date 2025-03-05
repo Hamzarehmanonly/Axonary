@@ -299,3 +299,18 @@
   left: 0%;
   z-index: 10000;
 }
+
+@keyframes infinite-scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes infinite-scroll-reverse {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0%); }
+}
+.animate-infinite-scroll {
+  animation: infinite-scroll 25s linear infinite;
+}
+.animate-infinite-scroll-reverse {
+  animation: infinite-scroll-reverse 25s linear infinite;
+}

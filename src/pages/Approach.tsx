@@ -1,16 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 
+// Add CSS animations for infinite scroll
+const styles = `
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes infinite-scroll-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  .animate-infinite-scroll {
+    animation: infinite-scroll 30s linear infinite;
+  }
+
+  .animate-infinite-scroll-reverse {
+    animation: infinite-scroll-reverse 30s linear infinite;
+  }
+`;
+
 // Axonary color theme
 const AXONARY_COLORS = {
   primary: '#5C3693',
   secondary: '#472A71',
-  dark: '#000000',
-  light: '#FFFFFF',
-  accent1: '#7B4DCC',
-  accent2: '#341C52',
-  gradient1: '#5C3693',
-  gradient2: '#341C52',
+  white: '#FFFFFF',
+  black: '#000000'
 };
 
 // Approach step interface
@@ -24,13 +41,13 @@ interface ApproachStep {
 }
 
 // Sample approach data - replace with your actual approach steps
-const approachSteps: ApproachStep[] = [
+const approachSteps = [
   {
     id: 1,
     title: "Discovery",
     description: "We deep dive into your business goals, audience needs, and market trends to shape our strategy.",
     icon: "🔍",
-    color: AXONARY_COLORS.accent1,
+    color: AXONARY_COLORS.primary,
     keyPoints: [
       "User research & persona development",
       "Competitive analysis & market positioning",
@@ -42,7 +59,7 @@ const approachSteps: ApproachStep[] = [
     title: "Strategy",
     description: "We craft a detailed roadmap aligned with your objectives, timeline, and technical requirements.",
     icon: "🧠",
-    color: AXONARY_COLORS.primary,
+    color: AXONARY_COLORS.secondary,
     keyPoints: [
       "Digital roadmap creation",
       "Resource planning & technology selection",
@@ -54,7 +71,7 @@ const approachSteps: ApproachStep[] = [
     title: "Design",
     description: "Our creative team transforms concepts into visually compelling, user-focused experiences.",
     icon: "✏️",
-    color: AXONARY_COLORS.accent1,
+    color: AXONARY_COLORS.primary,
     keyPoints: [
       "UI wireframes & prototyping",
       "User experience flows & journey mapping",
@@ -66,7 +83,7 @@ const approachSteps: ApproachStep[] = [
     title: "Development",
     description: "We build robust, scalable solutions using cutting-edge technologies and best practices.",
     icon: "⚙️",
-    color: AXONARY_COLORS.primary,
+    color: AXONARY_COLORS.secondary,
     keyPoints: [
       "Clean code architecture & implementation",
       "Responsive & progressive enhancement",
@@ -78,7 +95,7 @@ const approachSteps: ApproachStep[] = [
     title: "Testing",
     description: "Rigorous quality assurance ensures flawless performance across all devices and platforms.",
     icon: "🧪",
-    color: AXONARY_COLORS.accent1,
+    color: AXONARY_COLORS.primary,
     keyPoints: [
       "Automated testing & CI/CD integration",
       "Cross-browser & device compatibility",
@@ -90,7 +107,7 @@ const approachSteps: ApproachStep[] = [
     title: "Launch",
     description: "We execute a smooth deployment and provide comprehensive post-launch support.",
     icon: "🚀",
-    color: AXONARY_COLORS.primary,
+    color: AXONARY_COLORS.secondary,
     keyPoints: [
       "Deployment automation & monitoring setup",
       "Performance tracking & analytics",
@@ -128,6 +145,16 @@ const Approach: React.FC = () => {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: false });
   const headerControls = useAnimation();
+
+  // Inject styles for infinite scroll
+  useEffect(() => {
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = styles;
+    document.head.appendChild(styleSheet);
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
 
   // For visual elements animation
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -282,8 +309,8 @@ const Approach: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-white">
-      <section className="bg-gradient-to-b from-black to-gray-900 py-20 overflow-hidden">
+    <div className="bg-[#000000] text-[#FFFFFF]">
+      <section className="bg-gradient-to-b from-[#000000] to-[#000000] py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           {/* Header Section */}
           <motion.div 
@@ -295,23 +322,19 @@ const Approach: React.FC = () => {
           >
             <motion.span 
               variants={itemVariants} 
-              className="inline-block bg-gradient-to-r from-purple-600 to-purple-800 text-white text-sm px-3 py-1 rounded-full mb-4"
-              style={{ backgroundColor: AXONARY_COLORS.primary }}
+              className="inline-block bg-[#5C3693] text-[#FFFFFF] text-sm px-3 py-1 rounded-full mb-4"
             >
               Our Methodology
             </motion.span>
             <motion.h2 
               variants={itemVariants} 
-              className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600"
-              style={{ 
-                backgroundImage: `linear-gradient(to right, ${AXONARY_COLORS.accent1}, ${AXONARY_COLORS.primary})` 
-              }}
+              className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#5C3693] to-[#472A71]"
             >
               Our Approach
             </motion.h2>
             <motion.p 
               variants={itemVariants} 
-              className="max-w-2xl mx-auto text-gray-300 text-lg"
+              className="max-w-2xl mx-auto text-[#FFFFFF] text-lg"
             >
               We follow a proven process to turn your vision into digital reality through a collaborative and transparent journey.
             </motion.p>
@@ -392,11 +415,11 @@ const Approach: React.FC = () => {
 
             {/* Active step details with animation */}
             <motion.div
-              className="bg-gray-900 rounded-2xl shadow-xl p-8 border border-gray-800"
+              className="bg-[#000000] rounded-2xl shadow-xl p-8 border border-[#5C3693]/20"
               initial="hidden"
               animate="visible"
               variants={detailsVariants}
-              key={activeStep} // This forces re-render and animation on step change
+              key={activeStep}
             >
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
@@ -609,17 +632,17 @@ const Approach: React.FC = () => {
             variants={headerVariants}
             initial="hidden"
             animate={metricsControls}
-            className="mt-20 pt-16 border-t border-gray-800"
+            className="mt-20 pt-16 border-t border-[#5C3693]/20"
           >
             <motion.h3 
               variants={itemVariants} 
-              className="text-3xl font-bold mb-4 text-center text-white"
+              className="text-3xl font-bold mb-4 text-center text-[#FFFFFF]"
             >
               Why Choose Axonary
             </motion.h3>
             <motion.p 
               variants={itemVariants} 
-              className="text-center text-gray-300 mb-12 max-w-2xl mx-auto"
+              className="text-center text-[#FFFFFF] mb-12 max-w-2xl mx-auto"
             >
               Our approach has delivered exceptional results for clients across industries
             </motion.p>
@@ -630,17 +653,13 @@ const Approach: React.FC = () => {
                   key={index}
                   custom={index}
                   variants={metricVariants}
-                  className="bg-gray-900 p-6 rounded-lg border border-gray-800 text-center"
+                  className="bg-[#000000] p-6 rounded-lg border border-[#5C3693]/20 text-center"
                 >
                   <div className="text-3xl mb-2">{metric.icon}</div>
-                  <div className="text-3xl md:text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600"
-                    style={{ 
-                      backgroundImage: `linear-gradient(to right, ${AXONARY_COLORS.accent1}, ${AXONARY_COLORS.primary})` 
-                    }}
-                  >
+                  <div className="text-3xl md:text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#5C3693] to-[#472A71]">
                     {metric.value}
                   </div>
-                  <div className="text-sm text-gray-300">{metric.label}</div>
+                  <div className="text-sm text-[#FFFFFF]">{metric.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -652,17 +671,17 @@ const Approach: React.FC = () => {
             variants={headerVariants}
             initial="hidden"
             animate={testimonialsControls}
-            className="mt-20 pt-16 border-t border-gray-800"
+            className="mt-20 pt-16 border-t border-[#5C3693]/20"
           >
             <motion.h3 
               variants={itemVariants} 
-              className="text-3xl font-bold mb-4 text-center text-white"
+              className="text-3xl font-bold mb-4 text-center text-[#FFFFFF]"
             >
               Client Success Stories
             </motion.h3>
             <motion.p 
               variants={itemVariants} 
-              className="text-center text-gray-300 mb-12 max-w-2xl mx-auto"
+              className="text-center text-[#FFFFFF] mb-12 max-w-2xl mx-auto"
             >
               Here's what our clients say about our approach and results
             </motion.p>
@@ -673,12 +692,12 @@ const Approach: React.FC = () => {
                   key={index}
                   custom={index}
                   variants={testimonialVariants}
-                  className="bg-gray-900 p-8 rounded-lg border border-gray-800 relative"
+                  className="bg-[#000000] p-8 rounded-lg border border-[#5C3693]/20 relative"
                 >
-                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full flex items-center justify-center text-2xl">
+                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-r from-[#5C3693] to-[#472A71] rounded-full flex items-center justify-center text-2xl">
                     "
                   </div>
-                  <p className="text-gray-300 mb-6 italic">{testimonial.quote}</p>
+                  <p className="text-[#FFFFFF] mb-6 italic">{testimonial.quote}</p>
                   <div className="flex items-center">
                     <img 
                       src={testimonial.image} 
@@ -686,8 +705,8 @@ const Approach: React.FC = () => {
                       className="w-12 h-12 rounded-full mr-4"
                     />
                     <div>
-                      <div className="font-bold text-white">{testimonial.author}</div>
-                      <div className="text-sm text-gray-400">{testimonial.position}</div>
+                      <div className="font-bold text-[#FFFFFF]">{testimonial.author}</div>
+                      <div className="text-sm text-[#FFFFFF]/70">{testimonial.position}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -700,12 +719,9 @@ const Approach: React.FC = () => {
               className="text-center mt-12"
             >
               <motion.button
-                className="bg-gradient-to-r from-purple-600 to-purple-800 text-white px-8 py-3 rounded-full font-bold text-lg"
+                className="bg-gradient-to-r from-[#5C3693] to-[#472A71] text-[#FFFFFF] px-8 py-3 rounded-full font-bold text-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                style={{ 
-                  backgroundImage: `linear-gradient(to right, ${AXONARY_COLORS.primary}, ${AXONARY_COLORS.secondary})` 
-                }}
               >
                 Start Your Project
               </motion.button>
@@ -713,42 +729,138 @@ const Approach: React.FC = () => {
           </motion.div>
         </div>
       </section>
-      
-      {/* Technology Stack Section */}
-      <section className="py-16 bg-black">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-4 text-white">Our Technology Stack</h3>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              We leverage cutting-edge technologies to deliver exceptional digital experiences
-            </p>
+
+      {/* Technologies Section */}
+      <div className="relative py-24 bg-[#000000] overflow-hidden">
+        {/* Section header */}
+        <div className="text-center mb-20 relative z-20">
+          <div className="inline-block bg-[#472A71]/20 px-4 py-1 rounded-full mb-4">
+            <span className="text-sm font-medium text-[#5C3693]">Built With</span>
           </div>
-          
-          <div className="flex flex-wrap justify-center gap-8">
-            {["React", "Next.js", "Node.js", "GraphQL", "AWS", "TypeScript", "Tailwind CSS", "Framer Motion"].map((tech, index) => (
-              <motion.div
-                key={index}
-                className="bg-gray-900 px-6 py-3 rounded-lg border border-gray-800"
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: `0 0 10px ${AXONARY_COLORS.primary}50` 
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { 
-                    duration: 0.6,
-                    delay: index * 0.1
-                  }
-                }}
-              >
-                <span className="text-gray-300">{tech}</span>
-              </motion.div>
-            ))}
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#FFFFFF] mb-6">
+            Technologies we use
+          </h2>
         </div>
-      </section>
+
+        {/* Infinite Slider */}
+        <div className="relative w-full overflow-hidden">
+          {/* First row */}
+          <div className="w-[200%] flex relative">
+            <div className="flex animate-infinite-scroll w-[50%] justify-around">
+              {[
+                { name: "React", icon: "⚛️" },
+                { name: "Vue", icon: "🎯" },
+                { name: "Angular", icon: "🔺" },
+                { name: "Next.js", icon: "▲" },
+                { name: "TypeScript", icon: "📘" },
+                { name: "Tailwind", icon: "🎨" },
+                { name: "Node.js", icon: "🟢" },
+                { name: "Python", icon: "🐍" }
+              ].map((tech, index) => (
+                <div
+                  key={`tech1-${index}`}
+                  className="flex flex-col items-center group"
+                >
+                  <div className="text-4xl mb-2 opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {tech.icon}
+                  </div>
+                  <span className="text-[#FFFFFF] text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="flex animate-infinite-scroll w-[50%] justify-around" aria-hidden="true">
+              {[
+                { name: "React", icon: "⚛️" },
+                { name: "Vue", icon: "🎯" },
+                { name: "Angular", icon: "🔺" },
+                { name: "Next.js", icon: "▲" },
+                { name: "TypeScript", icon: "📘" },
+                { name: "Tailwind", icon: "🎨" },
+                { name: "Node.js", icon: "🟢" },
+                { name: "Python", icon: "🐍" }
+              ].map((tech, index) => (
+                <div
+                  key={`tech1-dup-${index}`}
+                  className="flex flex-col items-center group"
+                >
+                  <div className="text-4xl mb-2 opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {tech.icon}
+                  </div>
+                  <span className="text-[#FFFFFF] text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Second row */}
+          <div className="w-[200%] flex relative mt-16">
+            <div className="flex animate-infinite-scroll-reverse w-[50%] justify-around">
+              {[
+                { name: "AWS", icon: "☁️" },
+                { name: "Docker", icon: "🐳" },
+                { name: "Kubernetes", icon: "⎈" },
+                { name: "MongoDB", icon: "🍃" },
+                { name: "PostgreSQL", icon: "🐘" },
+                { name: "Redis", icon: "🔴" },
+                { name: "GraphQL", icon: "◈" },
+                { name: "Firebase", icon: "🔥" }
+              ].map((tech, index) => (
+                <div
+                  key={`tech2-${index}`}
+                  className="flex flex-col items-center group"
+                >
+                  <div className="text-4xl mb-2 opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {tech.icon}
+                  </div>
+                  <span className="text-[#FFFFFF] text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="flex animate-infinite-scroll-reverse w-[50%] justify-around" aria-hidden="true">
+              {[
+                { name: "AWS", icon: "☁️" },
+                { name: "Docker", icon: "🐳" },
+                { name: "Kubernetes", icon: "⎈" },
+                { name: "MongoDB", icon: "🍃" },
+                { name: "PostgreSQL", icon: "🐘" },
+                { name: "Redis", icon: "🔴" },
+                { name: "GraphQL", icon: "◈" },
+                { name: "Firebase", icon: "🔥" }
+              ].map((tech, index) => (
+                <div
+                  key={`tech2-dup-${index}`}
+                  className="flex flex-col items-center group"
+                >
+                  <div className="text-4xl mb-2 opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {tech.icon}
+                  </div>
+                  <span className="text-[#FFFFFF] text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Gradient overlays */}
+          <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
+          <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
+        </div>
+
+        {/* Add some decorative elements */}
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5C3693] rounded-full filter blur-[100px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#472A71] rounded-full filter blur-[100px]" />
+        </div>
+      </div>
+
+      {/* Contact Section */}
     </div>
   );
 };

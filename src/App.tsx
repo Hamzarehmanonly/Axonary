@@ -8,32 +8,42 @@ import About from './pages/About';
 import Work from './pages/Work';
 import Solutions from './pages/Solutions';
 import Approach from './pages/Approach';
+import Support from './pages/Support';
 import PrivacyPolicy from './pages/legal/PrivacyPolicy';
 import TermsConditions from './pages/legal/TermsConditions';
 import CookiePolicy from './pages/legal/CookiePolicy';
 import Sitemap from './pages/legal/Sitemap';
 import CaseStudies from './pages/legal/CaseStudies';
+import { useScrollToTop } from './hooks/useScrollToTop';
+
+// ScrollToTop component that will be used inside Router
+const ScrollToTop = () => {
+  useScrollToTop();
+  return null;
+};
 
 function App() {
   return (
     <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/work' element={<Work/>} />
-          <Route path='/solutions' element={<Solutions/>} />
-          <Route path='/approach' element={<Approach/>} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          {/* Legal Pages */}
-          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-          <Route path="/termsconditions" element={<TermsConditions />} />
-          <Route path="/cookiepolicy" element={<CookiePolicy />} />
-          <Route path="/sitemap" element={<Sitemap />} />
-          <Route path="/casestudies" element={<CaseStudies />} />
-        </Routes>
-        <Footer />
+      <ScrollToTop />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/work' element={<Work/>} />
+        <Route path='/solutions' element={<Solutions/>} />
+        <Route path='/approach' element={<Approach/>} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/support" element={<Support />} />
+        {/* Legal Pages */}
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/termsconditions" element={<TermsConditions />} />
+        <Route path="/cookiepolicy" element={<CookiePolicy />} />
+        <Route path="/sitemap" element={<Sitemap />} />
+        <Route path="/casestudies" element={<CaseStudies />} />
+      </Routes>
+      <Footer />
     </Router>
   );
 }

@@ -64,9 +64,9 @@ const COLORS = {
   secondary: "#472A71",
   white: "#FFFFFF",
   black: "#000000",
-  darkGray: "#0A0A0A",
-  lightGray: "#111111",
-  textGray: "#CCCCCC"
+  darkGray: "#000000",
+  lightGray: "#000000",
+  textGray: "#FFFFFF"
 };
 
 // Team member component with hover effect

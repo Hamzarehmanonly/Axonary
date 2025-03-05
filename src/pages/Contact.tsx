@@ -72,8 +72,8 @@ const ContactForm = () => {
               onClick={() => handleBudgetSelect(option.value)}
               className={`px-4 py-2 rounded-full border ${
                 selectedBudget === option.value 
-                  ? 'border-white bg-white text-gray-900' 
-                  : 'border-gray-700 text-white hover:border-gray-500'
+                  ? 'border-[#5C3693] bg-[#5C3693] text-[#FFFFFF]' 
+                  : 'border-[#5C3693]/20 text-[#FFFFFF] hover:border-[#5C3693]/50'
               } transition-all`}
             >
               {option.label}
@@ -86,7 +86,7 @@ const ContactForm = () => {
         type="submit"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="bg-white text-gray-900 py-3 px-6 rounded-full font-medium flex items-center justify-center gap-2 w-full md:w-auto"
+        className="bg-[#5C3693] text-[#FFFFFF] py-3 px-6 rounded-full font-medium flex items-center justify-center gap-2 w-full md:w-auto"
       >
         <span>Send message</span>
         <Send size={16} />
@@ -113,7 +113,7 @@ const InterestItem = ({ text, isActive = false }: { text: string; isActive?: boo
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className={`px-6 py-3 rounded-full border ${
-        isActive ? 'border-white bg-white text-gray-900' : 'border-gray-700 text-white'
+        isActive ? 'border-[#5C3693] bg-[#5C3693] text-[#FFFFFF]' : 'border-[#5C3693]/20 text-[#FFFFFF]'
       } transition-all`}
     >
       {text}
