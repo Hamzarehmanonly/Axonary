@@ -75,6 +75,64 @@ yarn build
 
 The build artifacts will be stored in the `dist/` directory.
 
+## Deployment
+
+### GitHub Pages Deployment
+
+1. Install the gh-pages package:
+   ```bash
+   npm install --save-dev gh-pages
+   # or
+   yarn add --dev gh-pages
+   ```
+
+2. Add the following to your `package.json`:
+   ```json
+   "homepage": "https://axonary.com",
+   "scripts": {
+     // ... other scripts
+     "predeploy": "npm run build",
+     "deploy": "gh-pages -d dist"
+   }
+   ```
+
+3. Configure Vite for base path (create or update `vite.config.ts`):
+   ```typescript
+   export default defineConfig({
+     // ... other config
+     base: '/',
+   });
+   ```
+
+4. Deploy to GitHub Pages:
+   ```bash
+   npm run deploy
+   # or
+   yarn deploy
+   ```
+
+### Custom Domain Setup
+
+1. In your GitHub repository, go to Settings > Pages
+2. Under "Custom domain", enter `axonary.com` and save
+3. Create a CNAME file in the `public` directory with the content:
+   ```
+   axonary.com
+   ```
+
+4. Configure your domain's DNS settings:
+   - Add an A record pointing to GitHub Pages IP addresses:
+     ```
+     185.199.108.153
+     185.199.109.153
+     185.199.110.153
+     185.199.111.153
+     ```
+   - Or add a CNAME record pointing to `your-username.github.io`
+
+5. Wait for DNS propagation (may take up to 24 hours)
+6. Ensure "Enforce HTTPS" is checked in GitHub Pages settings
+
 ## Project Structure
 
 ```
