@@ -417,7 +417,7 @@ const Solutions: React.FC = () => {
                           transition={{ delay: 0.6 }}
                           className="mt-8"
                         >
-                          <button className="px-6 py-3 bg-gradient-to-r from-[#5C3693] to-[#472A71] rounded-full text-white font-medium shadow-lg shadow-[#5C3693]/30 hover:shadow-[#5C3693]/50 hover:scale-105 transition-all duration-300 flex items-center">
+                          <button className="btn-gradient flex items-center">
                             <span>Request a Consultation</span>
                             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -466,7 +466,7 @@ const Solutions: React.FC = () => {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="text-center mt-16 sm:mt-20"
         >
-          <button className="group relative px-8 py-4 bg-gradient-to-r from-[#5C3693] to-[#472A71] rounded-full text-lg font-medium shadow-lg shadow-[#5C3693]/30 hover:shadow-[#5C3693]/50 hover:scale-105 transition-all duration-300 overflow-hidden">
+          <button className="btn-gradient group relative overflow-hidden">
             <span className="relative z-10 flex items-center justify-center">
               Explore Our Portfolio
               <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

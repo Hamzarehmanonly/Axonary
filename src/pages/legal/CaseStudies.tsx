@@ -328,18 +328,8 @@ const CaseStudies: React.FC = () => {
           ))}
         </div>
       </div>
-
-      {/* Add some dynamic styles */}
-      <style>
-        {`
-          @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.2; }
-            50% { transform: scale(1.1); opacity: 0.3; }
-          }
-        `}
-      </style>
     </div>
   );
-    };
-    
-    export default CaseStudies;
+};
+
+export default CaseStudies;

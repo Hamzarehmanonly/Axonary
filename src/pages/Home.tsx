@@ -146,11 +146,10 @@ const Home: React.FC = () => {
               }`}>
               <Link
                 to="/contact"
-                className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium overflow-hidden rounded-lg"
+                className="btn-gradient group relative overflow-hidden"
               >
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#5C3693] to-[#472A71]"></span>
                 <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition-all duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-[#FFFFFF]/10 opacity-30 group-hover:rotate-90 ease-out"></span>
-                <span className="relative text-[#FFFFFF] flex items-center">
+                <span className="relative flex items-center">
                   Let's Talk <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </span>
               </Link>
@@ -717,7 +716,7 @@ const Home: React.FC = () => {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center bg-[#5C3693] text-[#FFFFFF] px-8 py-4 rounded-full font-medium text-lg hover:bg-[#472A71] transition-colors"
+              className="btn-primary-lg"
             >
               Start Your Project
               <svg

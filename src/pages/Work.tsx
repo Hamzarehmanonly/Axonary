@@ -493,7 +493,7 @@ const Work: React.FC = () => {
           >
             <Link
               to="/contact"
-              className="inline-flex items-center space-x-2 bg-[#5C3693] text-white px-8 py-4 rounded-full font-medium hover:bg-[#472A71] transition-colors"
+              className="btn-primary-lg"
             >
               <span>Let's talk</span>
               <svg

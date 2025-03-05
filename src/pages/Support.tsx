@@ -79,7 +79,7 @@ const Support: React.FC = () => {
               <p className="text-lg font-medium text-[#5C3693] mb-4">{category.contact}</p>
               <a
                 href={category.action}
-                className="inline-flex items-center text-white bg-[#5C3693] hover:bg-[#5C3693]/80 px-4 py-2 rounded-lg transition-colors duration-300"
+                className="btn-primary"
               >
                 Contact Now
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

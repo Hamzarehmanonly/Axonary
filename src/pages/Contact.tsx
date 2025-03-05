@@ -86,7 +86,7 @@ const ContactForm = () => {
         type="submit"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="bg-[#5C3693] text-[#FFFFFF] py-3 px-6 rounded-full font-medium flex items-center justify-center gap-2 w-full md:w-auto"
+        className="btn-primary w-full md:w-auto"
       >
         <span>Send message</span>
         <Send size={16} />
