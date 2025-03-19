@@ -50,9 +50,11 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header className="py-4 px-6 flex justify-between items-center border-b border-gray-800 bg-black/100 backdrop-blur-sm sticky top-0 z-[100]">
+        {/* Left section - Logo */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
+          className="w-1/3"
         >
           <Link
               to="/"
@@ -62,11 +64,13 @@ const Navbar: React.FC = () => {
                   alt="Axonary" 
                   className="h-10 w-auto mr-4" 
                 />
-                 <span className="text-white font-bold text-xl tracking-wider pb-1">AXONARY</span>
+                {/* Hide AXONARY text on mobile screens */}
+                <span className="text-white font-bold text-xl tracking-wider pb-1 hidden md:inline">AXONARY</span>
           </Link>
         </motion.div>
         
-        <nav className="hidden md:flex items-center space-x-8">
+        {/* Middle section - Navigation */}
+        <nav className="hidden md:flex items-center justify-center w-1/3 space-x-8">
           <motion.a
             whileHover={{ scale: 1.05 }}
             onClick={() => handlePageClick("About")}
@@ -118,38 +122,44 @@ const Navbar: React.FC = () => {
           </motion.a>
         </nav>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => handlePageClick("Contact")}
-          className="hidden md:block btn-primary"
-        >
-          Contact Us →
-        </motion.button>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden w-10 h-10 relative focus:outline-none"
-        >
-          <div className="block w-10 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <span
-              className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
-                isOpen ? "rotate-45" : "-translate-y-2"
-              }`}
-            />
-            <span
-              className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
-                isOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
-                isOpen ? "-rotate-45" : "translate-y-2"
-              }`}
-            />
+        {/* Right section - Contact button and mobile menu */}
+        <div className="w-1/3 flex justify-end">
+          {/* Contact Us button - visible ONLY on desktop */}
+          <div className="hidden md:block">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handlePageClick("Contact")}
+              className="btn-primary"
+            >
+              Contact Us →
+            </motion.button>
           </div>
-        </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden w-10 h-10 relative focus:outline-none z-50"
+          >
+            <div className="block w-10 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <span
+                className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
+                  isOpen ? "rotate-45" : "-translate-y-2"
+                }`}
+              />
+              <span
+                className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
+                  isOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
+                  isOpen ? "-rotate-45" : "translate-y-2"
+                }`}
+              />
+            </div>
+          </button>
+        </div>
       </header>
 
       {/* Mobile Menu Overlay */}
@@ -173,27 +183,21 @@ const Navbar: React.FC = () => {
                 { label: "Work" },
                 { label: "Solutions" },
                 { label: "Our Approach" },
-                { label: "Blog" }
+                { label: "Blog" },
+                { label: "Contact Us", isButton: true }
               ].map((item, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
                   onClick={() => handlePageClick(item.label)}
-                  className="text-3xl font-bold text-white my-4 hover:text-purple-500 transition-colors cursor-pointer"
+                  className={`text-3xl font-bold text-white my-4 hover:text-purple-500 transition-colors cursor-pointer ${
+                    item.isButton ? 'mt-8 btn-primary-lg text-xl' : ''
+                  }`}
                   whileHover={{ scale: 1.1, x: 10 }}
                 >
-                  {item.label}
+                  {item.label} {item.isButton && "→"}
                 </motion.div>
               ))}
-              <motion.button
-                variants={itemVariants}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handlePageClick("Contact")}
-                className="mt-8 btn-primary-lg"
-              >
-                Contact Us →
-              </motion.button>
             </motion.div>
           </motion.div>
         )}

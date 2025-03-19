@@ -3,12 +3,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ServicesLoader from '../components/Loader';
 import { motion } from 'framer-motion';
+import WorkInProgressModal from '../components/WorkInProgressModal';
 
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const featuresRef = useRef<HTMLDivElement>(null);
   const testimonialsRef = useRef<HTMLDivElement>(null);
   const pricingRef = useRef<HTMLDivElement>(null);
@@ -60,8 +62,22 @@ const Home: React.FC = () => {
     setIsLoading(false);
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
+      <WorkInProgressModal 
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        pageName="Contact Page"
+      />
+      
       <div className="relative w-full bg-black overflow-hidden">
         {/* Hero Section */}
         <div className="relative h-screen">
@@ -143,15 +159,15 @@ const Home: React.FC = () => {
             {/* CTA Button with hover effect */}
             <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-8'
               }`}>
-              <Link
-                to="/contact"
+              <button
+                onClick={openModal}
                 className="btn-gradient group relative overflow-hidden"
               >
                 <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition-all duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-[#FFFFFF]/10 opacity-30 group-hover:rotate-90 ease-out"></span>
                 <span className="relative flex items-center">
                   Let's Talk <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </span>
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -281,7 +297,7 @@ const Home: React.FC = () => {
               {[
                 {
                   title: "Data-Driven Marketing",
-                  description: "We craft high-impact marketing strategies based on analytics and industry insights that deliver measurable results.",
+                  description: "We craft high-impact marketing strategies based on analytics and industry insights.",
                   icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                       <path d="M3 3v18h18"></path>
@@ -294,7 +310,7 @@ const Home: React.FC = () => {
                 },
                 {
                   title: "SEO & Visibility Boost",
-                  description: "Dominate search rankings with our expert SEO optimization techniques and comprehensive visibility strategies.",
+                  description: "Dominate search rankings with our expert SEO optimization techniques.",
                   icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                       <circle cx="11" cy="11" r="8"></circle>
@@ -376,7 +392,7 @@ const Home: React.FC = () => {
               {[
                 {
                   title: "Conversion-Focused Strategies",
-                  description: "Turn visitors into customers with strategic call-to-action elements and user-focused campaigns optimized for conversion.",
+                  description: "Turn visitors into customers with strategic call-to-action elements and user-focused campaigns.",
                   icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                       <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -388,7 +404,7 @@ const Home: React.FC = () => {
                 },
                 {
                   title: "Brand Identity & Design",
-                  description: "Elevate your brand with cohesive, visually compelling branding and messaging that resonates with your target audience.",
+                  description: "Upsell your brand with cohesive, visually compelling branding and messaging.",
                   icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                       <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -401,7 +417,7 @@ const Home: React.FC = () => {
                 },
                 {
                   title: "Fast & Scalable Growth",
-                  description: "We optimize your marketing for both short-term wins and long-term success with scalable strategies that grow with your business.",
+                  description: "We optimize your marketing for both short-term wins and long-term success.",
                   icon: (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
                       <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
@@ -452,9 +468,9 @@ const Home: React.FC = () => {
                       
                       {/* Hover indicator */}
                       <div className="mt-4 opacity-0 transform translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke={feature.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke={feature.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                 </div>
             </div>
                   </div>
@@ -521,16 +537,19 @@ const Home: React.FC = () => {
                     </h3>
                     
                     <p className="text-[#FFFFFF]/70 group-hover:text-[#FFFFFF]/90 transition-colors duration-300 text-lg md:text-xl max-w-4xl">
-                      Tailored marketing solutions to fit your unique business needs, ensuring every campaign perfectly aligns with your goals and audience.
+                      Tailored marketing solutions to fit your unique business needs.
                     </p>
                     
                     {/* Call to action button */}
-                    <div className="mt-6 inline-flex items-center text-[#5C3693] hover:text-[#FFFFFF] transition-colors duration-300 group-hover:translate-x-2 transform transition-transform">
+                    <button 
+                      onClick={openModal} 
+                      className="mt-6 inline-flex items-center text-[#5C3693] hover:text-[#FFFFFF] transition-colors duration-300 group-hover:translate-x-2 transform transition-transform"
+                    >
                       <span className="mr-2 font-medium">Discover our customization options</span>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -543,14 +562,17 @@ const Home: React.FC = () => {
               transition={{ duration: 0.6, delay: 1 }}
               className="mt-16 text-center"
             >
-              <Link to="#" className="inline-flex items-center text-[#5C3693] hover:text-[#472A71] transition-colors duration-300 hover:scale-105 transform transition-transform">
+              <button 
+                onClick={openModal}
+                className="inline-flex items-center text-[#5C3693] hover:text-[#472A71] transition-colors duration-300 hover:scale-105 transform transition-transform"
+              >
                 <span className="py-2 px-6 border border-[#5C3693]/30 rounded-full hover:bg-[#5C3693]/10 transition-colors duration-300">
                   Explore all our features
                   <svg className="ml-2 w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                   </svg>
                 </span>
-              </Link>
+              </button>
             </motion.div>
           </div>
         </div>
@@ -597,52 +619,44 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  quote: "This template completely transformed our landing page. The animations are stunning and our conversion rate increased by 40%.",
-                  author: "Sarah Johnson",
-                  role: "Marketing Director"
+                  quote: "Hamza has gone above and beyond our expectations with assisting with our Social Media and Marketing needs. His communication is great and even though he is in a much different time zone, he makes himself available if we ever need anything time sensitive. His post content is very professional, creative and thoughtful. He evaluates every aspect of our social media presence and offers suggestions to improve. We will continue to work with Hamza",
+                  author: "Michael",
+                  role: "Marketing Client"
                 },
                 {
-                  quote: "I've never received so many compliments on my website before. The design is spectacular and it was incredibly easy to customize.",
-                  author: "Michael Chang",
-                  role: "Startup Founder"
-                },
-                {
-                  quote: "As a non-designer, I was amazed at how professional my landing page looks. Worth every penny!",
-                  author: "Emma Williams",
-                  role: "Product Manager"
-                },
-                {
-                  quote: "The animations and responsiveness of this template are unmatched. Our bounce rate decreased significantly after implementation.",
-                  author: "Alex Rodriguez",
-                  role: "UX Designer"
+                  quote: "He's a really great guy, and I got to work with him. I gave him some of my projects because he's such an honest person and works so professionally, and he did such a great job that I'm so impressed. To be completely honest, I'll definitely recommend Hamza.",
+                  author: "Muhammad F.",
+                  role: "Business Owner"
                 }
               ].map((testimonial, index) => (
                 <div
                   key={`testimonial-${index}`}
-                  className={`bg-gradient-to-br from-[#000000] to-[#472A71] border border-[#5C3693]/20 rounded-xl p-8 transition-all duration-700 transform ${isInViewport(testimonialsRef)
+                  className={`bg-gradient-to-br from-[#1A0B2E] to-[#2A1258] border border-[#5C3693]/30 rounded-xl p-8 transition-all duration-700 transform ${isInViewport(testimonialsRef)
                       ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-12'
-                    }`}
+                    } hover:shadow-lg hover:shadow-[#5C3693]/20`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <div className="mb-6">
-                    {/* Stars */}
-                    <div className="flex mb-4">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <svg key={i} className="w-5 h-5 text-[#5C3693] mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
+                  {/* Stars at the top */}
+                  <div className="flex mb-6">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-[#5C3693] mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  
+                  {/* Quote text */}
+                  <p className="text-[#FFFFFF] text-lg italic mb-8 leading-relaxed">"{testimonial.quote}"</p>
+                  
+                  {/* Author section */}
+                  <div className="flex items-center mt-auto">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#5C3693] to-[#472A71] flex items-center justify-center text-[#FFFFFF] text-xl font-bold mr-4">
+                      {testimonial.author.charAt(0)}
                     </div>
-                    <p className="text-[#FFFFFF] text-lg italic mb-4">"{testimonial.quote}"</p>
-                    <div className="flex items-center">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#5C3693] to-[#472A71] flex items-center justify-center text-[#FFFFFF] font-bold mr-3">
-                        {testimonial.author.charAt(0)}
-                      </div>
-                      <div>
-                        <h4 className="text-[#FFFFFF] font-medium">{testimonial.author}</h4>
-                        <p className="text-[#FFFFFF]/60 text-sm">{testimonial.role}</p>
-                      </div>
+                    <div>
+                      <h4 className="text-[#FFFFFF] font-medium text-lg">{testimonial.author}</h4>
+                      <p className="text-[#FFFFFF]/70 text-sm">{testimonial.role}</p>
                     </div>
                   </div>
                 </div>
@@ -688,8 +702,7 @@ const Home: React.FC = () => {
                     "Performance tracking & analytics"
                   ],
                   cta: "Explore SEO Services",
-                  color: "#5C3693",
-                  animation: "float"
+                  color: "#5C3693"
                 },
                 {
                   name: "Social Media Marketing (SMM)",
@@ -704,7 +717,6 @@ const Home: React.FC = () => {
                   ],
                   cta: "Explore SMM Services",
                   color: "#472A71",
-                  animation: "pulse",
                   popular: true
                 },
                 {
@@ -719,8 +731,7 @@ const Home: React.FC = () => {
                     "Budget management & performance tracking"
                   ],
                   cta: "Explore Paid Ads",
-                  color: "#5C3693",
-                  animation: "slide"
+                  color: "#5C3693"
                 }
               ].map((platform, index) => (
                 <div
@@ -742,12 +753,7 @@ const Home: React.FC = () => {
                   <div className="p-8">
                     {/* Platform icon with animation */}
                     <div
-                      className={`w-16 h-16 rounded-xl mb-6 flex items-center justify-center ${platform.animation === "float"
-                          ? "animate-float"
-                          : platform.animation === "pulse"
-                            ? "animate-pulse-slow"
-                            : "animate-slide"
-                        }`}
+                      className={`w-16 h-16 rounded-xl mb-6 flex items-center justify-center`}
                       style={{
                         background: `linear-gradient(135deg, ${platform.color}, ${platform.color}70)`,
                         boxShadow: `0 10px 30px -5px ${platform.color}30`
@@ -790,6 +796,7 @@ const Home: React.FC = () => {
                       ))}
                     </ul>
                     <button
+                      onClick={openModal}
                       className={`w-full py-3 px-6 rounded-lg text-[#FFFFFF] font-medium transition-all duration-300 ${platform.popular
                           ? 'bg-gradient-to-r from-[#5C3693] to-[#472A71] hover:shadow-lg hover:shadow-[#5C3693]/20'
                           : 'bg-[#472A71]/80 hover:bg-[#472A71]'
@@ -858,75 +865,58 @@ const Home: React.FC = () => {
           </div>
         </div>
         {/* Technologies Section */}
-        <div className="relative py-24 bg-[#000000] overflow-hidden">
+        <div className="relative py-12 md:py-24 bg-[#000000] overflow-hidden">
           {/* Section header */}
-          <div className="text-center mb-20 relative z-20">
+          <div className="text-center mb-12 md:mb-20 relative z-20 px-4">
             <div className="inline-block bg-[#472A71]/20 px-4 py-1 rounded-full mb-4">
               <span className="text-sm font-medium text-[#5C3693]">Built With</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#FFFFFF] mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-[#FFFFFF] mb-4 md:mb-6">
               Technologies we use
             </h2>
-            <p className="text-[#FFFFFF]/60 max-w-2xl mx-auto">
+            <p className="text-[#FFFFFF]/60 max-w-2xl mx-auto text-sm md:text-base">
               We leverage industry-leading platforms and tools to create powerful marketing strategies and deliver exceptional results.
             </p>
           </div>
 
-          {/* Infinite Slider */}
+          {/* Infinite Slider - First row */}
           <div className="relative w-full overflow-hidden">
-            {/* First row - Marketing & SEO Platforms */}
-            <div className="w-[200%] flex relative">
+            <div className="w-[300%] sm:w-[200%] flex relative">
               <div className="flex animate-infinite-scroll w-[50%] justify-around">
                 {[
                   { 
                     name: "Google Ads", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
                   },
                   { 
                     name: "Google Analytics", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
                   },
                   { 
                     name: "SEO Tools", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                   },
                   { 
                     name: "Keyword Planner", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"/><line x1="3" y1="22" x2="21" y2="22"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"/><line x1="3" y1="22" x2="21" y2="22"/></svg>
                   },
                   { 
-                    name: "Google Search Console", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M4 4v16h16"/><path d="M4 20l7-7"/><path d="M15 4l5 5"/><path d="M9 9l5 5"/></svg>
+                    name: "Search Console", 
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M4 4v16h16"/><path d="M4 20l7-7"/><path d="M15 4l5 5"/><path d="M9 9l5 5"/></svg>
                   },
                   { 
                     name: "Ahrefs", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M9 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4z"/><path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/><path d="M21 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z"/></svg>
-                  },
-                  { 
-                    name: "SEMrush", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m15 9-6 6"/><circle cx="15" cy="15" r="2"/></svg>
-                  },
-                  { 
-                    name: "Mailchimp", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                  },
-                  { 
-                    name: "Facebook", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                  },
-                  { 
-                    name: "Shopify", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M7 21L3 15h4l4 6M14 3a2 2 0 0 0-2 2v4h6v-4a2 2 0 0 0-2-2h-2zM14 15a2 2 0 0 1-2-2v-4h6v4a2 2 0 0 1-2 2h-2z"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M9 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4z"/><path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/><path d="M21 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z"/></svg>
                   }
                 ].map((tech, index) => (
                   <div
                     key={`tech1-${index}`}
-                    className="flex flex-col items-center group px-8 mx-2"
+                    className="flex flex-col items-center group px-3 sm:px-6 md:px-8 mx-1 sm:mx-2"
                   >
-                    <div className="mb-3 text-[#FFFFFF]/60 group-hover:text-[#5C3693] transition-all duration-300">
+                    <div className="mb-2 md:mb-3 text-[#FFFFFF]/60 group-hover:text-[#5C3693] transition-all duration-300 bg-black/40 p-2 sm:p-3 rounded-lg">
                       {tech.icon}
                     </div>
-                    <span className="text-[#FFFFFF] text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    <span className="text-[#FFFFFF] text-xs md:text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300 text-center">
                       {tech.name}
                     </span>
                   </div>
@@ -936,53 +926,37 @@ const Home: React.FC = () => {
                 {[
                   { 
                     name: "Google Ads", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
                   },
                   { 
                     name: "Google Analytics", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
                   },
                   { 
                     name: "SEO Tools", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                   },
                   { 
                     name: "Keyword Planner", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"/><line x1="3" y1="22" x2="21" y2="22"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"/><line x1="3" y1="22" x2="21" y2="22"/></svg>
                   },
                   { 
-                    name: "Google Search Console", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M4 4v16h16"/><path d="M4 20l7-7"/><path d="M15 4l5 5"/><path d="M9 9l5 5"/></svg>
+                    name: "Search Console", 
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M4 4v16h16"/><path d="M4 20l7-7"/><path d="M15 4l5 5"/><path d="M9 9l5 5"/></svg>
                   },
                   { 
                     name: "Ahrefs", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M9 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4z"/><path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/><path d="M21 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z"/></svg>
-                  },
-                  { 
-                    name: "SEMrush", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m15 9-6 6"/><circle cx="15" cy="15" r="2"/></svg>
-                  },
-                  { 
-                    name: "Mailchimp", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                  },
-                  { 
-                    name: "Facebook", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                  },
-                  { 
-                    name: "Shopify", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M7 21L3 15h4l4 6M14 3a2 2 0 0 0-2 2v4h6v-4a2 2 0 0 0-2-2h-2zM14 15a2 2 0 0 1-2-2v-4h6v4a2 2 0 0 1-2 2h-2z"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M9 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4z"/><path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/><path d="M21 12c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8z"/></svg>
                   }
                 ].map((tech, index) => (
                   <div
                     key={`tech1-dup-${index}`}
-                    className="flex flex-col items-center group px-8 mx-2"
+                    className="flex flex-col items-center group px-3 sm:px-6 md:px-8 mx-1 sm:mx-2"
                   >
-                    <div className="mb-3 text-[#FFFFFF]/60 group-hover:text-[#5C3693] transition-all duration-300">
+                    <div className="mb-2 md:mb-3 text-[#FFFFFF]/60 group-hover:text-[#5C3693] transition-all duration-300 bg-black/40 p-2 sm:p-3 rounded-lg">
                       {tech.icon}
                     </div>
-                    <span className="text-[#FFFFFF] text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    <span className="text-[#FFFFFF] text-xs md:text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300 text-center">
                       {tech.name}
                     </span>
                   </div>
@@ -991,61 +965,48 @@ const Home: React.FC = () => {
             </div>
 
             {/* Gradient overlays */}
-            <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
+            <div className="absolute inset-y-0 left-0 w-8 sm:w-16 md:w-40 bg-gradient-to-r from-black to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-8 sm:w-16 md:w-40 bg-gradient-to-l from-black to-transparent z-10" />
           </div>
 
-          {/* Second row - Social Media and Digital Branding */}
-          <div className="relative w-full overflow-hidden mt-12">
-            {/* Second row - reverse direction */}
-            <div className="w-[200%] flex relative">
+          {/* Second row - Mobile optimized */}
+          <div className="relative w-full overflow-hidden mt-8 md:mt-12">
+            <div className="w-[300%] sm:w-[200%] flex relative">
               <div className="flex animate-infinite-scroll-reverse w-[50%] justify-around">
                 {[
                   { 
                     name: "Instagram", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                   },
                   { 
-                    name: "Adobe Creative Suite", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    name: "Adobe", 
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                   },
                   { 
-                    name: "LinkedIn Ads", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    name: "LinkedIn", 
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                   },
                   { 
                     name: "Twitter/X", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
                   },
                   { 
                     name: "WordPress", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8c-2.3 0-4 1.9-4 4 0 2 2 4 4 3 1.9-.9 2-2.6 2-3s.1-4-2-4z"/><path d="M9 14v0"/><path d="M15 14v0"/><path d="M19 12h.01"/><path d="M19 16h.01"/><path d="M19 8h.01"/><path d="M5 12h.01"/><path d="M5 16h.01"/><path d="M5 8h.01"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8c-2.3 0-4 1.9-4 4 0 2 2 4 4 3 1.9-.9 2-2.6 2-3s.1-4-2-4z"/><path d="M9 14v0"/><path d="M15 14v0"/><path d="M19 12h.01"/><path d="M19 16h.01"/><path d="M19 8h.01"/><path d="M5 12h.01"/><path d="M5 16h.01"/><path d="M5 8h.01"/></svg>
                   },
                   { 
-                    name: "Google Tag Manager", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                  },
-                  { 
-                    name: "Canva", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5Z"/><path d="M8 15v-3a2 2 0 0 1 4 0"/><path d="M14 9l2 2-2 2"/></svg>
-                  },
-                  { 
-                    name: "TikTok", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M16 8v8a5 5 0 0 1-5 5v0a5 5 0 0 1-5-5v0"/><path d="M19 6c-.6-1.5-1.6-2.5-3-3"/><path d="M22 6c-.6-3-2.5-5-5-5.6"/></svg>
-                  },
-                  { 
-                    name: "HubSpot", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8v8"/><path d="M9 11l3 3 3-3"/></svg>
+                    name: "Tag Manager", 
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
                   }
                 ].map((tech, index) => (
                   <div
                     key={`tech2-${index}`}
-                    className="flex flex-col items-center group px-8 mx-2"
+                    className="flex flex-col items-center group px-3 sm:px-6 md:px-8 mx-1 sm:mx-2"
                   >
-                    <div className="mb-3 text-[#FFFFFF]/60 group-hover:text-[#5C3693] transition-all duration-300">
+                    <div className="mb-2 md:mb-3 text-[#FFFFFF]/60 group-hover:text-[#5C3693] transition-all duration-300 bg-black/40 p-2 sm:p-3 rounded-lg">
                       {tech.icon}
                     </div>
-                    <span className="text-[#FFFFFF] text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    <span className="text-[#FFFFFF] text-xs md:text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300 text-center">
                       {tech.name}
                     </span>
                   </div>
@@ -1055,49 +1016,37 @@ const Home: React.FC = () => {
                 {[
                   { 
                     name: "Instagram", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                   },
                   { 
-                    name: "Adobe Creative Suite", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    name: "Adobe", 
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                   },
                   { 
-                    name: "LinkedIn Ads", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    name: "LinkedIn", 
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                   },
                   { 
                     name: "Twitter/X", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
                   },
                   { 
                     name: "WordPress", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8c-2.3 0-4 1.9-4 4 0 2 2 4 4 3 1.9-.9 2-2.6 2-3s.1-4-2-4z"/><path d="M9 14v0"/><path d="M15 14v0"/><path d="M19 12h.01"/><path d="M19 16h.01"/><path d="M19 8h.01"/><path d="M5 12h.01"/><path d="M5 16h.01"/><path d="M5 8h.01"/></svg>
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8c-2.3 0-4 1.9-4 4 0 2 2 4 4 3 1.9-.9 2-2.6 2-3s.1-4-2-4z"/><path d="M9 14v0"/><path d="M15 14v0"/><path d="M19 12h.01"/><path d="M19 16h.01"/><path d="M19 8h.01"/><path d="M5 12h.01"/><path d="M5 16h.01"/><path d="M5 8h.01"/></svg>
                   },
                   { 
-                    name: "Google Tag Manager", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                  },
-                  { 
-                    name: "Canva", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5Z"/><path d="M8 15v-3a2 2 0 0 1 4 0"/><path d="M14 9l2 2-2 2"/></svg>
-                  },
-                  { 
-                    name: "TikTok", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M16 8v8a5 5 0 0 1-5 5v0a5 5 0 0 1-5-5v0"/><path d="M19 6c-.6-1.5-1.6-2.5-3-3"/><path d="M22 6c-.6-3-2.5-5-5-5.6"/></svg>
-                  },
-                  { 
-                    name: "HubSpot", 
-                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8v8"/><path d="M9 11l3 3 3-3"/></svg>
+                    name: "Tag Manager", 
+                    icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 md:w-10 md:h-10"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
                   }
                 ].map((tech, index) => (
                   <div
                     key={`tech2-dup-${index}`}
-                    className="flex flex-col items-center group px-8 mx-2"
+                    className="flex flex-col items-center group px-3 sm:px-6 md:px-8 mx-1 sm:mx-2"
                   >
-                    <div className="mb-3 text-[#FFFFFF]/60 group-hover:text-[#5C3693] transition-all duration-300">
+                    <div className="mb-2 md:mb-3 text-[#FFFFFF]/60 group-hover:text-[#5C3693] transition-all duration-300 bg-black/40 p-2 sm:p-3 rounded-lg">
                       {tech.icon}
                     </div>
-                    <span className="text-[#FFFFFF] text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300">
+                    <span className="text-[#FFFFFF] text-xs md:text-sm font-medium opacity-70 group-hover:opacity-100 transition-all duration-300 text-center">
                       {tech.name}
                     </span>
                   </div>
@@ -1106,14 +1055,14 @@ const Home: React.FC = () => {
             </div>
 
             {/* Gradient overlays for second row */}
-            <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
-            <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
+            <div className="absolute inset-y-0 left-0 w-8 sm:w-16 md:w-40 bg-gradient-to-r from-black to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-8 sm:w-16 md:w-40 bg-gradient-to-l from-black to-transparent z-10" />
           </div>
 
           {/* Add some decorative elements */}
           <div className="absolute inset-0 opacity-30 pointer-events-none">
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#5C3693] rounded-full filter blur-[100px]" />
-            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#472A71] rounded-full filter blur-[100px]" />
+            <div className="absolute top-1/4 left-1/4 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#5C3693] rounded-full filter blur-[100px]" />
+            <div className="absolute bottom-1/4 right-1/4 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#472A71] rounded-full filter blur-[100px]" />
           </div>
           
         </div>
@@ -1131,8 +1080,8 @@ const Home: React.FC = () => {
             <p className="text-gray-400 text-lg mb-8">
             Let's craft a marketing strategy that drives results. Whether you need SEO, paid ads, or social media growth, our team is here to turn your goals into success.
             </p>
-            <motion.a
-              href="/contact"
+            <motion.button
+              onClick={openModal}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="btn-primary-lg"
@@ -1151,7 +1100,7 @@ const Home: React.FC = () => {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </motion.a>
+            </motion.button>
           </div>
 
           {/* Decorative Elements */}
