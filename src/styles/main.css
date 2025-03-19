@@ -140,13 +140,13 @@
 }
 
 @keyframes infinite-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
 }
 
 @keyframes infinite-scroll-reverse {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0%); }
 }
 
 /* Animation classes */
@@ -163,11 +163,11 @@
 }
 
 .animate-infinite-scroll {
-  animation: infinite-scroll 30s linear infinite;
+  animation: infinite-scroll 25s linear infinite;
 }
 
 .animate-infinite-scroll-reverse {
-  animation: infinite-scroll-reverse 30s linear infinite;
+  animation: infinite-scroll-reverse 25s linear infinite;
 }
 
 .floating-bubble {
