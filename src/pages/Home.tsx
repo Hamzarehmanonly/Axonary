@@ -624,9 +624,9 @@ const Home: React.FC = () => {
                   role: "Marketing Client"
                 },
                 {
-                  quote: "He's a really great guy, and I got to work with him. I gave him some of my projects because he's such an honest person and works so professionally, and he did such a great job that I'm so impressed. To be completely honest, I'll definitely recommend Hamza.",
-                  author: "Muhammad F.",
-                  role: "Business Owner"
+                  quote: "Hamza is hands down one of the best people I've ever collaborated with. He has always gone above and beyond to get a task done. Regardless of its complexity. That kind of trait is rare. I couldn't recommend him enough",
+                  author: "Rafael Joao",
+                  role: "Founder @ Peloris Marketing"
                 }
               ].map((testimonial, index) => (
                 <div
