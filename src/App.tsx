@@ -14,6 +14,7 @@ import TermsConditions from './pages/legal/TermsConditions';
 import CookiePolicy from './pages/legal/CookiePolicy';
 import Sitemap from './pages/legal/Sitemap';
 import CaseStudies from './pages/legal/CaseStudies';
+import BlogPost from './pages/BlogPost';
 import { useScrollToTop } from './hooks/useScrollToTop';
 
 // ScrollToTop component that will be used inside Router
@@ -34,6 +35,7 @@ function App() {
         <Route path='/solutions' element={<Solutions/>} />
         <Route path='/approach' element={<Approach/>} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/support" element={<Support />} />
         {/* Legal Pages */}

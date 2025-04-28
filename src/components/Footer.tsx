@@ -7,12 +7,7 @@ const Footer: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("");
 
-  const handlePageClick = (pageName: string, path: string) => {
-    // If it's the home page, don't trigger modal
-    if (path === "/") {
-      return;
-    }
-    
+  const handlePageClick = (pageName: string) => {
     console.log(`Clicked on ${pageName} in footer, setting modal to open`);
     setCurrentPage(pageName);
     setModalOpen(true);
@@ -22,35 +17,33 @@ const Footer: React.FC = () => {
     setModalOpen(false);
   };
 
-  const footerSections = [
-    {
-      title: "Company",
-      links: [
-        { name: "Home", path: "/" },
-        { name: "About us", path: "/about" },
-        { name: "Contact us", path: "/contact" },
-        { name: "Work", path: "/work" },
-      ]
-    },
-    {
-      title: "Services",
-      links: [
-        { name: "Social Media Marketing", path: "#smm" },
-        { name: "Search Engine Optimization", path: "#seo" },
-        { name: "Paid Advertising", path: "#ppc" },
-        { name: "Content Marketing & Copywriting", path: "#content" },
-        { name: "Graphic Design & Branding", path: "#branding" }
-      ]
-    },
-    {
-      title: "Resources",
-      links: [
-        { name: "Blog", path: "/blog" },
-        { name: "Case Studies", path: "/casestudies" },
-        { name: "Documentation", path: "#docs" },
-        { name: "Support", path: "/support" }
-      ]
-    }
+  const companyLinks = [
+    { name: "Home", path: "/" },
+    { name: "About us", path: "/about" },
+    { name: "Contact us", path: "/contact" },
+    { name: "Work", path: "/work" },
+  ];
+
+  const serviceLinks = [
+    { name: "Social Media Marketing", path: "#smm", useModal: true },
+    { name: "Search Engine Optimization", path: "#seo", useModal: true },
+    { name: "Paid Advertising", path: "#ppc", useModal: true },
+    { name: "Content Marketing & Copywriting", path: "#content", useModal: true },
+    { name: "Graphic Design & Branding", path: "#branding", useModal: true }
+  ];
+
+  const resourceLinks = [
+    { name: "Blog", path: "/blog" },
+    { name: "Case Studies", path: "/casestudies" },
+    { name: "Documentation", path: "#docs", useModal: true },
+    { name: "Support", path: "/support" }
+  ];
+
+  const legalLinks = [
+      { name: "Privacy Policy", path: "/privacypolicy" },
+      { name: "Terms & Conditions", path: "/termsconditions" },
+      { name: "Cookie Policy", path: "/cookiepolicy" },
+      { name: "Sitemap", path: "/sitemap" }
   ];
 
   const socialLinks = [
@@ -99,39 +92,71 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation Sections */}
-          {footerSections.map((section, index) => (
-            <div key={index}>
-              <h3 className="text-lg font-semibold text-white mb-4">{section.title}</h3>
+          {/* Company Links Section */}
+           <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Company</h3>
               <ul className="space-y-2">
-                {section.links.map((link, linkIndex) => (
+                {companyLinks.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    {link.path === "/" ? (
-                      // Home link stays as a direct link
-                      <Link
-                        to="/"
+                     <Link
+                        to={link.path}
                         className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300"
                       >
                         {link.name}
                       </Link>
-                    ) : (
-                      // All other links open the modal, including hash links
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          {/* Services Links Section (Uses Modal) */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Services</h3>
+              <ul className="space-y-2">
+                {serviceLinks.map((link, linkIndex) => (
+                  <li key={linkIndex}>
                       <a
-                        href="#"
+                        href={link.path}
                         onClick={(e) => {
                           e.preventDefault();
-                          handlePageClick(link.name, link.path);
+                          handlePageClick(link.name);
                         }}
                         className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300 cursor-pointer"
                       >
                         {link.name}
                       </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          {/* Resources Links Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Resources</h3>
+              <ul className="space-y-2">
+                {resourceLinks.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    {link.useModal ? (
+                       <a
+                        href={link.path}
+                        onClick={(e) => { e.preventDefault(); handlePageClick(link.name); }}
+                        className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300 cursor-pointer"
+                       >
+                         {link.name}
+                       </a>
+                    ) : (
+                      <Link
+                        to={link.path}
+                        className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300"
+                      >
+                        {link.name}
+                      </Link>
                     )}
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
+
         </div>
 
         {/* Bottom Section */}
@@ -141,58 +166,23 @@ const Footer: React.FC = () => {
               © {currentYear} Axonary, Backed by Second Brain Studio.
             </p>
             <div className="mt-4 md:mt-0 flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
-              {/* Legal links with modal */}
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageClick("Privacy Policy", "/privacypolicy");
-                }}
-                className="text-gray-400 hover:text-[#5C3693] text-sm transition-colors duration-300 cursor-pointer"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageClick("Terms & Conditions", "/termsconditions");
-                }}
-                className="text-gray-400 hover:text-[#5C3693] text-sm transition-colors duration-300 cursor-pointer"
-              >
-                Terms & Conditions
-              </a>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageClick("Cookie Policy", "/cookiepolicy");
-                }}
-                className="text-gray-400 hover:text-[#5C3693] text-sm transition-colors duration-300 cursor-pointer"
-              >
-                Cookie Policy
-              </a>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageClick("Sitemap", "/sitemap");
-                }}
-                className="text-gray-400 hover:text-[#5C3693] text-sm transition-colors duration-300 cursor-pointer"
-              >
-                Sitemap
-              </a>
+              {/* Legal links - Use Link component */}
+              {legalLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className="text-gray-400 hover:text-[#5C3693] text-sm transition-colors duration-300 cursor-pointer"
+                  >
+                    {link.name}
+                  </Link>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
       {/* Work in Progress Modal */}
-      <WorkInProgressModal 
-        isOpen={modalOpen} 
-        onClose={handleCloseModal} 
-        pageName={currentPage} 
-      />
+      <WorkInProgressModal isOpen={modalOpen} onClose={handleCloseModal} pageName={currentPage} />
     </footer>
   );
 };

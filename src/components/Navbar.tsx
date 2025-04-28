@@ -1,27 +1,17 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
-import WorkInProgressModal from "./WorkInProgressModal";
+import { Link, NavLink } from "react-router-dom";
+
+const navItems = [
+  { label: "About", path: "/about" },
+  { label: "Work", path: "/work" },
+  { label: "Solutions", path: "/solutions" },
+  { label: "Our Approach", path: "/approach" },
+  { label: "Blog", path: "/blog" },
+];
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState("Test");
-
-  const handlePageClick = (pageName: string) => {
-    console.log(`Clicked on ${pageName}, setting modal to open`);
-    setCurrentPage(pageName);
-    setModalOpen(true);
-    
-    // Close the mobile menu if it's open
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
 
   const menuVariants = {
     closed: {
@@ -45,6 +35,10 @@ const Navbar: React.FC = () => {
   const itemVariants = {
     closed: { opacity: 0, x: 50 },
     open: { opacity: 1, x: 0 }
+  };
+
+  const closeMobileMenu = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -71,69 +65,33 @@ const Navbar: React.FC = () => {
         
         {/* Middle section - Navigation */}
         <nav className="hidden md:flex items-center justify-center w-1/3 space-x-8">
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            onClick={() => handlePageClick("About")}
-            className="cursor-pointer"
-          >
-            <span className="hover:text-purple-500 text-white transition-colors">
-              About
-            </span>
-          </motion.a>
-
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            onClick={() => handlePageClick("Work")}
-            className="cursor-pointer"
-          >
-            <span className="hover:text-purple-500 text-white transition-colors">
-              Work
-            </span>
-          </motion.a>
-          
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            onClick={() => handlePageClick("Solutions")}
-            className="cursor-pointer"
-          >
-            <span className="hover:text-purple-500 text-white transition-colors">
-              Solutions
-            </span>
-          </motion.a>
-
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            onClick={() => handlePageClick("Our Approach")}
-            className="cursor-pointer"
-          >
-            <span className="hover:text-purple-500 text-white transition-colors">
-              Our Approach
-            </span>
-          </motion.a>
-
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            onClick={() => handlePageClick("Blog")}
-            className="cursor-pointer"
-          >
-            <span className="hover:text-purple-500 text-white transition-colors">
-              Blog
-            </span>
-          </motion.a>
+          {navItems.map((item) => (
+            <motion.div key={item.label} whileHover={{ scale: 1.05 }}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                   `pb-1 transition-colors duration-300 ${isActive ? 'text-[#5C3693] border-b-2 border-[#5C3693]' : 'text-white hover:text-[#7e5adb]'}`
+                }
+              >
+                {item.label}
+              </NavLink>
+            </motion.div>
+          ))}
         </nav>
 
         {/* Right section - Contact button and mobile menu */}
         <div className="w-1/3 flex justify-end">
           {/* Contact Us button - visible ONLY on desktop */}
           <div className="hidden md:block">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handlePageClick("Contact")}
-              className="btn-primary"
-            >
-              Contact Us →
-            </motion.button>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary"
+              >
+                Contact Us →
+              </motion.button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -178,36 +136,30 @@ const Navbar: React.FC = () => {
               exit="closed"
               className="flex flex-col items-center justify-center h-full"
             >
-              {[
-                { label: "About" },
-                { label: "Work" },
-                { label: "Solutions" },
-                { label: "Our Approach" },
-                { label: "Blog" },
-                { label: "Contact Us", isButton: true }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  onClick={() => handlePageClick(item.label)}
-                  className={`text-3xl font-bold text-white my-4 hover:text-purple-500 transition-colors cursor-pointer ${
-                    item.isButton ? 'mt-8 btn-primary-lg text-xl' : ''
-                  }`}
-                  whileHover={{ scale: 1.1, x: 10 }}
-                >
-                  {item.label} {item.isButton && "→"}
+              {navItems.map((item) => (
+                <motion.div key={item.label} variants={itemVariants} whileHover={{ scale: 1.1, x: 10 }}>
+                  <Link
+                    to={item.path}
+                    onClick={closeMobileMenu}
+                    className="block text-3xl font-bold text-white my-4 hover:text-purple-500 transition-colors cursor-pointer"
+                  >
+                    {item.label}
+                  </Link>
                 </motion.div>
               ))}
+              <motion.div variants={itemVariants} whileHover={{ scale: 1.1, x: 10 }}>
+                <Link
+                  to="/contact"
+                  onClick={closeMobileMenu}
+                  className='block text-3xl font-bold text-white my-4 mt-8 btn-primary-lg text-xl'
+                >
+                  Contact Us →
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <WorkInProgressModal 
-        isOpen={modalOpen} 
-        onClose={handleCloseModal} 
-        pageName={currentPage} 
-      />
     </>
   );
 };
