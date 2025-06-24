@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Clock, Send } from 'lucide-react';
 import { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
 // Import GSAP for animations
 const gsapEffects = () => {
@@ -15,9 +16,9 @@ const gsapEffects = () => {
   };
 };
 
-const ContactForm = () => {
+const ContactForm = ({ selectedInterests }: { selectedInterests: string[] }) => {
   const [selectedBudget, setSelectedBudget] = useState(null);
-  const formRef = useRef(null);
+  const [state, handleSubmit] = useForm("xovwpvvg"); // IMPORTANT: Replace "myzjbydg" with your actual Formspree form ID
   
   const budgetOptions = [
     { value: '10-20k', label: '10-20k' },
@@ -30,36 +31,64 @@ const ContactForm = () => {
     setSelectedBudget(value);
   };
 
+  if (state.succeeded) {
+    return <p className="text-white text-center text-xl py-8">Thanks for contacting us! We'll get back to you soon.</p>;
+  }
+
   return (
     <motion.form
-      ref={formRef}
+      onSubmit={handleSubmit}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.2 }}
       className="bg-black rounded-lg shadow-xl p-8 w-full"
     >
       <div className="mb-6">
+        <label htmlFor="name" className="sr-only">Your name</label>
         <input
+          id="name"
           type="text"
+          name="name"
           className="w-full border-b border-gray-700 py-3 text-white focus:outline-none focus:border-white transition-colors bg-transparent"
           placeholder="Your name"
+        />
+        <ValidationError 
+          prefix="Name" 
+          field="name"
+          errors={state.errors}
         />
       </div>
       
       <div className="mb-6">
+        <label htmlFor="email" className="sr-only">Email</label>
         <input
+          id="email"
           type="email"
+          name="email"
           className="w-full border-b border-gray-700 py-3 text-white focus:outline-none focus:border-white transition-colors bg-transparent"
           placeholder="Email"
+        />
+        <ValidationError 
+          prefix="Email" 
+          field="email"
+          errors={state.errors}
         />
       </div>
       
       <div className="mb-8">
+        <label htmlFor="message" className="sr-only">Tell us about your project</label>
         <textarea
+          id="message"
           rows={3}
+          name="message"
           className="w-full border-b border-gray-700 py-3 text-white focus:outline-none focus:border-white transition-colors resize-none bg-transparent"
           placeholder="Tell us about your project"
         ></textarea>
+        <ValidationError 
+          prefix="Message" 
+          field="message"
+          errors={state.errors}
+        />
       </div>
       
       <div className="mb-8">
@@ -72,7 +101,7 @@ const ContactForm = () => {
               onClick={() => handleBudgetSelect(option.value)}
               className={`px-4 py-2 rounded-full border ${
                 selectedBudget === option.value 
-                  ? 'border-[#5C3693] bg-[#5C3693] text-[#FFFFFF]' 
+                  ? 'border-[#5C3693] bg-[#5C3693] text-[#FFFFFF]'
                   : 'border-[#5C3693]/20 text-[#FFFFFF] hover:border-[#5C3693]/50'
               } transition-all`}
             >
@@ -80,13 +109,17 @@ const ContactForm = () => {
             </button>
           ))}
         </div>
+        <input type="hidden" name="budget" value={selectedBudget || ''} />
       </div>
+
+      <input type="hidden" name="interests" value={selectedInterests.join(', ')} />
       
       <motion.button
         type="submit"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className="btn-primary w-full md:w-auto"
+        disabled={state.submitting}
       >
         <span>Send message</span>
         <Send size={16} />
@@ -107,7 +140,7 @@ const AnimatedHeading = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const InterestItem = ({ text, isActive = false }: { text: string; isActive?: boolean }) => {
+const InterestItem = ({ text, isActive = false, onClick }: { text: string; isActive?: boolean; onClick: () => void }) => {
   return (
     <motion.button
       whileHover={{ scale: 1.05 }}
@@ -115,6 +148,7 @@ const InterestItem = ({ text, isActive = false }: { text: string; isActive?: boo
       className={`px-6 py-3 rounded-full border ${
         isActive ? 'border-[#5C3693] bg-[#5C3693] text-[#FFFFFF]' : 'border-[#5C3693]/20 text-[#FFFFFF]'
       } transition-all`}
+      onClick={onClick}
     >
       {text}
     </motion.button>
@@ -131,14 +165,17 @@ const Contact = () => {
     { id: 6, text: 'Branding' },
     { id: 7, text: 'Mobile development' },
   ];
+
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+
+  const handleInterestSelect = (text: string) => {
+    setSelectedInterests(prev => 
+      prev.includes(text) ? prev.filter(item => item !== text) : [...prev, text]
+    );
+  };
   
   useEffect(() => {
-    const gsap = gsapEffects();
-    gsap.init();
-    
-    return () => {
-      // Cleanup if needed
-    };
+    // Removed GSAP initialization as it's not being used
   }, []);
 
   return (
@@ -163,7 +200,12 @@ const Contact = () => {
               transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
             >
               {interests.map((item) => (
-                <InterestItem key={item.id} text={item.text} />
+                <InterestItem 
+                  key={item.id} 
+                  text={item.text} 
+                  isActive={selectedInterests.includes(item.text)}
+                  onClick={() => handleInterestSelect(item.text)}
+                />
               ))}
             </motion.div>
           </div>
@@ -172,7 +214,7 @@ const Contact = () => {
         {/* Contact Form Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="order-2 lg:order-1">
-            <ContactForm />
+            <ContactForm selectedInterests={selectedInterests} />
           </div>
           
           <motion.div 
