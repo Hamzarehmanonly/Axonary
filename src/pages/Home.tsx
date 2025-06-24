@@ -135,7 +135,7 @@ const Home: React.FC = () => {
               className={`bg-[#472A71]/80 rounded-full px-6 py-2 mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-8'
                 }`}
             >
-              <span className="text-sm font-medium text-[#FFFFFF]">Marketing. Branding. Digital Solutions.</span>
+              <span className="text-sm font-medium text-[#FFFFFF]">Boosting Brands using Smart Digital techniques</span>
             </div>
 
             {/* Main heading */}
@@ -144,7 +144,7 @@ const Home: React.FC = () => {
                 }`}
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#FFFFFF] via-[#FFFFFF] to-[#5C3693]">
-              Your Growth Partner in Marketing & Digital Innovation
+              Built to Scale.<br />Backed by Data.<br />Branded for Impact.
               </span>
             </h1>
 
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
               className={`text-lg text-[#FFFFFF]/80 text-center max-w-3xl mb-12 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-8'
                 }`}
             >
-              We create data-driven marketing strategies and scalable digital solutions that help businesses thrive in a competitive world.
+              We're a digital marketing and advertising agency creating bold digital strategies that convert traffic into revenue across SEO, SMM, PPC, and custom web development.
             </p>
 
             {/* CTA Button with hover effect */}
@@ -165,7 +165,7 @@ const Home: React.FC = () => {
               >
                 <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition-all duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-[#FFFFFF]/10 opacity-30 group-hover:rotate-90 ease-out"></span>
                 <span className="relative flex items-center">
-                  Let's Talk <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  Book Your Free Consultation <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </span>
               </button>
             </div>
@@ -272,9 +272,8 @@ const Home: React.FC = () => {
                 className="text-4xl md:text-6xl font-bold text-center mb-8 relative"
               >
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#FFFFFF] via-[#FFFFFF] to-[#5C3693]">
-                  Everything You Need to <span className="relative inline-block">
-                    <span className="text-[#5C3693]">Grow & Succeed</span>
-                    <span className="absolute -bottom-2 left-0 h-3 w-full bg-[#5C3693]/20 rounded-full blur-sm"></span>
+                  All-in on Growth. <span className="relative inline-block">
+                    <span className="text-[#5C3693]">All-in on You.</span>
                   </span>
                 </span>
               </motion.h2>
@@ -284,7 +283,7 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-[#FFFFFF]/60 max-w-2xl mx-auto text-lg"
               >
-              Our expertise goes beyond marketing, we deliver strategic solutions that maximize impact, boost engagement, and drive conversions. Whether you need visibility, branding, or digital growth strategies, we simplify success.
+              We're not just another digital marketing agency; we're your growth engine. From data-backed strategies to razor-sharp execution, our team delivers tailored solutions that drive measurable impact. Need visibility? Engagement? Conversions? We build systems that get you all three.
               </motion.p>
               
               {/* Enhanced decorative lines */}
@@ -296,29 +295,18 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               {[
                 {
-                  title: "Data-Driven Marketing",
-                  description: "We craft high-impact marketing strategies based on analytics and industry insights.",
+                  title: "Social Media Marketing (SMM)",
+                  description: "Turn followers into customers with smart social media strategy. We plan, manage, and scale social media advertising campaigns that engage the right audience and deliver real, measurable results.",
                   icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
-                      <path d="M3 3v18h18"></path>
-                      <path d="M18 17V9"></path>
-                      <path d="M13 17V5"></path>
-                      <path d="M8 17v-3"></path>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
                   ),
                   accent: "#5C3693"
                 },
                 {
-                  title: "SEO & Visibility Boost",
-                  description: "Dominate search rankings with our expert SEO optimization techniques.",
+                  title: "Search Engine Optimization & Visibility Boost",
+                  description: "Search engines aren't guessing. Neither are we. Our SEO services focus on technical excellence, keyword optimization, and content strategies that drive lasting organic traffic growth, built to rank and stay ranked.",
                   icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      <line x1="11" y1="8" x2="11" y2="14"></line>
-                      <path d="M8 11h6"></path>
-                      <path d="M21 11l-2-2-2 2 2 2 2-2z"></path>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><path d="M8 11h6"></path><path d="M21 11l-2-2-2 2 2 2 2-2z"></path></svg>
                   ),
                   accent: "#472A71"
                 }
@@ -391,27 +379,18 @@ const Home: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {[
                 {
-                  title: "Conversion-Focused Strategies",
-                  description: "Turn visitors into customers with strategic call-to-action elements and user-focused campaigns.",
+                  title: "Content Marketing & Copywriting",
+                  description: "Content That Connects. Copy That Converts. Our Content Marketing & Copywriting services blend strategy with storytelling, offering expert copywriting services, compelling website content creation, and powerful brand storytelling that speaks directly to your audience.",
                   icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <polyline points="16 11 18 13 22 9"></polyline>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
                   ),
                   accent: "#5C3693"
                 },
                 {
-                  title: "Brand Identity & Design",
-                  description: "Upsell your brand with cohesive, visually compelling branding and messaging.",
+                  title: "PPC & Meta Ads",
+                  description: "Maximise ROI with high-performance campaigns that convert. Axonary's Paid Advertising Services deliver targeted PPC advertising across Google Ads, Facebook, and Instagram, built for precision, scale, and real business impact.",
                   icon: (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
-                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                      <polyline points="2 17 12 22 22 17"></polyline>
-                      <polyline points="2 12 12 17 22 12"></polyline>
-                      <line x1="12" y1="22" x2="12" y2="12"></line>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-dollar-sign"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                   ),
                   accent: "#472A71"
                 },
@@ -526,18 +505,16 @@ const Home: React.FC = () => {
                       boxShadow: `0 20px 40px -10px rgba(92,54,147,0.4)`
                     }}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10 md:w-12 md:h-12">
-                      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trending-up"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
           </div>
                   
                   <div className="flex-1">
                     <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 transition-colors duration-300">
-                      Seamless Customization
+                      High-End Lead Generation
                     </h3>
                     
                     <p className="text-[#FFFFFF]/70 group-hover:text-[#FFFFFF]/90 transition-colors duration-300 text-lg md:text-xl max-w-4xl">
-                      Tailored marketing solutions to fit your unique business needs.
+                      Leads that convert. Growth that lasts. We don't just generate leads. We deliver qualified prospects ready to buy, engage, and grow with your brand.
                     </p>
                     
                     {/* Call to action button */}
@@ -545,7 +522,7 @@ const Home: React.FC = () => {
                       onClick={openModal} 
                       className="mt-6 inline-flex items-center text-[#5C3693] hover:text-[#FFFFFF] transition-colors duration-300 group-hover:translate-x-2 transform transition-transform"
                     >
-                      <span className="mr-2 font-medium">Discover our customization options</span>
+                      <span className="mr-2 font-medium">Learn more about lead generation</span>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -567,9 +544,9 @@ const Home: React.FC = () => {
                 className="inline-flex items-center text-[#5C3693] hover:text-[#472A71] transition-colors duration-300 hover:scale-105 transform transition-transform"
               >
                 <span className="py-2 px-6 border border-[#5C3693]/30 rounded-full hover:bg-[#5C3693]/10 transition-colors duration-300">
-                  Explore all our features
+                  Explore All Features
                   <svg className="ml-2 w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                   </svg>
                 </span>
               </button>
@@ -677,13 +654,13 @@ const Home: React.FC = () => {
             {/* Section header */}
             <div className="text-center mb-20">
               <div className="inline-block bg-[#472A71]/20 px-4 py-1 rounded-full mb-4">
-                <span className="text-sm font-medium text-[#5C3693]">Platform Integrations</span>
+                <span className="text-sm font-medium text-[#5C3693]">Your Channels. Our Expertise.</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#FFFFFF] mb-6">
-              Works with Your <span className="text-[#5C3693]">Growth Channels</span>
+              Axonary works where your <span className="text-[#5C3693]">audience lives and clicks.</span>
               </h2>
               <p className="text-[#FFFFFF]/60 max-w-2xl mx-auto">
-              Seamlessly integrate our expert marketing strategies to boost your brand across all major digital platforms.
+              We're a digital marketing and advertising agency creating bold digital strategies that convert traffic into revenue across SEO, SMM, PPC, and custom web development.
               </p>
             </div>
 
@@ -693,13 +670,13 @@ const Home: React.FC = () => {
                 {
                   name: "SEO",
                   icon: "seo",
-                  description: "Dominate search engine rankings with our data-driven SEO strategies tailored for sustainable growth.",
+                  description: "Boost long-term visibility and traffic with proven search engine optimization strategies.",
                   features: [
-                    "Keyword research & on-page optimization",
-                    "Technical SEO & site audits",
-                    "High-quality backlink building",
-                    "Content marketing & blog strategy",
-                    "Performance tracking & analytics"
+                    "Smart keyword targeting",
+                    "In-depth site audits",
+                    "Quality backlink building",
+                    "SEO-rich content plans",
+                    "Analytics and performance tracking"
                   ],
                   cta: "Explore SEO Services",
                   color: "#5C3693"
@@ -707,28 +684,28 @@ const Home: React.FC = () => {
                 {
                   name: "Social Media Marketing (SMM)",
                   icon: "smm",
-                  description: "Grow, engage, and convert your audience with strategic social media campaigns.",
+                  description: "Engage, grow, and convert your audience with tailored social media campaigns.",
                   features: [
-                    "Social media strategy & management",
-                    "Audience targeting & engagement tactics",
-                    "Influencer & community marketing",
-                    "Organic & paid content optimization",
-                    "Performance insights & analytics"
+                    "Strategy + account management",
+                    "Targeted audience engagement",
+                    "Influencer & community tactics",
+                    "Content creation & optimization",
+                    "Insights-driven reporting"
                   ],
                   cta: "Explore SMM Services",
                   color: "#472A71",
                   popular: true
                 },
                 {
-                  name: "Paid Advertising (PPC)",
+                  name: "Paid Advertising",
                   icon: "ads",
-                  description: "Maximize ROI with high-performing, conversion-driven paid campaigns.",
+                  description: "Maximize ROI with data-driven paid advertising across Meta, Google, and beyond.",
                   features: [
-                    "Google Ads, Facebook & Instagram Ads",
-                    "Retargeting & audience segmentation",
-                    "A/B testing & ad optimization",
-                    "Conversion rate optimization (CRO)",
-                    "Budget management & performance tracking"
+                    "Google, Meta & Instagram Ads",
+                    "Advanced retargeting",
+                    "AB testing and optimization",
+                    "CRO strategies",
+                    "Budget control & analytics"
                   ],
                   cta: "Explore Paid Ads",
                   color: "#5C3693"
@@ -1075,10 +1052,10 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-             Ready to Scale Your <span className="text-[#5C3693]">Brand</span> with Expert Marketing?
+             Ready to Scale with a <span className="text-[#5C3693]">Real Strategy</span>
             </h2>
             <p className="text-gray-400 text-lg mb-8">
-            Let's craft a marketing strategy that drives results. Whether you need SEO, paid ads, or social media growth, our team is here to turn your goals into success.
+            If you're tired of average and ready for aggressive growth, you're in the right place. Axonary brings bold thinking and tested execution to every campaign.
             </p>
             <motion.button
               onClick={openModal}
@@ -1086,7 +1063,7 @@ const Home: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               className="btn-primary-lg"
             >
-              Your success starts here!
+              Book a consultation
               <svg
                 className="w-5 h-5 ml-2"
                 fill="none"

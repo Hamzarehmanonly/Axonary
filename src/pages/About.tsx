@@ -260,18 +260,18 @@ const About = () => {
   ];
   
   const skills: Skill[] = [
-    { skill: "Digital Strategy", percentage: 98, delay: 0 },
-    { skill: "UI/UX Design", percentage: 95, delay: 1 },
-    { skill: "Motion Design", percentage: 92, delay: 2 },
-    { skill: "Web Development", percentage: 90, delay: 3 },
-    { skill: "Brand Identity", percentage: 94, delay: 4 }
+    { skill: "Meta Ads Mastery", percentage: 97, delay: 0 },
+    { skill: "SEO Strategy", percentage: 94, delay: 1 },
+    { skill: "Brand Management", percentage: 96, delay: 2 },
+    { skill: "Web Development", percentage: 91, delay: 3 },
+    { skill: "Complete Marketing Solutions", percentage: 95, delay: 4 }
   ];
 
   // Approach items with icons
   const approachItems: ApproachItem[] = [
     { 
       title: "Discover & Define", 
-      description: "We immerse ourselves in your world, understanding your audience, challenges, and opportunities to define a clear strategic direction.",
+      description: "We don't just research. We dive in. As a leading Digital Marketing and Advertising Agency, we explore your business like cartographers charting new terrain, mapping out your audience, challenges, and untapped potential. The result? A crystal-clear marketing strategy shaped by insight, not assumption, built to fuel sustainable brand growth from the start.",
       icon: (
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke={COLORS.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -281,7 +281,7 @@ const About = () => {
     },
     { 
       title: "Design & Develop", 
-      description: "Our multidisciplinary team crafts seamless, engaging experiences where aesthetics and functionality work in perfect harmony.",
+      description: "This is where ideas take shape, and strategy finds its voice. From UX to UI, our team blends brains and beauty to craft sleek, high-performaing solutions where every pixel has a purpose. Whether it's web design or campaign architecture, our experts – from creatives to SEO & PPC specialists ensure every elemets plays its part in harmony and impact.",
       icon: (
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 4.5V19.5M19.5 12H4.5" stroke={COLORS.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -291,7 +291,7 @@ const About = () => {
     },
     { 
       title: "Deploy & Evolve", 
-      description: "We launch with precision and continuously optimize, ensuring your digital presence remains effective in an ever-changing landscape.",
+      description: "We don't just launch. We stay in orbit. With precision rollouts, real-time optimization, and agile adjustments, we keep your responsive and relevant. Because at Axonary, brand growth isn't a moment. It's movement continually guided by data, performance, and relentless refinement.",
       icon: (
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M16 8H8M16 8C18.2091 8 20 6.20914 20 4C20 1.79086 18.2091 0 16 0C13.7909 0 12 1.79086 12 4C12 6.20914 13.7909 8 16 8ZM8 8C5.79086 8 4 6.20914 4 4C4 1.79086 5.79086 0 8 0C10.2091 0 12 1.79086 12 4C12 6.20914 10.2091 8 8 8ZM16 24C13.7909 24 12 22.2091 12 20C12 17.7909 13.7909 16 16 16C18.2091 16 20 17.7909 20 20C20 22.2091 18.2091 24 16 24ZM8 24C5.79086 24 4 22.2091 4 20C4 17.7909 5.79086 16 8 16C10.2091 16 12 17.7909 12 20C12 22.2091 10.2091 24 8 24ZM16 16H8" stroke={COLORS.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -333,13 +333,19 @@ const About = () => {
             animate={isHeaderInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 1 }}
           >
+            <div
+              className={`bg-[#472A71]/80 rounded-full px-6 py-2 mb-8 transition-all duration-700 w-fit mx-auto`}
+            >
+              <span className="text-sm font-medium text-[#FFFFFF]">Learn About Axonary's Superior Marketing</span>
+            </div>
             <motion.h1 
               className="text-5xl md:text-7xl font-black leading-tight"
               initial={{ y: 50 }}
               animate={isHeaderInView ? { y: 0 } : { y: 50 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Transforming<br /><span style={{ color: COLORS.primary }}>Digital Visions</span> into Reality
+            Marketing<br />That <span style={{ color: COLORS.primary }}>Moves </span>the Needle
+
             </motion.h1>
             
             <motion.p 
@@ -348,7 +354,7 @@ const About = () => {
               animate={isHeaderInView ? { y: 0 } : { y: 50 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Axonary is an award-winning digital agency that crafts immersive experiences, powerful brands, and innovative solutions for forward-thinking businesses worldwide.
+            At Axonary, we don't just do marketing. We build momentum. From ambitious startups to established giants, we help businesses claim their space, own their voice, and lead with purpose.
             </motion.p>
             
             <motion.div
@@ -358,7 +364,7 @@ const About = () => {
             >
               <MagneticButton className="inline-block">
                 <a href="#our-story" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-full transition-colors" style={{ backgroundColor: COLORS.primary }}>
-                  <span>Our Story</span>
+                  <span>Strategy. Execution. Results. All in one place.</span>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -384,16 +390,22 @@ const About = () => {
         <div className="container mx-auto px-6">
           <ParallaxSection className="max-w-4xl mx-auto mb-16">
             <RevealText>
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">Our <span style={{ color: COLORS.primary }}>Story</span></h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">Meet the Founder - <span style={{ color: COLORS.primary }}>Hamza Rehman</span></h2>
+            </RevealText>
+            <RevealText delay={0.5}>
+              <p className="text-gray-300 text-xl font-semibold mb-4">Founder | Axonary</p>
             </RevealText>
             <RevealText delay={1}>
+              <p className="text-gray-300 text-lg mb-6">Performance-Driven. Strategy Obsessed. Results-focused.</p>
+            </RevealText>
+            <RevealText delay={1.5}>
               <p className="text-gray-300 text-lg mb-6">
-                Axonary was born in 2018 with a bold vision: to bridge the gap between technological innovation and human-centered design. What began as a collaboration between designers, developers, and strategists has evolved into a dynamic creative powerhouse.
+                Hamza Rehman didn't build Axonary to chase likes. He built it to chase results. With 15 years of cross-industry insight, 9 in culinary and 7 in digital execution, Hamza brings an unusual but powerful blend of structure, speed, and strategic clarity to the world of marketing.
               </p>
             </RevealText>
             <RevealText delay={2}>
               <p className="text-gray-300 text-lg">
-                Today, we partner with visionary brands and disruptive startups across the globe. Our approach combines strategic insight, cutting-edge technology, and immersive design to create digital experiences that captivate audiences and drive measurable results.
+                Where others pitch promises, Hamza builds pipelines. Where others follow the noise, he follows data. Where others guess, he scales confidently. He's driven over $2 million in tracked revenue across SaaS, logistics, e-commerce, and health. And he's not done. Certified in Google Ads, PPC, and digital growth frameworks, Hamza leads Axonary with one rule: Strategy First: Always. Because when the foundation is smart, growth is inevitable.
               </p>
             </RevealText>
           </ParallaxSection>
@@ -416,8 +428,18 @@ const About = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-8">Our <span style={{ color: COLORS.primary }}>Approach</span></h2>
             </RevealText>
             <RevealText delay={1}>
+              <p className="text-gray-300 text-lg mb-6">
+                We don't just follow blueprints. We redraw them. At Axonary, a leading Digital Marketing and Advertising Agency, strategy isn't a checklist; it's a canvas. Our customer-centric approach fuses the logic of a chess master with the spark of an artist, transforming insight into action and creativity into conversion.
+              </p>
+            </RevealText>
+            <RevealText delay={1.2}>
+              <p className="text-gray-300 text-lg mb-6">
+                We deliver data-driven solutions built on precision, not guesswork. Every pixel placed, every word written, and every campaign launched is backed by intent and designed for impact. It's marketing innovation at its core, shaped by what your brand actually needs to grow.
+              </p>
+            </RevealText>
+            <RevealText delay={1.4}>
               <p className="text-gray-300 text-lg">
-                We believe extraordinary digital experiences are built on deep understanding and meticulous execution. Our process combines analytical thinking with creative exploration to deliver solutions that are both innovative and effective.
+                Because in a world full of noise, we don't whisper. We build chaos. And from it, unforgettable brands.
               </p>
             </RevealText>
           </div>
@@ -444,6 +466,7 @@ const About = () => {
       </section>
       
       {/* Team Section */}
+      {/*
       <section className="py-24 bg-black">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto mb-16">
@@ -468,7 +491,8 @@ const About = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> 
+      */}
       
       {/* Skills Section */}
       <section className="py-24" style={{ backgroundColor: COLORS.darkGray }}>
@@ -480,7 +504,8 @@ const About = () => {
               </RevealText>
               <RevealText delay={1}>
                 <p className="text-gray-300 text-lg mb-8">
-                  With specialized skills across multiple disciplines, we deliver comprehensive solutions that not only meet expectations but exceed them. Our expertise is constantly evolving to stay ahead of industry trends.
+                  We don't dabble. We dominate.
+                  At Axonary, we blend creative firepower with strategic precision, delivering marketing that moves the needle. From Meta ads and SEO to brand management and full-scale digital strategy, our expertise runs deep and adapts fast. We're not just staying in the game. We are shaping it.
                 </p>
               </RevealText>
               
@@ -506,11 +531,6 @@ const About = () => {
                 <div className="absolute inset-0" style={{ 
                   background: `linear-gradient(135deg, ${COLORS.secondary}20 0%, ${COLORS.black}90 100%)` 
                 }} />
-                <img
-                  src="/api/placeholder/800/800" 
-                  alt="Our workspace"
-                  className="w-full h-full object-cover mix-blend-overlay"
-                />
                 
                 <motion.div 
                   className="absolute inset-0 flex items-center justify-center"
@@ -551,11 +571,11 @@ const About = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <RevealText>
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to <span style={{ color: COLORS.primary }}>Transform</span> Your Digital Presence?</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to <span style={{ color: COLORS.primary }}>Make Your Brand Impossible to Ignore?</span></h2>
             </RevealText>
             <RevealText delay={1}>
               <p className="text-gray-300 text-lg mb-12">
-                Let's create something extraordinary together. Whether you have a specific challenge or need guidance exploring possibilities, our team is ready to bring your vision to life.
+                Let's turn your goals into action. Whether you're just launching, scaling, or reinventing, Axonary is your partner in bold moves and big results.
               </p>
             </RevealText>
             
@@ -567,7 +587,7 @@ const About = () => {
             >
               <MagneticButton className="inline-block">
                 <Link to={"/contact"} className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-medium rounded-full transition-all hover:bg-opacity-90" style={{ backgroundColor: COLORS.primary }}>
-                  <span>Start Your Project</span>
+                  <span>Book Your Free Consultation</span>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>

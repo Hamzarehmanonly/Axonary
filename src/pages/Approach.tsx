@@ -45,73 +45,73 @@ const approachSteps = [
   {
     id: 1,
     title: "Discovery",
-    description: "We deep dive into your business goals, audience needs, and market trends to shape our strategy.",
+    description: "We dig deeper before we build smarter. At Axonary, our customer-centric approach starts by listening because great strategies begin with real understanding.",
     icon: "🔍",
     color: AXONARY_COLORS.primary,
     keyPoints: [
-      "User research & persona development",
-      "Competitive analysis & market positioning",
-      "Business goals alignment & KPI definition"
+      "Identify brand gaps and market opportunities",
+      "Analyse audience behaviors and intent",
+      "Collect insights to fuel data-driven solutions."
     ]
   },
   {
     id: 2,
     title: "Strategy",
-    description: "We craft a detailed roadmap aligned with your objectives, timeline, and technical requirements.",
+    description: "Here's where insight becomes action. As a full-scale Digital Marketing and Advertising Agency, we architect strategies that align with your goals and accelerate growth.",
     icon: "🧠",
     color: AXONARY_COLORS.secondary,
     keyPoints: [
-      "Digital roadmap creation",
-      "Resource planning & technology selection",
-      "Technical architecture planning"
+      "Define clear KPIs and conversion paths",
+      "Align messaging with audience psychology",
+      "Build tailored roadmaps across platforms"
     ]
   },
   {
     id: 3,
     title: "Design",
-    description: "Our creative team transforms concepts into visually compelling, user-focused experiences.",
+    description: "We design with intent, not assumptions. Every element is guided by function, backed by strategy, and inspired by marketing innovation.",
     icon: "✏️",
     color: AXONARY_COLORS.primary,
     keyPoints: [
-      "UI wireframes & prototyping",
-      "User experience flows & journey mapping",
-      "Visual identity & design system creation"
+      "UI wireframes and prototyping",
+      "User journey mapping with purpose",
+      "Visual identity and system design"
     ]
   },
   {
     id: 4,
     title: "Development",
-    description: "We build robust, scalable solutions using cutting-edge technologies and best practices.",
+    description: "We bring design to life with precision and performance. Our approach ensures every line of code is built to scale, load fast, and drive results.",
     icon: "⚙️",
     color: AXONARY_COLORS.secondary,
     keyPoints: [
-      "Clean code architecture & implementation",
-      "Responsive & progressive enhancement",
-      "Performance & accessibility optimization"
+      "Responsive front-end and back-end development",
+      "SEO-ready, high-performance frameworks",
+      "Scalable builds tailored to business goals"
     ]
   },
   {
     id: 5,
     title: "Testing",
-    description: "Rigorous quality assurance ensures flawless performance across all devices and platforms.",
+    description: "Before we launch, we stress-test everything because good enough isn't good enough.",
     icon: "🧪",
     color: AXONARY_COLORS.primary,
     keyPoints: [
-      "Automated testing & CI/CD integration",
-      "Cross-browser & device compatibility",
-      "User acceptance testing & validation"
+      "Cross-platform functionality and browser checks",
+      "Speed, responsiveness, and UX validation",
+      "Bug fixes and final performance tweaks"
     ]
   },
   {
     id: 6,
     title: "Launch",
-    description: "We execute a smooth deployment and provide comprehensive post-launch support.",
+    description: "This isn't just go-live; it's go-big. We roll out with confidence, precision, and momentum.",
     icon: "🚀",
     color: AXONARY_COLORS.secondary,
     keyPoints: [
-      "Deployment automation & monitoring setup",
-      "Performance tracking & analytics",
-      "Continuous improvement & maintenance"
+      "Strategic deployment with full system readiness",
+      "Initial campaign monitoring and analytics setup",
+      "Seamless handoff or ongoing optimization"
     ]
   }
 ];
@@ -330,13 +330,13 @@ const Approach: React.FC = () => {
               variants={itemVariants} 
               className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#5C3693] to-[#472A71]"
             >
-              Our Approach
+              Converting Concepts into Outcomes
             </motion.h2>
             <motion.p 
               variants={itemVariants} 
               className="max-w-2xl mx-auto text-[#FFFFFF] text-lg"
             >
-              We follow a proven process to turn your vision into digital reality through a collaborative and transparent journey.
+              We don't just follow a process. We perfect it. At Axonary, we turn your vision into digital reality through a transparent, collaborative, and results-focused journey built to scale, built to perform.
             </motion.p>
           </motion.div>
 
