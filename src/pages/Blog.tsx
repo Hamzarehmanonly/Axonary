@@ -124,45 +124,56 @@ const Blog = () => {
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }} // Slightly longer transition
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  // Slightly lighter background, enhanced hover
-                  className="bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg border border-gray-700 hover:shadow-purple-500/40 hover:border-[#7e5adb] transition-all duration-300 ease-in-out flex flex-col h-[360px]"
+                  className="bg-[#2a2a2a] rounded-lg overflow-hidden shadow-lg border border-gray-700 hover:shadow-purple-500/40 hover:border-[#7e5adb] transition-all duration-300 ease-in-out flex flex-col"
                 >
-                  {/* Replace placeholder div with img tag if imageUrl exists */}
+                  {/* Image section - full width and proper aspect ratio */}
                   {imageUrl ? (
-                    <img
-                      src={imageUrl}
-                      alt={post.Image?.alternativeText || post.Title}
-                      // Increased image height, full width
-                      className="w-full h-48 object-cover" // Adjusted image height
-                    />
+                    <div className="w-full h-64 overflow-hidden">
+                      <img
+                        src={imageUrl}
+                        alt={post.Image?.alternativeText || post.Title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
                   ) : (
                     <div
-                      // Adjusted placeholder height
-                      className={`w-full h-48 flex items-center justify-center text-gray-400 text-sm ${index % 2 === 0 ? 'bg-[#5C3693]' : 'bg-[#472A71]'}`}
+                      className={`w-full h-64 flex items-center justify-center text-gray-400 text-sm ${index % 2 === 0 ? 'bg-[#5C3693]' : 'bg-[#472A71]'}`}
                       style={{ backgroundColor: index % 2 === 0 ? '#5C3693' : '#472A71' }}
                     >
                       [No Image]
                     </div>
                   )}
-                  <div className="p-5 flex flex-col flex-grow overflow-hidden">
-                    <h2 className="text-2xl font-semibold mb-3 text-white">{post.Title}</h2> {/* Increased margin-bottom */}
-                    <p className="text-sm text-gray-400 mb-3 flex-grow overflow-hidden text-ellipsis line-clamp-3">
-                      {post.Teaser}
-                    </p>
-                    <div className="flex justify-between items-center mt-auto pt-3 border-t border-gray-600">
-                      <span className="text-xs text-gray-500">
-                        {new Date(post.Publish_Date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                      </span>
-                      <Link
-                        to={`/blog/${post.Slug}`}
-                        className="text-[#5C3693] hover:text-[#7e5adb] hover:underline text-sm font-medium transition-colors" /* Added underline on hover */
+                  
+                                     {/* Content section with better spacing and typography */}
+                   <div className="p-5 flex flex-col flex-grow">
+                     <h2 className="text-lg font-bold mb-3 text-white leading-tight">
+                       {post.Title}
+                     </h2>
+                     
+                     {/* Description with improved readability */}
+                     <p className="text-gray-400 text-sm leading-6 mb-4 flex-grow">
+                       {post.Teaser}
+                     </p>
+                     
+                     {/* Footer with cleaner design */}
+                     <div className="flex justify-between items-center pt-3 border-t border-gray-700 mt-auto">
+                       <span className="text-xs text-gray-500 font-medium">
+                         {new Date(post.Publish_Date).toLocaleDateString('en-US', { 
+                           year: 'numeric', 
+                           month: 'short', 
+                           day: 'numeric' 
+                         })}
+                       </span>
+                       <Link
+                         to={`/blog/${post.Slug}`}
+                         className="text-[#5C3693] hover:text-[#7e5adb] text-sm font-semibold transition-colors duration-200"
                        >
-                         Read More &rarr;
-                      </Link>
-                    </div>
-                  </div>
+                         Read More →
+                       </Link>
+                     </div>
+                   </div>
                 </motion.div>
               );
             }) : (
