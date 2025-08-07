@@ -254,7 +254,7 @@ const Navbar: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="w-1/3"
+          className="flex-1 md:w-1/3"
         >
           <Link
               to="/"
@@ -262,10 +262,10 @@ const Navbar: React.FC = () => {
                 <img 
                   src="/AXONARY-WHITE-TRANSPARENT.png" 
                   alt="Axonary" 
-                  className="h-10 w-auto mr-4" 
+                  className="h-[50px] w-[50px] md:h-10 md:w-auto mr-2 md:mr-4" 
                 />
                 {/* Hide AXONARY text on mobile screens */}
-                <span className="text-white font-bold text-xl tracking-wider pb-1 hidden md:inline">AXONARY</span>
+                <span className="text-white font-bold text-lg md:text-xl tracking-wider pb-1 hidden md:inline">AXONARY</span>
           </Link>
         </motion.div>
         
@@ -297,8 +297,10 @@ const Navbar: React.FC = () => {
           ))}
         </nav>
 
+
+
         {/* Right section - Contact button and mobile menu */}
-        <div className="w-1/3 flex justify-end">
+        <div className="flex justify-end items-center">
           {/* Contact Us button - visible ONLY on desktop */}
           <div className="hidden md:block">
             <Link to="/contact">
@@ -315,22 +317,22 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden w-10 h-10 relative focus:outline-none z-50"
+            className="md:hidden w-10 h-10 relative focus:outline-none z-50 flex items-center justify-center"
           >
-            <div className="block w-10 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="flex flex-col items-center justify-center w-6 h-6">
               <span
-                className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
-                  isOpen ? "rotate-45" : "-translate-y-2"
+                className={`block absolute h-0.5 w-6 bg-white transform transition duration-300 ease-in-out ${
+                  isOpen ? "rotate-45 translate-y-0" : "-translate-y-1"
                 }`}
               />
               <span
-                className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
-                  isOpen ? "opacity-0" : ""
+                className={`block absolute h-0.5 w-6 bg-white transform transition duration-300 ease-in-out ${
+                  isOpen ? "opacity-0" : "opacity-100"
                 }`}
               />
               <span
-                className={`block absolute h-0.5 w-8 bg-white transform transition duration-500 ease-in-out ${
-                  isOpen ? "-rotate-45" : "translate-y-2"
+                className={`block absolute h-0.5 w-6 bg-white transform transition duration-300 ease-in-out ${
+                  isOpen ? "-rotate-45 translate-y-0" : "translate-y-1"
                 }`}
               />
             </div>
@@ -510,69 +512,103 @@ const Navbar: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-lg z-40 md:hidden"
-          >
+                           {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isOpen && (
             <motion.div
-              variants={menuVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              className="flex flex-col items-center justify-center h-full overflow-y-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 md:hidden"
             >
-              {navItems.map((item) => (
-                <motion.div key={item.label} variants={itemVariants} whileHover={{ scale: 1.1, x: 10 }}>
-                  <Link
-                    to={item.path}
-                    onClick={closeMobileMenu}
-                    className="block text-3xl font-bold text-white my-4 hover:text-purple-500 transition-colors cursor-pointer"
-                  >
-                    {item.label}
-                  </Link>
-                  
-                  {/* Mobile submenu for mega menu items */}
-                  {item.hasMegaMenu && item.megaMenuItems && (
-                    <div className="ml-8 mb-4">
-                      {item.megaMenuItems.slice(0, 5).map((subItem, index) => (
-                        <Link
-                          key={index}
-                          to={`${item.path}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
-                          onClick={closeMobileMenu}
-                          className="block text-lg text-gray-300 hover:text-[#5C3693] my-2 transition-colors"
-                        >
-                          {subItem}
-                        </Link>
-                      ))}
-                      {item.megaMenuItems.length > 5 && (
-                        <span className="block text-sm text-gray-500 mt-2">
-                          +{item.megaMenuItems.length - 5} more...
-                        </span>
-                      )}
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-              <motion.div variants={itemVariants} whileHover={{ scale: 1.1, x: 10 }}>
-                <Link
-                  to="/contact"
-                  onClick={closeMobileMenu}
-                  className='block text-3xl font-bold text-white my-4 mt-8 btn-primary-lg text-xl'
-                >
-                  Contact Us →
-                </Link>
+                             <motion.div
+                 variants={menuVariants}
+                 initial="closed"
+                 animate="open"
+                 exit="closed"
+                 className="flex flex-col h-full overflow-y-auto pt-24 pb-8 px-6"
+               >
+
+
+                                 {/* Navigation items */}
+                 <div className="space-y-4">
+                   {navItems.map((item) => (
+                     <motion.div key={item.label} variants={itemVariants} className="border-b border-gray-800 pb-4">
+                       <Link
+                         to={item.path}
+                         onClick={closeMobileMenu}
+                         className="block text-lg font-bold text-white mb-3 hover:text-[#5C3693] transition-colors cursor-pointer flex items-center justify-between group"
+                       >
+                         {item.label}
+                         {item.hasMegaMenu && (
+                           <svg className="w-4 h-4 text-gray-400 group-hover:text-[#5C3693] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                           </svg>
+                         )}
+                       </Link>
+                       
+                       {/* Mobile submenu for mega menu items */}
+                       {item.hasMegaMenu && item.megaMenuItems && (
+                         <div className="space-y-1 ml-4">
+                           {item.megaMenuItems.slice(0, 3).map((subItem, index) => (
+                             <Link
+                               key={index}
+                               to={`${item.path}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                               onClick={closeMobileMenu}
+                               className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3"
+                             >
+                               {subItem}
+                             </Link>
+                           ))}
+                           {item.megaMenuItems.length > 3 && (
+                             <div className="pt-2">
+                               <div className="flex items-center justify-between">
+                                 <span className="block text-xs text-gray-500 pl-3">
+                                   +{item.megaMenuItems.length - 3} more services
+                                 </span>
+                                 <Link
+                                   to={item.path}
+                                   onClick={closeMobileMenu}
+                                   className="block text-sm text-[#5C3693] py-1 px-3 rounded-full bg-[#5C3693]/10 hover:bg-[#5C3693]/20 transition-colors"
+                                 >
+                                   View All →
+                                 </Link>
+                               </div>
+                             </div>
+                           )}
+                         </div>
+                       )}
+                     </motion.div>
+                   ))}
+                 </div>
+
+                                 {/* Contact button */}
+                 <motion.div variants={itemVariants} className="mt-auto pt-6">
+                   <div className="bg-gradient-to-r from-[#5C3693] to-[#7e5adb] rounded-xl p-6 text-center">
+                     <div className="mb-3">
+                       <svg className="w-8 h-8 text-white mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                       </svg>
+                     </div>
+                     <h3 className="text-white font-bold text-lg mb-2">Ready to get started?</h3>
+                     <p className="text-white/80 text-sm mb-4">Let's discuss your project requirements</p>
+                     <Link
+                       to="/contact"
+                       onClick={closeMobileMenu}
+                       className="block w-full bg-white text-[#5C3693] text-center py-3 rounded-lg font-bold text-base hover:bg-gray-100 transition-all duration-300"
+                     >
+                       Contact Us →
+                     </Link>
+                   </div>
+                 </motion.div>
               </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
     </>
   );
 };
 
 export default Navbar;
+
+
