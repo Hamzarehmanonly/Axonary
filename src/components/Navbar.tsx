@@ -2,16 +2,197 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 
+// Updated navigation structure with new menu items and unique dropdowns
 const navItems = [
-  { label: "About", path: "/about" },
-  { label: "Work", path: "/work" },
-  { label: "Solutions", path: "/solutions" },
-  { label: "Our Approach", path: "/approach" },
-  { label: "Blog", path: "/blog" },
+  { 
+    label: "Mobile", 
+    path: "/mobile",
+    hasMegaMenu: true,
+    megaMenuItems: [
+      "App Development",
+      "Game App Development", 
+      "MVP Startup Development",
+      "AR Development",
+      "VR Development",
+      "iPad App Development",
+      "App Maintenance Support",
+      "Web App Development",
+      "Apps for Startup",
+      "Android",
+      "iOS", 
+      "Flutter",
+      "React Native",
+      "Cross Platform",
+      "Cloud",
+      "IoT",
+      "Retail",
+      "Healthcare",
+      "Real Estate", 
+      "Ecommerce",
+      "Food",
+      "Doctor App",
+      "Taxi App",
+      "Grocery App", 
+      "Delivery App",
+      "Travel App",
+      "Restaurant App",
+      "Education App",
+      "Sports App",
+      "Logistics App",
+      "Texas", "Los Angeles", "Boston", "Philadelphia", "UAE", "Kuwait", "Miami", "Orlando", "New Jersey",
+      "Chicago", "Austin", "New York", "Dubai", "Qatar", "Oman", "San Diego", "UK", "Nashville", 
+      "Houston", "San Francisco", "Dallas", "Saudi Arabia", "Bahrain", "Atlanta", "Washington", 
+      "Toronto", "Charlotte"
+    ],
+    subCategories: [
+      {
+        name: "Services",
+        items: ["App Development", "Game App Development", "MVP Startup Development", "AR Development", "VR Development", "iPad App Development", "App Maintenance Support", "Web App Development", "Apps for Startup"]
+      },
+      {
+        name: "Technology",
+        items: ["Android", "iOS", "Flutter", "React Native", "Cross Platform", "Cloud", "IoT"]
+      },
+      {
+        name: "Industries",
+        items: ["Retail", "Healthcare", "Real Estate", "Ecommerce", "Food"]
+      },
+      {
+        name: "Solution",
+        items: ["Doctor App", "Taxi App", "Grocery App", "Delivery App", "Travel App", "Restaurant App", "Education App", "Sports App", "Logistics App"]
+      }
+    ]
+  },
+  { 
+    label: "Ecommerce", 
+    path: "/ecommerce",
+    hasMegaMenu: true,
+    megaMenuItems: [
+      "Ecommerce Development",
+      "Adobe Commerce Development",
+      "Adobe Commerce Migration", 
+      "Adobe Commerce Support",
+      "Adobe Commerce Customization",
+      "Shopify Development",
+      "Shopify App Development",
+      "Shopify Migration",
+      "Shopify Integration",
+      "WooCommerce Development",
+      "BigCommerce Development"
+    ],
+    subCategories: [
+      {
+        name: "Services",
+        items: ["Ecommerce Development"]
+      },
+      {
+        name: "Adobe Commerce",
+        items: ["Adobe Commerce Development", "Adobe Commerce Migration", "Adobe Commerce Support", "Adobe Commerce Customization"]
+      },
+      {
+        name: "Shopify",
+        items: ["Shopify Development", "Shopify App Development", "Shopify Migration", "Shopify Integration"]
+      },
+      {
+        name: "WooCommerce",
+        items: ["WooCommerce Development"]
+      },
+      {
+        name: "BigCommerce",
+        items: ["BigCommerce Development"]
+      }
+    ]
+  },
+  { 
+    label: "Staff Augmentation", 
+    path: "/staff-augmentation",
+    hasMegaMenu: true,
+    megaMenuItems: [
+      "Top App Developers",
+      "Hire Flutter Developer",
+      "Hire Java Developer", 
+      "Hire Magento Developer",
+      "Hire Python Developer",
+      "Hire Laravel Developer",
+      "Hire Node Js Developer"
+    ],
+    subCategories: [
+      {
+        name: "Staff Augmentation",
+        items: ["Top App Developers", "Hire Flutter Developer", "Hire Java Developer", "Hire Magento Developer", "Hire Python Developer", "Hire Laravel Developer", "Hire Node Js Developer"]
+      }
+    ]
+  },
+  { 
+    label: "Enterprise", 
+    path: "/enterprise",
+    hasMegaMenu: true,
+    megaMenuItems: [
+      "Dynamics 365",
+      "Sharepoint",
+      "Azure Consulting Services",
+      "Power Apps",
+      "Power BI Services",
+      "Dynamics 365 Integrations",
+      "BC Development",
+      "BC Integration",
+      "IT Consulting",
+      "Salesforce",
+      "WMS",
+      "HRMS"
+    ],
+    subCategories: [
+      {
+        name: "Microsoft",
+        items: ["Dynamics 365", "Sharepoint", "Azure Consulting Services", "Power Apps", "Power BI Services", "Dynamics 365 Integrations", "BC Development", "BC Integration"]
+      },
+      {
+        name: "BPO",
+        items: ["IT Consulting"]
+      },
+      {
+        name: "Salesforce",
+        items: ["Salesforce"]
+      },
+      {
+        name: "Products",
+        items: ["WMS", "HRMS"]
+      }
+    ]
+  },
+  { 
+    label: "Gov", 
+    path: "/gov",
+    hasMegaMenu: false
+  },
+  { 
+    label: "Portfolio", 
+    path: "/portfolio",
+    hasMegaMenu: false
+  },
+  { 
+    label: "Company", 
+    path: "/company",
+    hasMegaMenu: true,
+    megaMenuItems: [
+      "Careers",
+      "Blog",
+      "About",
+      "Partnership",
+      "Our Locations"
+    ],
+    subCategories: [
+      {
+        name: "Company",
+        items: ["Careers", "Blog", "About", "Partnership", "Our Locations"]
+      }
+    ]
+  }
 ];
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
   const menuVariants = {
     closed: {
@@ -37,8 +218,33 @@ const Navbar: React.FC = () => {
     open: { opacity: 1, x: 0 }
   };
 
+  const megaMenuVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   const closeMobileMenu = () => {
     setIsOpen(false);
+  };
+
+  const handleMegaMenuEnter = (label: string) => {
+    setActiveMegaMenu(label);
+  };
+
+  const handleMegaMenuLeave = () => {
+    setActiveMegaMenu(null);
+  };
+
+  // Get current mega menu item
+  const currentMegaMenuItem = navItems.find(item => item.label === activeMegaMenu);
+
+  // Split locations into two columns for better layout
+  const getLocationsColumns = (locations: string[]) => {
+    const midPoint = Math.ceil(locations.length / 2);
+    return {
+      left: locations.slice(0, midPoint),
+      right: locations.slice(midPoint)
+    };
   };
 
   return (
@@ -64,18 +270,30 @@ const Navbar: React.FC = () => {
         </motion.div>
         
         {/* Middle section - Navigation */}
-        <nav className="hidden md:flex items-center justify-center w-1/3 space-x-8">
+        <nav className="hidden md:flex items-center justify-center w-1/3 space-x-6">
           {navItems.map((item) => (
-            <motion.div key={item.label} whileHover={{ scale: 1.05 }}>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                   `pb-1 transition-colors duration-300 ${isActive ? 'text-[#5C3693] border-b-2 border-[#5C3693]' : 'text-white hover:text-[#7e5adb]'}`
-                }
-              >
-                {item.label}
-              </NavLink>
-            </motion.div>
+            <div 
+              key={item.label} 
+              className="relative"
+              onMouseEnter={() => item.hasMegaMenu && handleMegaMenuEnter(item.label)}
+              onMouseLeave={() => item.hasMegaMenu && handleMegaMenuLeave()}
+            >
+              <motion.div whileHover={{ scale: 1.05 }} className="flex items-center">
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                     `pb-1 transition-colors duration-300 whitespace-nowrap text-sm ${isActive ? 'text-[#5C3693] border-b-2 border-[#5C3693]' : 'text-white hover:text-[#7e5adb]'}`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+                {item.hasMegaMenu && (
+                  <svg className="w-4 h-4 ml-1 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                )}
+              </motion.div>
+            </div>
           ))}
         </nav>
 
@@ -120,6 +338,178 @@ const Navbar: React.FC = () => {
         </div>
       </header>
 
+      {/* Full Width Mega Menu Overlay */}
+      <AnimatePresence>
+        {activeMegaMenu && currentMegaMenuItem && (
+          <motion.div
+            variants={megaMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="fixed top-0 left-0 w-full bg-white shadow-2xl border-b border-gray-200 z-[99]"
+            style={{ top: '72px' }} // Adjust this value to match your navbar height
+            onMouseEnter={() => handleMegaMenuEnter(activeMegaMenu)}
+            onMouseLeave={handleMegaMenuLeave}
+          >
+            <div className="w-full h-full">
+              <div className="flex gap-12 h-full">
+                {/* Left Side Sitemap Navigation - Shows subcategories of current mega menu */}
+                <div className="w-1/4 flex-shrink-0 bg-gray-100 p-3 px-6 py-8">
+                  <div className="space-y-1">
+                    {currentMegaMenuItem.subCategories?.map((subCategory) => (
+                      <div
+                        key={subCategory.name}
+                        className="w-full text-left px-2 py-1 transition-all duration-200 font-medium text-gray-900 hover:bg-gray-200 cursor-pointer flex items-center gap-2"
+                      >
+                        {/* Icons for different categories */}
+                        {subCategory.name === "Services" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Technology" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Industries" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Solution" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Location" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Microsoft" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "BPO" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Salesforce" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Products" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Staff Augmentation" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Company" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Adobe Commerce" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "Shopify" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                          </svg>
+                        )}
+                        {subCategory.name === "WooCommerce" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
+                          </svg>
+                        )}
+                        {subCategory.name === "BigCommerce" && (
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        )}
+                        <span className="text-sm">{subCategory.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Side Content Area - Shows all subcategories and their items */}
+                <div className="flex-1 py-8 px-5">
+                  <div className={`grid gap-8 ${
+                    activeMegaMenu === "Staff Augmentation" 
+                      ? "grid-cols-1" 
+                      : activeMegaMenu === "Mobile" || activeMegaMenu === "Ecommerce"
+                      ? "grid-cols-5"
+                      : activeMegaMenu === "Enterprise"
+                      ? "grid-cols-4"
+                      : "grid-cols-3"
+                  }`}>
+                    {currentMegaMenuItem.subCategories?.map((subCategory) => (
+                      <div key={subCategory.name}>
+                        <h3 className="text-sm font-bold text-gray-900 mb-3 border-b border-gray-200 pb-2">
+                          {subCategory.name === "Services" && activeMegaMenu === "Ecommerce" ? "Ecommerce Development" : subCategory.name}
+                        </h3>
+                        <div className="space-y-1">
+                          {subCategory.name === "Location" ? (
+                            // Special layout for locations with two columns
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                {getLocationsColumns(subCategory.items).left.map((location, index) => (
+                                  <Link
+                                    key={index}
+                                    to={`${currentMegaMenuItem.path}/locations/${location.toLowerCase().replace(/\s+/g, '-')}`}
+                                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                                  >
+                                    {location}
+                                  </Link>
+                                ))}
+                              </div>
+                              <div>
+                                {getLocationsColumns(subCategory.items).right.map((location, index) => (
+                                  <Link
+                                    key={index}
+                                    to={`${currentMegaMenuItem.path}/locations/${location.toLowerCase().replace(/\s+/g, '-')}`}
+                                    className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                                  >
+                                    {location}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            // Regular layout for other categories
+                            subCategory.items.map((item, index) => (
+                              <Link
+                                key={index}
+                                to={`${currentMegaMenuItem.path}/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                              >
+                                {item}
+                              </Link>
+                            ))
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
@@ -134,7 +524,7 @@ const Navbar: React.FC = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="flex flex-col items-center justify-center h-full"
+              className="flex flex-col items-center justify-center h-full overflow-y-auto"
             >
               {navItems.map((item) => (
                 <motion.div key={item.label} variants={itemVariants} whileHover={{ scale: 1.1, x: 10 }}>
@@ -145,6 +535,27 @@ const Navbar: React.FC = () => {
                   >
                     {item.label}
                   </Link>
+                  
+                  {/* Mobile submenu for mega menu items */}
+                  {item.hasMegaMenu && item.megaMenuItems && (
+                    <div className="ml-8 mb-4">
+                      {item.megaMenuItems.slice(0, 5).map((subItem, index) => (
+                        <Link
+                          key={index}
+                          to={`${item.path}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
+                          onClick={closeMobileMenu}
+                          className="block text-lg text-gray-300 hover:text-[#5C3693] my-2 transition-colors"
+                        >
+                          {subItem}
+                        </Link>
+                      ))}
+                      {item.megaMenuItems.length > 5 && (
+                        <span className="block text-sm text-gray-500 mt-2">
+                          +{item.megaMenuItems.length - 5} more...
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </motion.div>
               ))}
               <motion.div variants={itemVariants} whileHover={{ scale: 1.1, x: 10 }}>
