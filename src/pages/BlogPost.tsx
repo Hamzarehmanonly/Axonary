@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // Re-use or define interfaces (ensure consistency with Blog.tsx if possible)
@@ -18,10 +18,28 @@ interface PostImage {
   };
 }
 
-// Interface for the Content block (simplified)
+// Interface for the Content block (enhanced for Strapi rich text)
+interface ContentChild {
+  type: string;
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  strikethrough?: boolean;
+  code?: boolean;
+  level?: number; // for headings
+  children?: ContentChild[]; // for nested content
+}
+
 interface ContentBlock {
   type: string;
-  children: { type: string; text: string }[];
+  children: ContentChild[];
+  level?: number; // for headings
+  format?: string; // for lists
+  style?: string; // for lists
+  url?: string; // for links
+  alternativeText?: string; // for images
+  caption?: string; // for images
 }
 
 interface Post {
@@ -39,20 +57,156 @@ interface ApiResponse {
   meta?: { /* pagination etc. */ };
 }
 
-// Helper to render Strapi content blocks (basic version)
+// Helper to render text with formatting
+const renderText = (child: ContentChild, key: number): React.ReactNode => {
+  if (!child.text) return null;
+  
+  let element: React.ReactNode = child.text;
+  
+  // Apply formatting in the correct order
+  if (child.code) {
+    element = <code key={`code-${key}`} className="bg-gray-800 px-2 py-1 rounded text-sm font-mono">{element}</code>;
+  }
+  if (child.bold) {
+    element = <strong key={`bold-${key}`}>{element}</strong>;
+  }
+  if (child.italic) {
+    element = <em key={`italic-${key}`}>{element}</em>;
+  }
+  if (child.underline) {
+    element = <u key={`underline-${key}`}>{element}</u>;
+  }
+  if (child.strikethrough) {
+    element = <del key={`strike-${key}`}>{element}</del>;
+  }
+  
+  return element;
+};
+
+// Helper to render Strapi content blocks (comprehensive version)
 const renderContent = (content: ContentBlock[]) => {
   return content.map((block, index) => {
-    if (block.type === 'paragraph') {
-      return (
-        <p key={index} className="mb-4 text-lg leading-relaxed">
-          {block.children.map((child, childIndex) => (
-            <span key={childIndex}>{child.text}</span>
-          ))}
-        </p>
-      );
+    switch (block.type) {
+      case 'paragraph':
+        return (
+          <p key={index} className="mb-6 text-lg leading-normal text-gray-300">
+            {block.children.map((child, childIndex) => 
+              renderText(child, childIndex)
+            )}
+          </p>
+        );
+      
+      case 'heading':
+        const HeadingTag = `h${block.level || 2}` as keyof JSX.IntrinsicElements;
+        const headingClasses = {
+          1: "text-4xl md:text-5xl font-bold mb-8 mt-12 text-white",
+          2: "text-3xl md:text-4xl font-bold mb-6 mt-10 text-white",
+          3: "text-2xl md:text-3xl font-bold mb-4 mt-8 text-white",
+          4: "text-xl md:text-2xl font-bold mb-4 mt-6 text-white",
+          5: "text-lg md:text-xl font-bold mb-3 mt-4 text-white",
+          6: "text-base md:text-lg font-bold mb-3 mt-4 text-white"
+        };
+        return (
+          <HeadingTag key={index} className={headingClasses[block.level as keyof typeof headingClasses] || headingClasses[2]}>
+            {block.children.map((child, childIndex) => 
+              renderText(child, childIndex)
+            )}
+          </HeadingTag>
+        );
+      
+      case 'list':
+        const ListTag = block.format === 'ordered' ? 'ol' : 'ul';
+        const listClass = block.format === 'ordered' 
+          ? "list-decimal list-inside mb-6 space-y-3 text-gray-300 ml-4" 
+          : "list-disc list-inside mb-6 space-y-3 text-gray-300 ml-4";
+        return (
+          <ListTag key={index} className={listClass}>
+            {block.children.map((child, childIndex) => (
+              <li key={childIndex} className="text-lg leading-normal">
+                {child.children?.map((grandChild, grandChildIndex) => 
+                  renderText(grandChild, grandChildIndex)
+                ) || child.text}
+              </li>
+            ))}
+          </ListTag>
+        );
+      
+      case 'list-item':
+        return (
+          <li key={index} className="text-lg leading-normal text-gray-300 mb-2">
+            {block.children.map((child, childIndex) => 
+              renderText(child, childIndex)
+            )}
+          </li>
+        );
+      
+      case 'quote':
+        return (
+          <blockquote key={index} className="border-l-4 border-[#5C3693] pl-6 py-4 my-8 bg-gray-900/50 rounded-r-lg">
+            <p className="text-lg italic text-gray-300 leading-normal">
+              {block.children.map((child, childIndex) => 
+                renderText(child, childIndex)
+              )}
+            </p>
+          </blockquote>
+        );
+      
+      case 'code':
+        return (
+          <pre key={index} className="bg-gray-900 rounded-lg p-6 my-8 overflow-x-auto">
+            <code className="text-gray-300 text-sm">
+              {block.children.map((child, childIndex) => child.text).join('')}
+            </code>
+          </pre>
+        );
+      
+      case 'link':
+        return (
+          <a 
+            key={index} 
+            href={block.url || '#'} 
+            className="text-[#5C3693] hover:text-[#7e5adb] underline transition-colors duration-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {block.children.map((child, childIndex) => 
+              renderText(child, childIndex)
+            )}
+          </a>
+        );
+      
+      case 'image':
+        return (
+          <div key={index} className="my-8">
+            <img 
+              src={block.url} 
+              alt={block.alternativeText || ''} 
+              className="w-full h-auto rounded-lg shadow-lg"
+            />
+            {block.caption && (
+              <p className="text-sm text-gray-500 mt-2 text-center italic">
+                {block.caption}
+              </p>
+            )}
+          </div>
+        );
+      
+      case 'hr':
+      case 'horizontal-rule':
+        return (
+          <hr key={index} className="my-12 border-gray-700" />
+        );
+      
+      default:
+        // Fallback for unknown block types
+        return (
+          <div key={index} className="mb-4 text-lg leading-normal text-gray-300">
+            {block.children?.map((child, childIndex) => 
+              renderText(child, childIndex)
+            )}
+          </div>
+        );
     }
-    // Add rendering for other block types (headings, lists, images) here if needed
-    return null;
   });
 };
 
@@ -173,12 +327,25 @@ const BlogPost = () => {
           />
         )}
 
-        <div className="prose prose-invert">
-             {/* Render the content blocks */}
-             {renderContent(post.Content)}
+        <div className="prose prose-invert max-w-none">
+          {/* Render the content blocks */}
+          <div className="space-y-6">
+            {renderContent(post.Content)}
+          </div>
         </div>
 
-        {/* Optional: Add back link or related posts section here */}
+        {/* Back to blog link */}
+        <div className="mt-12 pt-8 border-t border-gray-700">
+          <Link 
+            to="/blog" 
+            className="inline-flex items-center text-[#5C3693] hover:text-[#7e5adb] transition-colors duration-300"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Blog
+          </Link>
+        </div>
       </motion.article>
     </div>
   );
