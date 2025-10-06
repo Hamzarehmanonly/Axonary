@@ -249,12 +249,12 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="py-4 px-6 flex justify-between items-center border-b border-gray-800 bg-black/100 backdrop-blur-sm sticky top-0 z-[100]">
+      <header className="py-4 px-6 border-b border-gray-800 bg-black/100 backdrop-blur-sm sticky top-0 z-[100] grid grid-cols-3 items-center">
         {/* Left section - Logo */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex-1 md:w-1/3"
+          className="col-span-1"
         >
           <Link
               to="/"
@@ -270,7 +270,7 @@ const Navbar: React.FC = () => {
         </motion.div>
         
         {/* Middle section - Navigation */}
-        <nav className="hidden md:flex items-center justify-center w-1/3 space-x-6">
+        <nav className="hidden md:flex items-center justify-center col-span-1 space-x-6">
           {navItems.map((item) => (
             <div 
               key={item.label} 
@@ -300,7 +300,7 @@ const Navbar: React.FC = () => {
 
 
         {/* Right section - Contact button and mobile menu */}
-        <div className="flex justify-end items-center">
+        <div className="flex justify-end items-center col-span-1">
           {/* Contact Us button - visible ONLY on desktop */}
           <div className="hidden md:block">
             <Link to="/contact">
