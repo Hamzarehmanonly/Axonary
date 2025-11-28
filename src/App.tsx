@@ -16,6 +16,10 @@ import Sitemap from './pages/legal/Sitemap';
 import CaseStudies from './pages/legal/CaseStudies';
 import BlogPost from './pages/BlogPost';
 import { useScrollToTop } from './hooks/useScrollToTop';
+// import ServiceDemo1 from './pages/services/Service-demo-1';
+import Service from './pages/services/Service';
+// import ServiceDemo3 from './pages/services/Service-demo-3';
+import AndroidAppDevelopment from './pages/services/mobile-app-development/AndroidAppDevelopment';
 
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
@@ -38,6 +42,15 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/support" element={<Support />} />
+
+        {/* Demo Pages */}
+        {/* <Route path="/demo1" element={<ServiceDemo1 />} /> */}
+        <Route path="/demo2" element={<Service />} />
+        {/* <Route path="/demo3" element={<ServiceDemo3 />} /> */}
+
+        {/* Mobile App Development */}
+        <Route path="/android-app-development" element={<AndroidAppDevelopment />} />
+
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/termsconditions" element={<TermsConditions />} />
