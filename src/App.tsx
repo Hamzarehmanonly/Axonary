@@ -43,10 +43,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/support" element={<Support />} />
 
-        {/* Demo Pages */}
-        {/* <Route path="/demo1" element={<ServiceDemo1 />} /> */}
-        <Route path="/demo2" element={<Service />} />
-        {/* <Route path="/demo3" element={<ServiceDemo3 />} /> */}
+        {/* Services Pages */}
+        <Route path="/services" element={<Service />} />
 
         {/* Mobile App Development */}
         <Route path="/android-app-development" element={<AndroidAppDevelopment />} />

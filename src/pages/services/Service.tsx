@@ -1,15 +1,15 @@
-// Service-demo-2.tsx
+// Service.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 /**
- * Service-demo-2.tsx
- * Interactive Split (Dribbble-style) — No animations
+ * Service.tsx
+ * Interactive Split (Dribbble-style) Services Page
  *
  * Notes:
  * - TailwindCSS utility classes used (assumes Tailwind configured).
  * - Unsplash source links used for evocative demo images.
- * - Keeps same color tokens as Service-demo-1.
+ * - Main services showcase page for Axonary.
  */
 
 const COLORS = {
@@ -282,7 +282,7 @@ const FooterCTA: React.FC = () => {
   );
 };
 
-const ServiceDemo2: React.FC = () => {
+const Services: React.FC = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -326,4 +326,4 @@ const ServiceDemo2: React.FC = () => {
   );
 };
 
-export default ServiceDemo2;
+export default Services;
