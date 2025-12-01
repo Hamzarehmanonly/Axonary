@@ -1,10 +1,20 @@
-// FlutterAppDevelopment.tsx
+// CloudMobileAppDevelopment.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * CloudMobileAppDevelopment.tsx
+ * Interactive Split (Dribbble-style) — Cloud Mobile App Development Services
+ *
+ * Notes:
+ * - TailwindCSS utility classes used (assumes Tailwind configured).
+ * - Unsplash source links used for evocative demo images.
+ * - Same color tokens as Service.tsx for consistency.
+ */
+
 const COLORS = {
-  primary: "#5C3693",
-  secondary: "#472A71",
+  primary: "#5C3693",        // purple accent
+  secondary: "#472A71",      // darker purple
   bg: "#000000",
   card: "#0b0b0d",
   glass: "rgba(255,255,255,0.03)",
@@ -14,46 +24,46 @@ const COLORS = {
 
 const services = [
   {
-    id: "flutter-native",
-    title: "Flutter Native Performance",
+    id: "cloud-backend",
+    title: "Cloud Infrastructure Setup",
     desc:
-      "Build beautiful apps with Flutter's native performance. Direct access to platform features with Dart's fast execution.",
-    imgQuery: "flutter app development",
+      "Scalable cloud-native backends using AWS, Azure, and Google Cloud. Auto-scaling, load balancing, and multi-region deployment for global reach.",
+    imgQuery: "cloud infrastructure",
   },
   {
-    id: "flutter-ui",
-    title: "Material & Cupertino Design",
+    id: "serverless",
+    title: "Serverless Architecture",
     desc:
-      "Stunning Material Design and Cupertino (iOS) interfaces. Rich widget library for beautiful UX across platforms.",
-    imgQuery: "ui design flutter",
+      "Build with serverless functions, APIs, and databases. Cost-effective solutions that scale automatically without managing servers.",
+    imgQuery: "serverless computing",
   },
   {
-    id: "flutter-hot-reload",
-    title: "Hot Reload Development",
+    id: "real-time-sync",
+    title: "Real-time Data Sync",
     desc:
-      "See changes instantly with hot reload. Faster development cycles and real-time debugging capabilities.",
-    imgQuery: "development workflow",
+      "Firebase, AWS AppSync, and custom WebSocket solutions. Real-time synchronization across devices with offline support.",
+    imgQuery: "real-time data",
   },
   {
-    id: "flutter-packages",
-    title: "Extensive Package Ecosystem",
+    id: "cloud-security",
+    title: "Cloud Security & Compliance",
     desc:
-      "Access 50,000+ pub packages. Pre-built solutions for common features and integrations.",
-    imgQuery: "software development",
+      "End-to-end encryption, authentication, and compliance (GDPR, HIPAA). Secure data storage and privacy-first architecture.",
+    imgQuery: "cloud security",
   },
   {
-    id: "flutter-responsive",
-    title: "Responsive & Adaptive UI",
+    id: "cloud-analytics",
+    title: "Analytics & Monitoring",
     desc:
-      "Auto-scaling layouts for all screen sizes. Seamless experience from phones to tablets to web.",
-    imgQuery: "responsive design",
+      "Real-time analytics, crash reporting, and performance monitoring. User behavior insights and actionable metrics.",
+    imgQuery: "data analytics",
   },
   {
-    id: "flutter-deployment",
-    title: "One-Click Deployment",
+    id: "cloud-migration",
+    title: "Cloud Migration & Optimization",
     desc:
-      "Deploy to iOS App Store and Google Play from one codebase. Streamlined CI/CD integration.",
-    imgQuery: "app deployment",
+      "Migrate existing apps to cloud platforms. Cost optimization, performance tuning, and disaster recovery planning.",
+    imgQuery: "cloud migration",
   },
 ];
 
@@ -81,24 +91,25 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
               Axonary
             </div>
             <div className="text-xs" style={{ color: COLORS.textMuted }}>
-              Flutter Development
+              Cloud Mobile Development
             </div>
           </div>
         </div>
 
         <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
-          <a href="#flutter-native" className="hover:text-white">Native</a>
-          <a href="#flutter-ui" className="hover:text-white">UI/UX</a>
-          <a href="#flutter-hot-reload" className="hover:text-white">Hot Reload</a>
-          <a href="#flutter-packages" className="hover:text-white">Packages</a>
-          <a href="#flutter-responsive" className="hover:text-white">Responsive</a>
-          <a href="#flutter-deployment" className="hover:text-white">Deployment</a>
+          <a href="#cloud-backend" className="hover:text-white">Infrastructure</a>
+          <a href="#serverless" className="hover:text-white">Serverless</a>
+          <a href="#real-time-sync" className="hover:text-white">Real-time</a>
+          <a href="#cloud-security" className="hover:text-white">Security</a>
+          <a href="#cloud-analytics" className="hover:text-white">Analytics</a>
+          <a href="#cloud-migration" className="hover:text-white">Migration</a>
           <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
             Book a Call
           </Link>
         </nav>
       </div>
 
+      {/* scroll progress bar */}
       <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div style={{
           height: "3px",
@@ -121,20 +132,20 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Fast • Beautiful • Multi-Platform
+            Scalable • Secure • Performance
           </div>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Flutter App Development{" "}
+            Cloud-Native Mobile App Development{" "}
             <span style={{ color: COLORS.primary }}>| Axonary</span>
           </h1>
 
           <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Create stunning, natively compiled applications for mobile, web, and desktop. One codebase for all platforms with Google's Flutter framework.
+            Build modern mobile apps with cloud-native architecture. Leverage AWS, Azure, and Google Cloud for unlimited scalability and enterprise-grade reliability.
           </p>
 
           <div className="mt-6 flex items-center gap-4">
-            <a href="#flutter-native" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
+            <a href="#cloud-backend" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
               Explore Services
             </a>
             <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
@@ -145,20 +156,20 @@ const Hero: React.FC = () => {
 
         <div className="md:col-span-5">
           <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">Flutter Success</h5>
+            <h5 className="text-sm text-gray-400">Cloud Excellence</h5>
             <div className="mt-4 grid grid-cols-2 gap-4">
               <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">90+</div>
-                <div className="text-xs text-gray-400">Flutter Apps</div>
+                <div className="text-2xl font-bold">100+</div>
+                <div className="text-xs text-gray-400">Cloud Projects</div>
               </div>
               <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">50%</div>
-                <div className="text-xs text-gray-400">Faster Dev</div>
+                <div className="text-2xl font-bold">99.9%</div>
+                <div className="text-xs text-gray-400">Uptime</div>
               </div>
             </div>
 
             <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to build beautiful cross-platform apps faster? Let's use Flutter.</p>
+              <p className="text-sm text-gray-300">Need cloud architecture guidance? Let's design your scalable solution.</p>
               <div className="mt-4">
                 <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
               </div>
@@ -339,8 +350,8 @@ const FooterCTA: React.FC = () => {
         }}
       >
         <div>
-          <div className="text-sm font-semibold" style={{ color: COLORS.white }}>Ready to build with Flutter?</div>
-          <div className="text-xs" style={{ color: COLORS.textMuted }}>Let's create beautiful apps faster.</div>
+          <div className="text-sm font-semibold" style={{ color: COLORS.white }}>Ready for cloud-native mobile?</div>
+          <div className="text-xs" style={{ color: COLORS.textMuted }}>Let's build your scalable solution today.</div>
         </div>
 
         <div className="flex items-center gap-3">
@@ -352,7 +363,7 @@ const FooterCTA: React.FC = () => {
   );
 };
 
-const FlutterAppDevelopment: React.FC = () => {
+const CloudMobileAppDevelopment: React.FC = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -381,6 +392,7 @@ const FlutterAppDevelopment: React.FC = () => {
           ))}
         </div>
 
+        {/* spacing so footer CTA doesn't overlap content */}
         <div style={{ height: 160 }} />
       </main>
 
@@ -388,11 +400,11 @@ const FlutterAppDevelopment: React.FC = () => {
 
       <footer className="mt-20 py-10">
         <div className="container mx-auto px-6 text-center text-sm" style={{ color: COLORS.textMuted }}>
-          © {new Date().getFullYear()} Axonary — Flutter Excellence. Always.
+          © {new Date().getFullYear()} Axonary — Cloud Excellence. Always.
         </div>
       </footer>
     </div>
   );
 };
 
-export default FlutterAppDevelopment;
+export default CloudMobileAppDevelopment;

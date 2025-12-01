@@ -1,10 +1,20 @@
-// FlutterAppDevelopment.tsx
+// IOTMobileAppDevelopment.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * IOTMobileAppDevelopment.tsx
+ * Interactive Split (Dribbble-style) — IoT Mobile App Development Services
+ *
+ * Notes:
+ * - TailwindCSS utility classes used (assumes Tailwind configured).
+ * - Unsplash source links used for evocative demo images.
+ * - Same color tokens as Service.tsx for consistency.
+ */
+
 const COLORS = {
-  primary: "#5C3693",
-  secondary: "#472A71",
+  primary: "#5C3693",        // purple accent
+  secondary: "#472A71",      // darker purple
   bg: "#000000",
   card: "#0b0b0d",
   glass: "rgba(255,255,255,0.03)",
@@ -14,46 +24,46 @@ const COLORS = {
 
 const services = [
   {
-    id: "flutter-native",
-    title: "Flutter Native Performance",
+    id: "iot-connectivity",
+    title: "IoT Device Connectivity",
     desc:
-      "Build beautiful apps with Flutter's native performance. Direct access to platform features with Dart's fast execution.",
-    imgQuery: "flutter app development",
+      "Seamless integration with IoT devices via Bluetooth, WiFi, and cellular. Support for MQTT, CoAP, and custom protocols.",
+    imgQuery: "iot devices",
   },
   {
-    id: "flutter-ui",
-    title: "Material & Cupertino Design",
+    id: "sensor-data",
+    title: "Sensor Data Management",
     desc:
-      "Stunning Material Design and Cupertino (iOS) interfaces. Rich widget library for beautiful UX across platforms.",
-    imgQuery: "ui design flutter",
+      "Real-time sensor data collection, processing, and visualization. Dashboard analytics for device monitoring and control.",
+    imgQuery: "sensor data",
   },
   {
-    id: "flutter-hot-reload",
-    title: "Hot Reload Development",
+    id: "iot-automation",
+    title: "Smart Automation",
     desc:
-      "See changes instantly with hot reload. Faster development cycles and real-time debugging capabilities.",
-    imgQuery: "development workflow",
+      "Create intelligent automation rules and workflows. Trigger actions based on sensor data and user interactions.",
+    imgQuery: "automation",
   },
   {
-    id: "flutter-packages",
-    title: "Extensive Package Ecosystem",
+    id: "device-control",
+    title: "Remote Device Control",
     desc:
-      "Access 50,000+ pub packages. Pre-built solutions for common features and integrations.",
-    imgQuery: "software development",
+      "Control IoT devices remotely through mobile app. Real-time command execution and feedback with offline capability.",
+    imgQuery: "remote control",
   },
   {
-    id: "flutter-responsive",
-    title: "Responsive & Adaptive UI",
+    id: "iot-security",
+    title: "IoT Security & Privacy",
     desc:
-      "Auto-scaling layouts for all screen sizes. Seamless experience from phones to tablets to web.",
-    imgQuery: "responsive design",
+      "End-to-end encryption for device communication. Secure authentication and data privacy for sensitive IoT applications.",
+    imgQuery: "cybersecurity",
   },
   {
-    id: "flutter-deployment",
-    title: "One-Click Deployment",
+    id: "iot-scalability",
+    title: "Scalable IoT Infrastructure",
     desc:
-      "Deploy to iOS App Store and Google Play from one codebase. Streamlined CI/CD integration.",
-    imgQuery: "app deployment",
+      "Handle thousands of IoT devices simultaneously. Distributed architecture with edge computing capabilities.",
+    imgQuery: "network infrastructure",
   },
 ];
 
@@ -81,24 +91,25 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
               Axonary
             </div>
             <div className="text-xs" style={{ color: COLORS.textMuted }}>
-              Flutter Development
+              IoT Mobile Development
             </div>
           </div>
         </div>
 
         <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
-          <a href="#flutter-native" className="hover:text-white">Native</a>
-          <a href="#flutter-ui" className="hover:text-white">UI/UX</a>
-          <a href="#flutter-hot-reload" className="hover:text-white">Hot Reload</a>
-          <a href="#flutter-packages" className="hover:text-white">Packages</a>
-          <a href="#flutter-responsive" className="hover:text-white">Responsive</a>
-          <a href="#flutter-deployment" className="hover:text-white">Deployment</a>
+          <a href="#iot-connectivity" className="hover:text-white">Connectivity</a>
+          <a href="#sensor-data" className="hover:text-white">Sensors</a>
+          <a href="#iot-automation" className="hover:text-white">Automation</a>
+          <a href="#device-control" className="hover:text-white">Control</a>
+          <a href="#iot-security" className="hover:text-white">Security</a>
+          <a href="#iot-scalability" className="hover:text-white">Scalability</a>
           <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
             Book a Call
           </Link>
         </nav>
       </div>
 
+      {/* scroll progress bar */}
       <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div style={{
           height: "3px",
@@ -121,20 +132,20 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Fast • Beautiful • Multi-Platform
+            Connected • Intelligent • Smart
           </div>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Flutter App Development{" "}
+            IoT Mobile App Development{" "}
             <span style={{ color: COLORS.primary }}>| Axonary</span>
           </h1>
 
           <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Create stunning, natively compiled applications for mobile, web, and desktop. One codebase for all platforms with Google's Flutter framework.
+            Connect, control, and manage IoT devices with intelligent mobile apps. From wearables to smart homes, we build the future of connected technology.
           </p>
 
           <div className="mt-6 flex items-center gap-4">
-            <a href="#flutter-native" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
+            <a href="#iot-connectivity" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
               Explore Services
             </a>
             <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
@@ -145,20 +156,20 @@ const Hero: React.FC = () => {
 
         <div className="md:col-span-5">
           <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">Flutter Success</h5>
+            <h5 className="text-sm text-gray-400">IoT Innovation</h5>
             <div className="mt-4 grid grid-cols-2 gap-4">
               <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">90+</div>
-                <div className="text-xs text-gray-400">Flutter Apps</div>
+                <div className="text-2xl font-bold">150+</div>
+                <div className="text-xs text-gray-400">IoT Projects</div>
               </div>
               <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">50%</div>
-                <div className="text-xs text-gray-400">Faster Dev</div>
+                <div className="text-2xl font-bold">500K+</div>
+                <div className="text-xs text-gray-400">Devices Connected</div>
               </div>
             </div>
 
             <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to build beautiful cross-platform apps faster? Let's use Flutter.</p>
+              <p className="text-sm text-gray-300">Ready to build your IoT ecosystem? Let's connect your devices intelligently.</p>
               <div className="mt-4">
                 <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
               </div>
@@ -339,8 +350,8 @@ const FooterCTA: React.FC = () => {
         }}
       >
         <div>
-          <div className="text-sm font-semibold" style={{ color: COLORS.white }}>Ready to build with Flutter?</div>
-          <div className="text-xs" style={{ color: COLORS.textMuted }}>Let's create beautiful apps faster.</div>
+          <div className="text-sm font-semibold" style={{ color: COLORS.white }}>Ready to build your IoT app?</div>
+          <div className="text-xs" style={{ color: COLORS.textMuted }}>Let's connect the future today.</div>
         </div>
 
         <div className="flex items-center gap-3">
@@ -352,7 +363,7 @@ const FooterCTA: React.FC = () => {
   );
 };
 
-const FlutterAppDevelopment: React.FC = () => {
+const IOTMobileAppDevelopment: React.FC = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -381,6 +392,7 @@ const FlutterAppDevelopment: React.FC = () => {
           ))}
         </div>
 
+        {/* spacing so footer CTA doesn't overlap content */}
         <div style={{ height: 160 }} />
       </main>
 
@@ -388,11 +400,11 @@ const FlutterAppDevelopment: React.FC = () => {
 
       <footer className="mt-20 py-10">
         <div className="container mx-auto px-6 text-center text-sm" style={{ color: COLORS.textMuted }}>
-          © {new Date().getFullYear()} Axonary — Flutter Excellence. Always.
+          © {new Date().getFullYear()} Axonary — IoT Innovation. Always.
         </div>
       </footer>
     </div>
   );
 };
 
-export default FlutterAppDevelopment;
+export default IOTMobileAppDevelopment;

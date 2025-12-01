@@ -19,7 +19,13 @@ import { useScrollToTop } from './hooks/useScrollToTop';
 // import ServiceDemo1 from './pages/services/Service-demo-1';
 import Service from './pages/services/Service';
 // import ServiceDemo3 from './pages/services/Service-demo-3';
+import IOSAppDevelopment from './pages/services/mobile-app-development/IOSAppDevelopment';
 import AndroidAppDevelopment from './pages/services/mobile-app-development/AndroidAppDevelopment';
+import CrossPlatformAppDevelopment from './pages/services/mobile-app-development/CrossPlatformAppDevelopment';
+import FlutterAppDevelopment from './pages/services/mobile-app-development/FlutterAppDevelopment';
+import ReactNativeAppDevelopment from './pages/services/mobile-app-development/ReactNativeAppDevelopment';
+import CloudMobileAppDevelopment from './pages/services/mobile-app-development/CloudMobileAppDevelopment';
+import IOTMobileAppDevelopment from './pages/services/mobile-app-development/IOTMobileAppDevelopment';
 
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
@@ -47,7 +53,13 @@ function App() {
         <Route path="/services" element={<Service />} />
 
         {/* Mobile App Development */}
+        <Route path="/ios-app-development" element={<IOSAppDevelopment />} />
         <Route path="/android-app-development" element={<AndroidAppDevelopment />} />
+        <Route path="/cross-platform-app-development" element={<CrossPlatformAppDevelopment />} />
+        <Route path="/flutter-app-development" element={<FlutterAppDevelopment />} />
+        <Route path="/react-native-app-development" element={<ReactNativeAppDevelopment />} />
+        <Route path="/cloud-mobile-app-development" element={<CloudMobileAppDevelopment />} />
+        <Route path="/iot-mobile-app-development" element={<IOTMobileAppDevelopment />} />
 
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
