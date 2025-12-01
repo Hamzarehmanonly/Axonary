@@ -26,6 +26,10 @@ import FlutterAppDevelopment from './pages/services/mobile-app-development/Flutt
 import ReactNativeAppDevelopment from './pages/services/mobile-app-development/ReactNativeAppDevelopment';
 import CloudMobileAppDevelopment from './pages/services/mobile-app-development/CloudMobileAppDevelopment';
 import IOTMobileAppDevelopment from './pages/services/mobile-app-development/IOTMobileAppDevelopment';
+import ERPSolution from './pages/services/custom-software-development/ERPSolution';
+import CRMSolution from './pages/services/custom-software-development/CRMSolution';
+import CMSSolution from './pages/services/custom-software-development/CMSSolution';
+import HRMSolution from './pages/services/custom-software-development/HRMSolution';
 
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
@@ -60,6 +64,12 @@ function App() {
         <Route path="/react-native-app-development" element={<ReactNativeAppDevelopment />} />
         <Route path="/cloud-mobile-app-development" element={<CloudMobileAppDevelopment />} />
         <Route path="/iot-mobile-app-development" element={<IOTMobileAppDevelopment />} />
+
+        {/* Custom Software Development */}
+        <Route path="/erp-solution" element={<ERPSolution />} />
+        <Route path="/crm-solution" element={<CRMSolution />} />
+        <Route path="/cms-solution" element={<CMSSolution />} />
+        <Route path="/hrm-solution" element={<HRMSolution />} />
 
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />

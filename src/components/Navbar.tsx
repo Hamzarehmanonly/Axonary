@@ -5,61 +5,30 @@ import { Link, NavLink } from "react-router-dom";
 // Updated navigation structure with new menu items and unique dropdowns
 const navItems = [
   { 
-    label: "Mobile", 
-    path: "/mobile",
+    label: "Services", 
+    path: "/services",
     hasMegaMenu: true,
     megaMenuItems: [
-      "App Development",
-      "Game App Development", 
-      "MVP Startup Development",
-      "AR Development",
-      "VR Development",
-      "iPad App Development",
-      "App Maintenance Support",
-      "Web App Development",
-      "Apps for Startup",
-      "Android",
-      "iOS", 
-      "Flutter",
-      "React Native",
-      "Cross Platform",
-      "Cloud",
-      "IoT",
-      "Retail",
-      "Healthcare",
-      "Real Estate", 
-      "Ecommerce",
-      "Food",
-      "Doctor App",
-      "Taxi App",
-      "Grocery App", 
-      "Delivery App",
-      "Travel App",
-      "Restaurant App",
-      "Education App",
-      "Sports App",
-      "Logistics App",
-      "Texas", "Los Angeles", "Boston", "Philadelphia", "UAE", "Kuwait", "Miami", "Orlando", "New Jersey",
-      "Chicago", "Austin", "New York", "Dubai", "Qatar", "Oman", "San Diego", "UK", "Nashville", 
-      "Houston", "San Francisco", "Dallas", "Saudi Arabia", "Bahrain", "Atlanta", "Washington", 
-      "Toronto", "Charlotte"
+      "Android App Development",
+      "iOS App Development",
+      "Cross-Platform App Development",
+      "Flutter App Development",
+      "React Native App Development",
+      "Cloud Mobile App Development",
+      "IoT Mobile App Development",
+      "ERP Solution",
+      "CRM Solution",
+      "CMS Solution",
+      "HRM Solution"
     ],
     subCategories: [
       {
-        name: "Services",
-        items: ["App Development", "Game App Development", "MVP Startup Development", "AR Development", "VR Development", "iPad App Development", "App Maintenance Support", "Web App Development", "Apps for Startup"]
+        name: "Mobile App Development",
+        items: ["Android App Development", "iOS App Development", "Cross-Platform App Development", "Flutter App Development", "React Native App Development", "Cloud Mobile App Development", "IoT Mobile App Development"]
       },
       {
-        name: "Technology",
-        items: ["Android", "iOS", "Flutter", "React Native", "Cross Platform", "Cloud", "IoT"]
-      },
-      {
-        name: "Industries",
-        items: ["Retail", "Healthcare", "Real Estate", "Ecommerce", "Food"]
-      },
-      {
-        name: "Solution",
-        items: ["Doctor App", "Taxi App", "Grocery App", "Delivery App", "Travel App", "Restaurant App", "Education App", "Sports App", "Logistics App"]
+        name: "Custom Software Development",
+        items: ["ERP Solution", "CRM Solution", "CMS Solution", "HRM Solution"]
       }
     ]
   },
@@ -451,7 +420,9 @@ const Navbar: React.FC = () => {
                   <div className={`grid gap-8 ${
                     activeMegaMenu === "Staff Augmentation" 
                       ? "grid-cols-1" 
-                      : activeMegaMenu === "Mobile" || activeMegaMenu === "Ecommerce"
+                      : activeMegaMenu === "Services"
+                      ? "grid-cols-2"
+                      : activeMegaMenu === "Ecommerce"
                       ? "grid-cols-5"
                       : activeMegaMenu === "Enterprise"
                       ? "grid-cols-4"
@@ -489,6 +460,32 @@ const Navbar: React.FC = () => {
                                 ))}
                               </div>
                             </div>
+                          ) : activeMegaMenu === "Services" ? (
+                            // Special handling for Services - use direct app development routes
+                            subCategory.items.map((item, index) => {
+                              const routeMap: { [key: string]: string } = {
+                                "Android App Development": "/android-app-development",
+                                "iOS App Development": "/ios-app-development",
+                                "Cross-Platform App Development": "/cross-platform-app-development",
+                                "Flutter App Development": "/flutter-app-development",
+                                "React Native App Development": "/react-native-app-development",
+                                "Cloud Mobile App Development": "/cloud-mobile-app-development",
+                                "IoT Mobile App Development": "/iot-mobile-app-development",
+                                "ERP Solution": "/erp-solution",
+                                "CRM Solution": "/crm-solution",
+                                "CMS Solution": "/cms-solution",
+                                "HRM Solution": "/hrm-solution"
+                              };
+                              return (
+                                <Link
+                                  key={index}
+                                  to={routeMap[item] || `${currentMegaMenuItem.path}/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                                >
+                                  {item}
+                                </Link>
+                              );
+                            })
                           ) : (
                             // Regular layout for other categories
                             subCategory.items.map((item, index) => (
@@ -550,31 +547,53 @@ const Navbar: React.FC = () => {
                        {/* Mobile submenu for mega menu items */}
                        {item.hasMegaMenu && item.megaMenuItems && (
                          <div className="space-y-1 ml-4">
-                           {item.megaMenuItems.slice(0, 3).map((subItem, index) => (
-                             <Link
-                               key={index}
-                               to={`${item.path}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
-                               onClick={closeMobileMenu}
-                               className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3"
-                             >
-                               {subItem}
-                             </Link>
-                           ))}
-                           {item.megaMenuItems.length > 3 && (
-                             <div className="pt-2">
-                               <div className="flex items-center justify-between">
-                                 <span className="block text-xs text-gray-500 pl-3">
-                                   +{item.megaMenuItems.length - 3} more services
-                                 </span>
+                           {/* Special handling for Services section - show both app dev and custom software pages */}
+                           {item.label === "Services" ? (
+                             <>
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3">Mobile App Development</p>
+                               <Link to="/android-app-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Android App Development</Link>
+                               <Link to="/ios-app-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">iOS App Development</Link>
+                               <Link to="/cross-platform-app-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cross-Platform App Development</Link>
+                               <Link to="/flutter-app-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Flutter App Development</Link>
+                               <Link to="/react-native-app-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">React Native App Development</Link>
+                               <Link to="/cloud-mobile-app-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Mobile App Development</Link>
+                               <Link to="/iot-mobile-app-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">IoT Mobile App Development</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Custom Software Development</p>
+                               <Link to="/erp-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">ERP Solution</Link>
+                               <Link to="/crm-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">CRM Solution</Link>
+                               <Link to="/cms-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">CMS Solution</Link>
+                               <Link to="/hrm-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">HRM Solution</Link>
+                             </>
+                           ) : (
+                             <>
+                               {item.megaMenuItems.slice(0, 3).map((subItem, index) => (
                                  <Link
-                                   to={item.path}
+                                   key={index}
+                                   to={`${item.path}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}
                                    onClick={closeMobileMenu}
-                                   className="block text-sm text-[#5C3693] py-1 px-3 rounded-full bg-[#5C3693]/10 hover:bg-[#5C3693]/20 transition-colors"
+                                   className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3"
                                  >
-                                   View All →
+                                   {subItem}
                                  </Link>
-                               </div>
-                             </div>
+                               ))}
+                               {item.megaMenuItems.length > 3 && (
+                                 <div className="pt-2">
+                                   <div className="flex items-center justify-between">
+                                     <span className="block text-xs text-gray-500 pl-3">
+                                       +{item.megaMenuItems.length - 3} more services
+                                     </span>
+                                     <Link
+                                       to={item.path}
+                                       onClick={closeMobileMenu}
+                                       className="block text-sm text-[#5C3693] py-1 px-3 rounded-full bg-[#5C3693]/10 hover:bg-[#5C3693]/20 transition-colors"
+                                     >
+                                       View All →
+                                     </Link>
+                                   </div>
+                                 </div>
+                               )}
+                             </>
                            )}
                          </div>
                        )}
