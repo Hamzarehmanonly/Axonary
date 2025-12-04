@@ -19,7 +19,14 @@ const navItems = [
       "ERP Solution",
       "CRM Solution",
       "CMS Solution",
-      "HRM Solution"
+      "HRM Solution",
+      "E-Commerce Website Development",
+      "Web Portals",
+      "Frontend Development",
+      "Backend Development",
+      "Full-Stack Development",
+      "Low-Code Development",
+      "PWA Solution"
     ],
     subCategories: [
       {
@@ -29,6 +36,10 @@ const navItems = [
       {
         name: "Custom Software Development",
         items: ["ERP Solution", "CRM Solution", "CMS Solution", "HRM Solution"]
+      },
+      {
+        name: "Web Development",
+        items: ["E-Commerce Website Development", "Web Portals", "Frontend Development", "Backend Development", "Full-Stack Development", "Low-Code Development", "PWA Solution"]
       }
     ]
   },
@@ -421,7 +432,7 @@ const Navbar: React.FC = () => {
                     activeMegaMenu === "Staff Augmentation" 
                       ? "grid-cols-1" 
                       : activeMegaMenu === "Services"
-                      ? "grid-cols-2"
+                      ? "grid-cols-3"
                       : activeMegaMenu === "Ecommerce"
                       ? "grid-cols-5"
                       : activeMegaMenu === "Enterprise"
@@ -474,7 +485,14 @@ const Navbar: React.FC = () => {
                                 "ERP Solution": "/erp-solution",
                                 "CRM Solution": "/crm-solution",
                                 "CMS Solution": "/cms-solution",
-                                "HRM Solution": "/hrm-solution"
+                                "HRM Solution": "/hrm-solution",
+                                "E-Commerce Website Development": "/ecommerce-website-development",
+                                "Web Portals": "/web-portals",
+                                "Frontend Development": "/frontend-development",
+                                "Backend Development": "/backend-development",
+                                "Full-Stack Development": "/fullstack-development",
+                                "Low-Code Development": "/low-code-development",
+                                "PWA Solution": "/pwa-solution"
                               };
                               return (
                                 <Link
@@ -564,6 +582,15 @@ const Navbar: React.FC = () => {
                                <Link to="/crm-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">CRM Solution</Link>
                                <Link to="/cms-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">CMS Solution</Link>
                                <Link to="/hrm-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">HRM Solution</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Web Development</p>
+                               <Link to="/ecommerce-website-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">E-Commerce Website Development</Link>
+                               <Link to="/web-portals" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Web Portals</Link>
+                               <Link to="/frontend-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Frontend Development</Link>
+                               <Link to="/backend-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Backend Development</Link>
+                               <Link to="/fullstack-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Full-Stack Development</Link>
+                               <Link to="/low-code-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Low-Code Development</Link>
+                               <Link to="/pwa-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">PWA Solution</Link>
                              </>
                            ) : (
                              <>

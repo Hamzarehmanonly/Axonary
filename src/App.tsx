@@ -30,6 +30,13 @@ import ERPSolution from './pages/services/custom-software-development/ERPSolutio
 import CRMSolution from './pages/services/custom-software-development/CRMSolution';
 import CMSSolution from './pages/services/custom-software-development/CMSSolution';
 import HRMSolution from './pages/services/custom-software-development/HRMSolution';
+import EcommerceSolution from './pages/services/web-development/EcommerceSolution';
+import WebPortalsSolution from './pages/services/web-development/WebPortalsSolution';
+import FrontendSolution from './pages/services/web-development/FrontendSolution';
+import BackendSolution from './pages/services/web-development/BackendSolution';
+import FullstackSolution from './pages/services/web-development/FullstackSolution';
+import LowCodeSolution from './pages/services/web-development/LowCodeSolution';
+import PWASolution from './pages/services/web-development/PWASolution';
 
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
@@ -70,6 +77,15 @@ function App() {
         <Route path="/crm-solution" element={<CRMSolution />} />
         <Route path="/cms-solution" element={<CMSSolution />} />
         <Route path="/hrm-solution" element={<HRMSolution />} />
+
+        {/* Web Development */}
+        <Route path="/ecommerce-website-development" element={<EcommerceSolution />} />
+        <Route path="/web-portals" element={<WebPortalsSolution />} />
+        <Route path="/frontend-development" element={<FrontendSolution />} />
+        <Route path="/backend-development" element={<BackendSolution />} />
+        <Route path="/fullstack-development" element={<FullstackSolution />} />
+        <Route path="/low-code-development" element={<LowCodeSolution />} />
+        <Route path="/pwa-solution" element={<PWASolution />} />
 
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
