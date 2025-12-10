@@ -29,7 +29,10 @@ const navItems = [
       "PWA Solution",
       "Generative AI",
       "Natural Language Processing",
-      "AI Agent Development"
+      "AI Agent Development",
+      "Cloud Application Development",
+      "Cloud Migration",
+      "Cloud Support & Maintenance"
     ],
     subCategories: [
       {
@@ -47,6 +50,10 @@ const navItems = [
       {
         name: "Artificial Intelligence",
         items: ["Generative AI", "Natural Language Processing", "AI Agent Development"]
+      },
+      {
+        name: "Cloud Services",
+        items: ["Cloud Application Development", "Cloud Migration", "Cloud Support & Maintenance"]
       }
     ]
   },
@@ -439,7 +446,7 @@ const Navbar: React.FC = () => {
                     activeMegaMenu === "Staff Augmentation" 
                       ? "grid-cols-1" 
                       : activeMegaMenu === "Services"
-                      ? "grid-cols-4"
+                      ? "grid-cols-5"
                       : activeMegaMenu === "Ecommerce"
                       ? "grid-cols-5"
                       : activeMegaMenu === "Enterprise"
@@ -502,7 +509,10 @@ const Navbar: React.FC = () => {
                                 "PWA Solution": "/pwa-solution",
                                 "Generative AI": "/generative-ai",
                                 "Natural Language Processing": "/natural-language-processing",
-                                "AI Agent Development": "/ai-agent-development"
+                                "AI Agent Development": "/ai-agent-development",
+                                "Cloud Application Development": "/cloud-application-development",
+                                "Cloud Migration": "/cloud-migration",
+                                "Cloud Support & Maintenance": "/cloud-support-maintenance"
                               };
                               return (
                                 <Link
@@ -606,6 +616,11 @@ const Navbar: React.FC = () => {
                                <Link to="/generative-ai" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Generative AI</Link>
                                <Link to="/natural-language-processing" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Natural Language Processing</Link>
                                <Link to="/ai-agent-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">AI Agent Development</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Cloud Services</p>
+                               <Link to="/cloud-application-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Application Development</Link>
+                               <Link to="/cloud-migration" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Migration</Link>
+                               <Link to="/cloud-support-maintenance" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Support & Maintenance</Link>
                              </>
                            ) : (
                              <>

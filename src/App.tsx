@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import Work from './pages/Work';
 import Solutions from './pages/Solutions';
+import Services from './pages/Services';
 import Approach from './pages/Approach';
 import Support from './pages/Support';
 import PrivacyPolicy from './pages/legal/PrivacyPolicy';
@@ -17,7 +18,6 @@ import CaseStudies from './pages/legal/CaseStudies';
 import BlogPost from './pages/BlogPost';
 import { useScrollToTop } from './hooks/useScrollToTop';
 // import ServiceDemo1 from './pages/services/Service-demo-1';
-import Service from './pages/services/Service';
 // import ServiceDemo3 from './pages/services/Service-demo-3';
 import IOSAppDevelopment from './pages/services/mobile-app-development/IOSAppDevelopment';
 import AndroidAppDevelopment from './pages/services/mobile-app-development/AndroidAppDevelopment';
@@ -40,6 +40,9 @@ import PWASolution from './pages/services/web-development/PWASolution';
 import GenerativeAISolution from './pages/services/artificial-intelligence/GenerativeAISolution';
 import NLPSolution from './pages/services/artificial-intelligence/NLPSolution';
 import AIAgentSolution from './pages/services/artificial-intelligence/AIAgentSolution';
+import CloudApplicationDevelopment from './pages/services/cloud-services/CloudApplicationDevelopment';
+import CloudMigration from './pages/services/cloud-services/CloudMigration';
+import CloudSupportMaintenance from './pages/services/cloud-services/CloudSupportMaintenance';
 
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
@@ -64,7 +67,7 @@ function App() {
         <Route path="/support" element={<Support />} />
 
         {/* Services Pages */}
-        <Route path="/services" element={<Service />} />
+        <Route path="/services" element={<Services />} />
 
         {/* Mobile App Development */}
         <Route path="/ios-app-development" element={<IOSAppDevelopment />} />
@@ -94,6 +97,11 @@ function App() {
         <Route path="/generative-ai" element={<GenerativeAISolution />} />
         <Route path="/natural-language-processing" element={<NLPSolution />} />
         <Route path="/ai-agent-development" element={<AIAgentSolution />} />
+
+        {/* Cloud Services */}
+        <Route path="/cloud-application-development" element={<CloudApplicationDevelopment />} />
+        <Route path="/cloud-migration" element={<CloudMigration />} />
+        <Route path="/cloud-support-maintenance" element={<CloudSupportMaintenance />} />
 
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
