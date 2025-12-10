@@ -26,7 +26,10 @@ const navItems = [
       "Backend Development",
       "Full-Stack Development",
       "Low-Code Development",
-      "PWA Solution"
+      "PWA Solution",
+      "Generative AI",
+      "Natural Language Processing",
+      "AI Agent Development"
     ],
     subCategories: [
       {
@@ -40,6 +43,10 @@ const navItems = [
       {
         name: "Web Development",
         items: ["E-Commerce Website Development", "Web Portals", "Frontend Development", "Backend Development", "Full-Stack Development", "Low-Code Development", "PWA Solution"]
+      },
+      {
+        name: "Artificial Intelligence",
+        items: ["Generative AI", "Natural Language Processing", "AI Agent Development"]
       }
     ]
   },
@@ -432,7 +439,7 @@ const Navbar: React.FC = () => {
                     activeMegaMenu === "Staff Augmentation" 
                       ? "grid-cols-1" 
                       : activeMegaMenu === "Services"
-                      ? "grid-cols-3"
+                      ? "grid-cols-4"
                       : activeMegaMenu === "Ecommerce"
                       ? "grid-cols-5"
                       : activeMegaMenu === "Enterprise"
@@ -492,7 +499,10 @@ const Navbar: React.FC = () => {
                                 "Backend Development": "/backend-development",
                                 "Full-Stack Development": "/fullstack-development",
                                 "Low-Code Development": "/low-code-development",
-                                "PWA Solution": "/pwa-solution"
+                                "PWA Solution": "/pwa-solution",
+                                "Generative AI": "/generative-ai",
+                                "Natural Language Processing": "/natural-language-processing",
+                                "AI Agent Development": "/ai-agent-development"
                               };
                               return (
                                 <Link
@@ -591,6 +601,11 @@ const Navbar: React.FC = () => {
                                <Link to="/fullstack-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Full-Stack Development</Link>
                                <Link to="/low-code-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Low-Code Development</Link>
                                <Link to="/pwa-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">PWA Solution</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Artificial Intelligence</p>
+                               <Link to="/generative-ai" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Generative AI</Link>
+                               <Link to="/natural-language-processing" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Natural Language Processing</Link>
+                               <Link to="/ai-agent-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">AI Agent Development</Link>
                              </>
                            ) : (
                              <>

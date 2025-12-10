@@ -37,6 +37,9 @@ import BackendSolution from './pages/services/web-development/BackendSolution';
 import FullstackSolution from './pages/services/web-development/FullstackSolution';
 import LowCodeSolution from './pages/services/web-development/LowCodeSolution';
 import PWASolution from './pages/services/web-development/PWASolution';
+import GenerativeAISolution from './pages/services/artificial-intelligence/GenerativeAISolution';
+import NLPSolution from './pages/services/artificial-intelligence/NLPSolution';
+import AIAgentSolution from './pages/services/artificial-intelligence/AIAgentSolution';
 
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
@@ -86,6 +89,11 @@ function App() {
         <Route path="/fullstack-development" element={<FullstackSolution />} />
         <Route path="/low-code-development" element={<LowCodeSolution />} />
         <Route path="/pwa-solution" element={<PWASolution />} />
+
+        {/* Artificial Intelligence */}
+        <Route path="/generative-ai" element={<GenerativeAISolution />} />
+        <Route path="/natural-language-processing" element={<NLPSolution />} />
+        <Route path="/ai-agent-development" element={<AIAgentSolution />} />
 
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
