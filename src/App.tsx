@@ -8,6 +8,7 @@ import About from './pages/About';
 import Work from './pages/Work';
 import Solutions from './pages/Solutions';
 import Services from './pages/Services';
+import StaffAugmentation from './pages/staff-augmentation/StaffAugmentation';
 import Approach from './pages/Approach';
 import Support from './pages/Support';
 import PrivacyPolicy from './pages/legal/PrivacyPolicy';
@@ -17,8 +18,6 @@ import Sitemap from './pages/legal/Sitemap';
 import CaseStudies from './pages/legal/CaseStudies';
 import BlogPost from './pages/BlogPost';
 import { useScrollToTop } from './hooks/useScrollToTop';
-// import ServiceDemo1 from './pages/services/Service-demo-1';
-// import ServiceDemo3 from './pages/services/Service-demo-3';
 import IOSAppDevelopment from './pages/services/mobile-app-development/IOSAppDevelopment';
 import AndroidAppDevelopment from './pages/services/mobile-app-development/AndroidAppDevelopment';
 import CrossPlatformAppDevelopment from './pages/services/mobile-app-development/CrossPlatformAppDevelopment';
@@ -43,6 +42,26 @@ import AIAgentSolution from './pages/services/artificial-intelligence/AIAgentSol
 import CloudApplicationDevelopment from './pages/services/cloud-services/CloudApplicationDevelopment';
 import CloudMigration from './pages/services/cloud-services/CloudMigration';
 import CloudSupportMaintenance from './pages/services/cloud-services/CloudSupportMaintenance';
+import HireAndroidAppDeveloper from './pages/staff-augmentation/HireAndroidAppDeveloper';
+import HireIOSAppDeveloper from './pages/staff-augmentation/HireIOSAppDeveloper';
+import HireNodeJSDeveloper from './pages/staff-augmentation/HireNodeJSDeveloper';
+import HireFlutterDeveloper from './pages/staff-augmentation/HireFlutterDeveloper';
+import HireJavaDeveloper from './pages/staff-augmentation/HireJavaDeveloper';
+import HireWebsiteDeveloper from './pages/staff-augmentation/HireWebsiteDeveloper';
+import HireSMMExpert from './pages/staff-augmentation/HireSMMExpert';
+import HireSEOExpert from './pages/staff-augmentation/HireSEOExpert';
+import HireGraphicDesigner from './pages/staff-augmentation/HireGraphicDesigner';
+import HirePPCExpert from './pages/staff-augmentation/HirePPCExpert';
+import HireCustomSoftwareDeveloper from './pages/staff-augmentation/HireCustomSoftwareDeveloper';
+import HireContentWriter from './pages/staff-augmentation/HireContentWriter';
+import SEOServices from './pages/services/digital-marketing/SEOServices';
+import PPCServices from './pages/services/digital-marketing/PPCServices';
+import SocialMediaServices from './pages/services/digital-marketing/SocialMediaServices';
+import SearchEngineMarketing from './pages/services/digital-marketing/SearchEngineMarketing';
+import SearchEngineOptimization from './pages/services/digital-marketing/SearchEngineOptimization';
+import SearchIntentOptimization from './pages/services/digital-marketing/SearchIntentOptimization';
+import ContentMarketing from './pages/services/digital-marketing/ContentMarketing';
+import SEOAI from './pages/services/digital-marketing/SEOAI';
 
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
@@ -68,6 +87,21 @@ function App() {
 
         {/* Services Pages */}
         <Route path="/services" element={<Services />} />
+        <Route path="/staff-augmentation" element={<StaffAugmentation />} />
+
+        {/* Staff Augmentation Detail Pages */}
+        <Route path="/hire-android-app-developer" element={<HireAndroidAppDeveloper />} />
+        <Route path="/hire-ios-app-developer" element={<HireIOSAppDeveloper />} />
+        <Route path="/hire-nodejs-developer" element={<HireNodeJSDeveloper />} />
+        <Route path="/hire-flutter-developer" element={<HireFlutterDeveloper />} />
+        <Route path="/hire-java-developer" element={<HireJavaDeveloper />} />
+        <Route path="/hire-website-developer" element={<HireWebsiteDeveloper />} />
+        <Route path="/hire-smm-expert" element={<HireSMMExpert />} />
+        <Route path="/hire-seo-expert" element={<HireSEOExpert />} />
+        <Route path="/hire-graphic-designer" element={<HireGraphicDesigner />} />
+        <Route path="/hire-ppc-expert" element={<HirePPCExpert />} />
+        <Route path="/hire-custom-software-developer" element={<HireCustomSoftwareDeveloper />} />
+        <Route path="/hire-content-writer" element={<HireContentWriter />} />
 
         {/* Mobile App Development */}
         <Route path="/ios-app-development" element={<IOSAppDevelopment />} />
@@ -102,6 +136,16 @@ function App() {
         <Route path="/cloud-application-development" element={<CloudApplicationDevelopment />} />
         <Route path="/cloud-migration" element={<CloudMigration />} />
         <Route path="/cloud-support-maintenance" element={<CloudSupportMaintenance />} />
+
+        {/* Digital Marketing Services */}
+        <Route path="/seo-services" element={<SEOServices />} />
+        <Route path="/ppc-services" element={<PPCServices />} />
+        <Route path="/social-media-marketing" element={<SocialMediaServices />} />
+        <Route path="/search-engine-marketing" element={<SearchEngineMarketing />} />
+        <Route path="/search-engine-optimization" element={<SearchEngineOptimization />} />
+        <Route path="/search-intent-optimization" element={<SearchIntentOptimization />} />
+        <Route path="/content-marketing" element={<ContentMarketing />} />
+        <Route path="/seo-ai" element={<SEOAI />} />
 
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />

@@ -32,7 +32,15 @@ const navItems = [
       "AI Agent Development",
       "Cloud Application Development",
       "Cloud Migration",
-      "Cloud Support & Maintenance"
+      "Cloud Support & Maintenance",
+      "SEO Services",
+      "PPC Services",
+      "Social Media Marketing",
+      "Search Engine Marketing",
+      "Search Engine Optimization",
+      "Search Intent Optimization",
+      "Content Marketing",
+      "SEO AI"
     ],
     subCategories: [
       {
@@ -54,46 +62,10 @@ const navItems = [
       {
         name: "Cloud Services",
         items: ["Cloud Application Development", "Cloud Migration", "Cloud Support & Maintenance"]
-      }
-    ]
-  },
-  { 
-    label: "Ecommerce", 
-    path: "/ecommerce",
-    hasMegaMenu: true,
-    megaMenuItems: [
-      "Ecommerce Development",
-      "Adobe Commerce Development",
-      "Adobe Commerce Migration", 
-      "Adobe Commerce Support",
-      "Adobe Commerce Customization",
-      "Shopify Development",
-      "Shopify App Development",
-      "Shopify Migration",
-      "Shopify Integration",
-      "WooCommerce Development",
-      "BigCommerce Development"
-    ],
-    subCategories: [
-      {
-        name: "Services",
-        items: ["Ecommerce Development"]
       },
       {
-        name: "Adobe Commerce",
-        items: ["Adobe Commerce Development", "Adobe Commerce Migration", "Adobe Commerce Support", "Adobe Commerce Customization"]
-      },
-      {
-        name: "Shopify",
-        items: ["Shopify Development", "Shopify App Development", "Shopify Migration", "Shopify Integration"]
-      },
-      {
-        name: "WooCommerce",
-        items: ["WooCommerce Development"]
-      },
-      {
-        name: "BigCommerce",
-        items: ["BigCommerce Development"]
+        name: "Digital Marketing",
+        items: ["SEO Services", "PPC Services", "Social Media Marketing", "Search Engine Marketing", "Search Engine Optimization", "Search Intent Optimization", "Content Marketing", "SEO AI"]
       }
     ]
   },
@@ -102,18 +74,60 @@ const navItems = [
     path: "/staff-augmentation",
     hasMegaMenu: true,
     megaMenuItems: [
-      "Top App Developers",
+      "Hire Android App Developer",
+      "Hire iOS App Developer",
+      "Hire Node Js Developer",
       "Hire Flutter Developer",
-      "Hire Java Developer", 
-      "Hire Magento Developer",
-      "Hire Python Developer",
-      "Hire Laravel Developer",
-      "Hire Node Js Developer"
+      "Hire Java Developer",
+      "Hire Website Developer",
+      "Hire Social Media Marketing Expert",
+      "Hire SEO Expert",
+      "Hire Graphic Designer",
+      "Hire PPC Expert",
+      "Hire Custom Software Developer",
+      "Hire Content Writer"
     ],
     subCategories: [
       {
-        name: "Staff Augmentation",
-        items: ["Top App Developers", "Hire Flutter Developer", "Hire Java Developer", "Hire Magento Developer", "Hire Python Developer", "Hire Laravel Developer", "Hire Node Js Developer"]
+        name: "Developer Roles",
+        items: ["Hire Android App Developer", "Hire iOS App Developer", "Hire Node Js Developer", "Hire Flutter Developer", "Hire Java Developer", "Hire Website Developer", "Hire Custom Software Developer"]
+      },
+      {
+        name: "Digital Marketing",
+        items: ["Hire Social Media Marketing Expert", "Hire SEO Expert", "Hire PPC Expert"]
+      },
+      {
+        name: "Creative & Content",
+        items: ["Hire Graphic Designer", "Hire Content Writer"]
+      }
+    ]
+  },
+  { 
+    label: "Digital Marketing", 
+    path: "/digital-marketing",
+    hasMegaMenu: true,
+    megaMenuItems: [
+      "SEO Services",
+      "PPC Services",
+      "Social Media Marketing",
+      "Search Engine Marketing",
+      "Search Engine Optimization",
+      "Search Intent Optimization",
+      "Content Marketing",
+      "SEO AI"
+    ],
+    subCategories: [
+      {
+        name: "SEO & SEM",
+        items: ["SEO Services", "Search Engine Marketing", "Search Engine Optimization", "Search Intent Optimization", "SEO AI"]
+      },
+      {
+        name: "Paid Advertising",
+        items: ["PPC Services"]
+      },
+      {
+        name: "Content & Social",
+        items: ["Social Media Marketing", "Content Marketing"]
       }
     ]
   },
@@ -444,7 +458,7 @@ const Navbar: React.FC = () => {
                 <div className="flex-1 py-8 px-5">
                   <div className={`grid gap-8 ${
                     activeMegaMenu === "Staff Augmentation" 
-                      ? "grid-cols-1" 
+                      ? "grid-cols-3" 
                       : activeMegaMenu === "Services"
                       ? "grid-cols-5"
                       : activeMegaMenu === "Ecommerce"
@@ -518,6 +532,56 @@ const Navbar: React.FC = () => {
                                 <Link
                                   key={index}
                                   to={routeMap[item] || `${currentMegaMenuItem.path}/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                                >
+                                  {item}
+                                </Link>
+                              );
+                            })
+                          ) : activeMegaMenu === "Staff Augmentation" ? (
+                            // Special handling for Staff Augmentation routes
+                            subCategory.items.map((item, index) => {
+                              const staffAugmentationRouteMap: { [key: string]: string } = {
+                                "Hire Android App Developer": "/hire-android-app-developer",
+                                "Hire iOS App Developer": "/hire-ios-app-developer",
+                                "Hire Node Js Developer": "/hire-nodejs-developer",
+                                "Hire Flutter Developer": "/hire-flutter-developer",
+                                "Hire Java Developer": "/hire-java-developer",
+                                "Hire Website Developer": "/hire-website-developer",
+                                "Hire Social Media Marketing Expert": "/hire-smm-expert",
+                                "Hire SEO Expert": "/hire-seo-expert",
+                                "Hire Graphic Designer": "/hire-graphic-designer",
+                                "Hire PPC Expert": "/hire-ppc-expert",
+                                "Hire Custom Software Developer": "/hire-custom-software-developer",
+                                "Hire Content Writer": "/hire-content-writer"
+                              };
+                              return (
+                                <Link
+                                  key={index}
+                                  to={staffAugmentationRouteMap[item] || `${currentMegaMenuItem.path}/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                                >
+                                  {item}
+                                </Link>
+                              );
+                            })
+                          ) : activeMegaMenu === "Digital Marketing" ? (
+                            // Special handling for Digital Marketing routes
+                            subCategory.items.map((item, index) => {
+                              const digitalMarketingRouteMap: { [key: string]: string } = {
+                                "SEO Services": "/seo-services",
+                                "PPC Services": "/ppc-services",
+                                "Social Media Marketing": "/social-media-marketing",
+                                "Search Engine Marketing": "/search-engine-marketing",
+                                "Search Engine Optimization": "/search-engine-optimization",
+                                "Search Intent Optimization": "/search-intent-optimization",
+                                "Content Marketing": "/content-marketing",
+                                "SEO AI": "/seo-ai"
+                              };
+                              return (
+                                <Link
+                                  key={index}
+                                  to={digitalMarketingRouteMap[item] || `/${item.toLowerCase().replace(/\s+/g, '-')}`}
                                   className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
                                 >
                                   {item}
