@@ -32,15 +32,7 @@ const navItems = [
       "AI Agent Development",
       "Cloud Application Development",
       "Cloud Migration",
-      "Cloud Support & Maintenance",
-      "SEO Services",
-      "PPC Services",
-      "Social Media Marketing",
-      "Search Engine Marketing",
-      "Search Engine Optimization",
-      "Search Intent Optimization",
-      "Content Marketing",
-      "SEO AI"
+      "Cloud Support & Maintenance"
     ],
     subCategories: [
       {
@@ -62,10 +54,6 @@ const navItems = [
       {
         name: "Cloud Services",
         items: ["Cloud Application Development", "Cloud Migration", "Cloud Support & Maintenance"]
-      },
-      {
-        name: "Digital Marketing",
-        items: ["SEO Services", "PPC Services", "Social Media Marketing", "Search Engine Marketing", "Search Engine Optimization", "Search Intent Optimization", "Content Marketing", "SEO AI"]
       }
     ]
   },
