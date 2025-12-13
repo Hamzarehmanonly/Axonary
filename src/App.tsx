@@ -62,6 +62,17 @@ import SearchEngineOptimization from './pages/services/digital-marketing/SearchE
 import SearchIntentOptimization from './pages/services/digital-marketing/SearchIntentOptimization';
 import ContentMarketing from './pages/services/digital-marketing/ContentMarketing';
 import SEOAI from './pages/services/digital-marketing/SEOAI';
+import Automotive from './pages/services/industries/Automotive';
+import Healthcare from './pages/services/industries/Healthcare';
+import OnDemand from './pages/services/industries/OnDemand';
+import Education from './pages/services/industries/Education';
+import Music from './pages/services/industries/Music';
+import Ecommerce from './pages/services/industries/Ecommerce';
+import RealEstate from './pages/services/industries/RealEstate';
+import SAAS from './pages/services/industries/SAAS';
+import Fintech from './pages/services/industries/Fintech';
+import Logistics from './pages/services/industries/Logistics';
+import Retail from './pages/services/industries/Retail';
 
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
@@ -146,6 +157,19 @@ function App() {
         <Route path="/search-intent-optimization" element={<SearchIntentOptimization />} />
         <Route path="/content-marketing" element={<ContentMarketing />} />
         <Route path="/seo-ai" element={<SEOAI />} />
+
+        {/* Industries */}
+        <Route path="/industries/automotive" element={<Automotive />} />
+        <Route path="/industries/healthcare" element={<Healthcare />} />
+        <Route path="/industries/on-demand" element={<OnDemand />} />
+        <Route path="/industries/education" element={<Education />} />
+        <Route path="/industries/music" element={<Music />} />
+        <Route path="/industries/ecommerce" element={<Ecommerce />} />
+        <Route path="/industries/real-estate" element={<RealEstate />} />
+        <Route path="/industries/saas" element={<SAAS />} />
+        <Route path="/industries/fintech" element={<Fintech />} />
+        <Route path="/industries/logistics" element={<Logistics />} />
+        <Route path="/industries/retail" element={<Retail />} />
 
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />

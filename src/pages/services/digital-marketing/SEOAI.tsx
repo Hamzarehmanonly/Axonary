@@ -1,254 +1,170 @@
-// SEOAI.tsx
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { SEOAISVG } from "../../../components/DigitalMarketingSVGs";
 
 const COLORS = {
   primary: "#5C3693",
   secondary: "#472A71",
+  accent: "#A855F7",
   bg: "#000000",
   card: "#0b0b0d",
-  glass: "rgba(255,255,255,0.03)",
-  textMuted: "#BDB7D6",
   white: "#FFFFFF",
 };
 
-const services = [
-  {
-    id: "ai-content",
-    title: "AI Content Generation",
-    desc: "Generate high-quality, SEO-optimized content at scale using advanced language models.",
-  },
-  {
-    id: "keyword-clustering",
-    title: "AI Keyword Analysis",
-    desc: "Advanced keyword research and clustering using machine learning for better targeting.",
-  },
-  {
-    id: "content-optimization",
-    title: "Content Optimization",
-    desc: "Use AI to analyze and optimize content for maximum ranking potential and engagement.",
-  },
-  {
-    id: "entity-optimization",
-    title: "Entity & Schema",
-    desc: "Implement advanced entity optimization and structured data for semantic understanding.",
-  },
-  {
-    id: "predictive-analytics",
-    title: "Predictive Analytics",
-    desc: "AI-powered forecasting to predict ranking opportunities and algorithm changes.",
-  },
-  {
-    id: "ai-automation",
-    title: "SEO Automation",
-    desc: "Continuous content and technical optimization powered by AI.",
-  },
-];
-
-const benefits = [
-  { title: "10x Faster", desc: "Generate and optimize content 10x faster than manual work" },
-  { title: "Better Rankings", desc: "AI understands user intent and semantic relationships deeply" },
-  { title: "Competitive Edge", desc: "Predict opportunities before competitors" },
-  { title: "Continuous Growth", desc: "AI adapts to algorithm changes automatically" },
-  { title: "Data-Driven", desc: "Every decision backed by machine learning insights" },
-  { title: "Cost-Effective", desc: "Scale operations without proportional budget increase" },
-];
-
 const SEOAI: React.FC = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setScrollProgress(scrolled);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="w-full bg-black text-white overflow-x-hidden">
-      {/* Navigation Header */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm transition-all"
-        style={{
-          background: "rgba(0,0,0,0.45)",
-          borderBottom: "1px solid rgba(255,255,255,0.03)",
-        }}
-      >
-        <div className="container mx-auto px-6 flex items-center justify-between h-16">
-          <div className="flex items-center gap-3">
-            <div
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 10,
-                background: `linear-gradient(135deg, ${COLORS.primary}, ${COLORS.secondary})`,
-              }}
-            />
-            <div>
-              <div className="text-sm font-bold" style={{ color: COLORS.white }}>
-                Axonary
-              </div>
-              <div className="text-xs" style={{ color: COLORS.textMuted }}>
-                SEO AI Services
-              </div>
-            </div>
-          </div>
-
-          <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
-            <Link to="/services" className="hover:text-white transition">Services</Link>
-            <Link to="/about" className="hover:text-white transition">About</Link>
-            <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Get Started
-            </Link>
-          </nav>
-        </div>
-
-        <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
-          <div
-            style={{
-              height: "3px",
-              width: `${scrollProgress}%`,
-              transition: "width 120ms linear",
-              background: `linear-gradient(90deg, ${COLORS.primary}, ${COLORS.secondary})`,
-            }}
-          />
-        </div>
-      </header>
-
       {/* Hero Section */}
-      <section className="min-h-[72vh] flex items-center pt-20" style={{ background: COLORS.bg }}>
-        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-              AI-Powered • Next-Gen • Future-Ready
+      <section className="min-h-screen flex items-center pt-20 pb-20" style={{ background: COLORS.bg }}>
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="flex justify-center">
+              <SEOAISVG width={400} height={400} />
             </div>
-
-            <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-              Next-Gen SEO with{" "}
-              <span style={{ color: COLORS.primary }}>AI & ML</span>
-            </h1>
-
-            <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-              Leverage cutting-edge AI technology to optimize your SEO at scale. Generate content, analyze data, and predict rankings with machine learning.
-            </p>
-
-            <div className="mt-8 flex items-center gap-4 flex-wrap">
-              <Link to="/contact" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2" style={{ background: COLORS.primary, color: COLORS.white }}>
-                Get AI Strategy
-              </Link>
-              <button className="px-6 py-3 rounded-full border font-semibold" style={{ borderColor: `${COLORS.primary}33`, color: COLORS.textMuted }}>
-                Learn More
-              </button>
-            </div>
-          </div>
-
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">AI Impact</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">10x</div>
-                <div className="text-xs text-gray-400">Faster Optimization</div>
+            <div>
+              <div className="inline-block rounded-full px-4 py-1 text-sm font-medium mb-6" style={{ background: `${COLORS.secondary}33`, color: COLORS.primary }}>
+                AI-Powered SEO
               </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">95%</div>
-                <div className="text-xs text-gray-400">Accuracy Rate</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready for next-generation SEO?</p>
-              <Link to="/contact" className="inline-block mt-4 px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
-                Schedule Call
+              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+                Supercharge SEO with <span style={{ color: COLORS.primary }}>Advanced AI</span>
+              </h1>
+              <p className="text-lg text-gray-300 mb-10">
+                Leverage cutting-edge artificial intelligence and machine learning for smarter optimization, predictive insights, and unmatched SEO results that scale effortlessly.
+              </p>
+              <Link to="/contact" className="px-6 py-3 rounded-full font-semibold inline-block" style={{ background: COLORS.primary, color: COLORS.white }}>
+                Get AI-Powered SEO Strategy
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-20 md:py-28" style={{ background: COLORS.bg }}>
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold">AI-Powered Services</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className="p-8 rounded-xl border transition hover:border-opacity-100"
-                style={{
-                  borderColor: `${COLORS.primary}33`,
-                  backgroundColor: COLORS.card,
-                }}
-              >
-                <h3 className="text-2xl font-bold mb-3" style={{ color: COLORS.primary }}>
-                  {service.title}
-                </h3>
-                <p className="text-gray-400">{service.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 md:py-28" style={{ background: `${COLORS.secondary}11` }}>
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold">AI Advantages</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-lg border-l-4"
-                style={{
-                  background: COLORS.card,
-                  borderLeftColor: COLORS.primary,
-                }}
-              >
-                <h4 className="text-xl font-bold mb-2" style={{ color: COLORS.primary }}>
-                  {benefit.title}
-                </h4>
-                <p className="text-gray-400">{benefit.desc}</p>
-              </div>
-            ))}
+      {/* AI Advantage Section */}
+      <section className="py-20 px-6" style={{ background: `${COLORS.secondary}11` }}>
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-8">
+                The <span style={{ color: COLORS.primary }}>AI Advantage</span> in SEO
+              </h2>
+              <p className="text-gray-300 text-lg mb-6">
+                Artificial intelligence and machine learning enable SEO at unprecedented scale. We analyze millions of data points, predict ranking opportunities, and optimize content with precision impossible through manual efforts alone.
+              </p>
+              <p className="text-gray-300 text-lg mb-6">
+                AI helps us understand search patterns, user behavior, and competitive landscapes faster and more accurately than ever before—giving you an unfair advantage in your market.
+              </p>
+            </div>
+            <div className="space-y-6">
+              {[
+                { title: "Predictive Analytics", desc: "Forecast ranking changes and growth opportunities weeks in advance" },
+                { title: "Smart Automation", desc: "Reduce manual work by 70% while improving optimization quality" },
+                { title: "Deep Learning", desc: "AI models trained on millions of websites and SERP data" },
+                { title: "Real-Time Insights", desc: "Get instant alerts on ranking changes and algorithm updates" },
+              ].map((item, idx) => (
+                <div key={idx} className="p-6 rounded-lg" style={{ background: COLORS.card }}>
+                  <h3 className="font-bold text-xl mb-2" style={{ color: COLORS.primary }}>
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 md:py-28" style={{ background: COLORS.bg }}>
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready for AI-Powered SEO?
+      {/* Services Section */}
+      <section className="py-20 px-6" style={{ background: COLORS.bg }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">
+            Our AI-Powered <span style={{ color: COLORS.primary }}>SEO Services</span>
           </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Stay ahead of the curve with next-generation AI SEO strategies and tools.
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: "🤖", title: "AI Content Optimization", desc: "ML-powered content analysis and optimization for maximum ranking potential and user engagement" },
+              { icon: "🔮", title: "Predictive Analytics", desc: "Forecast ranking potential, identify emerging trends, and predict algorithm changes" },
+              { icon: "🧠", title: "Smart Keyword Research", desc: "AI discovers high-intent, low-competition keywords hidden from traditional research" },
+              { icon: "👥", title: "Intent Matching", desc: "AI analyzes search intent to match your content perfectly to user needs" },
+              { icon: "🔍", title: "Automated Monitoring", desc: "24/7 AI tracking of rankings, competitors, and hundreds of metrics" },
+              { icon: "📈", title: "Performance Prediction", desc: "ML models predict which optimizations will drive the biggest impact" },
+            ].map((service, idx) => (
+              <div key={idx} className="p-8 rounded-lg" style={{ background: COLORS.card }}>
+                <div className="text-5xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                <p className="text-gray-300 text-sm">{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Roadmap */}
+      <section className="py-20 px-6" style={{ background: `${COLORS.secondary}11` }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">
+            AI SEO <span style={{ color: COLORS.primary }}>Implementation Roadmap</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { num: "01", title: "Comprehensive Audit", desc: "AI analyzes your site and identifies all optimization opportunities" },
+              { num: "02", title: "AI Strategy", desc: "ML algorithms predict optimal optimization path for your goals" },
+              { num: "03", title: "Automated Deployment", desc: "Deploy AI-powered optimizations across your entire site" },
+              { num: "04", title: "Continuous Improvement", desc: "AI monitors results and automatically refines strategies" },
+            ].map((step, idx) => (
+              <div key={idx} className="p-6 rounded-lg" style={{ background: COLORS.card, borderLeft: `3px solid ${COLORS.primary}` }}>
+                <div className="text-4xl font-bold mb-3" style={{ color: COLORS.primary }}>
+                  {step.num}
+                </div>
+                <h3 className="text-lg font-bold mb-2">{step.title}</h3>
+                <p className="text-gray-400 text-sm">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section className="py-20 px-6" style={{ background: COLORS.bg }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">
+            Results from <span style={{ color: COLORS.primary }}>AI-Powered SEO</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { stat: "550%", label: "Faster Growth", desc: "Accelerated results from intelligent automation and optimization" },
+              { stat: "95%", label: "Prediction Accuracy", desc: "AI models predict ranking changes with industry-leading precision" },
+              { stat: "40%", label: "Time Savings", desc: "Automation eliminates manual tasks, freeing your team for strategy" },
+            ].map((result, idx) => (
+              <div key={idx} className="text-center p-8 rounded-lg" style={{ background: COLORS.card }}>
+                <div className="text-5xl font-bold mb-3" style={{ color: COLORS.primary }}>
+                  {result.stat}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{result.label}</h3>
+                <p className="text-gray-400 text-sm">{result.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-20 px-6 text-center" style={{ background: `${COLORS.secondary}11` }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to Transform Your SEO with <span style={{ color: COLORS.primary }}>AI</span>?
+          </h2>
+          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            Let's leverage advanced artificial intelligence to scale your SEO efforts, predict opportunities, and dominate your market faster than ever before.
           </p>
-          <Link
-            to="/contact"
-            className="inline-block px-8 py-4 rounded-full font-semibold"
-            style={{ background: COLORS.primary, color: COLORS.white }}
-          >
-            Get AI Consultation
+          <Link to="/contact" className="px-8 py-4 rounded-full font-semibold inline-block" style={{ background: COLORS.primary, color: COLORS.white }}>
+            Get AI-Powered SEO Consultation
           </Link>
         </div>
       </section>
 
-      {/* Footer CTA */}
+      {/* Fixed Footer CTA */}
       <div className="fixed bottom-8 right-8 z-40">
-        <Link
-          to="/contact"
-          className="px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition inline-block"
-          style={{ backgroundColor: COLORS.primary, color: "white" }}
-        >
+        <Link to="/contact" className="px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition inline-block" style={{ backgroundColor: COLORS.primary, color: "white" }}>
           Get Started
         </Link>
       </div>

@@ -120,6 +120,38 @@ const navItems = [
     ]
   },
   { 
+    label: "Industries", 
+    path: "/industries",
+    hasMegaMenu: true,
+    megaMenuItems: [
+      "Automotive",
+      "Healthcare",
+      "On-Demand",
+      "Education",
+      "Music",
+      "Ecommerce",
+      "Real Estate",
+      "SAAS",
+      "Fintech",
+      "Logistics",
+      "Retail"
+    ],
+    subCategories: [
+      {
+        name: "B2B Industries",
+        items: ["Automotive", "SAAS", "Fintech", "Logistics", "Real Estate"]
+      },
+      {
+        name: "B2C Industries",
+        items: ["Healthcare", "Education", "Music", "Ecommerce", "Retail"]
+      },
+      {
+        name: "Platform Industries",
+        items: ["On-Demand"]
+      }
+    ]
+  },
+  { 
     label: "Enterprise", 
     path: "/enterprise",
     hasMegaMenu: true,
@@ -576,6 +608,32 @@ const Navbar: React.FC = () => {
                                 </Link>
                               );
                             })
+                          ) : activeMegaMenu === "Industries" ? (
+                            // Special handling for Industries routes
+                            subCategory.items.map((item, index) => {
+                              const industriesRouteMap: { [key: string]: string } = {
+                                "Automotive": "/industries/automotive",
+                                "Healthcare": "/industries/healthcare",
+                                "On-Demand": "/industries/on-demand",
+                                "Education": "/industries/education",
+                                "Music": "/industries/music",
+                                "Ecommerce": "/industries/ecommerce",
+                                "Real Estate": "/industries/real-estate",
+                                "SAAS": "/industries/saas",
+                                "Fintech": "/industries/fintech",
+                                "Logistics": "/industries/logistics",
+                                "Retail": "/industries/retail"
+                              };
+                              return (
+                                <Link
+                                  key={index}
+                                  to={industriesRouteMap[item] || `/industries/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                                >
+                                  {item}
+                                </Link>
+                              );
+                            })
                           ) : (
                             // Regular layout for other categories
                             subCategory.items.map((item, index) => (
@@ -673,6 +731,25 @@ const Navbar: React.FC = () => {
                                <Link to="/cloud-application-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Application Development</Link>
                                <Link to="/cloud-migration" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Migration</Link>
                                <Link to="/cloud-support-maintenance" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Support & Maintenance</Link>
+                             </>
+                           ) : item.label === "Industries" ? (
+                             <>
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3">B2B Industries</p>
+                               <Link to="/industries/automotive" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Automotive</Link>
+                               <Link to="/industries/saas" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">SAAS</Link>
+                               <Link to="/industries/fintech" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Fintech</Link>
+                               <Link to="/industries/logistics" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Logistics</Link>
+                               <Link to="/industries/real-estate" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Real Estate</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">B2C Industries</p>
+                               <Link to="/industries/healthcare" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Healthcare</Link>
+                               <Link to="/industries/education" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Education</Link>
+                               <Link to="/industries/music" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Music</Link>
+                               <Link to="/industries/ecommerce" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Ecommerce</Link>
+                               <Link to="/industries/retail" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Retail</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Platform Industries</p>
+                               <Link to="/industries/on-demand" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">On-Demand</Link>
                              </>
                            ) : (
                              <>

@@ -1,194 +1,105 @@
-// SocialMediaServices.tsx
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { SocialMediaServicesSVG } from "../../../components/DigitalMarketingSVGs";
 
 const COLORS = {
   primary: "#5C3693",
   secondary: "#472A71",
+  accent: "#A855F7",
   bg: "#000000",
   card: "#0b0b0d",
-  glass: "rgba(255,255,255,0.03)",
   textMuted: "#BDB7D6",
   white: "#FFFFFF",
 };
 
-const services = [
-  {
-    id: "social-strategy",
-    title: "Social Strategy",
-    desc: "Comprehensive social media strategy aligned with your business goals and audience.",
-  },
-  {
-    id: "content-creation",
-    title: "Content Creation",
-    desc: "Engaging posts, videos, and stories tailored to your audience across all platforms.",
-  },
-  {
-    id: "community-management",
-    title: "Community Management",
-    desc: "Build and nurture engaged communities with responsive interaction and engagement.",
-  },
-  {
-    id: "influencer-marketing",
-    title: "Influencer Partnerships",
-    desc: "Connect with relevant influencers to amplify your message and reach new audiences.",
-  },
-  {
-    id: "social-analytics",
-    title: "Analytics & Reporting",
-    desc: "Track performance with detailed analytics and provide insights for optimization.",
-  },
-  {
-    id: "paid-social",
-    title: "Paid Social Ads",
-    desc: "Targeted social media advertising campaigns that drive conversions and sales.",
-  },
-];
-
-const benefits = [
-  { title: "Brand Awareness", desc: "Build recognition and presence across all social platforms" },
-  { title: "Community Building", desc: "Engage loyal followers and create brand advocates" },
-  { title: "Lead Generation", desc: "Convert social followers into qualified leads" },
-  { title: "Sales Growth", desc: "Drive direct sales through social commerce" },
-  { title: "Customer Loyalty", desc: "Strengthen relationships with existing customers" },
-  { title: "Real-Time Engagement", desc: "Respond to customers instantly and build trust" },
-];
-
 const SocialMediaServices: React.FC = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setScrollProgress(scrolled);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="w-full bg-black text-white overflow-x-hidden">
-      {/* Navigation Header */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm transition-all"
-        style={{
-          background: "rgba(0,0,0,0.45)",
-          borderBottom: "1px solid rgba(255,255,255,0.03)",
-        }}
-      >
-        <div className="container mx-auto px-6 flex items-center justify-between h-16">
-          <div className="flex items-center gap-3">
-            <div
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 10,
-                background: `linear-gradient(135deg, ${COLORS.primary}, ${COLORS.secondary})`,
-              }}
-            />
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center pt-20 pb-20" style={{ background: COLORS.bg }}>
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="flex justify-center">
+              <SocialMediaServicesSVG width={400} height={400} />
+            </div>
             <div>
-              <div className="text-sm font-bold" style={{ color: COLORS.white }}>
-                Axonary
-              </div>
-              <div className="text-xs" style={{ color: COLORS.textMuted }}>
+              <div className="inline-block rounded-full px-4 py-1 text-sm font-medium mb-6" style={{ background: `${COLORS.secondary}33`, color: COLORS.primary }}>
                 Social Media Marketing
               </div>
-            </div>
-          </div>
-
-          <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
-            <Link to="/services" className="hover:text-white transition">Services</Link>
-            <Link to="/about" className="hover:text-white transition">About</Link>
-            <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Get Started
-            </Link>
-          </nav>
-        </div>
-
-        <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
-          <div
-            style={{
-              height: "3px",
-              width: `${scrollProgress}%`,
-              transition: "width 120ms linear",
-              background: `linear-gradient(90deg, ${COLORS.primary}, ${COLORS.secondary})`,
-            }}
-          />
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="min-h-[72vh] flex items-center pt-20" style={{ background: COLORS.bg }}>
-        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-              Engagement • Growth • Community
-            </div>
-
-            <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-              Build a Thriving Social{" "}
-              <span style={{ color: COLORS.primary }}>Presence</span>
-            </h1>
-
-            <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-              Engage your audience, build brand loyalty, and drive sales through strategic social media management across all platforms.
-            </p>
-
-            <div className="mt-8 flex items-center gap-4 flex-wrap">
-              <Link to="/contact" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2" style={{ background: COLORS.primary, color: COLORS.white }}>
-                Get Social Strategy
-              </Link>
-              <button className="px-6 py-3 rounded-full border font-semibold" style={{ borderColor: `${COLORS.primary}33`, color: COLORS.textMuted }}>
-                Learn More
-              </button>
-            </div>
-          </div>
-
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">Social Media Results</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">500+</div>
-                <div className="text-xs text-gray-400">Brands Managed</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">5M+</div>
-                <div className="text-xs text-gray-400">Followers Built</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to grow your social presence?</p>
-              <Link to="/contact" className="inline-block mt-4 px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
-                Schedule Call
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                Build Your Brand with
+                <span style={{ color: COLORS.primary }}> Strategic Social Media</span>
+              </h1>
+              <p className="text-lg text-gray-300 mb-8">
+                Engage your audience, build community, and drive sales across Facebook, Instagram, LinkedIn, and TikTok with content that resonates and converts.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-block px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition"
+                style={{ background: COLORS.primary, color: COLORS.white }}
+              >
+                Start Your Social Strategy
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-20 md:py-28" style={{ background: COLORS.bg }}>
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold">Our Social Services</h2>
+      {/* Why Social Media Matters */}
+      <section className="py-20 px-6" style={{ background: COLORS.bg }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Why Social Media is Critical for Business</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-8 rounded-lg" style={{ background: COLORS.card }}>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: COLORS.accent }}>The Modern Marketing Landscape</h3>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                4.5 billion people use social media globally. Your customers are actively engaging with brands, sharing recommendations, and making purchase decisions based on social proof. Missing out means losing visibility.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Social platforms allow direct communication with your audience, real-time customer service, and humanize your brand in ways traditional advertising cannot.
+              </p>
+            </div>
+            <div className="p-8 rounded-lg" style={{ background: COLORS.card }}>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: COLORS.accent }}>Key Social Benefits</h3>
+              <ul className="space-y-3">
+                <li className="flex gap-3">
+                  <span style={{ color: COLORS.primary }}>→</span>
+                  <span className="text-gray-300"><strong>Community Building:</strong> Create loyal fans and advocates</span>
+                </li>
+                <li className="flex gap-3">
+                  <span style={{ color: COLORS.primary }}>→</span>
+                  <span className="text-gray-300"><strong>Brand Awareness:</strong> Reach new audiences organically</span>
+                </li>
+                <li className="flex gap-3">
+                  <span style={{ color: COLORS.primary }}>→</span>
+                  <span className="text-gray-300"><strong>Direct Sales:</strong> Convert followers into customers</span>
+                </li>
+                <li className="flex gap-3">
+                  <span style={{ color: COLORS.primary }}>→</span>
+                  <span className="text-gray-300"><strong>Customer Insights:</strong> Understand preferences and trends</span>
+                </li>
+              </ul>
+            </div>
           </div>
+        </div>
+      </section>
 
+      {/* Our Social Media Services */}
+      <section className="py-20 px-6" style={{ background: `${COLORS.secondary}11` }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Our Social Media Expertise</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className="p-8 rounded-xl border transition hover:border-opacity-100"
-                style={{
-                  borderColor: `${COLORS.primary}33`,
-                  backgroundColor: COLORS.card,
-                }}
-              >
-                <h3 className="text-2xl font-bold mb-3" style={{ color: COLORS.primary }}>
-                  {service.title}
-                </h3>
+            {[
+              { icon: "📱", title: "Content Creation", desc: "Engaging posts, stories, reels, and videos tailored to each platform" },
+              { icon: "📅", title: "Community Management", desc: "Monitor mentions, respond to comments, engage with followers" },
+              { icon: "📊", title: "Social Media Ads", desc: "Targeted paid campaigns driving traffic and sales" },
+              { icon: "🎬", title: "Video Production", desc: "Short-form and long-form content optimized for engagement" },
+              { icon: "📈", title: "Growth Strategy", desc: "Organic growth tactics and audience development" },
+              { icon: "📊", title: "Analytics & Reporting", desc: "Detailed insights on engagement, reach, and ROI" }
+            ].map((service, idx) => (
+              <div key={idx} className="p-8 rounded-lg" style={{ background: COLORS.card }}>
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
                 <p className="text-gray-400">{service.desc}</p>
               </div>
             ))}
@@ -196,27 +107,40 @@ const SocialMediaServices: React.FC = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 md:py-28" style={{ background: `${COLORS.secondary}11` }}>
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold">Why Social Matters</h2>
+      {/* Platform-Specific Strategies */}
+      <section className="py-20 px-6" style={{ background: COLORS.bg }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Platform-Specific Strategies</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { platform: "Facebook", focus: "Community building, customer service, events, local promotion" },
+              { platform: "Instagram", focus: "Visual storytelling, lifestyle content, influencer collabs" },
+              { platform: "LinkedIn", focus: "B2B thought leadership, industry insights, recruitment" },
+              { platform: "TikTok", focus: "Trending content, behind-the-scenes, viral marketing" }
+            ].map((p, idx) => (
+              <div key={idx} className="p-6 rounded-lg" style={{ background: COLORS.card, borderLeft: `3px solid ${COLORS.primary}` }}>
+                <h3 className="text-lg font-bold mb-2" style={{ color: COLORS.accent }}>{p.platform}</h3>
+                <p className="text-sm text-gray-400">{p.focus}</p>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-lg border-l-4"
-                style={{
-                  background: COLORS.card,
-                  borderLeftColor: COLORS.primary,
-                }}
-              >
-                <h4 className="text-xl font-bold mb-2" style={{ color: COLORS.primary }}>
-                  {benefit.title}
-                </h4>
-                <p className="text-gray-400">{benefit.desc}</p>
+      {/* Results & Impact */}
+      <section className="py-20 px-6" style={{ background: `${COLORS.secondary}11` }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center">Proven Results from Social Media</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { stat: "250%", label: "Engagement Growth", desc: "Higher engagement through quality, consistent content" },
+              { stat: "180%", label: "Follower Increase", desc: "Rapid growth with authentic community strategies" },
+              { stat: "3.2x", label: "Conversion Rate", desc: "Social followers convert at higher rates" }
+            ].map((result, idx) => (
+              <div key={idx} className="text-center p-8 rounded-lg" style={{ background: COLORS.card }}>
+                <div className="text-5xl font-bold mb-2" style={{ color: COLORS.primary }}>{result.stat}</div>
+                <h3 className="text-xl font-bold mb-2">{result.label}</h3>
+                <p className="text-sm text-gray-400">{result.desc}</p>
               </div>
             ))}
           </div>
@@ -224,20 +148,18 @@ const SocialMediaServices: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-28" style={{ background: COLORS.bg }}>
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Grow on Social?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let our social media experts create a strategy that builds your brand and drives results.
+      <section className="py-20 px-6 text-center" style={{ background: COLORS.bg }}>
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-6">Ready to Grow Your Social Presence?</h2>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Let's develop a comprehensive social media strategy that builds your brand and drives real business results.
           </p>
           <Link
             to="/contact"
-            className="inline-block px-8 py-4 rounded-full font-semibold"
+            className="inline-block px-10 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition"
             style={{ background: COLORS.primary, color: COLORS.white }}
           >
-            Get Social Audit
+            Get Your Social Strategy
           </Link>
         </div>
       </section>
