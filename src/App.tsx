@@ -74,6 +74,23 @@ import Fintech from './pages/services/industries/Fintech';
 import Logistics from './pages/services/industries/Logistics';
 import Retail from './pages/services/industries/Retail';
 
+// Language Pages
+import DotNet from './pages/services/languages/DotNet';
+import HTML5 from './pages/services/languages/HTML5';
+import Java from './pages/services/languages/Java';
+import NodeJs from './pages/services/languages/NodeJs';
+import PHP from './pages/services/languages/PHP';
+import Python from './pages/services/languages/Python';
+
+// Platform Pages
+import Azure from './pages/services/platforms/Azure';
+import GCP from './pages/services/platforms/GCP';
+import Oracle from './pages/services/platforms/Oracle';
+import SAP from './pages/services/platforms/SAP';
+import Meta from './pages/services/platforms/Meta';
+import Google from './pages/services/platforms/Google';
+import Bing from './pages/services/platforms/Bing';
+
 // ScrollToTop component that will be used inside Router
 const ScrollToTop = () => {
   useScrollToTop();
@@ -170,6 +187,23 @@ function App() {
         <Route path="/industries/fintech" element={<Fintech />} />
         <Route path="/industries/logistics" element={<Logistics />} />
         <Route path="/industries/retail" element={<Retail />} />
+
+        {/* Languages */}
+        <Route path="/services/languages/dotnet" element={<DotNet />} />
+        <Route path="/services/languages/html5" element={<HTML5 />} />
+        <Route path="/services/languages/java" element={<Java />} />
+        <Route path="/services/languages/nodejs" element={<NodeJs />} />
+        <Route path="/services/languages/php" element={<PHP />} />
+        <Route path="/services/languages/python" element={<Python />} />
+
+        {/* Platforms */}
+        <Route path="/services/platforms/azure" element={<Azure />} />
+        <Route path="/services/platforms/gcp" element={<GCP />} />
+        <Route path="/services/platforms/oracle" element={<Oracle />} />
+        <Route path="/services/platforms/sap" element={<SAP />} />
+        <Route path="/services/platforms/meta" element={<Meta />} />
+        <Route path="/services/platforms/google" element={<Google />} />
+        <Route path="/services/platforms/bing" element={<Bing />} />
 
         {/* Legal Pages */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />

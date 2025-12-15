@@ -152,67 +152,69 @@ const navItems = [
     ]
   },
   { 
-    label: "Enterprise", 
-    path: "/enterprise",
+    label: "Technologies", 
+    path: "/technologies",
     hasMegaMenu: true,
     megaMenuItems: [
-      "Dynamics 365",
-      "Sharepoint",
-      "Azure Consulting Services",
-      "Power Apps",
-      "Power BI Services",
-      "Dynamics 365 Integrations",
-      "BC Development",
-      "BC Integration",
-      "IT Consulting",
-      "Salesforce",
-      "WMS",
-      "HRMS"
+      ".Net",
+      "HTML5",
+      "Java",
+      "Node.Js",
+      "PHP",
+      "Python",
+      "Azure",
+      "GCP",
+      "Oracle",
+      "SAP",
+      "Meta",
+      "Google",
+      "Bing"
     ],
     subCategories: [
       {
-        name: "Microsoft",
-        items: ["Dynamics 365", "Sharepoint", "Azure Consulting Services", "Power Apps", "Power BI Services", "Dynamics 365 Integrations", "BC Development", "BC Integration"]
+        name: "Programming Languages",
+        items: [".Net", "HTML5", "Java", "Node.Js", "PHP", "Python"]
       },
       {
-        name: "BPO",
-        items: ["IT Consulting"]
+        name: "Cloud Platforms",
+        items: ["Azure", "GCP", "Oracle"]
       },
       {
-        name: "Salesforce",
-        items: ["Salesforce"]
-      },
-      {
-        name: "Products",
-        items: ["WMS", "HRMS"]
+        name: "Enterprise & Marketing",
+        items: ["SAP", "Meta", "Google", "Bing"]
       }
     ]
   },
   { 
-    label: "Gov", 
-    path: "/gov",
-    hasMegaMenu: false
-  },
-  { 
-    label: "Portfolio", 
-    path: "/portfolio",
-    hasMegaMenu: false
-  },
-  { 
-    label: "Company", 
-    path: "/company",
+    label: "Insights", 
+    path: "/insights",
     hasMegaMenu: true,
     megaMenuItems: [
-      "Careers",
-      "Blog",
       "About",
-      "Partnership",
-      "Our Locations"
+      "Approach",
+      "Blog",
+      "Services",
+      "Solutions",
+      "Work",
+      "Contact",
+      "Support"
     ],
     subCategories: [
       {
         name: "Company",
-        items: ["Careers", "Blog", "About", "Partnership", "Our Locations"]
+        items: ["About", "Approach", "Work"]
+      },
+      {
+        name: "Resources",
+        items: ["Blog"]
+      },
+      {
+        name: "Our Offerings",
+        items: ["Services", "Solutions"]
+      },
+      {
+        name: "Get Help",
+        items: ["Contact", "Support"]
       }
     ]
   }
@@ -634,6 +636,59 @@ const Navbar: React.FC = () => {
                                 </Link>
                               );
                             })
+                          ) : activeMegaMenu === "Technologies" ? (
+                            // Special handling for Technologies routes (Languages and Platforms)
+                            subCategory.items.map((item, index) => {
+                              const technologiesRouteMap: { [key: string]: string } = {
+                                // Languages
+                                ".Net": "/services/languages/dotnet",
+                                "HTML5": "/services/languages/html5",
+                                "Java": "/services/languages/java",
+                                "Node.Js": "/services/languages/nodejs",
+                                "PHP": "/services/languages/php",
+                                "Python": "/services/languages/python",
+                                // Platforms
+                                "Azure": "/services/platforms/azure",
+                                "GCP": "/services/platforms/gcp",
+                                "Oracle": "/services/platforms/oracle",
+                                "SAP": "/services/platforms/sap",
+                                "Meta": "/services/platforms/meta",
+                                "Google": "/services/platforms/google",
+                                "Bing": "/services/platforms/bing"
+                              };
+                              return (
+                                <Link
+                                  key={index}
+                                  to={technologiesRouteMap[item] || `/services/technologies/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                                >
+                                  {item}
+                                </Link>
+                              );
+                            })
+                          ) : activeMegaMenu === "Insights" ? (
+                            // Special handling for Insights routes
+                            subCategory.items.map((item, index) => {
+                              const insightsRouteMap: { [key: string]: string } = {
+                                "About": "/about",
+                                "Approach": "/approach", 
+                                "Blog": "/blog",
+                                "Services": "/services",
+                                "Solutions": "/solutions",
+                                "Work": "/work",
+                                "Contact": "/contact",
+                                "Support": "/support"
+                              };
+                              return (
+                                <Link
+                                  key={index}
+                                  to={insightsRouteMap[item] || `/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                  className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
+                                >
+                                  {item}
+                                </Link>
+                              );
+                            })
                           ) : (
                             // Regular layout for other categories
                             subCategory.items.map((item, index) => (
@@ -643,7 +698,7 @@ const Navbar: React.FC = () => {
                                 className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-2 py-1 rounded transition-all duration-200 text-xs"
                               >
                                 {item}
-                              </Link>
+              </Link>
                             ))
                           )}
                         </div>
@@ -750,6 +805,45 @@ const Navbar: React.FC = () => {
                                
                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Platform Industries</p>
                                <Link to="/industries/on-demand" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">On-Demand</Link>
+                             </>
+                           ) : item.label === "Technologies" ? (
+                             <>
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3">Programming Languages</p>
+                               <Link to="/services/languages/dotnet" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">.Net</Link>
+                               <Link to="/services/languages/html5" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">HTML5</Link>
+                               <Link to="/services/languages/java" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Java</Link>
+                               <Link to="/services/languages/nodejs" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Node.Js</Link>
+                               <Link to="/services/languages/php" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">PHP</Link>
+                               <Link to="/services/languages/python" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Python</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Cloud Platforms</p>
+                               <Link to="/services/platforms/azure" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Azure</Link>
+                               <Link to="/services/platforms/gcp" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">GCP</Link>
+                               <Link to="/services/platforms/oracle" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Oracle</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Enterprise & Marketing</p>
+                               <Link to="/services/platforms/sap" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">SAP</Link>
+                               <Link to="/services/platforms/meta" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Meta</Link>
+                               <Link to="/services/platforms/google" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Google</Link>
+                               <Link to="/services/platforms/bing" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Bing</Link>
+                             </>
+                           ) : item.label === "Insights" ? (
+                             <>
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3">Company</p>
+                               <Link to="/about" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">About</Link>
+                               <Link to="/approach" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Approach</Link>
+                               <Link to="/work" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Work</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Resources</p>
+                               <Link to="/blog" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Blog</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Our Offerings</p>
+                               <Link to="/services" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Services</Link>
+                               <Link to="/solutions" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Solutions</Link>
+                               
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Get Help</p>
+                               <Link to="/contact" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Contact</Link>
+                               <Link to="/support" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Support</Link>
                              </>
                            ) : (
                              <>

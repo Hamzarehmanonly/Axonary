@@ -1,11 +1,11 @@
-// Music.tsx
+// PHP.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { MusicStreamingSVG, AudioProductionSVG, MusicDistributionSVG, MusicLicensingSVG, MusicSocialSVG } from "../../../components/IndustriesSVGs.js";
+import { PHPSVG } from "../../../components/IndustriesSVGs.js";
 
 const COLORS = {
-  primary: "#5C3693",
-  secondary: "#472A71",
+  primary: "#777BB4",
+  secondary: "#8892BF",
   bg: "#000000",
   card: "#0b0b0d",
   textMuted: "#BDB7D6",
@@ -13,11 +13,11 @@ const COLORS = {
 };
 
 const services = [
-  { id: "streaming", title: "Music Streaming Platforms", desc: "Build your Spotify-like platform with playlist creation, recommendations, and social features." },
-  { id: "production", title: "Audio Production Tools", desc: "DAW integration, mixing tools, and collaborative music production platforms." },
-  { id: "distribution", title: "Music Distribution Networks", desc: "Distribute music to major platforms, manage royalties, and track performance." },
-  { id: "licensing", title: "Music Licensing & Rights Management", desc: "Automated licensing, royalty tracking, and copyright management systems." },
-  { id: "social", title: "Music Social Networks", desc: "Connect artists with fans through social features, live streaming, and exclusive content." },
+  { id: "laravel-development", title: "Laravel Development", desc: "Build modern web applications with Laravel's elegant syntax, robust ORM, and comprehensive ecosystem." },
+  { id: "wordpress-solutions", title: "WordPress Solutions", desc: "Create custom WordPress themes, plugins, and enterprise solutions for content management needs." },
+  { id: "symfony-applications", title: "Symfony Applications", desc: "Develop high-performance applications using Symfony framework with reusable components." },
+  { id: "api-development", title: "RESTful API Development", desc: "Build secure, scalable APIs with modern PHP frameworks and comprehensive documentation." },
+  { id: "e-commerce-platforms", title: "E-commerce Platforms", desc: "Develop custom e-commerce solutions with payment integration, inventory management, and analytics." },
 ];
 
 const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
@@ -25,10 +25,10 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
     <div className="container mx-auto px-6 flex items-center justify-between h-16">
       <div className="flex items-center gap-3">
         <div style={{ width: 44, height: 44, borderRadius: 10, background: `linear-gradient(135deg, ${COLORS.primary}, ${COLORS.secondary})` }} />
-        <div><div className="text-sm font-bold" style={{ color: COLORS.white }}>Axonary</div><div className="text-xs" style={{ color: COLORS.textMuted }}>Music Solutions</div></div>
+        <div><div className="text-sm font-bold" style={{ color: COLORS.white }}>Axonary</div><div className="text-xs" style={{ color: COLORS.textMuted }}>PHP Development</div></div>
       </div>
       <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
-        <a href="#streaming" className="hover:text-white">Streaming</a><a href="#production" className="hover:text-white">Production</a><a href="#distribution" className="hover:text-white">Distribution</a><a href="#licensing" className="hover:text-white">Licensing</a><a href="#social" className="hover:text-white">Social</a>
+        <a href="#laravel-development" className="hover:text-white">Laravel</a><a href="#wordpress-solutions" className="hover:text-white">WordPress</a><a href="#symfony-applications" className="hover:text-white">Symfony</a><a href="#api-development" className="hover:text-white">APIs</a><a href="#e-commerce-platforms" className="hover:text-white">E-commerce</a>
         <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Book a Call</Link>
       </nav>
     </div>
@@ -41,22 +41,22 @@ const HeroSection: React.FC = () => (
     <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
       <div className="md:col-span-7 flex justify-center">
         <div className="text-left">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>Creative • Innovative • Connected</div>
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">Music Industry <span style={{ color: COLORS.primary }}>Solutions</span></h1>
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">Power the music industry with streaming platforms, production tools, and distribution networks.</p>
+          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>Flexible • Powerful • Web-Focused</div>
+          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">PHP <span style={{ color: COLORS.primary }}>Excellence</span></h1>
+          <p className="mt-4 text-lg text-gray-300 max-w-2xl">Build dynamic, feature-rich web applications with PHP's modern frameworks and proven development patterns.</p>
           <div className="mt-6 flex items-center gap-4">
-            <a href="#streaming" className="px-6 py-3 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>Explore Solutions</a>
+            <a href="#laravel-development" className="px-6 py-3 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>Explore Services</a>
             <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>Request Demo</a>
           </div>
         </div>
       </div>
-      <div className="md:col-span-5"><div className="rounded-2xl p-6" style={{ background: COLORS.card }}><MusicStreamingSVG width={360} height={360} /></div></div>
+      <div className="md:col-span-5"><div className="rounded-2xl p-6" style={{ background: COLORS.card }}><PHPSVG width={360} height={360} /></div></div>
     </div>
   </section>
 );
 
 const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
-  const getSVG = () => [<MusicStreamingSVG width={360} height={360} />, <AudioProductionSVG width={360} height={360} />, <MusicDistributionSVG width={360} height={360} />, <MusicLicensingSVG width={360} height={360} />, <MusicSocialSVG width={360} height={360} />][idx];
+  const getSVG = () => [<PHPSVG width={360} height={360} />, <PHPSVG width={360} height={360} />, <PHPSVG width={360} height={360} />, <PHPSVG width={360} height={360} />, <PHPSVG width={360} height={360} />][idx];
   const isLeft = idx % 2 === 0;
   return (
     <section id={id} className="py-20" style={{ background: COLORS.bg }}>
@@ -67,10 +67,10 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
   );
 };
 
-const Music: React.FC = () => {
+const PHP: React.FC = () => {
   const [progress, setProgress] = useState(0);
   useEffect(() => { const onScroll = () => { const scrolled = window.scrollY; const height = document.documentElement.scrollHeight - window.innerHeight; setProgress((scrolled / height) * 100); }; window.addEventListener("scroll", onScroll); return () => window.removeEventListener("scroll", onScroll); }, []);
-  return (<div className="w-full bg-black text-white overflow-x-hidden"><TopNav progress={progress} /><HeroSection />{services.map((s, i) => <SplitSection key={s.id} idx={i} {...s} />)}<footer className="py-8" style={{ background: COLORS.bg }}><div className="container mx-auto px-6 text-center text-sm" style={{ color: COLORS.textMuted }}>© {new Date().getFullYear()} Axonary — Music Excellence</div></footer></div>);
+  return (<div className="w-full bg-black text-white overflow-x-hidden"><TopNav progress={progress} /><HeroSection />{services.map((s, i) => <SplitSection key={s.id} idx={i} {...s} />)}<footer className="py-8" style={{ background: COLORS.bg }}><div className="container mx-auto px-6 text-center text-sm" style={{ color: COLORS.textMuted }}>© {new Date().getFullYear()} Axonary — PHP Excellence</div></footer></div>);
 };
 
-export default Music;
+export default PHP;
