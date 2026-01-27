@@ -29,6 +29,7 @@ interface ContentChild {
   code?: boolean;
   level?: number; // for headings
   children?: ContentChild[]; // for nested content
+  url?: string; // for inline links
 }
 
 interface ContentBlock {
@@ -57,12 +58,37 @@ interface ApiResponse {
   meta?: { /* pagination etc. */ };
 }
 
-// Helper to render text with formatting
+// Helper to render text with formatting and inline links
 const renderText = (child: ContentChild, key: number): React.ReactNode => {
-  if (!child.text) return null;
-  
+  if (!child.text && !child.children) return null;
+
+  // Handle inline link (if type is 'link' and url exists)
+  if (child.type === 'link' && child.url) {
+    const isInternal = child.url.startsWith('/') || child.url.startsWith(window.location.origin);
+    const linkClass = "text-[#4a2d7a] hover:text-[#5C3693] underline transition-colors duration-300 cursor-pointer";
+    const linkContent = child.children
+      ? child.children.map((c, i) => renderText(c, i))
+      : child.text;
+    if (isInternal) {
+      const internalUrl = child.url.startsWith(window.location.origin)
+        ? child.url.replace(window.location.origin, '')
+        : child.url;
+      return (
+        <Link key={key} to={internalUrl} className={linkClass}>
+          {linkContent}
+        </Link>
+      );
+    } else {
+      return (
+        <a key={key} href={child.url} className={linkClass} target="_blank" rel="noopener noreferrer">
+          {linkContent}
+        </a>
+      );
+    }
+  }
+
   let element: React.ReactNode = child.text;
-  
+
   // Apply formatting in the correct order
   if (child.code) {
     element = <code key={`code-${key}`} className="bg-gray-800 px-2 py-1 rounded text-sm font-mono">{element}</code>;
@@ -79,7 +105,7 @@ const renderText = (child: ContentChild, key: number): React.ReactNode => {
   if (child.strikethrough) {
     element = <del key={`strike-${key}`}>{element}</del>;
   }
-  
+
   return element;
 };
 
@@ -160,20 +186,40 @@ const renderContent = (content: ContentBlock[]) => {
           </pre>
         );
       
-      case 'link':
-        return (
-          <a 
-            key={index} 
-            href={block.url || '#'} 
-            className="text-[#5C3693] hover:text-[#7e5adb] underline transition-colors duration-300"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {block.children.map((child, childIndex) => 
-              renderText(child, childIndex)
-            )}
-          </a>
-        );
+      case 'link': {
+        const isInternal = block.url && (block.url.startsWith('/') || block.url.startsWith(window.location.origin));
+        if (isInternal && block.url) {
+          // Remove domain if present for consistency
+          const internalUrl = block.url.startsWith(window.location.origin)
+            ? block.url.replace(window.location.origin, '')
+            : block.url;
+          return (
+            <Link
+              key={index}
+              to={internalUrl}
+              className="text-[#4a2d7a] hover:text-[#5C3693] underline transition-colors duration-300 cursor-pointer"
+            >
+              {block.children.map((child, childIndex) =>
+                renderText(child, childIndex)
+              )}
+            </Link>
+          );
+        } else {
+          return (
+            <a
+              key={index}
+              href={block.url || '#'}
+              className="text-[#4a2d7a] hover:text-[#5C3693] underline transition-colors duration-300 cursor-pointer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {block.children.map((child, childIndex) =>
+                renderText(child, childIndex)
+              )}
+            </a>
+          );
+        }
+      }
       
       case 'image':
         return (
