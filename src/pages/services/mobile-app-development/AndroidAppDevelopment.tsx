@@ -25,45 +25,45 @@ const COLORS = {
 const services = [
   {
     id: "native-android",
-    title: "Native Android Development",
+    title: "Native Android Apps Built to Perform",
     desc:
-      "High-performance native Android apps built with Kotlin. Direct access to device APIs, optimal user experience, and seamless platform integration.",
-    imgQuery: "android mobile development",
+      "High-performance native Android apps built in Kotlin, backed by expert Android app development services, so you don’t need to hire Android app developer teams in-house.",
+    imgQuery: "android mobile app development company",
   },
   {
     id: "android-ui",
-    title: "Material Design & UI",
+    title: "Responsive UI for Every Android Device",
     desc:
-      "Beautiful, responsive interfaces following Google Material Design 3. Modern animations, gesture controls, and accessibility-first approach.",
-    imgQuery: "android ui design",
+      "Material Design 3 brought to life with thoughtful UI, fluid motion, and a user-first approach that keeps your Android app clear, modern, and effortless to navigate.",
+    imgQuery: "android app development agency",
   },
   {
     id: "android-backend",
-    title: "Backend Integration",
+    title: "Connected, Secure, and Built to Scale",
     desc:
-      "Seamless API integration, real-time data sync, and secure authentication. Cloud connectivity and offline-first architecture.",
-    imgQuery: "api backend integration",
+      "From API integration to real-time sync, we build backend systems that help your Android app stay fast, stable, and ready for scale.",
+    imgQuery: "android app development services",
   },
   {
     id: "android-testing",
-    title: "Testing & QA",
+    title: "Testing & QA You Can Trust",
     desc:
-      "Comprehensive testing across devices, screen sizes, and OS versions. Automated testing, performance optimization, and bug-free releases.",
-    imgQuery: "software testing",
+      "We test your Android app across devices, screen sizes, and OS versions to make sure every release is stable, fast, and ready for real users.",
+    imgQuery: "android app development firms",
   },
   {
     id: "android-performance",
-    title: "Performance Optimization",
+    title: "Optimization That Users Notice",
     desc:
-      "Lightning-fast load times, minimal battery drain, and optimized memory usage. App Store optimization and high ratings.",
-    imgQuery: "performance optimization",
+      "From frame-rate smoothing to smarter resource handling, we fine-tune your Android app for speed, stability, and a noticeably better user experience.",
+    imgQuery: "android app optimization",
   },
   {
     id: "android-maintenance",
-    title: "Maintenance & Support",
+    title: "Reliable Android Maintenance & Monitoring",
     desc:
-      "Ongoing updates, feature enhancements, and critical bug fixes. Continuous monitoring and post-launch support.",
-    imgQuery: "app maintenance support",
+      "We handle updates, enhancements, and rapid bug fixes so your Android app stays stable, secure, and compatible with every new OS release.",
+    imgQuery: "android app maintenance support",
   },
 ];
 
@@ -132,24 +132,24 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Performance • Scalable • Proven
+            Android Mobile App Development Company | Axonary
           </div>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Android App Development Excellence{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
+            High-Impact Android App Development
+            <span style={{ color: COLORS.primary }}> | Axonary</span>
           </h1>
 
           <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            We build robust, high-performance Android applications that users love. From native development to optimization, we deliver production-grade apps that scale.
+            Work with an Android mobile app development company that treats every build like a product, not just a project, delivering fast, stable apps through focused Android app development services.
           </p>
 
           <div className="mt-6 flex items-center gap-4">
-            <a href="#native-android" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
+            <a href="/contact" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
+              Schedule a Consultation
             </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
+            <a href="#native-android" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
+              Explore Services
             </a>
           </div>
         </div>
@@ -169,9 +169,9 @@ const Hero: React.FC = () => {
             </div>
 
             <div className="mt-6">
-              <p className="text-sm text-gray-300">Need expert guidance? Let's discuss your Android project requirements.</p>
+              <p className="text-sm text-gray-300">Axonary is an android mobile app development company focused on building high-performance native Android apps. From concept to launch, our android app development services help you ship stable, scalable products that stand out on Google Play.</p>
               <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
+                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule a Consultation</a>
               </div>
             </div>
           </div>

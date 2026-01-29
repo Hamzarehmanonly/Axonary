@@ -14,46 +14,53 @@ const COLORS = {
 
 const services = [
   {
-    id: "flutter-native",
-    title: "Flutter Native Performance",
+    id: "flutter-app-development",
+    title: "Flutter App Development | Axonary",
     desc:
-      "Build beautiful apps with Flutter's native performance. Direct access to platform features with Dart's fast execution.",
-    imgQuery: "flutter app development",
+      "At Axonary, we deliver scalable flutter mobile app development through a dedicated team of engineers who build fast, reliable, and visually consistent apps from a single codebase.",
+    imgQuery: "flutter app development company",
   },
   {
-    id: "flutter-ui",
-    title: "Material & Cupertino Design",
+    id: "cross-platform-speed",
+    title: "Cross-Platform Speed, Built With Flutter",
     desc:
-      "Stunning Material Design and Cupertino (iOS) interfaces. Rich widget library for beautiful UX across platforms.",
-    imgQuery: "ui design flutter",
+      "Our flutter mobile app development services help startups and growing teams ship polished iOS and Android apps faster using a single, scalable codebase.",
+    imgQuery: "flutter mobile app development",
   },
   {
-    id: "flutter-hot-reload",
-    title: "Hot Reload Development",
+    id: "dedicated-flutter-developers",
+    title: "Dedicated Flutter Developers Who Feel In-House",
     desc:
-      "See changes instantly with hot reload. Faster development cycles and real-time debugging capabilities.",
-    imgQuery: "development workflow",
+      "Hire Flutter app developers from Axonary and work with a focused team that owns your product, your timelines, and your technical decisions.",
+    imgQuery: "hire flutter app developers",
   },
   {
-    id: "flutter-packages",
-    title: "Extensive Package Ecosystem",
+    id: "high-performance-apps",
+    title: "High-Performance Apps Without Native Complexity",
     desc:
-      "Access 50,000+ pub packages. Pre-built solutions for common features and integrations.",
-    imgQuery: "software development",
+      "As a flutter app development agency, we deliver smooth UI, fast performance, and consistent experiences across platforms without slowing you down.",
+    imgQuery: "flutter app development agency",
   },
   {
-    id: "flutter-responsive",
-    title: "Responsive & Adaptive UI",
+    id: "smooth-deployment",
+    title: "Smooth Deployment with Axonary",
     desc:
-      "Auto-scaling layouts for all screen sizes. Seamless experience from phones to tablets to web.",
-    imgQuery: "responsive design",
+      "Our flutter app development services cover app store deployment, version control, and rollout support so launches stay predictable and stress-free.",
+    imgQuery: "flutter android app development companies",
   },
   {
-    id: "flutter-deployment",
-    title: "One-Click Deployment",
+    id: "ongoing-maintenance",
+    title: "Ongoing Maintenance That Keeps Apps Future-Ready",
     desc:
-      "Deploy to iOS App Store and Google Play from one codebase. Streamlined CI/CD integration.",
-    imgQuery: "app deployment",
+      "From framework updates to feature enhancements, our team handles Flutter app maintenance so your product stays stable and current.",
+    imgQuery: "flutter app maintenance",
+  },
+  {
+    id: "cost-efficient-builds",
+    title: "Cost-Efficient Builds Without Cutting Corners",
+    desc:
+      "Flutter mobile app development reduces time and cost by using one codebase, making it a smart choice for startups focused on ROI.",
+    imgQuery: "flutter app development services",
   },
 ];
 
@@ -121,24 +128,23 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Fast • Beautiful • Multi-Platform
+            Flutter App Development | Scalable Cross-Platform Apps by Axonary
           </div>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Flutter App Development{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
+            Flutter App Development | Axonary
           </h1>
 
           <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Create stunning, natively compiled applications for mobile, web, and desktop. One codebase for all platforms with Google's Flutter framework.
+            At Axonary, we deliver scalable flutter mobile app development through a dedicated team of engineers who build fast, reliable, and visually consistent apps from a single codebase.
           </p>
 
           <div className="mt-6 flex items-center gap-4">
-            <a href="#flutter-native" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
+            <a href="/" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
               Explore Services
             </a>
             <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
+              Get Started
             </a>
           </div>
         </div>
@@ -158,9 +164,9 @@ const Hero: React.FC = () => {
             </div>
 
             <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to build beautiful cross-platform apps faster? Let's use Flutter.</p>
+              <p className="text-sm text-gray-300">Axonary offers Flutter app development company services to build fast, scalable, and cost-efficient apps for iOS and Android.</p>
               <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
+                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Get Started</a>
               </div>
             </div>
           </div>

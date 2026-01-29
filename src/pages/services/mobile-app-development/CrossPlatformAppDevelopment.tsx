@@ -24,46 +24,53 @@ const COLORS = {
 
 const services = [
   {
-    id: "write-once",
-    title: "Write Once, Deploy Everywhere",
+    id: "cross-platform-mobile-app-development",
+    title: "Cross Platform Mobile App Development | Axonary",
     desc:
-      "Single codebase for iOS and Android. Reduce development time and costs while maintaining native performance and UX.",
-    imgQuery: "cross platform development",
+      "At Axonary, our experienced developers deliver cross platform mobile app development that works seamlessly across iOS and Android. One codebase, reliable performance, and scalable apps built to grow with your business.",
+    imgQuery: "cross platform mobile app development company",
   },
   {
-    id: "code-sharing",
-    title: "Maximum Code Sharing",
+    id: "one-build-multiple-platforms",
+    title: "One Build. Multiple Platforms. Zero Compromise.",
     desc:
-      "Share business logic across platforms. Unique UI per platform for optimal user experience on each OS.",
-    imgQuery: "code development",
+      "At Axonary, we deliver cross platform mobile app development that keeps speed, stability, and design intact across devices. Our experienced developers focus on clean architecture, scalable code, and apps that just work everywhere.",
+    imgQuery: "best cross platform mobile app development",
   },
   {
-    id: "performance",
-    title: "Near-Native Performance",
+    id: "shared-logic-platform-perfect",
+    title: "Shared Logic. Platform-Perfect Apps.",
     desc:
-      "Access platform-specific APIs for performance-critical features. Optimized rendering and smooth animations.",
-    imgQuery: "performance optimization",
+      "As a cross platform mobile app development company, Axonary builds a unified core that powers iOS, Android, and desktop apps while preserving platform-specific UI and behavior. Our cross platform app development services reduce duplication without sacrificing performance, scalability, or user experience.",
+    imgQuery: "cross platform app development company",
   },
   {
-    id: "cost-effective",
-    title: "Cost-Effective Development",
+    id: "unified-builds",
+    title: "Unified Builds for iOS, Android, and Beyond",
     desc:
-      "Reduce development overhead with unified codebase. Faster time to market and lower maintenance costs.",
-    imgQuery: "business growth",
+      "Axonary delivers cross platform mobile app development that scales across iOS, Android, and desktop without compromise. As a cross platform app development company, we design flexible architectures that simplify updates, accelerate releases, and support long-term growth across devices and operating systems.",
+    imgQuery: "cross platform desktop app development",
   },
   {
-    id: "maintainability",
-    title: "Easy Maintenance & Updates",
+    id: "cost-effective-cross-platform",
+    title: "Cost-Effective Cross-Platform App Development",
     desc:
-      "Single update path for both platforms. Bug fixes and features deploy uniformly across iOS and Android.",
-    imgQuery: "software maintenance",
+      "Axonary provides cross platform mobile app development that lowers build and maintenance costs through a shared codebase, while still delivering stable performance and a consistent user experience across platforms.",
+    imgQuery: "cross platform mobile app development services",
   },
   {
-    id: "cross-platform-testing",
-    title: "Comprehensive Testing",
+    id: "hassle-free-maintenance",
+    title: "Hassle-Free Maintenance & Ongoing Updates",
     desc:
-      "Automated testing across platforms. Device fragmentation management and quality assurance at scale.",
-    imgQuery: "software testing",
+      "Axonary makes cross platform mobile app maintenance simple with smooth updates, quick fixes, and continuous support to keep your app stable, secure, and up to date across all platforms.",
+    imgQuery: "cross platform app maintenance",
+  },
+  {
+    id: "thorough-testing",
+    title: "Thorough Testing and Quality Assurance",
+    desc:
+      "Every cross platform mobile app goes through detailed testing and quality checks to ensure consistent performance, reliability, and a smooth experience across devices and platforms.",
+    imgQuery: "cross platform app testing",
   },
 ];
 
@@ -132,24 +139,23 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Efficient • Scalable • Cost-Effective
+            Cross Platform Mobile App Development | Axonary
           </div>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Cross-Platform App Development{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
+            Cross Platform Mobile App Development | Axonary
           </h1>
 
           <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Build iOS and Android apps from a single codebase. Reduce development costs without compromising on performance or user experience.
+            At Axonary, our experienced developers deliver cross platform mobile app development that works seamlessly across iOS and Android. One codebase, reliable performance, and scalable apps built to grow with your business.
           </p>
 
           <div className="mt-6 flex items-center gap-4">
-            <a href="#write-once" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
+            <a href="/contact" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
+              Get Started
             </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
+            <a href="/" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
+              Learn More
             </a>
           </div>
         </div>
@@ -169,9 +175,9 @@ const Hero: React.FC = () => {
             </div>
 
             <div className="mt-6">
-              <p className="text-sm text-gray-300">Want both iOS and Android? Let's build smarter with cross-platform technology.</p>
+              <p className="text-sm text-gray-300">Axonary delivers cross platform mobile app development for iOS, Android, and desktop with scalable, cost-effective builds.</p>
               <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
+                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Get Started</a>
               </div>
             </div>
           </div>

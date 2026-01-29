@@ -25,45 +25,45 @@ const COLORS = {
 const services = [
   {
     id: "native-ios",
-    title: "Native iOS Development",
+    title: "Native iOS Apps Built for Real People",
     desc:
-      "High-performance native iOS apps built with Swift. Leveraging latest iOS frameworks for premium user experience and App Store optimization.",
-    imgQuery: "ios app development",
+      "Our native iOS app development services blend Swift, modern iOS frameworks, and sharp UX to ship apps that load fast, feel fluid, and earn better engagement in the App Store.",
+    imgQuery: "ios mobile app development company",
   },
   {
     id: "ios-ui",
-    title: "SwiftUI & UIKit",
+    title: "SwiftUI & UIKit, Working In Sync",
     desc:
-      "Modern SwiftUI interfaces combined with UIKit expertise. Beautiful, responsive designs that follow Apple's Human Interface Guidelines.",
-    imgQuery: "ios ui design",
+      "We blend SwiftUI’s speed with UIKit’s fine-grain control to design iOS interfaces that feel effortless to use. From micro-interactions to complex layouts, every screen is crafted to look sharp, respond instantly, and stay true to Apple’s design language.",
+    imgQuery: "ios app development company",
   },
   {
     id: "ios-backend",
-    title: "Backend Integration",
+    title: "Backends That Power Better Apps",
     desc:
-      "Seamless API integration, real-time synchronization, and secure authentication. CloudKit and custom backend solutions.",
-    imgQuery: "api backend integration",
+      "We connect your iOS app to powerful backends with secure APIs, real-time data sync, and rock-solid authentication, so every screen loads fast, stays in sync, and just works, no matter how many users you scale to.",
+    imgQuery: "ios app development services",
   },
   {
     id: "ios-testing",
     title: "Testing & Quality Assurance",
     desc:
-      "Comprehensive testing across all iOS devices and versions. Unit testing, integration testing, and performance profiling.",
-    imgQuery: "software testing",
+      "We test your iOS app the way real users push it. From unit and integration testing to performance profiling across devices and iOS versions, we make sure every interaction is fast, stable, and ready for the App Store.",
+    imgQuery: "ios app development agency",
   },
   {
     id: "ios-performance",
-    title: "Performance Optimization",
+    title: "Performance Optimization by Axonary",
     desc:
-      "Lightning-fast app launch, smooth animations, and optimized memory usage. Battery efficiency and App Store optimization.",
-    imgQuery: "performance optimization",
+      "Slow apps lose users. Axonary steps in to optimize your iOS performance stack: launch speed, scrolling, animations, networking, and battery efficiency. The result is an app that feels instantly responsive and keeps users engaged longer.",
+    imgQuery: "ios app performance optimization",
   },
   {
     id: "ios-maintenance",
-    title: "Maintenance & Support",
+    title: "Reliable iOS App Support by Axonary",
     desc:
-      "Ongoing updates for latest iOS versions, feature enhancements, and bug fixes. Continuous monitoring and support.",
-    imgQuery: "app maintenance support",
+      "Regular updates, fast bug fixes, and continuous oversight to ensure your app stays secure, smooth, and ready for the next iOS version.",
+    imgQuery: "ios app maintenance support",
   },
 ];
 
@@ -132,16 +132,17 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Premium • Performance • Proven
+            iOS Mobile App Development Company | Axonary
           </div>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            iOS App Development Excellence{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
+            iOS Mobile App Development Company Delivering Apps That Stand Out
+            <span style={{ color: COLORS.primary }}> | Axonary</span>
           </h1>
 
           <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            We build premium iOS applications with Swift. From iPhone to iPad, we deliver exceptional apps that users love and businesses depend on.</p>
+            Get high-performance native iOS apps built for real users and real growth, with an iOS mobile app development company offering end-to-end iOS app development services.
+          </p>
 
           <div className="mt-6 flex items-center gap-4">
             <a href="#native-ios" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
@@ -168,9 +169,9 @@ const Hero: React.FC = () => {
             </div>
 
             <div className="mt-6">
-              <p className="text-sm text-gray-300">Need iOS expertise? Let's discuss your app requirements.</p>
+              <p className="text-sm text-gray-300">Axonary is an iOS mobile app development company creating fast, intuitive native apps for iPhone and iPad. We blend strategy, design, and iOS app development services to launch products users actually love.</p>
               <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
+                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Call</a>
               </div>
             </div>
           </div>
