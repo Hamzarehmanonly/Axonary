@@ -388,7 +388,21 @@ const Navbar: React.FC = () => {
                 {/* Left Side Sitemap Navigation - Shows subcategories of current mega menu */}
                 <div className="w-1/4 flex-shrink-0 bg-gray-100 p-3 px-6 py-8">
                   <div className="space-y-1">
-                    {currentMegaMenuItem.subCategories?.map((subCategory) => (
+                    {/* Special link for Mobile App Development main page when in Services menu */}
+                    {activeMegaMenu === "Services" && (
+                      <Link
+                        to="/mobile-app-developments"
+                        className="w-full text-left px-2 py-1 transition-all duration-200 font-medium text-gray-900 hover:bg-gray-200 cursor-pointer flex items-center gap-2"
+                      >
+                        Mobile App Development
+                      </Link>
+                    )}
+                    {currentMegaMenuItem.subCategories?.map((subCategory) => {
+                      // Skip duplicate Mobile App Development in Services menu
+                      if (activeMegaMenu === "Services" && subCategory.name === "Mobile App Development") {
+                        return null;
+                      }
+                      return (
                       <div
                         key={subCategory.name}
                         className="w-full text-left px-2 py-1 transition-all duration-200 font-medium text-gray-900 hover:bg-gray-200 cursor-pointer flex items-center gap-2"
@@ -472,7 +486,8 @@ const Navbar: React.FC = () => {
                         )}
                         <span className="text-sm">{subCategory.name}</span>
                       </div>
-                    ))}
+                    );
+                    })}
                   </div>
                 </div>
 
