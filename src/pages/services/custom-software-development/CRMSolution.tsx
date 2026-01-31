@@ -407,11 +407,6 @@ const CRMSolution: React.FC = () => {
 
       <FooterCTA />
 
-      <footer className="mt-20 py-10">
-        <div className="container mx-auto px-6 text-center text-sm" style={{ color: COLORS.textMuted }}>
-          © {new Date().getFullYear()} Axonary — CRM Excellence. Always.
-        </div>
-      </footer>
     </div>
   );
 };
