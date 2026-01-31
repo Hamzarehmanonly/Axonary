@@ -25,6 +25,7 @@ import FlutterAppDevelopment from './pages/services/mobile-app-development/Flutt
 import ReactNativeAppDevelopment from './pages/services/mobile-app-development/ReactNativeAppDevelopment';
 import CloudMobileAppDevelopment from './pages/services/mobile-app-development/CloudMobileAppDevelopment';
 import IOTMobileAppDevelopment from './pages/services/mobile-app-development/IOTMobileAppDevelopment';
+import MobileAppDevelopment from './pages/services/mobile-app-development/MobileAppDevelopment';
 import ERPSolution from './pages/services/custom-software-development/ERPSolution';
 import CRMSolution from './pages/services/custom-software-development/CRMSolution';
 import CMSSolution from './pages/services/custom-software-development/CMSSolution';
@@ -132,6 +133,7 @@ function App() {
         <Route path="/hire-content-writer" element={<HireContentWriter />} />
 
         {/* Mobile App Development */}
+        <Route path="/mobile-app-developments" element={<MobileAppDevelopment />} />
         <Route path="/ios-app-development" element={<IOSAppDevelopment />} />
         <Route path="/android-app-development" element={<AndroidAppDevelopment />} />
         <Route path="/cross-platform-app-development" element={<CrossPlatformAppDevelopment />} />
