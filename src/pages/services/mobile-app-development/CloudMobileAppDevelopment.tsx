@@ -15,42 +15,42 @@ const COLORS = {
 
 const services = [
   {
-    id: "cloud-backend",
+    id: "cloud-apps",
     title: "Cloud Infrastructure Setup",
     desc:
       "Launch your mobile app on a rock-solid cloud foundation. We architect scalable, secure, and high-availability backends using AWS, Azure, and Google Cloud. Enjoy auto-scaling, load balancing, and global reach for your business.",
     imgQuery: "cloud infrastructure",
   },
   {
-    id: "serverless",
+    id: "cloud-backend",
     title: "Serverless Architecture",
     desc:
       "Cut costs and boost agility with serverless solutions. We build mobile backends using AWS Lambda, Azure Functions, and Google Cloud Functions—no server management, just pure scalability and performance.",
     imgQuery: "serverless computing",
   },
   {
-    id: "real-time-sync",
+    id: "cloud-sync",
     title: "Real-time Data Sync",
     desc:
       "Deliver seamless user experiences with real-time data synchronization. We implement Firebase, AWS AppSync, and custom WebSocket solutions for instant updates and offline support across all devices.",
     imgQuery: "real-time data",
   },
   {
-    id: "cloud-security",
+    id: "cloud-testing",
     title: "Cloud Security & Compliance",
     desc:
       "Protect your users and data with enterprise-grade security. We ensure end-to-end encryption, robust authentication, and compliance with GDPR, HIPAA, and more. Your privacy-first architecture starts here.",
     imgQuery: "cloud security",
   },
   {
-    id: "cloud-analytics",
+    id: "cloud-scale",
     title: "Analytics & Monitoring",
     desc:
       "Gain actionable insights with real-time analytics, crash reporting, and performance monitoring. Understand user behavior, optimize engagement, and drive growth with data-driven decisions.",
     imgQuery: "data analytics",
   },
   {
-    id: "cloud-migration",
+    id: "cloud-maintenance",
     title: "Cloud Migration & Optimization",
     desc:
       "Modernize your legacy apps with seamless cloud migration. We handle cost optimization, performance tuning, and disaster recovery planning for a future-proof mobile presence.",
