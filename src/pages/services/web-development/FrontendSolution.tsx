@@ -1,6 +1,9 @@
 // FrontendSolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { webGovernanceFrontend } from "../../../data/webServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,47 +18,160 @@ const COLORS = {
 const services = [
   {
     id: "frontend-design",
-    title: "UI/UX Design",
+    title: "Exceptional UI/UX Design",
     desc:
-      "Create beautiful, user-centric interfaces with responsive design. From mockups to implementation.",
+      "We don't just design interfaces—we craft digital experiences that delight, inspire, and convert. Our UI/UX process fuses cutting-edge design trends with behavioral psychology, data-driven insights, and accessibility best practices. Every pixel serves a purpose. Every interaction feels intentional. Every animation delights without distraction. We design for the full spectrum of users—from visually impaired to highly engaged power users. Our design systems ensure consistency across thousands of screens while allowing flexibility for innovation. The result: interfaces so intuitive users navigate effortlessly. So beautiful users linger. So compelling users return.",
     imgQuery: "ui design",
   },
   {
     id: "frontend-react",
-    title: "React Development",
+    title: "Modern React Development",
     desc:
-      "Build interactive, component-based applications with React. Fast, efficient, and scalable.",
+      "Lightning-fast, interactive frontends powered by React and cutting-edge JavaScript frameworks. We build component-driven architectures that scale from small projects to massive applications. State management with Redux/Zustand, context optimization, code splitting, and lazy loading create snappy user experiences. Our React developers master hooks, custom hooks, error boundaries, and performance optimization. We implement real-time sync with WebSockets, seamless API integration, and offline-first capabilities. The result: user interfaces that feel responsive, fast, and alive—no matter how complex the underlying logic.",
     imgQuery: "react development",
   },
   {
-    id: "frontend-performance",
-    title: "Performance Optimization",
-    desc:
-      "Optimize loading times, bundle sizes, and rendering. Deliver lightning-fast experiences.",
-    imgQuery: "performance optimization",
-  },
-  {
-    id: "frontend-accessibility",
-    title: "Accessibility & Compliance",
-    desc:
-      "Ensure WCAG compliance and inclusive design. Accessible for all users.",
-    imgQuery: "web accessibility",
-  },
-  {
     id: "frontend-responsive",
-    title: "Responsive Design",
+    title: "Responsive & Adaptive Design",
     desc:
-      "Mobile-first design that works perfectly on all devices and screen sizes.",
+      "From 320px phones to 4K monitors, your interface adapts flawlessly. We craft responsive architectures that detect device capabilities and adapt gracefully. Mobile-first design ensures excellent experiences on small screens first. Progressive enhancement adds rich features for capable devices. Adaptive layouts shift from single-column mobile to multi-column desktop seamlessly. Touch interfaces work perfectly on phones and tablets. Hover states gracefully degrade on touch devices. The result: a single codebase that feels native on every device, delivering consistent quality from garage startup to enterprise employee.",
     imgQuery: "responsive design",
   },
   {
-    id: "frontend-testing",
-    title: "Testing & QA",
+    id: "frontend-performance",
+    title: "Performance Optimization & Web Vitals",
     desc:
-      "Comprehensive testing strategies: unit, integration, and E2E testing.",
-    imgQuery: "software testing",
+      "Speed is a feature. We optimize every aspect of frontend performance—bundle sizes, render cycles, memory usage, and network requests. Code splitting reduces initial load times. Image optimization through WebP and responsive images. Lazy loading ensures off-screen content loads when needed. Service workers enable offline functionality and instant app-like experiences. Performance budgets ensure every change maintains speed. We target Core Web Vitals perfect scores. The result: interfaces that load in milliseconds, render at 60fps, and feel responsive to every user interaction. Fast sites convert better, rank higher, and users return.",
+    imgQuery: "web performance",
+  },
+  {
+    id: "frontend-accessibility",
+    title: "Accessibility & Inclusive Design",
+    desc:
+      "No one left behind. We build WCAG 2.1 AAA-compliant interfaces that work for every user—keyboard navigation for power users without mice, screen readers that clearly describe interfaces, sufficient color contrast even for colorblind users, captions and transcripts for audio/video. Semantic HTML, ARIA labels, focus management, and skip links create accessible foundations. Automated testing catches 80% of issues. Manual testing with assistive technology catches the rest. The result: interfaces truly accessible to the full diversity of humanity—including up to 15% of users with disabilities who might otherwise be locked out.",
+    imgQuery: "web accessibility",
+  },
+  {
+    id: "frontend-testing",
+    title: "Comprehensive Testing & Quality Assurance",
+    desc:
+      "Confidence in every release. We employ multiple testing strategies—unit tests for individual functions, integration tests for component interactions, end-to-end tests that click through user journeys, visual regression testing catching unintended design changes, performance testing ensuring speed targets. Our test suites achieve 80%+ code coverage. Continuous integration runs tests automatically on every code change. The result: ships with zero surprises, bugs caught before production, and the confidence to iterate rapidly without fear.",
+    imgQuery: "testing automation",
   },
 ];
+
+// --- Testimonials Section ---
+const TESTIMONIALS = [
+  {
+    name: "Priya S.",
+    title: "E-commerce Founder",
+    quote:
+      "Our storefront UI finally matches our brand system—Axonary shipped components we could reuse and performance budgets we could defend in launch review.",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    name: "Mark T.",
+    title: "Product Lead",
+    quote:
+      "Accessibility and Core Web Vitals were in acceptance criteria, not a post-launch scramble. That alone saved us weeks of rework.",
+    avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+  },
+];
+
+const TestimonialsSection: React.FC = () => (
+  <section className="py-20 md:py-28 bg-black/60">
+    <div className="container mx-auto px-6">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+        What Our Clients Say
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        {TESTIMONIALS.map((t) => (
+          <div key={t.name} className="rounded-xl p-6 shadow-lg flex flex-col items-center bg-[#18181b]">
+            <img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full mb-4" />
+            <div className="text-lg font-semibold mb-2" style={{ color: COLORS.white }}>{t.name}</div>
+            <div className="text-xs mb-2" style={{ color: COLORS.textMuted }}>{t.title}</div>
+            <div className="italic text-center text-gray-300">"{t.quote}"</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// --- FAQ Section ---
+const FAQS = [
+  {
+    q: "How long does a typical frontend engagement take?",
+    a: "Depends on surface area, design system maturity, and integrations—many product UIs land first slices in a few weeks; larger programs run in milestones with clear acceptance per journey.",
+  },
+  {
+    q: "Can you work inside our existing design system or codebase?",
+    a: "Yes. We extend tokens, components, and patterns you already have, or help introduce a system where one is missing—without a disruptive rewrite unless you want one.",
+  },
+  {
+    q: "Do you offer post-launch support?",
+    a: "We can continue with dependency updates, performance regressions, accessibility fixes, and feature work on a cadence that matches your release train.",
+  },
+  {
+    q: "How do you handle performance and SEO for SPAs?",
+    a: "We align rendering strategy (SSR/SSG/hybrid) with what must be indexed, set performance budgets on real devices, and pair automated checks with manual passes on critical paths.",
+  },
+  {
+    q: "What makes Axonary different on frontend?",
+    a: "We treat UI as product infrastructure—contracts with APIs, measurable UX, and operability—not a skin applied after the fact.",
+  },
+];
+
+const FAQSection: React.FC = () => {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-20 md:py-28 bg-black/70">
+      <div className="container mx-auto px-6 max-w-3xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {FAQS.map((faq, idx) => (
+            <div key={faq.q} className="border-b border-gray-700 pb-4">
+              <button
+                className="w-full text-left flex justify-between items-center text-lg font-medium focus:outline-none"
+                style={{ color: COLORS.white }}
+                onClick={() => setOpen(open === idx ? null : idx)}
+              >
+                {faq.q}
+                <span className="ml-2 text-xl">{open === idx ? '-' : '+'}</span>
+              </button>
+              {open === idx && (
+                <div className="mt-2 text-gray-300 text-base">{faq.a}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Footer CTA Section ---
+const FooterConsultCTA: React.FC = () => (
+  <section className="py-16 bg-gradient-to-r from-[#5C3693]/80 to-[#472A71]/80">
+    <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: COLORS.white }}>
+        Ready to level up your frontend?
+      </h2>
+      <p className="mb-6 text-lg text-gray-200 max-w-2xl">
+        Share design system, framework, and performance targets—we will align components, testing, and API contracts.
+      </p>
+      <Link
+        to="/contact"
+        className="px-8 py-3 rounded-full font-semibold bg-white text-[#5C3693] hover:bg-gray-200 transition"
+        style={{ boxShadow: '0 2px 16px 0 rgba(92,54,147,0.10)' }}
+      >
+        Get Your Free Consultation
+      </Link>
+    </div>
+  </section>
+);
 
 const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   return (
@@ -78,24 +194,20 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
               Axonary
             </div>
             <div className="text-xs" style={{ color: COLORS.textMuted }}>
-              Frontend Solutions
+              Frontend Excellence
             </div>
           </div>
         </div>
-
         <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
           <a href="#frontend-design" className="hover:text-white">Design</a>
           <a href="#frontend-react" className="hover:text-white">React</a>
           <a href="#frontend-performance" className="hover:text-white">Performance</a>
           <a href="#frontend-accessibility" className="hover:text-white">Accessibility</a>
-          <a href="#frontend-responsive" className="hover:text-white">Responsive</a>
-          <a href="#frontend-testing" className="hover:text-white">Testing</a>
           <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
             Book a Call
           </Link>
         </nav>
       </div>
-
       <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div style={{
           height: "3px",
@@ -108,226 +220,16 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   );
 };
 
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Modern • Fast • Accessible
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Frontend Development{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Create stunning, responsive web experiences with modern frameworks and best practices.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#frontend-design" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">Frontend Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">600+</div>
-                <div className="text-xs text-gray-400">Frontend Projects</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">95%</div>
-                <div className="text-xs text-gray-400">Performance Score</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to build your frontend? Let's get started.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string }> = ({ idx, id, title, desc }) => {
   const isLeftImage = idx % 2 === 0;
-
-  const Placeholder = () => {
-    const getSVG = () => {
-      switch(idx) {
-        case 0: // UI/UX Design → CRAFT
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fe0" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="feGlow0">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#feGlow0)">
-                <rect x="120" y="110" width="160" height="160" rx="12" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.6" />
-                <circle cx="160" cy="150" r="16" fill="url(#fe0)" opacity="0.8" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="190" y="140" width="60" height="30" rx="4" fill={COLORS.secondary} opacity="0.5" stroke={COLORS.primary} strokeWidth="1" />
-              </g>
-              <path d="M 135 220 L 265 220" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">CRAFT</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">UI/UX Design</text>
-            </svg>
-          );
-        case 1: // React Development → BUILD
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fe1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="feGlow1">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#feGlow1)">
-                <circle cx="200" cy="170" r="28" fill="url(#fe1)" opacity="0.2" stroke={COLORS.primary} strokeWidth="2.5" />
-                <circle cx="140" cy="140" r="20" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="260" cy="140" r="20" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="140" cy="220" r="20" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="260" cy="220" r="20" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <line x1="170" y1="152" x2="230" y2="152" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-                <line x1="170" y1="188" x2="230" y2="188" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">BUILD</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">React</text>
-            </svg>
-          );
-        case 2: // Performance Optimization → ACCELERATE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fe2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="feGlow2">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#feGlow2)">
-                <path d="M 110 200 L 160 150 L 210 180 L 260 130 L 290 170" fill="none" stroke="url(#fe2)" strokeWidth="3" opacity="0.7" strokeLinecap="round" />
-                <circle cx="160" cy="150" r="6" fill={COLORS.primary} opacity="0.8" />
-                <circle cx="210" cy="180" r="6" fill={COLORS.primary} opacity="0.8" />
-                <circle cx="260" cy="130" r="6" fill={COLORS.primary} opacity="0.8" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">ACCELERATE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Performance</text>
-            </svg>
-          );
-        case 3: // Accessibility & Compliance → INCLUDE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fe3" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="feGlow3">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#feGlow3)">
-                <circle cx="200" cy="150" r="24" fill="url(#fe3)" opacity="0.2" stroke={COLORS.primary} strokeWidth="2" />
-                <circle cx="200" cy="150" r="12" fill={COLORS.primary} opacity="0.6" />
-                <circle cx="140" cy="220" r="18" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="200" cy="240" r="18" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="260" cy="220" r="18" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1.5" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">INCLUDE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Accessibility</text>
-            </svg>
-          );
-        case 4: // Responsive Design → ADAPT
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fe4" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="feGlow4">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#feGlow4)">
-                <rect x="130" y="110" width="80" height="140" rx="6" fill="url(#fe4)" opacity="0.2" stroke={COLORS.primary} strokeWidth="2" />
-                <line x1="135" y1="125" x2="205" y2="125" stroke={COLORS.primary} strokeWidth="1" opacity="0.3" />
-                <line x1="135" y1="140" x2="205" y2="140" stroke={COLORS.primary} strokeWidth="1" opacity="0.3" />
-                <rect x="190" y="110" width="60" height="140" rx="6" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.5" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">ADAPT</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Responsive</text>
-            </svg>
-          );
-        case 5: // Testing & QA → VALIDATE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fe5" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="feGlow5">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#feGlow5)">
-                <rect x="130" y="120" width="140" height="120" rx="8" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.5" />
-                <circle cx="165" cy="160" r="14" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <circle cx="200" cy="160" r="14" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <circle cx="235" cy="160" r="14" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-              </g>
-              <path d="M 165 158 L 169 162 L 177 154" fill="none" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.7" strokeLinecap="round" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">VALIDATE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Testing</text>
-            </svg>
-          );
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <div className="rounded-2xl shadow-lg w-full overflow-hidden" style={{ background: COLORS.card, aspectRatio: '1', maxWidth: '360px' }}>
-        {getSVG()}
-      </div>
-    );
-  };
-
+  const Placeholder: React.FC = () => (
+    <div
+      className="rounded-2xl shadow-lg w-full overflow-hidden flex items-center justify-center text-sm font-medium"
+      style={{ background: COLORS.card, aspectRatio: "1", maxWidth: "360px", color: COLORS.textMuted }}
+    >
+      {title.split(" ")[0]}
+    </div>
+  );
   return (
     <section id={id} className="py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -337,19 +239,15 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
-
               <div className="md:col-span-6 flex items-center">
                 <div className="max-w-xl w-full">
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -368,13 +266,10 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -385,7 +280,6 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   </div>
                 </div>
               </div>
-
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
@@ -396,6 +290,9 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
     </section>
   );
 };
+
+
+
 
 const FooterCTA: React.FC = () => {
   return (
@@ -442,13 +339,18 @@ const FrontendSolution: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={webGovernanceFrontend.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={webGovernanceFrontend} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <TestimonialsSection />
+        <FAQSection />
+        <FooterConsultCTA />
 
         <div style={{ height: 160 }} />
       </main>

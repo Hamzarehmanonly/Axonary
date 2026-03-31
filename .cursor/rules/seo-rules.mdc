@@ -1,0 +1,179 @@
+---
+description: Axonary SEO — intent, keywords, on-page, NLP, linking, meta, schema, URL registry
+alwaysApply: false
+globs: "**/*.{tsx,ts,jsx,js,html,md}"
+---
+
+# Axonary — SEO rules
+
+**Domain:** https://axonary.com  
+**Maintainer:** Update the registry and sections when routes or primaries change.  
+**QA before publish:** See `governance.mdc` (mandatory checklist).
+
+---
+
+## A. SEO intent architecture
+
+- **TOFU:** Awareness / education — problems and concepts; low product specificity.  
+- **MOFU:** Consideration — compares approaches and providers; solution-aware.  
+- **BOFU:** Decision — ready to engage, hire, or buy; high commercial intent.
+
+**Rule:** One URL = one intent (strict). Do not mix TOFU education with BOFU hire/sale CTAs on the same URL without splitting.
+
+**Blog (`/blog/:slug`):** Set intent per post in the brief. Default new posts to **TOFU** unless tied to a BOFU offer.
+
+---
+
+## B. Keyword ownership
+
+- One **primary** keyword per URL — H1, title, first ~100 words.  
+- **No cannibalization** — one owner per primary; use canonical, 301, merge, or differentiate secondaries only in body.  
+- Secondary keywords: unlimited in body/H2s/anchors; never replace primary in H1/title.
+
+---
+
+## C. On-page structure
+
+- **H1:** Exact-match **primary keyword** (registry below). No brand-only H1 on indexable money pages.  
+- **H2 topics (required):** Problem, Solution, Features, Benefits, Use Cases, CTA — headings may vary if intent is obvious.  
+- **Length:** Service-style pages **800–1200** words; blogs **1200–1800** (main copy only). Legal/utility: as needed.  
+- **Deliverable:** State word count in PR/changelog for service and blog content.
+
+---
+
+## D. NLP / semantic layer
+
+- **15–25** named entities per page; list in a **Semantic entities** block in draft or PR. Minimum **15+** for gate.  
+- CRM/sales pages: include CRM semantics (pipeline, lead, opportunity, account, workflow automation, integrations, etc.) where accurate.
+
+---
+
+## E. Internal linking
+
+- **Home** → every major service cluster within **two clicks**.  
+- **Service pages** ↔ related services + parent hub (`/services`, etc.).  
+- **Blogs** → services (conversion anchors); **blogs** ↔ blogs (clusters).  
+- **Anchors (sitewide target):** ~20% exact / ~50% partial / ~30% branded.
+
+---
+
+## F. Meta
+
+- **Title:** 55–60 characters; primary keyword + intent signal.  
+- **Description:** 140–155 characters; benefit + CTA.
+
+---
+
+## G. Schema (JSON-LD)
+
+| Page type | Type |
+|-----------|------|
+| Homepage | `Organization` (+ `WebSite` if used; fix broken `SearchAction` when implementing) |
+| Service / hire / industry / tech | `Service` (per Google guidelines) |
+| Blog posts | `Article` |
+| FAQ blocks | `FAQPage` |
+
+Keep `@id` and `url` aligned with canonical URLs.
+
+---
+
+## URL → intent → primary keyword registry
+
+One row per route. Primaries are **unique** across static routes. Blog posts: assign in CMS/brief (no duplicate primaries across live posts). Rows marked `[confirm]` need stakeholder sign-off.
+
+| Path | Intent | Primary keyword (exact H1 target) |
+|------|--------|-----------------------------------|
+| `/` | MOFU | digital marketing and web development agency |
+| `/about` | MOFU | about Axonary team and company |
+| `/work` | MOFU | Axonary client work and portfolio |
+| `/solutions` | MOFU | business digital solutions overview |
+| `/approach` | MOFU | Axonary project delivery approach |
+| `/blog` | TOFU | technology and marketing insights blog |
+| `/blog/:slug` | (per post) | (one primary per post) |
+| `/contact` | BOFU | contact Axonary for project quote |
+| `/support` | MOFU | Axonary customer support help |
+| `/services` | MOFU | Axonary services catalog overview |
+| `/staff-augmentation` | BOFU | dedicated developer staff augmentation |
+| `/hire-android-app-developer` | BOFU | hire dedicated Android app developers |
+| `/hire-ios-app-developer` | BOFU | hire dedicated iOS app developers |
+| `/hire-nodejs-developer` | BOFU | hire Node.js backend developers |
+| `/hire-flutter-developer` | BOFU | hire Flutter cross-platform developers |
+| `/hire-java-developer` | BOFU | hire enterprise Java developers |
+| `/hire-website-developer` | BOFU | hire full stack website developers |
+| `/hire-smm-expert` | BOFU | hire social media marketing expert |
+| `/hire-seo-expert` | BOFU | hire SEO specialist for your team |
+| `/hire-graphic-designer` | BOFU | hire graphic designer for brand assets |
+| `/hire-ppc-expert` | BOFU | hire PPC and paid media expert |
+| `/hire-custom-software-developer` | BOFU | hire custom software engineers |
+| `/hire-content-writer` | BOFU | hire content writer for marketing |
+| `/mobile-app-developments` | MOFU | mobile application development services `[confirm URL slug]` |
+| `/ios-app-development` | MOFU | iOS mobile app development services |
+| `/android-app-development` | MOFU | Android mobile app development services |
+| `/cross-platform-app-development` | MOFU | cross-platform mobile app development |
+| `/flutter-app-development` | MOFU | Flutter mobile app development company |
+| `/react-native-app-development` | MOFU | React Native app development services |
+| `/cloud-mobile-app-development` | MOFU | cloud native mobile app development |
+| `/iot-mobile-app-development` | MOFU | IoT mobile application development |
+| `/erp-solution` | MOFU | custom ERP software development services |
+| `/crm-solution` | MOFU | custom CRM development and integration |
+| `/cms-solution` | MOFU | headless and enterprise CMS development |
+| `/hrm-solution` | MOFU | HRM and HR software development services |
+| `/ecommerce-website-development` | MOFU | ecommerce website development services |
+| `/web-portals` | MOFU | enterprise web portal development |
+| `/frontend-development` | MOFU | frontend web development services |
+| `/backend-development` | MOFU | backend API development services |
+| `/fullstack-development` | MOFU | full stack web development services |
+| `/low-code-development` | MOFU | low code application development services |
+| `/pwa-solution` | MOFU | progressive web app development services |
+| `/generative-ai` | MOFU | generative AI solutions for business |
+| `/natural-language-processing` | MOFU | natural language processing development services |
+| `/ai-agent-development` | MOFU | AI agent and automation development |
+| `/cloud-application-development` | MOFU | cloud application development services |
+| `/cloud-migration` | MOFU | cloud migration consulting and services |
+| `/cloud-support-maintenance` | MOFU | cloud support and maintenance services |
+| `/seo-services` | MOFU | managed SEO services for growth |
+| `/ppc-services` | MOFU | PPC management and paid advertising services |
+| `/social-media-marketing` | MOFU | social media marketing management services |
+| `/search-engine-marketing` | MOFU | search engine marketing SEM services |
+| `/search-engine-optimization` | MOFU | technical search engine optimization services |
+| `/search-intent-optimization` | MOFU | search intent optimization for SEO |
+| `/content-marketing` | MOFU | B2B content marketing strategy services |
+| `/seo-ai` | MOFU | AI powered SEO tools and services |
+| `/industries/automotive` | MOFU | automotive software and digital solutions |
+| `/industries/healthcare` | MOFU | healthcare app and compliance solutions |
+| `/industries/on-demand` | MOFU | on demand app development services |
+| `/industries/education` | MOFU | education technology software solutions |
+| `/industries/music` | MOFU | music and entertainment app development |
+| `/industries/ecommerce` | MOFU | ecommerce industry digital solutions |
+| `/industries/real-estate` | MOFU | real estate technology software solutions |
+| `/industries/saas` | MOFU | SaaS product development services |
+| `/industries/fintech` | MOFU | fintech application development services |
+| `/industries/logistics` | MOFU | logistics and supply chain software |
+| `/industries/retail` | MOFU | retail digital transformation services |
+| `/services/languages/dotnet` | MOFU | dotnet software development services |
+| `/services/languages/html5` | MOFU | HTML5 front end development services |
+| `/services/languages/java` | MOFU | Java enterprise development services |
+| `/services/languages/nodejs` | MOFU | Node.js development services company |
+| `/services/languages/php` | MOFU | PHP web application development |
+| `/services/languages/python` | MOFU | Python software development services |
+| `/services/platforms/azure` | MOFU | Microsoft Azure cloud services consulting |
+| `/services/platforms/gcp` | MOFU | Google Cloud Platform consulting services |
+| `/services/platforms/oracle` | MOFU | Oracle cloud and database solutions |
+| `/services/platforms/sap` | MOFU | SAP integration and consulting services |
+| `/services/platforms/meta` | MOFU | Meta ads and social platform marketing |
+| `/services/platforms/google` | MOFU | Google Ads and Marketing Platform services |
+| `/services/platforms/bing` | MOFU | Microsoft Bing ads management services |
+| `/privacypolicy` | — | (legal; no SEO primary) |
+| `/termsconditions` | — | (legal; no SEO primary) |
+| `/cookiepolicy` | — | (legal; no SEO primary) |
+| `/sitemap` | — | (utility; no SEO primary) |
+| `/casestudies` | MOFU | Axonary case studies and success stories |
+
+---
+
+## Pre-output validation (SEO)
+
+1. Load **intent** and **primary keyword** from this registry (or propose additions for new URLs).  
+2. Outline H2s: Problem, Solution, Features, Benefits, Use Cases, CTA.  
+3. Run **`governance.mdc` SEO QA checklist** before calling content final.  
+4. Confirm **no primary keyword collision** with another registry row.

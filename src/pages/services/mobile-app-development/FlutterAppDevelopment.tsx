@@ -2,6 +2,9 @@
 // FlutterAppDevelopment.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { mobileGovernanceFlutter } from "../../../data/mobileServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -228,84 +231,7 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
   </header>
 );
 
-const Hero: React.FC = () => (
-  <section
-    id="hero"
-    className="min-h-[72vh] flex items-center"
-    style={{ background: COLORS.bg, color: COLORS.white }}
-  >
-    <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-      <div className="md:col-span-7">
-        <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-          Flutter App Development Company | Axonary
-        </div>
-        <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-          Flutter App Development That Wins Markets
-          <span style={{ color: COLORS.primary }}> | Axonary</span>
-        </h1>
-        <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-          Partner with Axonary for Flutter app development that delivers speed, beauty, and business results. Our award-winning team crafts cross-platform apps that look and feel native, launch faster, and scale with your growth. From MVP to enterprise, we help you dominate the App Store and Google Play.
-        </p>
-        <ul className="mt-4 text-gray-300 list-disc pl-6">
-          <li>One codebase, two platforms, zero compromise</li>
-          <li>Pixel-perfect UI/UX and native performance</li>
-          <li>Agile delivery, transparent process, and ongoing support</li>
-        </ul>
-        <div className="mt-6 flex items-center gap-4">
-          <a href="#flutter-app-development" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-            Explore Services
-          </a>
-          <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-            Request Consultation
-          </a>
-        </div>
-      </div>
-      <div className="md:col-span-5">
-        <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-          <h5 className="text-sm text-gray-400">Flutter Success</h5>
-          <div className="mt-4 grid grid-cols-2 gap-4">
-            <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-              <div className="text-2xl font-bold">90+</div>
-              <div className="text-xs text-gray-400">Flutter Apps</div>
-            </div>
-            <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-              <div className="text-2xl font-bold">50%</div>
-              <div className="text-xs text-gray-400">Faster Dev</div>
-            </div>
-          </div>
-          <div className="mt-6">
-            <p className="text-sm text-gray-300">Axonary is a Flutter app development company trusted by startups and enterprises worldwide. Let’s build your next big thing.</p>
-            <div className="mt-4">
-              <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Get Started</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const UniqueSellingPoints: React.FC = () => (
-  <section className="mt-12">
-    <div className="container mx-auto px-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-8" style={{ color: COLORS.primary }}>
-        Why Choose Axonary for Flutter App Development?
-      </h2>
-      <ul className="list-disc pl-6 text-lg text-gray-300 space-y-2">
-        <li>Google-certified Flutter experts and UI/UX designers</li>
-        <li>End-to-end development: strategy, design, engineering, and support</li>
-        <li>Proven track record with 90+ successful Flutter apps</li>
-        <li>Transparent process, agile delivery, and measurable results</li>
-        <li>Dedicated support and continuous optimization</li>
-      </ul>
-    </div>
-  </section>
-);
-
-
-
-
-const MobilePhoneMockup: React.FC<{ image: string; title: string; id: string }> = ({ image, title, id }) => {
+const MobilePhoneMockup: React.FC<{ id: string }> = ({ id }) => {
   function renderUniqueScreen() {
     switch (id) {
       case "flutter-app-development":
@@ -587,9 +513,8 @@ const MobilePhoneMockup: React.FC<{ image: string; title: string; id: string }> 
   );
 };
 
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; imgQuery: string; }> = ({ idx, id, title, desc, imgQuery }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
   const isLeftImage = idx % 2 === 0;
-  const image = unsplashSrc(imgQuery);
   return (
     <section id={id} className="py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -597,7 +522,7 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
           {isLeftImage ? (
             <>
               <div className="md:col-span-6 flex items-center justify-center">
-                <MobilePhoneMockup image={image} title={title} id={id} />
+                <MobilePhoneMockup id={id} />
               </div>
               <div className="md:col-span-6 flex flex-col items-center justify-center">
                 <div className="max-w-xl w-full">
@@ -641,7 +566,7 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                 </div>
               </div>
               <div className="md:col-span-6 flex items-center justify-center">
-                <MobilePhoneMockup image={image} title={title} id={id} />
+                <MobilePhoneMockup id={id} />
               </div>
             </>
           )}
@@ -689,11 +614,11 @@ const FlutterAppDevelopment: React.FC = () => {
     <div style={{ background: COLORS.bg, color: COLORS.white, minHeight: "100vh" }}>
       <TopNav progress={progress} />
       <main className="pt-20">
-        <Hero />
-        <UniqueSellingPoints />
+        <MobileServiceHero colors={COLORS} hero={mobileGovernanceFlutter.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={mobileGovernanceFlutter} />
         <div className="mt-8">
           {services.map((s, idx) => (
-            <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} imgQuery={s.imgQuery} />
+            <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
         <Testimonials />
@@ -701,10 +626,10 @@ const FlutterAppDevelopment: React.FC = () => {
         <section className="mt-12">
           <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: '-1px' }}>
-              Ready to Build Your Flutter App?
+              Ready to ship Flutter on iOS and Android?
             </h2>
             <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Unlock your business potential with a custom Flutter app engineered for performance, scale, and user delight. Let Axonary turn your vision into a top-rated app.
+              Share UI goals, plugin needs, and timeline—we will outline discovery, build phases, testing on both platforms, and a store launch plan.
             </p>
             <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
               Get Your Free Consultation

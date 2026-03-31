@@ -26,10 +26,12 @@ import ReactNativeAppDevelopment from './pages/services/mobile-app-development/R
 import CloudMobileAppDevelopment from './pages/services/mobile-app-development/CloudMobileAppDevelopment';
 import IOTMobileAppDevelopment from './pages/services/mobile-app-development/IOTMobileAppDevelopment';
 import MobileAppDevelopment from './pages/services/mobile-app-development/MobileAppDevelopment';
+import CustomSoftwareDevelopment from './pages/services/custom-software-development/CustomSoftwareDevelopment';
 import ERPSolution from './pages/services/custom-software-development/ERPSolution';
 import CRMSolution from './pages/services/custom-software-development/CRMSolution';
 import CMSSolution from './pages/services/custom-software-development/CMSSolution';
 import HRMSolution from './pages/services/custom-software-development/HRMSolution';
+import WebDevelopment from './pages/services/web-development/WebDevelopment';
 import EcommerceSolution from './pages/services/web-development/EcommerceSolution';
 import WebPortalsSolution from './pages/services/web-development/WebPortalsSolution';
 import FrontendSolution from './pages/services/web-development/FrontendSolution';
@@ -37,9 +39,11 @@ import BackendSolution from './pages/services/web-development/BackendSolution';
 import FullstackSolution from './pages/services/web-development/FullstackSolution';
 import LowCodeSolution from './pages/services/web-development/LowCodeSolution';
 import PWASolution from './pages/services/web-development/PWASolution';
+import ArtificialIntelligence from './pages/services/artificial-intelligence/ArtificialIntelligence';
 import GenerativeAISolution from './pages/services/artificial-intelligence/GenerativeAISolution';
 import NLPSolution from './pages/services/artificial-intelligence/NLPSolution';
 import AIAgentSolution from './pages/services/artificial-intelligence/AIAgentSolution';
+import CloudServices from './pages/services/cloud-services/CloudServices';
 import CloudApplicationDevelopment from './pages/services/cloud-services/CloudApplicationDevelopment';
 import CloudMigration from './pages/services/cloud-services/CloudMigration';
 import CloudSupportMaintenance from './pages/services/cloud-services/CloudSupportMaintenance';
@@ -143,12 +147,14 @@ function App() {
         <Route path="/iot-mobile-app-development" element={<IOTMobileAppDevelopment />} />
 
         {/* Custom Software Development */}
+        <Route path="/custom-software-development" element={<CustomSoftwareDevelopment />} />
         <Route path="/erp-solution" element={<ERPSolution />} />
         <Route path="/crm-solution" element={<CRMSolution />} />
         <Route path="/cms-solution" element={<CMSSolution />} />
         <Route path="/hrm-solution" element={<HRMSolution />} />
 
         {/* Web Development */}
+        <Route path="/web-development" element={<WebDevelopment />} />
         <Route path="/ecommerce-website-development" element={<EcommerceSolution />} />
         <Route path="/web-portals" element={<WebPortalsSolution />} />
         <Route path="/frontend-development" element={<FrontendSolution />} />
@@ -163,6 +169,7 @@ function App() {
         <Route path="/ai-agent-development" element={<AIAgentSolution />} />
 
         {/* Cloud Services */}
+        <Route path="/cloud-services" element={<CloudServices />} />
         <Route path="/cloud-application-development" element={<CloudApplicationDevelopment />} />
         <Route path="/cloud-migration" element={<CloudMigration />} />
         <Route path="/cloud-support-maintenance" element={<CloudSupportMaintenance />} />

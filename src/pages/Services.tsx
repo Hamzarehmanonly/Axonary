@@ -64,7 +64,7 @@ const Services: React.FC = () => {
         "Full-Stack Development",
         "Progressive Web Apps"
       ],
-      link: "/ecommerce-website-development"
+      link: "/web-development"
     },
     {
       id: "custom-software-development",
@@ -78,7 +78,7 @@ const Services: React.FC = () => {
         "Business Process Automation",
         "Legacy System Modernization"
       ],
-      link: "/erp-solution"
+      link: "/custom-software-development"
     },
     {
       id: "cloud-services",
@@ -92,7 +92,7 @@ const Services: React.FC = () => {
         "Database Management",
         "Disaster Recovery"
       ],
-      link: "/cloud-application-development"
+      link: "/cloud-services"
     },
     {
       id: "artificial-intelligence",
@@ -106,7 +106,7 @@ const Services: React.FC = () => {
         "Computer Vision",
         "Model Training & Optimization"
       ],
-      link: "/generative-ai"
+      link: "/artificial-intelligence"
     },
     {
       id: "design-strategy",

@@ -1,6 +1,9 @@
 // PWASolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { webGovernancePWA } from "../../../data/webServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,47 +18,160 @@ const COLORS = {
 const services = [
   {
     id: "pwa-architecture",
-    title: "PWA Architecture",
+    title: "Progressive Web App Architecture",
     desc:
-      "Design progressive web apps with offline capabilities, fast loading, and app-like experience.",
+      "We architect next-gen progressive web apps that blur the line between web and native. Our PWAs are engineered for speed, reliability, and a seamless, app-like experience—online or off. Service workers enable offline functionality. Smart caching reduces network requests. Push notifications engage users even when the app is closed. Home screen installation creates the appearance of native apps. The result: applications that feel native, install instantly without app stores, and work reliably even on spotty internet connections.",
     imgQuery: "progressive web app",
   },
   {
-    id: "pwa-development",
-    title: "PWA Development",
-    desc:
-      "Build PWAs using modern web technologies. Works on all devices and browsers.",
-    imgQuery: "web app development",
-  },
-  {
     id: "pwa-offline",
-    title: "Offline First",
+    title: "Offline Functionality & Sync",
     desc:
-      "Service workers and caching strategies for seamless offline functionality.",
-    imgQuery: "offline application",
-  },
-  {
-    id: "pwa-notifications",
-    title: "Push Notifications",
-    desc:
-      "Implement push notifications and real-time updates for user engagement.",
-    imgQuery: "push notifications",
-  },
-  {
-    id: "pwa-installation",
-    title: "App Installation",
-    desc:
-      "Enable users to install your PWA as a native app on their home screen.",
-    imgQuery: "app installation",
+      "Always available, even without internet. We implement offline-first architectures that cache data locally. Users continue working offline—composing emails, editing documents, adding items to lists. When connectivity returns, changes sync automatically. Conflict resolution handles edits made offline and online. The result: applications that never feel broken, adapting gracefully to connectivity rather than failing without it.",
+    imgQuery: "offline first",
   },
   {
     id: "pwa-performance",
-    title: "Performance & Analytics",
+    title: "Lightning-Fast Loading & Performance",
     desc:
-      "Optimize performance, monitor analytics, and track user engagement metrics.",
-    imgQuery: "performance analytics",
+      "Every millisecond matters. We optimize PWAs ruthlessly—code splitting reduces initial load to under 3 seconds on 3G. Service workers cache assets for instant subsequent loads. Image optimization serves perfectly-sized images to each device. Lazy loading enables infinite scrolling without slowdowns. Performance budgets prevent regression. The result: applications that load faster than competitors while consuming less bandwidth, delighting users with speed.",
+    imgQuery: "web performance",
+  },
+  {
+    id: "pwa-installation",
+    title: "Seamless Installation & App Shelf",
+    desc:
+      "Users install your app like native apps—no app store required. Install prompts appear naturally when users are engaged. Installable manifests customize icons, splash screens, and themes. Home screen shortcuts simplify access. The result: better user retention as your app gets prime real estate on users' home screens, creating daily habits.",
+    imgQuery: "app installation",
+  },
+  {
+    id: "pwa-engagement",
+    title: "Push Notifications & Engagement",
+    desc:
+      "Stay connected even when the app is closed. We implement web push notifications that engage users at the right moment—sales updates, order statuses, friend requests, personalized recommendations. Notifications adapt based on user preferences and timezone. Click-through rates far exceed email. The result: a direct channel to users' attention, consistently driving engagement and revenue.",
+    imgQuery: "push notifications",
+  },
+  {
+    id: "pwa-security",
+    title: "Security & Privacy by Default",
+    desc:
+      "HTTPS-only delivery ensures communications can't be intercepted. Service worker security prevents man-in-the-middle attacks. Secure authentication protects user accounts. Privacy-respecting tracking respects user choice. The result: PWAs so secure and private users trust them with sensitive data and information.",
+    imgQuery: "cybersecurity",
   },
 ];
+
+// --- Testimonials Section ---
+const TESTIMONIALS = [
+  {
+    name: "Priya S.",
+    title: "E-commerce Founder",
+    quote:
+      "Install prompts and offline behavior were spelled out in UX terms we could test—users understood when content was stale versus broken.",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    name: "Mark T.",
+    title: "Product Lead",
+    quote:
+      "Push and caching policies were not magic defaults; Axonary tied them to our content freshness rules.",
+    avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+  },
+];
+
+const TestimonialsSection: React.FC = () => (
+  <section className="py-20 md:py-28 bg-black/60">
+    <div className="container mx-auto px-6">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+        What Our Clients Say
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        {TESTIMONIALS.map((t) => (
+          <div key={t.name} className="rounded-xl p-6 shadow-lg flex flex-col items-center bg-[#18181b]">
+            <img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full mb-4" />
+            <div className="text-lg font-semibold mb-2" style={{ color: COLORS.white }}>{t.name}</div>
+            <div className="text-xs mb-2" style={{ color: COLORS.textMuted }}>{t.title}</div>
+            <div className="italic text-center text-gray-300">"{t.quote}"</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// --- FAQ Section ---
+const FAQS = [
+  {
+    q: "How is a PWA different from a native app for our users?",
+    a: "PWAs install from the browser, update via the web, and reuse your existing web stack—great when store friction or dual codebases are the problem; native still wins for some hardware APIs.",
+  },
+  {
+    q: "How do you handle offline and cache invalidation?",
+    a: "We define cache names, precache vs runtime strategies, and user-visible freshness—so offline mode is predictable, not silently wrong.",
+  },
+  {
+    q: "Do you offer post-launch support?",
+    a: "Yes—service worker updates, push certificate rotation, and compatibility as browsers evolve.",
+  },
+  {
+    q: "Will push notifications work everywhere?",
+    a: "We map platform support (especially iOS constraints), permission UX, and fallback comms so you do not promise alerts you cannot deliver.",
+  },
+  {
+    q: "What makes Axonary different on PWAs?",
+    a: "We treat the service worker as production infrastructure—versioned, tested, and observable—not a single copied recipe.",
+  },
+];
+
+const FAQSection: React.FC = () => {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-20 md:py-28 bg-black/70">
+      <div className="container mx-auto px-6 max-w-3xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {FAQS.map((faq, idx) => (
+            <div key={faq.q} className="border-b border-gray-700 pb-4">
+              <button
+                className="w-full text-left flex justify-between items-center text-lg font-medium focus:outline-none"
+                style={{ color: COLORS.white }}
+                onClick={() => setOpen(open === idx ? null : idx)}
+              >
+                {faq.q}
+                <span className="ml-2 text-xl">{open === idx ? '-' : '+'}</span>
+              </button>
+              {open === idx && (
+                <div className="mt-2 text-gray-300 text-base">{faq.a}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Footer CTA Section ---
+const FooterConsultCTA: React.FC = () => (
+  <section className="py-16 bg-gradient-to-r from-[#5C3693]/80 to-[#472A71]/80">
+    <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: COLORS.white }}>
+        Ready to plan installable web and offline behavior?
+      </h2>
+      <p className="mb-6 text-lg text-gray-200 max-w-2xl">
+        Share caching, freshness, and notification goals—we will design service worker strategy and cross-browser validation.
+      </p>
+      <Link
+        to="/contact"
+        className="px-8 py-3 rounded-full font-semibold bg-white text-[#5C3693] hover:bg-gray-200 transition"
+        style={{ boxShadow: '0 2px 16px 0 rgba(92,54,147,0.10)' }}
+      >
+        Get Your Free Consultation
+      </Link>
+    </div>
+  </section>
+);
 
 const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   return (
@@ -78,24 +194,20 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
               Axonary
             </div>
             <div className="text-xs" style={{ color: COLORS.textMuted }}>
-              PWA Solutions
+              PWA Excellence
             </div>
           </div>
         </div>
-
         <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
           <a href="#pwa-architecture" className="hover:text-white">Architecture</a>
-          <a href="#pwa-development" className="hover:text-white">Development</a>
           <a href="#pwa-offline" className="hover:text-white">Offline</a>
-          <a href="#pwa-notifications" className="hover:text-white">Notifications</a>
-          <a href="#pwa-installation" className="hover:text-white">Installation</a>
           <a href="#pwa-performance" className="hover:text-white">Performance</a>
+          <a href="#pwa-engagement" className="hover:text-white">Engagement</a>
           <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
             Book a Call
           </Link>
         </nav>
       </div>
-
       <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div style={{
           height: "3px",
@@ -108,200 +220,16 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   );
 };
 
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            App-Like • Reliable • Engaging
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Progressive Web Apps{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Build powerful progressive web applications that work offline, load instantly, and feel like native apps.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#pwa-architecture" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">PWA Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">250+</div>
-                <div className="text-xs text-gray-400">PWA Applications</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">4.8/5</div>
-                <div className="text-xs text-gray-400">Avg. User Rating</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to go progressive? Let's get started.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string }> = ({ idx, id, title, desc }) => {
   const isLeftImage = idx % 2 === 0;
-
-  const Placeholder = () => {
-    const getSVG = () => {
-      switch(idx) {
-        case 0:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="pwa0" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="pwaGlow0"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#pwaGlow0)">
-                <rect x="120" y="110" width="160" height="160" rx="12" fill="url(#pwa0)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2.5" />
-                <path d="M 165 140 L 200 115 L 235 140 L 235 210 Q 200 235 165 210 Z" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1.5" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">ARCHITECT</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Architecture</text>
-            </svg>
-          );
-        case 1:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="pwa1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="pwaGlow1"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#pwaGlow1)">
-                <rect x="150" y="100" width="100" height="160" rx="8" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.6" />
-                <rect x="160" y="115" width="80" height="100" fill="url(#pwa1)" opacity="0.4" stroke={COLORS.primary} strokeWidth="1" />
-                <circle cx="200" cy="230" r="6" fill={COLORS.primary} opacity="0.6" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">BUILD</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Development</text>
-            </svg>
-          );
-        case 2:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="pwa2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="pwaGlow2"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#pwaGlow2)">
-                <circle cx="200" cy="170" r="40" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.4" />
-                <circle cx="200" cy="170" r="28" fill="url(#pwa2)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2.5" />
-                <circle cx="200" cy="170" r="12" fill={COLORS.primary} opacity="0.8" />
-              </g>
-              <path d="M 240 130 L 260 110 M 240 210 L 260 230 M 160 130 L 140 110 M 160 210 L 140 230" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">OFFLINE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Offline First</text>
-            </svg>
-          );
-        case 3:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="pwa3" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="pwaGlow3"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#pwaGlow3)">
-                <circle cx="200" cy="150" r="32" fill="url(#pwa3)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2.5" />
-                <path d="M 200 130 L 210 145 L 190 145 Z" fill={COLORS.primary} opacity="0.8" />
-                <circle cx="200" cy="150" r="6" fill={COLORS.primary} opacity="0.6" />
-              </g>
-              <circle cx="160" cy="220" r="16" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1.5" />
-              <circle cx="240" cy="220" r="16" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1.5" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">NOTIFY</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Notifications</text>
-            </svg>
-          );
-        case 4:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="pwa4" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="pwaGlow4"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#pwaGlow4)">
-                <rect x="145" y="125" width="110" height="110" rx="20" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.6" />
-                <rect x="160" y="145" width="80" height="80" fill="url(#pwa4)" opacity="0.4" stroke={COLORS.primary} strokeWidth="1" rx="12" />
-              </g>
-              <path d="M 175 170 L 180 175 L 190 165" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.7" strokeLinecap="round" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">INSTALL</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Installation</text>
-            </svg>
-          );
-        case 5:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="pwa5" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="pwaGlow5"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#pwaGlow5)">
-                <path d="M 130 200 L 160 150 L 190 180 L 240 130 L 270 170" fill="none" stroke="url(#pwa5)" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
-                <circle cx="160" cy="150" r="5" fill={COLORS.primary} opacity="0.8" />
-                <circle cx="190" cy="180" r="5" fill={COLORS.primary} opacity="0.8" />
-                <circle cx="240" cy="130" r="5" fill={COLORS.primary} opacity="0.8" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">OPTIMIZE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Performance</text>
-            </svg>
-          );
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <div className="rounded-2xl shadow-lg w-full overflow-hidden" style={{ background: COLORS.card, aspectRatio: '1', maxWidth: '360px' }}>
-        {getSVG()}
-      </div>
-    );
-  };
-
+  const Placeholder: React.FC = () => (
+    <div
+      className="rounded-2xl shadow-lg w-full overflow-hidden flex items-center justify-center text-sm font-medium"
+      style={{ background: COLORS.card, aspectRatio: "1", maxWidth: "360px", color: COLORS.textMuted }}
+    >
+      {title.split(" ")[0]}
+    </div>
+  );
   return (
     <section id={id} className="py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -363,6 +291,8 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
   );
 };
 
+
+
 const FooterCTA: React.FC = () => {
   return (
     <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[92%] md:w-[720px]">
@@ -406,12 +336,17 @@ const PWASolution: React.FC = () => {
     <div style={{ background: COLORS.bg, color: COLORS.white, minHeight: "100vh" }}>
       <TopNav progress={progress} />
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={webGovernancePWA.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={webGovernancePWA} />
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+        <TestimonialsSection />
+        <FAQSection />
+        <FooterConsultCTA />
+
         <div style={{ height: 160 }} />
       </main>
       <FooterCTA />

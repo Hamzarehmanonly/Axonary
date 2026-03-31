@@ -1,0 +1,94 @@
+---
+description: Axonary publishing governance — QA checklist, CRO, metrics, update log
+alwaysApply: false
+---
+
+# Axonary — governance & publishing
+
+**Registry and SEO mechanics:** `seo-rules.mdc`  
+**Voice and copy patterns:** `content-rules.mdc`  
+**Process:** `workflow.mdc`
+
+---
+
+## Publishing standards
+
+- No page ships without passing the **SEO QA checklist** below (when the page is indexable and intended to rank).  
+- Legal/utility pages may skip SEO items unless intentionally indexed.  
+- Human review for factual claims, compliance, and brand alignment before production deploy.
+
+---
+
+## SEO QA checklist (mandatory gate)
+
+Block publish until applicable items pass:
+
+- [ ] **Intent** — single TOFU/MOFU/BOFU; matches `seo-rules.mdc` registry or approved brief.  
+- [ ] **Keywords** — primary in **H1**, **first ~100 words**, reflected in **H2s** (no stuffing).  
+- [ ] **Internal links** — **3–5** contextual links; intentional anchor mix per `seo-rules.mdc`.  
+- [ ] **External authority** — **1** link to a recognized authoritative source.  
+- [ ] **Entities** — **15+** named entities listed (target 15–25).  
+- [ ] **Readability** — ~US grades **6–8**; short sentences; jargon defined.  
+- [ ] **CTA** — visible **above** and **below** fold (or end of main content on mobile).  
+- [ ] **No stuffing** — natural language.
+
+---
+
+## Per-page delivery checklist (operational)
+
+**Pre-flight**
+
+- [ ] URL confirmed; intent + primary from `seo-rules.mdc` registry (or approved brief).  
+- [ ] One business goal + one conversion path documented.
+
+**Structure & keywords**
+
+- [ ] H1 = exact-match primary.  
+- [ ] H2 coverage: Problem, Solution, Features, Benefits, Use Cases, CTA.  
+- [ ] Word count: service 800–1200 / blog 1200–1800.
+
+**Semantics & links**
+
+- [ ] 15+ entities; CRM semantics on CRM/sales pages where relevant.  
+- [ ] 3–5 internal + 1 external authority.
+
+**Meta**
+
+- [ ] Title 55–60 chars; description 140–155 chars.
+
+**Iteration**
+
+- [ ] Gaps fixed; re-check until all pass.  
+- [ ] Log publish in **content update loop** below.
+
+---
+
+## CRO + experimentation
+
+- **A/B:** headlines (H1/hero), primary CTAs.  
+- **Window:** **14–28 days** before calling a winner.  
+- **Metrics:** CTR (snippet + on-page), conversion rate (GA4).  
+- Document hypothesis, variant, outcome in the update log.
+
+---
+
+## Content performance tracking (per URL)
+
+GSC + GA4 (or agreed stack): organic clicks, impressions, CTR, rankings, conversion rate, bounce/engagement rate, engagement time.
+
+---
+
+## Content update loop
+
+Log every material change:
+
+| Field | Example |
+|-------|---------|
+| Date | ISO date |
+| URL | Path |
+| Change type | Refresh, H1, meta, schema, links |
+| Target keyword | Primary |
+| Expected impact | Rank, CTR, conversions |
+| Owner | Name |
+
+**Re-evaluate** after **28 days**; record results in the same log.

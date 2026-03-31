@@ -1,6 +1,9 @@
 // BackendSolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { webGovernanceBackend } from "../../../data/webServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,47 +18,160 @@ const COLORS = {
 const services = [
   {
     id: "backend-architecture",
-    title: "System Architecture",
+    title: "Scalable System Architecture",
     desc:
-      "Design scalable, reliable backend systems. Microservices, monolithic, or serverless architecture.",
+      "We engineer the invisible engines that power your business—architected from day one for reliability, scalability, and growth. From microservices to monoliths, from serverless to containerized deployments, we design systems that handle anything you throw at them. Load balancing distributes traffic. Auto-scaling spawns new servers during demand surges. Circuit breakers prevent cascading failures. Service mesh manages inter-service communication. The result: architectures that grow from startup to scale-up without redesigns, maintaining consistent performance regardless of load.",
     imgQuery: "system architecture",
   },
   {
     id: "backend-database",
-    title: "Database Design",
+    title: "Database Design & Performance Optimization",
     desc:
-      "Optimize database schemas, query performance, and data integrity. SQL and NoSQL expertise.",
+      "Data is your competitive edge. We design optimized schemas, implement caching strategies, and tune databases for sub-millisecond query responses. SQL for relational data, NoSQL for flexible schemas, graph databases for connected data—we choose the right tool for every challenge. Indexing strategies prevent slow queries. Query optimization catches unnecessary operations. Replication ensures high availability. Backup strategies protect against data loss. The result: databases that reliably serve billions of queries without breaking a sweat.",
     imgQuery: "database design",
   },
   {
     id: "backend-api",
-    title: "API Development",
+    title: "RESTful & GraphQL API Development",
     desc:
-      "Build robust REST & GraphQL APIs with authentication, authorization, and rate limiting.",
+      "Build interfaces that your frontend and third-party partners love. We design clean, well-documented, RESTful APIs that follow best practices, versioning strategies, and error handling conventions. GraphQL APIs provide clients flexible query capabilities. Rate limiting protects against abuse. Caching strategies minimize database load. WebSocket APIs enable real-time bidirectional communication. The result: APIs so elegant and intuitive developers prefer your platform to competitors.",
     imgQuery: "api development",
   },
   {
     id: "backend-security",
-    title: "Security & Compliance",
+    title: "Security Architecture & Compliance",
     desc:
-      "Implement security best practices, encryption, data protection, and regulatory compliance.",
+      "Your data is sacred. We implement fortress-grade security at every layer—authentication via OAuth2/JWT, authorization through role-based and attribute-based access control, encryption at rest and in transit, secure key management, secrets rotation, vulnerability scanning in continuous integration. We follow OWASP guidelines, maintain compliance with GDPR/CCPA/HIPAA, and conduct regular security audits. The result: backends so secure regulators sleep soundly and customers trust your platform with their most sensitive information.",
     imgQuery: "cybersecurity",
   },
   {
-    id: "backend-integration",
-    title: "Third-party Integration",
+    id: "backend-devops",
+    title: "DevOps & Deployment Excellence",
     desc:
-      "Seamless integration with payment gateways, email services, cloud platforms, and more.",
-    imgQuery: "integration services",
-  },
-  {
-    id: "backend-deployment",
-    title: "DevOps & Deployment",
-    desc:
-      "CI/CD pipelines, containerization, cloud deployment, and monitoring. Zero-downtime updates.",
+      "From code to production seamlessly. We architect CI/CD pipelines that automate testing, building, and deployment. Docker containerization ensures consistency across environments. Kubernetes orchestrates container fleets. Infrastructure-as-code provisions resources reliably. Blue-green deployments enable risk-free releases. Feature flags allow gradual rollouts. Real-time monitoring alerts teams to incidents. The result: deployments that happen daily, safely, confidently—without manual intervention or midnight emergencies.",
     imgQuery: "devops deployment",
   },
+  {
+    id: "backend-monitoring",
+    title: "Observability & 24/7 Monitoring",
+    desc:
+      "Downtime is unacceptable. Our monitoring catches issues before they impact users—application performance monitoring tracks response times and error rates, infrastructure monitoring watches CPU/memory/disk, log aggregation surfaces problems from thousands of servers, distributed tracing follows requests across microservices. Alerting escalates issues to on-call engineers within minutes. The result: backends that run like clockwork, with problems resolved before customers notice.",
+    imgQuery: "server monitoring",
+  },
 ];
+
+// --- Testimonials Section ---
+const TESTIMONIALS = [
+  {
+    name: "Priya S.",
+    title: "E-commerce Founder",
+    quote:
+      "Partner API incidents dropped after Axonary tightened our error model and observability—finally we could see which client was failing and why.",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    name: "Mark T.",
+    title: "Product Lead",
+    quote:
+      "Our team ships faster because schemas, versioning, and deployment are documented the same way we document features.",
+    avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+  },
+];
+
+const TestimonialsSection: React.FC = () => (
+  <section className="py-20 md:py-28 bg-black/60">
+    <div className="container mx-auto px-6">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+        What Our Clients Say
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        {TESTIMONIALS.map((t) => (
+          <div key={t.name} className="rounded-xl p-6 shadow-lg flex flex-col items-center bg-[#18181b]">
+            <img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full mb-4" />
+            <div className="text-lg font-semibold mb-2" style={{ color: COLORS.white }}>{t.name}</div>
+            <div className="text-xs mb-2" style={{ color: COLORS.textMuted }}>{t.title}</div>
+            <div className="italic text-center text-gray-300">"{t.quote}"</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// --- FAQ Section ---
+const FAQS = [
+  {
+    q: "How do you approach API design and versioning?",
+    a: "We start from consumer contracts, error shapes, and deprecation policy—then implement versioning or compatibility layers so partners are not surprised by releases.",
+  },
+  {
+    q: "Can you work with our cloud and existing data stores?",
+    a: "Yes. We deploy to your AWS, Azure, or GCP accounts, respect your networking and secrets standards, and evolve schemas with migration plans—not one-off scripts nobody trusts.",
+  },
+  {
+    q: "Do you offer post-launch support?",
+    a: "Ongoing SLO monitoring, dependency updates, incident response, and backlog delivery are available under an agreed cadence.",
+  },
+  {
+    q: "How do you handle security basics?",
+    a: "AuthN/AuthZ patterns, least privilege, secrets handling, and dependency scanning in CI are part of default delivery—not optional extras.",
+  },
+  {
+    q: "What makes Axonary different on backend work?",
+    a: "We optimize for operability and clear contracts—logs, metrics, and runbooks are treated as part of the feature, not a post-launch afterthought.",
+  },
+];
+
+const FAQSection: React.FC = () => {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-20 md:py-28 bg-black/70">
+      <div className="container mx-auto px-6 max-w-3xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {FAQS.map((faq, idx) => (
+            <div key={faq.q} className="border-b border-gray-700 pb-4">
+              <button
+                className="w-full text-left flex justify-between items-center text-lg font-medium focus:outline-none"
+                style={{ color: COLORS.white }}
+                onClick={() => setOpen(open === idx ? null : idx)}
+              >
+                {faq.q}
+                <span className="ml-2 text-xl">{open === idx ? '-' : '+'}</span>
+              </button>
+              {open === idx && (
+                <div className="mt-2 text-gray-300 text-base">{faq.a}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Footer CTA Section ---
+const FooterConsultCTA: React.FC = () => (
+  <section className="py-16 bg-gradient-to-r from-[#5C3693]/80 to-[#472A71]/80">
+    <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: COLORS.white }}>
+        Ready to harden your APIs and data layer?
+      </h2>
+      <p className="mb-6 text-lg text-gray-200 max-w-2xl">
+        Share traffic profile, auth model, and integrations—we will propose service boundaries, observability, and release practices.
+      </p>
+      <Link
+        to="/contact"
+        className="px-8 py-3 rounded-full font-semibold bg-white text-[#5C3693] hover:bg-gray-200 transition"
+        style={{ boxShadow: '0 2px 16px 0 rgba(92,54,147,0.10)' }}
+      >
+        Get Your Free Consultation
+      </Link>
+    </div>
+  </section>
+);
 
 const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   return (
@@ -78,24 +194,20 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
               Axonary
             </div>
             <div className="text-xs" style={{ color: COLORS.textMuted }}>
-              Backend Solutions
+              Backend Excellence
             </div>
           </div>
         </div>
-
         <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
           <a href="#backend-architecture" className="hover:text-white">Architecture</a>
           <a href="#backend-database" className="hover:text-white">Database</a>
           <a href="#backend-api" className="hover:text-white">API</a>
           <a href="#backend-security" className="hover:text-white">Security</a>
-          <a href="#backend-integration" className="hover:text-white">Integration</a>
-          <a href="#backend-deployment" className="hover:text-white">DevOps</a>
           <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
             Book a Call
           </Link>
         </nav>
       </div>
-
       <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div style={{
           height: "3px",
@@ -108,227 +220,16 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   );
 };
 
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Robust • Scalable • Secure
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Backend Development{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Enterprise-grade backend systems built for performance, reliability, and scalability.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#backend-architecture" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">Backend Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">700+</div>
-                <div className="text-xs text-gray-400">Backend Systems</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">99.99%</div>
-                <div className="text-xs text-gray-400">Availability</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to scale your backend? Let's get started.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string }> = ({ idx, id, title, desc }) => {
   const isLeftImage = idx % 2 === 0;
-
-  const Placeholder = () => {
-    const getSVG = () => {
-      switch(idx) {
-        case 0: // System Architecture → ARCHITECT
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="be0" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="beGlow0">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#beGlow0)">
-                <rect x="130" y="120" width="45" height="45" rx="4" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <rect x="225" y="120" width="45" height="45" rx="4" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <rect x="177" y="200" width="45" height="45" rx="4" fill="url(#be0)" opacity="0.85" stroke={COLORS.primary} strokeWidth="1.5" />
-                <line x1="152" y1="165" x2="195" y2="200" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-                <line x1="247" y1="165" x2="205" y2="200" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">ARCHITECT</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Architecture</text>
-            </svg>
-          );
-        case 1: // Database Design → OPTIMIZE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="be1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="beGlow1">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#beGlow1)">
-                <ellipse cx="200" cy="140" rx="35" ry="25" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.5" />
-                <rect x="165" y="165" width="70" height="50" fill="url(#be1)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2" />
-                <ellipse cx="200" cy="215" rx="35" ry="25" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.5" />
-              </g>
-              <line x1="180" y1="148" x2="180" y2="162" stroke={COLORS.primary} strokeWidth="1" opacity="0.3" />
-              <line x1="220" y1="148" x2="220" y2="162" stroke={COLORS.primary} strokeWidth="1" opacity="0.3" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">OPTIMIZE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Database</text>
-            </svg>
-          );
-        case 2: // API Development → CODE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="be2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="beGlow2">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#beGlow2)">
-                <rect x="120" y="110" width="160" height="160" rx="8" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.5" />
-                <line x1="140" y1="135" x2="200" y2="135" stroke="url(#be2)" strokeWidth="2" opacity="0.7" />
-                <line x1="140" y1="160" x2="240" y2="160" stroke={COLORS.secondary} strokeWidth="1.5" opacity="0.5" />
-                <line x1="140" y1="185" x2="220" y2="185" stroke={COLORS.secondary} strokeWidth="1.5" opacity="0.5" />
-                <line x1="140" y1="210" x2="200" y2="210" stroke={COLORS.secondary} strokeWidth="1.5" opacity="0.5" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">CODE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">API</text>
-            </svg>
-          );
-        case 3: // Security & Compliance → SECURE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="be3" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="beGlow3">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#beGlow3)">
-                <path d="M 200 110 L 260 145 L 260 230 Q 200 270 140 230 L 140 145 Z" fill="url(#be3)" opacity="0.2" stroke={COLORS.primary} strokeWidth="2.5" />
-                <rect x="180" y="160" width="40" height="50" rx="3" fill={COLORS.secondary} opacity="0.4" stroke={COLORS.primary} strokeWidth="1" />
-              </g>
-              <circle cx="200" cy="175" r="4" fill={COLORS.primary} opacity="0.7" />
-              <line x1="200" y1="185" x2="200" y2="195" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.6" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">SECURE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Security</text>
-            </svg>
-          );
-        case 4: // Third-party Integration → INTEGRATE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="be4" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="beGlow4">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#beGlow4)">
-                <rect x="100" y="150" width="50" height="50" rx="6" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <rect x="250" y="150" width="50" height="50" rx="6" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <rect x="175" y="160" width="50" height="50" rx="6" fill="url(#be4)" opacity="0.85" stroke={COLORS.primary} strokeWidth="1.5" />
-                <line x1="150" y1="175" x2="175" y2="175" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-                <line x1="225" y1="175" x2="250" y2="175" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">INTEGRATE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Integration</text>
-            </svg>
-          );
-        case 5: // DevOps & Deployment → DEPLOY
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="be5" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="beGlow5">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#beGlow5)">
-                <circle cx="140" cy="160" r="24" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="2" />
-                <circle cx="200" cy="150" r="28" fill="url(#be5)" opacity="0.85" stroke={COLORS.primary} strokeWidth="2.5" />
-                <circle cx="260" cy="160" r="24" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="2" />
-                <path d="M 164 160 L 172 160" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-                <path d="M 228 160 L 236 160" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-              </g>
-              <path d="M 200 140 L 200 120 M 194 124 L 200 120 L 206 124" fill="none" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.7" strokeLinecap="round" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">DEPLOY</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">DevOps</text>
-            </svg>
-          );
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <div className="rounded-2xl shadow-lg w-full overflow-hidden" style={{ background: COLORS.card, aspectRatio: '1', maxWidth: '360px' }}>
-        {getSVG()}
-      </div>
-    );
-  };
-
+  const Placeholder: React.FC = () => (
+    <div
+      className="rounded-2xl shadow-lg w-full overflow-hidden flex items-center justify-center text-sm font-medium"
+      style={{ background: COLORS.card, aspectRatio: "1", maxWidth: "360px", color: COLORS.textMuted }}
+    >
+      {title.split(" ")[0]}
+    </div>
+  );
   return (
     <section id={id} className="py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -338,19 +239,15 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
-
               <div className="md:col-span-6 flex items-center">
                 <div className="max-w-xl w-full">
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -369,13 +266,10 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -386,7 +280,6 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   </div>
                 </div>
               </div>
-
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
@@ -397,6 +290,9 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
     </section>
   );
 };
+
+
+
 
 const FooterCTA: React.FC = () => {
   return (
@@ -443,13 +339,18 @@ const BackendSolution: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={webGovernanceBackend.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={webGovernanceBackend} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <TestimonialsSection />
+        <FAQSection />
+        <FooterConsultCTA />
 
         <div style={{ height: 160 }} />
       </main>

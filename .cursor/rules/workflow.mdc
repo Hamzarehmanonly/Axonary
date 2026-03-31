@@ -1,0 +1,36 @@
+---
+description: Axonary page-by-page content workflow and iteration
+alwaysApply: false
+---
+
+# Axonary — content workflow
+
+**Rules hub:** `.cursor/rules/` — start with `axonary-core.mdc` (always on).
+
+## Scope rule
+
+Only create or rewrite content for **pages explicitly named** by the stakeholder in the current task. No bulk or speculative pages.
+
+## Per-page flow
+
+1. **Intake** — Confirm URL (or new route to be added), business goal, and audience.  
+2. **Load SEO** — Open `seo-rules.mdc`: copy **intent**, **primary keyword**, and note related URLs for internal links.  
+3. **Draft** — Apply `content-rules.mdc` voice + `seo-rules.mdc` structure (H1, H2 topics, length, entities, links, meta).  
+4. **Self-check** — Run **SEO QA** and **per-page delivery** checklists in `governance.mdc`.  
+5. **Iterate** — Fix failures; repeat step 4 until production-ready.  
+6. **Handoff** — Implement in codebase or CMS; log publish per **content update loop** in `governance.mdc`.
+
+## Testing and iteration cycle
+
+- First draft → checklist → list gaps → revise copy/structure/meta/links.  
+- Prefer **one page per request** for traceability.  
+- After live: measure per `governance.mdc` (GSC/GA4); revisit at 28 days.
+
+## File map (quick reference)
+
+| Need | File |
+|------|------|
+| URL registry, keywords, schema | `seo-rules.mdc` |
+| Tone, CTAs, formatting | `content-rules.mdc` |
+| QA, publishing, metrics, log | `governance.mdc` |
+| Process steps | this file |

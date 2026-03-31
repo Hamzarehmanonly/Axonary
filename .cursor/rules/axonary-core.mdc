@@ -1,0 +1,37 @@
+---
+description: Axonary global agent contract — SEO/content enforcement entry point
+alwaysApply: true
+---
+
+# Axonary — core execution (always on)
+
+**Single hub:** All rules live under `.cursor/rules/`. Read the focused files below before SEO, content, metadata, schema, or new pages.
+
+| File | Use when |
+|------|----------|
+| `seo-rules.mdc` | Intent, keywords, on-page SEO, NLP, linking, meta, schema, **URL registry** |
+| `content-rules.mdc` | Voice, tone, formatting, conversion copy |
+| `governance.mdc` | QA gate, publishing, CRO, metrics, update log |
+| `workflow.mdc` | Page-by-page request flow and iteration |
+
+## Forbidden
+
+- Random or unplanned blog publishing (no cluster, intent, or business goal).
+- Duplicate **primary** keywords across URLs (see registry in `seo-rules.mdc`).
+- Mixed intent on one page (strictly one of TOFU / MOFU / BOFU).
+- Generic, undifferentiated AI filler — copy must be Axonary-specific (proof, offer, audience).
+- **Unsolicited pages** — only generate or rewrite copy for URLs the stakeholder **explicitly** names in the current task.
+
+## Every indexable page
+
+1. Exactly **one** funnel intent.  
+2. Exactly **one** business goal (documented).  
+3. One **conversion path** — CTA matches funnel stage (TOFU: learn/subscribe; MOFU: guide/demo; BOFU: contact/hire/buy).
+
+## Violations
+
+If a request conflicts with these rules, **stop**, name the conflict, and propose a compliant fix (split/merge pages, reassign keyword, adjust intent).
+
+## Playbook sync
+
+If `CONTENT_GOVERNANCE_PLAYBOOK.md` is added to the repo, reconcile changes into the relevant `.mdc` files — **no duplicate sources** outside `.cursor/rules/`.

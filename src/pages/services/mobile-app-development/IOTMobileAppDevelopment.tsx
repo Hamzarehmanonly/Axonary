@@ -2,6 +2,9 @@
 // IOTMobileAppDevelopment.tsx — Axonary
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { mobileGovernanceIoT } from "../../../data/mobileServiceGovernanceContent";
 
 // Color palette for consistency
 const COLORS = {
@@ -13,30 +16,6 @@ const COLORS = {
   textMuted: "#BDB7D6",
   white: "#FFFFFF",
 };
-
-// Unique Selling Points (USPs)
-const USPs = [
-  {
-    title: "End-to-End IoT Expertise",
-    desc: "From device firmware to cloud and mobile, we deliver seamless, secure, and scalable IoT mobile solutions for every industry.",
-    icon: "🔗",
-  },
-  {
-    title: "Real-Time Data & Control",
-    desc: "Monitor, analyze, and control your IoT devices in real time with robust dashboards and instant notifications.",
-    icon: "📡",
-  },
-  {
-    title: "Enterprise-Grade Security",
-    desc: "We implement advanced encryption, authentication, and privacy protocols to protect your IoT ecosystem.",
-    icon: "🛡️",
-  },
-  {
-    title: "Custom Integrations",
-    desc: "Seamlessly connect with third-party APIs, cloud platforms, and legacy systems for maximum flexibility.",
-    icon: "⚙️",
-  },
-];
 
 // Services (for SplitSection)
 const services = [
@@ -148,101 +127,6 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
       <div style={{ height: "3px", width: `${progress}%`, transition: "width 120ms linear", background: `linear-gradient(90deg, ${COLORS.primary}, ${COLORS.secondary})` }} />
     </div>
   </header>
-);
-
-const Hero: React.FC = () => (
-  <section id="hero" className="min-h-[72vh] flex items-center" style={{ background: COLORS.bg, color: COLORS.white }}>
-    <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-      <div className="md:col-span-7">
-        <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-          Next-Gen IoT Apps • Secure • Scalable
-        </div>
-        <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-          IoT Mobile App Development <span style={{ color: COLORS.primary }}>| Axonary</span>
-        </h1>
-        <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-          Unlock the power of the Internet of Things with Axonary’s award-winning IoT mobile app development. We build intelligent, secure, and scalable apps that connect, control, and automate devices in real time—empowering businesses to lead in a connected world. From smart homes to industrial IoT, our solutions deliver seamless integration, actionable insights, and future-proof innovation.
-        </p>
-        <div className="mt-6 flex items-center gap-4">
-          <a href="#iot-connectivity" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-            Explore Services
-          </a>
-          <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-            Request Consultation
-          </a>
-        </div>
-      </div>
-      <div className="md:col-span-5">
-        <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-          <h5 className="text-sm text-gray-400">IoT Innovation</h5>
-          <div className="mt-4 grid grid-cols-2 gap-4">
-            <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-              <div className="text-2xl font-bold">150+</div>
-              <div className="text-xs text-gray-400">IoT Projects</div>
-            </div>
-            <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-              <div className="text-2xl font-bold">500K+</div>
-              <div className="text-xs text-gray-400">Devices Connected</div>
-            </div>
-          </div>
-          <div className="mt-6">
-            <p className="text-sm text-gray-300">Ready to build your IoT ecosystem? Let’s connect your devices with intelligence and security.</p>
-            <div className="mt-4">
-              <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-// Unique Selling Points Section
-const UniqueSellingPoints: React.FC = () => (
-  <section className="mt-24">
-    <div className="container mx-auto px-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-left" style={{ color: COLORS.primary }}>
-        Why Choose Axonary for IoT Mobile App Development?
-      </h2>
-      <div className="flex flex-col gap-4 max-w-3xl">
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>IoT expertise across firmware, cloud, and mobile platforms</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">End-to-end solutions for seamless device connectivity</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Real-time monitoring, analytics, and device control</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">Intelligent dashboards and actionable insights</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Enterprise-grade security and compliance</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">GDPR, HIPAA, and industry-standard encryption</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Proven experience with 150+ IoT projects and 500K+ devices</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">Reliability and scale you can depend on</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Custom integrations with any protocol or platform</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">Flexible solutions that fit your ecosystem</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 );
 
 // FAQ Section
@@ -709,8 +593,8 @@ const IOTMobileAppDevelopment: React.FC = () => {
     <div style={{ background: COLORS.bg, color: COLORS.white, minHeight: "100vh" }}>
       <TopNav progress={progress} />
       <main className="pt-20">
-        <Hero />
-        <UniqueSellingPoints />
+        <MobileServiceHero colors={COLORS} hero={mobileGovernanceIoT.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={mobileGovernanceIoT} />
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} imgQuery={s.imgQuery} />
@@ -721,10 +605,10 @@ const IOTMobileAppDevelopment: React.FC = () => {
         <section className="mt-12">
           <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: '-1px' }}>
-              Ready to Build Your IoT Mobile App?
+              Ready to scope an IoT companion app?
             </h2>
             <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Unlock your business potential with a custom IoT mobile app engineered for performance, scale, and user delight. Let Axonary turn your vision into a top-rated app.
+              Share hardware, protocols, and security constraints—we will map pairing, telemetry, field testing, and support workflows.
             </p>
             <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
               Get Your Free Consultation

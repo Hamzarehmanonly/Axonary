@@ -1,6 +1,9 @@
 // HRMSolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { customSoftwareGovernanceHRM } from "../../../data/customSoftwareServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,44 +18,44 @@ const COLORS = {
 const services = [
   {
     id: "hrm-implementation",
-    title: "HRM Implementation",
+    title: "Epic HRM Implementation",
     desc:
-      "Deploy comprehensive HR management systems for recruitment, onboarding, and employee management. Streamline HR operations.",
+      "Transform your workforce with HRM solutions that go beyond software. We build systems that empower recruitment, onboarding, and employee management—making HR a strategic force, not just a department.",
     imgQuery: "human resources",
   },
   {
     id: "hrm-customization",
-    title: "System Customization",
+    title: "Tailored System Customization",
     desc:
-      "Customize HRM systems to match your organizational structure and workflows. Integrate with existing tools seamlessly.",
+      "Your organization is unique. Our HRM customization adapts to your culture, workflows, and vision, integrating seamlessly with your tools and unlocking new levels of productivity.",
     imgQuery: "business integration",
   },
   {
     id: "hrm-payroll",
-    title: "Payroll Integration",
+    title: "Payroll Integration That Just Works",
     desc:
-      "Integrate payroll systems with accurate salary calculations, tax compliance, and direct deposits.",
+      "No more payroll headaches. We deliver robust payroll integration with precise salary calculations, tax compliance, and direct deposits—so your team gets paid, every time, on time.",
     imgQuery: "payroll management",
   },
   {
     id: "hrm-analytics",
-    title: "Analytics & Reporting",
+    title: "Insightful Analytics & Reporting",
     desc:
-      "Advanced analytics and dashboards for HR metrics, employee performance, and workforce planning.",
+      "See your workforce in a new light. Our analytics and dashboards reveal HR metrics, performance trends, and workforce planning insights that drive real business decisions.",
     imgQuery: "data analytics",
   },
   {
     id: "hrm-compliance",
-    title: "Compliance Management",
+    title: "Compliance Management You Can Trust",
     desc:
-      "Ensure labor law compliance, document management, and audit trails. Stay compliant with regulations.",
+      "Stay ahead of regulations. We automate labor law compliance, document management, and audit trails—protecting your business and your people.",
     imgQuery: "compliance",
   },
   {
     id: "hrm-training",
-    title: "User Training",
+    title: "Empowering User Training",
     desc:
-      "Comprehensive training for HR teams and employees. Maximize system adoption and effectiveness.",
+      "We don’t just install software—we train your HR teams and employees to master it. Unlock adoption, effectiveness, and confidence with our hands-on training programs.",
     imgQuery: "training",
   },
 ];
@@ -107,65 +110,6 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
         }} />
       </div>
     </header>
-  );
-};
-
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Comprehensive • Compliant • Employee-Centric
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            HRM Solutions{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Manage your human capital efficiently. From recruitment to retirement, streamline every HR process.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#hrm-implementation" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">HRM Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">350+</div>
-                <div className="text-xs text-gray-400">HRM Implementations</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">40%</div>
-                <div className="text-xs text-gray-400">Efficiency Improvement</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to transform your HR operations? Let's get started.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 };
 
@@ -471,13 +415,28 @@ const HRMSolution: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={customSoftwareGovernanceHRM.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={customSoftwareGovernanceHRM} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <section className="mt-12">
+          <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: "-1px" }}>
+              Ready to align HRM with payroll and policy?
+            </h2>
+            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+              Share employee lifecycle, countries, and payroll provider—we will outline core HRIS scope, integrations, and UAT with HR.
+            </p>
+            <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
+              Schedule a consultation
+            </a>
+          </div>
+        </section>
 
         <div style={{ height: 160 }} />
       </main>

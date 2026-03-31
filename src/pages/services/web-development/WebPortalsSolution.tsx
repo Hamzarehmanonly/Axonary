@@ -1,6 +1,9 @@
 // WebPortalsSolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { webGovernancePortals } from "../../../data/webServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,44 +18,44 @@ const COLORS = {
 const services = [
   {
     id: "portal-design",
-    title: "Portal Design",
+    title: "Enterprise Portal Architecture & Design",
     desc:
-      "Create engaging web portals with intuitive navigation and user-centric design. Perfect for B2B and B2C platforms.",
+      "We architect digital gateways that transcend standard web applications. Every portal we build becomes the beating heart of your digital ecosystem—a unified command center where your users discover, engage, and transact with purpose. We combine intuitive navigation with sophisticated information architecture, ensuring users find exactly what they need in seconds. Our design language adapts seamlessly from B2B enterprise systems to B2C customer platforms. We implement role-based experiences, personalization engines, and adaptive UI that evolves based on user behavior. The result: portals that feel less like utilities and more like extensions of your brand.",
     imgQuery: "web portal",
   },
   {
     id: "portal-dashboard",
-    title: "Dashboard Development",
+    title: "Interactive Dashboards & Real-Time Analytics",
     desc:
-      "Build interactive dashboards with real-time data visualization and analytics integration.",
+      "See your business in high definition. We build dashboards that turn raw data into actionable intelligence at a glance. Real-time data refresh, interactive visualizations, drill-down capabilities, and predictive charts empower your teams to make smarter, faster decisions. We implement custom widgets, KPI tracking, anomaly detection, and data-driven alerts. Whether you're monitoring sales, operations, customer satisfaction, or compliance metrics, our dashboards scale from single-user interfaces to enterprise-wide command centers. Users gain clarity, confidence, and the ability to lead instead of react.",
     imgQuery: "dashboard analytics",
   },
   {
     id: "portal-authentication",
-    title: "Authentication & Security",
+    title: "Enterprise Security & Access Control",
     desc:
-      "Implement secure authentication systems, role-based access control, and data encryption.",
+      "Trust is everything. We implement fortress-grade security architectures that protect user data while maintaining frictionless access. Single sign-on (SSO), multi-factor authentication, role-based access control (RBAC), attribute-based access control (ABAC), OAuth2, SAML, and JWT tokens provide bulletproof authentication. We encrypt data at rest and in transit, implement zero-trust security models, maintain audit trails, and exceed compliance standards (GDPR, CCPA, SOC 2, ISO 27001). Your users stay protected without friction. Your data stays locked down. Your reputation remains untouchable.",
     imgQuery: "security portal",
   },
   {
     id: "portal-content",
-    title: "Content Management",
+    title: "Flexible Content Management & Localization",
     desc:
-      "Develop flexible CMS systems for easy content management and multi-language support.",
+      "Take control of your story without coding. We build content management systems so intuitive that non-technical teams can publish, update, and optimize content with confidence. Version control, scheduled publishing, multi-language support, media libraries, SEO optimization, and workflow approvals ensure content quality and consistency. Our CMS solutions handle unlimited scalability—from small blogs to massive content repositories. We provide API-first architectures that let you use content anywhere. Your team ships content faster. Your users access it in their language. Your brand voice stays consistent.",
     imgQuery: "content management",
   },
   {
     id: "portal-integration",
-    title: "API Integration",
+    title: "Seamless API Integration & System Connectivity",
     desc:
-      "Connect your portal with third-party services, databases, and legacy systems seamlessly.",
+      "Break down silos and unlock new value. We seamlessly connect your portal to every critical system—legacy databases, cloud platforms, third-party SaaS, payment processors, CRM systems, ERP platforms. Our integration expertise handles REST APIs, GraphQL, webhook events, real-time data sync, and complex ETL pipelines. We design middleware that translates between incompatible systems. We implement retry logic, error handling, and monitoring that keeps data flowing reliably. The result: a unified digital experience where your portal connects everything that matters, creating a competitive advantage through total system integration.",
     imgQuery: "api integration",
   },
   {
     id: "portal-support",
-    title: "Support & Maintenance",
+    title: "24/7 Enhanced Support & Continuous Optimization",
     desc:
-      "24/7 support, monitoring, and maintenance for optimal portal performance.",
+      "Your portal never sleeps, and neither do we. Our 24/7 support team monitors uptime, performance, and security around the clock. Proactive monitoring catches issues before users notice. Rapid-response maintenance fixes problems within minutes. Continuous optimization improves performance, security, and features every day. We provide uptime SLAs of 99.99%, detailed analytics, monthly performance reports, and strategic guidance on features, improvements, and modernization. Your portal becomes more reliable, faster, and more valuable over time.",
     imgQuery: "technical support",
   },
 ];
@@ -82,12 +85,11 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
             </div>
           </div>
         </div>
-
         <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
           <a href="#portal-design" className="hover:text-white">Design</a>
           <a href="#portal-dashboard" className="hover:text-white">Dashboard</a>
           <a href="#portal-authentication" className="hover:text-white">Security</a>
-          <a href="#portal-content" className="hover:text-white">Content</a>
+          <a href="#portal-content" className="hover:text-white">CMS</a>
           <a href="#portal-integration" className="hover:text-white">Integration</a>
           <a href="#portal-support" className="hover:text-white">Support</a>
           <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
@@ -95,242 +97,26 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
           </Link>
         </nav>
       </div>
-
       <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
-        <div style={{
-          height: "3px",
-          width: `${progress}%`,
-          transition: "width 120ms linear",
-          background: `linear-gradient(90deg, ${COLORS.primary}, ${COLORS.secondary})`
-        }} />
+        <div
+          className="h-full transition-all duration-300"
+          style={{ width: `${progress}%`, background: COLORS.primary }}
+        />
       </div>
     </header>
   );
 };
 
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Feature-Rich • Secure • Scalable
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Web Portals Solutions{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Enterprise-grade web portals designed for efficiency, scalability, and user engagement.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#portal-design" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">Portal Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">800+</div>
-                <div className="text-xs text-gray-400">Web Portals Deployed</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">99.9%</div>
-                <div className="text-xs text-gray-400">Uptime Guarantee</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to launch your portal? Let's get started.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string }> = ({ idx, id, title, desc }) => {
   const isLeftImage = idx % 2 === 0;
-
-  const Placeholder = () => {
-    const getSVG = () => {
-      switch(idx) {
-        case 0: // Portal Design → DESIGN
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="portal0" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="portalGlow0">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#portalGlow0)">
-                <rect x="110" y="100" width="180" height="180" rx="10" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.6" />
-                <line x1="110" y1="140" x2="290" y2="140" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-                <rect x="120" y="155" width="160" height="110" fill="url(#portal0)" opacity="0.15" stroke={COLORS.primary} strokeWidth="1" />
-              </g>
-              <circle cx="135" cy="120" r="5" fill={COLORS.primary} opacity="0.7" />
-              <circle cx="155" cy="120" r="5" fill={COLORS.primary} opacity="0.5" />
-              <circle cx="175" cy="120" r="5" fill={COLORS.primary} opacity="0.5" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">DESIGN</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Portal Design</text>
-            </svg>
-          );
-        case 1: // Dashboard → VISUALIZE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="portal1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="portalGlow1">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#portalGlow1)">
-                <rect x="120" y="110" width="160" height="140" rx="8" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.5" />
-                <rect x="130" y="125" width="35" height="45" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="175" y="140" width="35" height="30" fill="url(#portal1)" opacity="0.8" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="220" y="150" width="35" height="20" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">VISUALIZE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Dashboard</text>
-            </svg>
-          );
-        case 2: // Authentication & Security → PROTECT
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="portal2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="portalGlow2">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#portalGlow2)">
-                <path d="M 200 110 L 260 145 L 260 230 Q 200 270 140 230 L 140 145 Z" fill="url(#portal2)" opacity="0.2" stroke={COLORS.primary} strokeWidth="2.5" />
-                <circle cx="200" cy="180" r="22" fill={COLORS.secondary} opacity="0.5" stroke={COLORS.primary} strokeWidth="1.5" />
-              </g>
-              <path d="M 194 175 L 201 182 L 212 168" fill="none" stroke={COLORS.primary} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">PROTECT</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Security</text>
-            </svg>
-          );
-        case 3: // Content Management → MANAGE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="portal3" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="portalGlow3">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#portalGlow3)">
-                <rect x="130" y="100" width="140" height="170" rx="8" fill="url(#portal3)" opacity="0.1" stroke={COLORS.primary} strokeWidth="2" />
-                <line x1="140" y1="130" x2="260" y2="130" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-                <line x1="140" y1="155" x2="260" y2="155" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-                <line x1="140" y1="180" x2="240" y2="180" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-                <line x1="140" y1="205" x2="260" y2="205" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">MANAGE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Content</text>
-            </svg>
-          );
-        case 4: // API Integration → CONNECT
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="portal4" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="portalGlow4">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#portalGlow4)">
-                <circle cx="130" cy="170" r="26" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.6" />
-                <circle cx="200" cy="160" r="28" fill="url(#portal4)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2.5" />
-                <circle cx="270" cy="170" r="26" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.6" />
-                <line x1="156" y1="170" x2="174" y2="165" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-                <line x1="226" y1="165" x2="244" y2="170" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-              </g>
-              <circle cx="130" cy="170" r="8" fill={COLORS.primary} opacity="0.5" />
-              <circle cx="270" cy="170" r="8" fill={COLORS.primary} opacity="0.5" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">CONNECT</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Integration</text>
-            </svg>
-          );
-        case 5: // Support & Maintenance → SUPPORT
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="portal5" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="portalGlow5">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#portalGlow5)">
-                <circle cx="200" cy="150" r="30" fill="url(#portal5)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2.5" />
-                <circle cx="130" cy="220" r="20" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="200" cy="250" r="20" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="270" cy="220" r="20" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <line x1="180" y1="175" x2="140" y2="200" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-                <line x1="200" y1="180" x2="200" y2="230" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-                <line x1="220" y1="175" x2="260" y2="200" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">SUPPORT</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Maintenance</text>
-            </svg>
-          );
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <div className="rounded-2xl shadow-lg w-full overflow-hidden" style={{ background: COLORS.card, aspectRatio: '1', maxWidth: '360px' }}>
-        {getSVG()}
-      </div>
-    );
-  };
-
+  const Placeholder: React.FC = () => (
+    <div
+      className="rounded-2xl shadow-lg w-full overflow-hidden flex items-center justify-center text-sm font-medium"
+      style={{ background: COLORS.card, aspectRatio: "1", maxWidth: "360px", color: COLORS.textMuted }}
+    >
+      {title.split(" ")[0]}
+    </div>
+  );
   return (
     <section id={id} className="py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -340,19 +126,15 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
-
               <div className="md:col-span-6 flex items-center">
                 <div className="max-w-xl w-full">
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -371,13 +153,10 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -388,7 +167,6 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   </div>
                 </div>
               </div>
-
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
@@ -399,6 +177,9 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
     </section>
   );
 };
+
+
+
 
 const FooterCTA: React.FC = () => {
   return (
@@ -424,6 +205,120 @@ const FooterCTA: React.FC = () => {
   );
 };
 
+
+// --- Testimonials Section ---
+const TESTIMONIALS = [
+  {
+    name: "Priya S.",
+    title: "Director of Operations",
+    quote:
+      "SSO, roles, and audit trails were designed for our actual org chart—not a demo RBAC matrix nobody could operate.",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    name: "Mark T.",
+    title: "Product Lead",
+    quote:
+      "Partner and customer views share a backbone but stay properly isolated—legal slept better after the access review.",
+    avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+  },
+];
+
+const TestimonialsSection: React.FC = () => (
+  <section className="py-20 md:py-28 bg-black/60">
+    <div className="container mx-auto px-6">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+        What Our Clients Say
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        {TESTIMONIALS.map((t) => (
+          <div key={t.name} className="rounded-xl p-6 shadow-lg flex flex-col items-center bg-[#18181b]">
+            <img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full mb-4" />
+            <div className="text-lg font-semibold mb-2" style={{ color: COLORS.white }}>{t.name}</div>
+            <div className="text-xs mb-2" style={{ color: COLORS.textMuted }}>{t.title}</div>
+            <div className="italic text-center text-gray-300">"{t.quote}"</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// --- FAQ Section ---
+const FAQS = [
+  {
+    q: "Can you integrate with our IdP (SAML/OIDC)?",
+    a: "Yes—SSO, group-to-role mapping, and session policies are standard portal work for us, aligned to your security team's requirements.",
+  },
+  {
+    q: "How do you model roles for customers vs employees vs partners?",
+    a: "We separate tenants or namespaces where needed, enforce authorization on the server for every API, and keep audit logs attributable.",
+  },
+  {
+    q: "Do you offer post-launch support?",
+    a: "Ongoing access reviews, onboarding tweaks, integration maintenance, and feature backlog delivery under an agreed cadence.",
+  },
+  {
+    q: "Can portals pull from multiple internal systems?",
+    a: "We aggregate via APIs or events with clear ownership of source-of-truth, caching, and failure UX when a downstream system is slow.",
+  },
+  {
+    q: "What makes Axonary different on portals?",
+    a: "We design for governance and scale from day one—so your portal survives real org complexity, not just the pilot department.",
+  },
+];
+
+const FAQSection: React.FC = () => {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-20 md:py-28 bg-black/70">
+      <div className="container mx-auto px-6 max-w-3xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {FAQS.map((faq, idx) => (
+            <div key={faq.q} className="border-b border-gray-700 pb-4">
+              <button
+                className="w-full text-left flex justify-between items-center text-lg font-medium focus:outline-none"
+                style={{ color: COLORS.white }}
+                onClick={() => setOpen(open === idx ? null : idx)}
+              >
+                {faq.q}
+                <span className="ml-2 text-xl">{open === idx ? '-' : '+'}</span>
+              </button>
+              {open === idx && (
+                <div className="mt-2 text-gray-300 text-base">{faq.a}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Footer CTA Section ---
+const FooterConsultCTA: React.FC = () => (
+  <section className="py-16 bg-gradient-to-r from-[#5C3693]/80 to-[#472A71]/80">
+    <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: COLORS.white }}>
+        Ready to design your authenticated portal?
+      </h2>
+      <p className="mb-6 text-lg text-gray-200 max-w-2xl">
+        Share personas, IdP, and integrations—we will map RBAC, dashboards, and a secure rollout plan.
+      </p>
+      <Link
+        to="/contact"
+        className="px-8 py-3 rounded-full font-semibold bg-white text-[#5C3693] hover:bg-gray-200 transition"
+        style={{ boxShadow: '0 2px 16px 0 rgba(92,54,147,0.10)' }}
+      >
+        Get Your Free Consultation
+      </Link>
+    </div>
+  </section>
+);
+
 const WebPortalsSolution: React.FC = () => {
   const [progress, setProgress] = useState(0);
 
@@ -445,13 +340,18 @@ const WebPortalsSolution: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={webGovernancePortals.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={webGovernancePortals} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <TestimonialsSection />
+        <FAQSection />
+        <FooterConsultCTA />
 
         <div style={{ height: 160 }} />
       </main>

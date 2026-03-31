@@ -1,6 +1,9 @@
 // CloudSupportMaintenance.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { cloudGovernanceSupport } from "../../../data/cloudServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -345,7 +348,7 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
 
                   <div className="mt-6 flex items-center gap-3">
-                    <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
+                    <a href={`#${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
                     </a>
                     <a href="/contact" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
@@ -370,7 +373,7 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
 
                   <div className="mt-6 flex items-center gap-3">
-                    <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
+                    <a href={`#${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
                     </a>
                     <a href="/contact" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
@@ -436,13 +439,28 @@ const CloudSupportMaintenance: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={cloudGovernanceSupport.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={cloudGovernanceSupport} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <section className="mt-12">
+          <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: "-1px" }}>
+              Need cloud operations without alert chaos?
+            </h2>
+            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+              Tell us your SLOs, coverage hours, and pain points—we will propose monitoring, patching, and incident flow you can sustain.
+            </p>
+            <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
+              Schedule a consultation
+            </a>
+          </div>
+        </section>
 
         <div style={{ height: 160 }} />
       </main>

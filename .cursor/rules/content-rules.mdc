@@ -1,0 +1,45 @@
+---
+description: Axonary content — voice, tone, structure, conversion-focused writing
+alwaysApply: false
+globs: "**/*.{tsx,ts,md}"
+---
+
+# Axonary — content rules
+
+**Pair with:** `seo-rules.mdc` (keywords, H1/H2, length) and `governance.mdc` (QA gate).
+
+## Brand palette (reference)
+
+From `Axonary-Theme.txt`: purples `#5C3693`, `#472A71`; white `#FFFFFF`; black `#000000`. Copy should feel **high-contrast, modern, and precise** — not cluttered or gimmicky.
+
+## Voice and tone
+
+- **Confident and clear** — short declarative sentences; lead with outcomes (scale, data, impact) where it fits the page intent.  
+- **Growth- and conversion-aware** — tie features to revenue, efficiency, risk reduction, or time-to-market without hype.  
+- **Professional, not cold** — explain technical ideas in plain language (target readability in `governance.mdc`).  
+- **Specific to Axonary** — mention real deliverables, process, and differentiators; avoid template phrases (“best-in-class”, “synergy”) unless backed by proof.
+
+## Messaging pillars (use as needed by page)
+
+- **Data-backed decisions** — strategy tied to measurement, not guesswork.  
+- **Full-funnel thinking** — discovery through launch and iteration (align CTA to `axonary-core.mdc` funnel stage).  
+- **Engineering + marketing** — many pages blend build and growth; emphasize the angle that matches the **single** page intent.
+
+## Formatting and structure
+
+- Prefer **scannable** layout: short paragraphs, bullets for lists, one idea per paragraph.  
+- **Headings** follow `seo-rules.mdc` topical H2s; subheads (`H3`+) for detail within each section.  
+- **CTAs:** action verbs, specific next step (“Book a consultation”, “View services”, “Hire a developer”) — match BOFU/MOFU/TOFU per page.  
+- **Numbers and proof** — use concrete metrics, timelines, or scope examples when available; never invent statistics.
+
+## Conversion-focused writing
+
+- **Above-fold promise** — first screen states who it’s for and the main outcome.  
+- **Objection-aware** — briefly address risk, complexity, or “why now” in MOFU/BOFU pages.  
+- **Single primary CTA** per major section where possible; secondary CTA may be softer (learn more) on TOFU.
+
+## Do not
+
+- Keyword stuffing or repeating the primary phrase unnaturally.  
+- Generic AI filler, vague claims, or competitor-named trash talk.  
+- Mix multiple unrelated offers on one page (enforced in `axonary-core.mdc`).

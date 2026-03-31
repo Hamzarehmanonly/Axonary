@@ -1,6 +1,9 @@
 // EcommerceSolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { webGovernanceEcommerce } from "../../../data/webServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,47 +18,160 @@ const COLORS = {
 const services = [
   {
     id: "ecom-storefront",
-    title: "Storefront Development",
+    title: "Premium Storefront Design & Development",
     desc:
-      "Build high-converting e-commerce storefronts with modern UI/UX. Optimize for mobile, speed, and user experience.",
+      "Launch a digital flagship that transcends ordinary e-commerce. We craft immersive, high-converting storefronts engineered to captivate, inspire, and convert. Every visual element, interaction, and user flow is meticulously designed around your customers' journey—from discovery to checkout to advocacy. Our storefronts blend stunning aesthetics with conversion psychology, mobile-first architecture, and blazing-fast performance. We build platforms that don't just look beautiful—they generate revenue, build brand loyalty, and scale effortlessly as your business grows.",
     imgQuery: "ecommerce store",
   },
   {
     id: "ecom-integration",
-    title: "Payment Integration",
+    title: "Secure Payment & Checkout Mastery",
     desc:
-      "Integrate secure payment gateways, shopping carts, and checkout systems. Support multiple payment methods.",
+      "Never lose a sale to checkout friction. We architect bulletproof payment systems that feel invisible to customers while remaining fortress-strong on security. Integrating Stripe, PayPal, Square, Apple Pay, Google Wallet, and 100+ international payment methods, our solutions handle every scenario—from one-time purchases to subscriptions to multi-currency transactions. We implement PCI-DSS compliance, tokenization, fraud detection, and one-click purchasing. The result: frictionless checkouts that reduce cart abandonment by 30-40% and transform hesitant browsers into confident buyers.",
     imgQuery: "payment gateway",
   },
   {
     id: "ecom-inventory",
-    title: "Inventory Management",
+    title: "Real-Time Inventory & Supply Chain Intelligence",
     desc:
-      "Real-time inventory tracking, stock management, and automated reordering systems.",
+      "Stay perpetually ahead of demand with intelligent inventory systems that think for you. Our real-time tracking syncs across warehouses, locations, and channels—giving you perfect visibility into stock levels every second. Automated reorder points trigger restocks before you run out. Dynamic allocation prevents overselling. Smart forecasting predicts demand surges. Our systems integrate with suppliers, shippers, and ERPs to create a seamless supply chain. The outcome: zero stockouts, minimized overstock, optimized cash flow, and customers who never face the dreaded 'out of stock' message.",
     imgQuery: "inventory management",
   },
   {
     id: "ecom-analytics",
-    title: "Sales Analytics",
+    title: "Advanced Analytics & Business Intelligence",
     desc:
-      "Comprehensive analytics dashboards for sales tracking, customer behavior, and performance metrics.",
+      "Unlock the hidden truths in your sales data. Our custom dashboards reveal what drives revenue, spotlight emerging trends, and pinpoint growth opportunities. Track every metric that matters—conversion rates, customer lifetime value, product affinity, cart abandonment patterns, traffic sources, geographic performance. Predictive analytics forecast future revenue. Cohort analysis reveals your most valuable customers. Real-time alerts notify you of anomalies. We transform raw data into actionable intelligence that empowers you to make strategic decisions, optimize marketing spend, and scale revenue with precision.",
     imgQuery: "sales analytics",
   },
   {
     id: "ecom-mobile",
-    title: "Mobile Commerce",
+    title: "Mobile-First Commerce Excellence",
     desc:
-      "Responsive mobile apps and platforms for seamless shopping experiences on all devices.",
+      "Capture the explosive growth of mobile shopping with platforms engineered for the small screen first. We build lightning-fast, app-like mobile experiences that let your customers shop, search, pay, and receive support with one hand. One-tap checkout, biometric authentication, push notifications for deals, mobile wallets, augmented reality try-ons, and seamless sync across devices create friction-free journeys. Our mobile platforms drive 40-60% of sales for leading brands. We optimize for 3G networks, battery life, and touch gestures. Your mobile store doesn't just work—it thrives.",
     imgQuery: "mobile shopping",
   },
   {
     id: "ecom-optimization",
-    title: "Performance & SEO",
+    title: "Performance Optimization & SEO Domination",
     desc:
-      "Optimize site speed, SEO rankings, and conversion rates for maximum revenue.",
+      "Rise to the top of search and stay there. We turbocharge every aspect of your e-commerce empire—page load times, Core Web Vitals, image optimization, smart caching, CDN delivery. Our SEO expertise ranks you for high-intent keywords that drive buyers. We optimize product pages for featured snippets, implement rich schema markup, build internal linking strategies that guide customers through discovery. Technical SEO removes crawl issues. User experience improvements signal authority to Google. The result: top rankings, organic traffic floods, and unstoppable revenue growth that compounds month after month.",
     imgQuery: "website optimization",
   },
 ];
+
+// --- Testimonials Section ---
+const TESTIMONIALS = [
+  {
+    name: "Priya S.",
+    title: "E-commerce Founder",
+    quote:
+      "Checkout, tax, and fulfillment hooks were scoped together—fewer launch-week surprises when real orders hit real APIs.",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    name: "Mark T.",
+    title: "Product Lead",
+    quote:
+      "Core Web Vitals and catalog SEO were part of the build, not a panic sprint after marketing saw rankings slip.",
+    avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+  },
+];
+
+const TestimonialsSection: React.FC = () => (
+  <section className="py-20 md:py-28 bg-black/60">
+    <div className="container mx-auto px-6">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+        What Our Clients Say
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        {TESTIMONIALS.map((t) => (
+          <div key={t.name} className="rounded-xl p-6 shadow-lg flex flex-col items-center bg-[#18181b]">
+            <img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full mb-4" />
+            <div className="text-lg font-semibold mb-2" style={{ color: COLORS.white }}>{t.name}</div>
+            <div className="text-xs mb-2" style={{ color: COLORS.textMuted }}>{t.title}</div>
+            <div className="italic text-center text-gray-300">"{t.quote}"</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// --- FAQ Section ---
+const FAQS = [
+  {
+    q: "Which platforms do you build storefronts on?",
+    a: "We work headless or on major commerce platforms depending on your catalog complexity, ops team, and integration surface—always with PCI scope clarity.",
+  },
+  {
+    q: "Can you integrate OMS, ERP, or 3PL systems?",
+    a: "Yes. We map order states, webhooks, idempotency, and reconciliation so finance and fulfillment see the same truth as the storefront.",
+  },
+  {
+    q: "Do you offer post-launch support?",
+    a: "Seasonal readiness, promotions, payment updates, and performance tuning are typical ongoing work—we align to your peak calendar.",
+  },
+  {
+    q: "How do you approach performance for high-traffic sales?",
+    a: "Caching layers, cart/checkout isolation, load testing on realistic journeys, and observability on payment and inventory calls—not just homepage scores.",
+  },
+  {
+    q: "What makes Axonary different on e-commerce?",
+    a: "We connect merchandising UX to operational reality—fewer 'sold but not shippable' classes of bugs.",
+  },
+];
+
+const FAQSection: React.FC = () => {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-20 md:py-28 bg-black/70">
+      <div className="container mx-auto px-6 max-w-3xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {FAQS.map((faq, idx) => (
+            <div key={faq.q} className="border-b border-gray-700 pb-4">
+              <button
+                className="w-full text-left flex justify-between items-center text-lg font-medium focus:outline-none"
+                style={{ color: COLORS.white }}
+                onClick={() => setOpen(open === idx ? null : idx)}
+              >
+                {faq.q}
+                <span className="ml-2 text-xl">{open === idx ? '-' : '+'}</span>
+              </button>
+              {open === idx && (
+                <div className="mt-2 text-gray-300 text-base">{faq.a}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Footer CTA Section ---
+const FooterConsultCTA: React.FC = () => (
+  <section className="py-16 bg-gradient-to-r from-[#5C3693]/80 to-[#472A71]/80">
+    <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: COLORS.white }}>
+        Ready to scope your ecommerce build?
+      </h2>
+      <p className="mb-6 text-lg text-gray-200 max-w-2xl">
+        Share catalog complexity, payments, and fulfilment—we will outline storefront approach, integrations, and a phased launch plan.
+      </p>
+      <Link
+        to="/contact"
+        className="px-8 py-3 rounded-full font-semibold bg-white text-[#5C3693] hover:bg-gray-200 transition"
+        style={{ boxShadow: '0 2px 16px 0 rgba(92,54,147,0.10)' }}
+      >
+        Get Your Free Consultation
+      </Link>
+    </div>
+  </section>
+);
 
 const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   return (
@@ -78,7 +194,7 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
               Axonary
             </div>
             <div className="text-xs" style={{ color: COLORS.textMuted }}>
-              E-Commerce Solutions
+              E-Commerce Excellence
             </div>
           </div>
         </div>
@@ -88,14 +204,13 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
           <a href="#ecom-integration" className="hover:text-white">Payment</a>
           <a href="#ecom-inventory" className="hover:text-white">Inventory</a>
           <a href="#ecom-analytics" className="hover:text-white">Analytics</a>
-          <a href="#ecom-mobile" className="hover:text-white">Mobile</a>
-          <a href="#ecom-optimization" className="hover:text-white">Optimization</a>
           <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
             Book a Call
           </Link>
         </nav>
       </div>
 
+      {/* scroll progress bar */}
       <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div style={{
           height: "3px",
@@ -108,229 +223,16 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   );
 };
 
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            High-Converting • Mobile-First • Scalable
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            E-Commerce Solutions{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Build powerful online stores that drive sales and customer loyalty. From storefront to checkout, we've got you covered.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#ecom-storefront" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">E-Commerce Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">500+</div>
-                <div className="text-xs text-gray-400">E-Commerce Stores</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">250%</div>
-                <div className="text-xs text-gray-400">Avg. Revenue Growth</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to launch your online store? Let's get started.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string }> = ({ idx, id, title, desc }) => {
   const isLeftImage = idx % 2 === 0;
-
-  const Placeholder = () => {
-    const getSVG = () => {
-      switch(idx) {
-        case 0: // Storefront → BUILD
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="ecom0" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="ecomGlow0">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#ecomGlow0)">
-                <rect x="110" y="100" width="180" height="180" rx="10" fill="url(#ecom0)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2" />
-                <rect x="130" y="130" width="50" height="50" rx="4" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="190" y="130" width="50" height="50" rx="4" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="130" y="200" width="50" height="50" rx="4" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="190" y="200" width="50" height="50" rx="4" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">BUILD</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Storefront</text>
-            </svg>
-          );
-        case 1: // Payment Integration → SECURE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="ecom1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="ecomGlow1">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#ecomGlow1)">
-                <rect x="130" y="110" width="140" height="90" rx="8" fill="url(#ecom1)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2" />
-                <circle cx="160" cy="155" r="18" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="240" cy="155" r="18" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <path d="M 160 140 L 160 170" stroke={COLORS.primary} strokeWidth="2" opacity="0.5" />
-                <path d="M 240 140 L 240 170" stroke={COLORS.primary} strokeWidth="2" opacity="0.5" />
-              </g>
-              <path d="M 185 230 L 215 230 L 215 270 L 185 270 Z" fill="none" stroke={COLORS.primary} strokeWidth="2.5" rx="4" opacity="0.6" />
-              <path d="M 200 245 L 200 255" stroke="white" strokeWidth="2" opacity="0.6" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">SECURE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Payment</text>
-            </svg>
-          );
-        case 2: // Inventory → TRACK
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="ecom2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="ecomGlow2">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#ecomGlow2)">
-                <rect x="140" y="110" width="120" height="130" rx="6" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.4" />
-                <rect x="155" y="130" width="25" height="35" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="195" y="130" width="25" height="50" fill="url(#ecom2)" opacity="0.85" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="235" y="130" width="25" height="28" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1" />
-                <line x1="140" y1="195" x2="260" y2="195" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">TRACK</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Inventory</text>
-            </svg>
-          );
-        case 3: // Analytics → ANALYZE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="ecom3" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="ecomGlow3">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#ecomGlow3)">
-                <circle cx="140" cy="180" r="24" fill="url(#ecom3)" opacity="0.8" stroke={COLORS.primary} strokeWidth="2" />
-                <circle cx="200" cy="160" r="28" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <circle cx="260" cy="190" r="22" fill={COLORS.secondary} opacity="0.7" stroke={COLORS.primary} strokeWidth="1.5" />
-                <line x1="164" y1="165" x2="176" y2="175" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-                <line x1="228" y1="175" x2="238" y2="185" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" />
-              </g>
-              <path d="M 190 100 L 200 120 L 210 100" fill={COLORS.primary} opacity="0.5" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">ANALYZE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Analytics</text>
-            </svg>
-          );
-        case 4: // Mobile Commerce → MOBILE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="ecom4" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="ecomGlow4">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#ecomGlow4)">
-                <rect x="150" y="100" width="100" height="160" rx="12" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.7" />
-                <rect x="160" y="120" width="80" height="100" fill="url(#ecom4)" opacity="0.4" stroke={COLORS.primary} strokeWidth="1" />
-                <circle cx="200" cy="230" r="6" fill={COLORS.primary} opacity="0.6" />
-              </g>
-              <line x1="155" y1="115" x2="245" y2="115" stroke={COLORS.primary} strokeWidth="1" opacity="0.3" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">MOBILE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Commerce</text>
-            </svg>
-          );
-        case 5: // Performance & SEO → OPTIMIZE
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="ecom5" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="ecomGlow5">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                  <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-              </defs>
-              <g filter="url(#ecomGlow5)">
-                <circle cx="200" cy="170" r="30" fill="url(#ecom5)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2" />
-                <circle cx="200" cy="170" r="20" fill="none" stroke={COLORS.secondary} strokeWidth="1.5" opacity="0.5" />
-                <circle cx="200" cy="170" r="12" fill={COLORS.primary} opacity="0.6" />
-              </g>
-              <path d="M 200 140 L 200 110" stroke={COLORS.primary} strokeWidth="2" opacity="0.4" />
-              <circle cx="200" cy="105" r="4" fill={COLORS.primary} opacity="0.6" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">OPTIMIZE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Performance</text>
-            </svg>
-          );
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <div className="rounded-2xl shadow-lg w-full overflow-hidden" style={{ background: COLORS.card, aspectRatio: '1', maxWidth: '360px' }}>
-        {getSVG()}
-      </div>
-    );
-  };
-
+  const Placeholder: React.FC = () => (
+    <div
+      className="rounded-2xl shadow-lg w-full overflow-hidden flex items-center justify-center text-sm font-medium"
+      style={{ background: COLORS.card, aspectRatio: "1", maxWidth: "360px", color: COLORS.textMuted }}
+    >
+      {title.split(" ")[0]}
+    </div>
+  );
   return (
     <section id={id} className="py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -340,19 +242,15 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
-
               <div className="md:col-span-6 flex items-center">
                 <div className="max-w-xl w-full">
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -371,13 +269,10 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -388,7 +283,6 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   </div>
                 </div>
               </div>
-
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
@@ -399,6 +293,9 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
     </section>
   );
 };
+
+
+
 
 const FooterCTA: React.FC = () => {
   return (
@@ -445,13 +342,18 @@ const EcommerceSolution: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={webGovernanceEcommerce.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={webGovernanceEcommerce} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <TestimonialsSection />
+        <FAQSection />
+        <FooterConsultCTA />
 
         <div style={{ height: 160 }} />
       </main>

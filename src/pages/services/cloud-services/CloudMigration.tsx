@@ -1,6 +1,9 @@
 // CloudMigration.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { cloudGovernanceMigration } from "../../../data/cloudServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -105,65 +108,6 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
         }} />
       </div>
     </header>
-  );
-};
-
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Zero Downtime • Secure • Risk-Free
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Cloud{" "}
-            <span style={{ color: COLORS.primary }}>Migration | Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Seamlessly migrate your infrastructure to the cloud. Minimize risk and maximize efficiency with our expert guidance.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#cloud-migration-assessment" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">Migration Excellence</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">350+</div>
-                <div className="text-xs text-gray-400">Successful Migrations</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">0hrs</div>
-                <div className="text-xs text-gray-400">Avg. Downtime</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to move to the cloud? Let's get started.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 };
 
@@ -350,7 +294,7 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
 
                   <div className="mt-6 flex items-center gap-3">
-                    <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
+                    <a href={`#${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
                     </a>
                     <a href="/contact" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
@@ -375,7 +319,7 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
 
                   <div className="mt-6 flex items-center gap-3">
-                    <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
+                    <a href={`#${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
                     </a>
                     <a href="/contact" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
@@ -441,13 +385,28 @@ const CloudMigration: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={cloudGovernanceMigration.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={cloudGovernanceMigration} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <section className="mt-12">
+          <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: "-1px" }}>
+              Ready to plan a migration you can validate?
+            </h2>
+            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+              Share inventory, dependencies, and downtime appetite—we will propose waves, tooling, and rollback that match reality.
+            </p>
+            <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
+              Schedule a consultation
+            </a>
+          </div>
+        </section>
 
         <div style={{ height: 160 }} />
       </main>

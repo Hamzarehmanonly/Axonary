@@ -1,6 +1,9 @@
 // CMSSolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { customSoftwareGovernanceCMS } from "../../../data/customSoftwareServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,44 +18,44 @@ const COLORS = {
 const services = [
   {
     id: "cms-implementation",
-    title: "CMS Implementation",
+    title: "Epic CMS Implementation",
     desc:
-      "Deploy powerful content management systems for easy content updates. WordPress, Drupal, or custom solutions tailored to your needs.",
+      "We don’t just deploy CMS—we empower your content teams. Our CMS solutions make updates effortless, whether you use WordPress, Drupal, or custom platforms.",
     imgQuery: "content management system",
   },
   {
     id: "cms-customization",
-    title: "CMS Customization",
+    title: "CMS Customization That Elevates",
     desc:
-      "Custom themes, plugins, and modules for your unique requirements. Extend functionality without compromising performance.",
+      "Your website deserves more. We craft custom themes, plugins, and modules that extend functionality and performance, tailored to your vision.",
     imgQuery: "website customization",
   },
   {
     id: "cms-migration",
-    title: "Content Migration",
+    title: "Seamless Content Migration",
     desc:
-      "Migrate your content from legacy systems to modern CMS platforms. Preserve SEO rankings and content integrity.",
+      "Move your content from legacy systems to modern CMS platforms with zero disruption. We preserve SEO, integrity, and momentum.",
     imgQuery: "data transfer",
   },
   {
     id: "cms-optimization",
-    title: "Performance Optimization",
+    title: "Performance Optimization That Matters",
     desc:
-      "Optimize your CMS for speed, SEO, and user experience. Caching, CDN integration, and database optimization.",
+      "Speed, SEO, and user experience—optimized. We deliver caching, CDN integration, and database tuning for a site that performs and ranks.",
     imgQuery: "website performance",
   },
   {
     id: "cms-security",
-    title: "Security & Maintenance",
+    title: "Security & Maintenance You Can Rely On",
     desc:
-      "Regular security updates, backups, and maintenance. Keep your CMS secure and running smoothly.",
+      "Stay protected with regular security updates, backups, and maintenance. Your CMS stays secure and running, always.",
     imgQuery: "cybersecurity",
   },
   {
     id: "cms-training",
-    title: "User Training",
+    title: "Empowering User Training",
     desc:
-      "Comprehensive training for content editors and administrators. Maximize productivity and content quality.",
+      "We train your editors and admins to master the CMS, maximizing productivity and content quality every day.",
     imgQuery: "online training",
   },
 ];
@@ -105,65 +108,6 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
         }} />
       </div>
     </header>
-  );
-};
-
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Flexible • Scalable • User-Friendly
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            CMS Solutions{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Empower your team with intuitive content management systems. Create, publish, and manage content effortlessly.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#cms-implementation" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">CMS Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">300+</div>
-                <div className="text-xs text-gray-400">CMS Projects</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">99%</div>
-                <div className="text-xs text-gray-400">Uptime</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to manage your content easily? Let's implement your CMS.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 };
 
@@ -368,13 +312,28 @@ const CMSSolution: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={customSoftwareGovernanceCMS.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={customSoftwareGovernanceCMS} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <section className="mt-12">
+          <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: "-1px" }}>
+              Ready to modernize your content platform?
+            </h2>
+            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+              Share editorial workflows, sites, and migration needs—we will map models, performance, and launch training.
+            </p>
+            <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
+              Schedule a consultation
+            </a>
+          </div>
+        </section>
 
         <div style={{ height: 160 }} />
       </main>

@@ -1,6 +1,9 @@
 // CRMSolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { customSoftwareGovernanceCRM } from "../../../data/customSoftwareServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,44 +18,44 @@ const COLORS = {
 const services = [
   {
     id: "crm-implementation",
-    title: "CRM Implementation",
+    title: "Epic CRM Implementation",
     desc:
-      "Deploy industry-leading CRM systems tailored to your sales, marketing, and customer service needs. Maximize customer relationships and revenue.",
+      "We don’t just install CRM—we ignite customer relationships. Our CRM solutions are crafted for sales, marketing, and service teams to maximize engagement and revenue.",
     imgQuery: "customer relationship management",
   },
   {
     id: "crm-customization",
-    title: "CRM Customization",
+    title: "CRM Customization That Works For You",
     desc:
-      "Customize CRM workflows, fields, and modules to match your business processes. Flexible solutions for unique requirements.",
+      "Every business is unique. We customize CRM workflows, fields, and modules to fit your processes, unlocking flexibility and growth.",
     imgQuery: "business automation",
   },
   {
     id: "crm-integration",
-    title: "Integration & APIs",
+    title: "Integration & APIs That Connect Everything",
     desc:
-      "Seamlessly integrate CRM with your existing tools and platforms. Data synchronization, webhooks, and custom API development.",
+      "Connect your CRM to every tool and platform you use. We deliver seamless data sync, webhooks, and custom APIs for a unified experience.",
     imgQuery: "api integration",
   },
   {
     id: "crm-automation",
-    title: "Workflow Automation",
+    title: "Epic Workflow Automation",
     desc:
-      "Automate sales processes, lead scoring, and customer communications. Increase productivity and reduce manual work.",
+      "Automate sales, lead scoring, and customer communications. Our CRM automation boosts productivity and frees your team to focus on what matters.",
     imgQuery: "workflow automation",
   },
   {
     id: "crm-analytics",
-    title: "Analytics & Reporting",
+    title: "Analytics & Reporting That Drives Action",
     desc:
-      "Advanced dashboards and reports for sales forecasting and performance tracking. Data-driven decision making.",
+      "Our dashboards and reports turn data into decisions. Forecast sales, track performance, and make every move count.",
     imgQuery: "data analytics",
   },
   {
     id: "crm-support",
-    title: "Training & Support",
+    title: "Training & Support That Empowers",
     desc:
-      "Comprehensive training programs and ongoing support. Ensure successful adoption and user engagement.",
+      "We train your team for CRM mastery and provide ongoing support to ensure adoption, engagement, and results.",
     imgQuery: "customer support",
   },
 ];
@@ -105,65 +108,6 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
         }} />
       </div>
     </header>
-  );
-};
-
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Customer-Centric • Scalable • Integrated
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            CRM Solutions{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Build stronger customer relationships with powerful CRM systems. Streamline sales, marketing, and support operations.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#crm-implementation" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">CRM Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">400+</div>
-                <div className="text-xs text-gray-400">CRM Projects</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">250%</div>
-                <div className="text-xs text-gray-400">Avg ROI</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to boost sales? Let's implement your CRM solution.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 };
 
@@ -394,13 +338,28 @@ const CRMSolution: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={customSoftwareGovernanceCRM.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={customSoftwareGovernanceCRM} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <section className="mt-12">
+          <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: "-1px" }}>
+              Ready to implement CRM your teams will use?
+            </h2>
+            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+              Share pipelines, service queues, and integration targets—we will map objects, automation, and rollout by team.
+            </p>
+            <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
+              Schedule a consultation
+            </a>
+          </div>
+        </section>
 
         <div style={{ height: 160 }} />
       </main>

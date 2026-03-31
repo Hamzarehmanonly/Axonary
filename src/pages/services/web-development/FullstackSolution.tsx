@@ -1,6 +1,9 @@
 // FullstackSolution.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { webGovernanceFullstack } from "../../../data/webServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -15,47 +18,160 @@ const COLORS = {
 const services = [
   {
     id: "fullstack-planning",
-    title: "Project Planning",
+    title: "Strategic Planning & Architecture",
     desc:
-      "Strategic planning and architecture design for complete end-to-end web applications.",
+      "We turn ideas into blueprints for digital success. Our planning process is strategic, collaborative, and laser-focused on your goals. We conduct discovery workshops to understand your business. We sketch architecture diagrams. We identify technical risks early. We select the perfect tech stack for your needs. We define success metrics. We create development roadmaps. The result: clear vision, aligned teams, and realistic timelines that set you up for execution excellence.",
     imgQuery: "project planning",
   },
   {
-    id: "fullstack-development",
-    title: "Full Development",
+    id: "fullstack-frontend",
+    title: "Full Frontend Development",
     desc:
-      "Complete development from frontend UI to backend APIs. One cohesive team.",
-    imgQuery: "full stack development",
+      "Modern, responsive interfaces built with React, Vue, or Angular. We craft experiences that users love—pixel-perfect designs, smooth animations, keyboard navigation, screen reader support. Responsive layouts adapt to every device. Progressive enhancement works everywhere. TypeScript catches bugs before they ship. Component libraries scale development speed. The result: frontends so polished they feel like natural extensions of your brand.",
+    imgQuery: "frontend development",
+  },
+  {
+    id: "fullstack-backend",
+    title: "Robust Backend Systems",
+    desc:
+      "Scalable APIs and databases that handle anything. We build backends architected for reliability—redundancy prevents single points of failure, load balancing distributes traffic, caching minimizes database load, monitoring catches issues instantly. Security is baked in. Performance is optimized. The result: backends that grow from startup to scale without architectural redesigns.",
+    imgQuery: "backend development",
+  },
+  {
+    id: "fullstack-integration",
+    title: "Seamless Frontend-Backend Integration",
+    desc:
+      "Full-stack development means every system talks to every other system perfectly. We orchestrate frontend-backend communication via RESTful or GraphQL APIs. WebSocket events power real-time features. Request/response cycles are optimized. Error handling gracefully degrades. Real-time sync keeps interfaces up-to-date. The result: unified experiences that work like they're a single cohesive system.",
+    imgQuery: "system integration",
   },
   {
     id: "fullstack-database",
-    title: "Database & Backend",
+    title: "Strategic Data Architecture",
     desc:
-      "Robust database design and scalable backend infrastructure with APIs.",
-    imgQuery: "database backend",
-  },
-  {
-    id: "fullstack-frontend",
-    title: "Frontend Integration",
-    desc:
-      "Beautiful, responsive frontends that seamlessly integrate with your backend.",
-    imgQuery: "frontend integration",
-  },
-  {
-    id: "fullstack-testing",
-    title: "Testing & QA",
-    desc:
-      "Comprehensive testing across all layers: unit, integration, E2E, and performance.",
-    imgQuery: "quality assurance",
+      "Data strategies that power insights. We design schemas that optimize both writes and reads. We implement caching layers that accelerate common queries. We architect backups that protect against disaster. We scale databases to handle growth. The result: data systems that reliably serve your business without becoming bottlenecks.",
+    imgQuery: "database management",
   },
   {
     id: "fullstack-deployment",
-    title: "Deployment & Support",
+    title: "Deployment & Operations Excellence",
     desc:
-      "Managed deployment, monitoring, and ongoing support for your application.",
-    imgQuery: "deployment support",
+      "From development to production flawlessly. We architect deployment pipelines that build, test, and release automatically. We containerize applications for consistency. We implement monitoring that catches issues instantly. We design runbooks that guide operations teams through incidents. The result: production environments so reliable you sleep soundly.",
+    imgQuery: "cloud deployment",
   },
 ];
+
+// --- Testimonials Section ---
+const TESTIMONIALS = [
+  {
+    name: "Priya S.",
+    title: "E-commerce Founder",
+    quote:
+      "End-to-end slices meant our checkout flow shipped as one unit—fewer 'works on my machine' debates between UI and API owners.",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    name: "Mark T.",
+    title: "Product Lead",
+    quote:
+      "Shared types and aligned error handling across the stack cut integration time for every new feature we added afterward.",
+    avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+  },
+];
+
+const TestimonialsSection: React.FC = () => (
+  <section className="py-20 md:py-28 bg-black/60">
+    <div className="container mx-auto px-6">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+        What Our Clients Say
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        {TESTIMONIALS.map((t) => (
+          <div key={t.name} className="rounded-xl p-6 shadow-lg flex flex-col items-center bg-[#18181b]">
+            <img src={t.avatar} alt={t.name} className="w-16 h-16 rounded-full mb-4" />
+            <div className="text-lg font-semibold mb-2" style={{ color: COLORS.white }}>{t.name}</div>
+            <div className="text-xs mb-2" style={{ color: COLORS.textMuted }}>{t.title}</div>
+            <div className="italic text-center text-gray-300">"{t.quote}"</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// --- FAQ Section ---
+const FAQS = [
+  {
+    q: "How do you split ownership between frontend and backend on full-stack work?",
+    a: "We deliver vertical slices with one accountable thread per feature—shared schemas, staging parity, and joint acceptance so UI and services evolve together.",
+  },
+  {
+    q: "Can you plug into our existing monorepo or separate repos?",
+    a: "Either model works—we align package boundaries, CI, and release order so changes land safely whether code lives in one place or many.",
+  },
+  {
+    q: "Do you offer post-launch support?",
+    a: "Yes—monitoring, dependency hygiene, incident help, and roadmap delivery continue under an agreed operating model.",
+  },
+  {
+    q: "How do you handle auth across the stack?",
+    a: "We implement consistent session/token flows, role checks on the server, and UI states that match real authorization—not optimistic buttons that 403 in production.",
+  },
+  {
+    q: "What makes Axonary different on full-stack delivery?",
+    a: "We optimize for coherent user journeys: the same people reason about data, errors, and performance from browser to database.",
+  },
+];
+
+const FAQSection: React.FC = () => {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section className="py-20 md:py-28 bg-black/70">
+      <div className="container mx-auto px-6 max-w-3xl">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center" style={{ color: COLORS.white }}>
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {FAQS.map((faq, idx) => (
+            <div key={faq.q} className="border-b border-gray-700 pb-4">
+              <button
+                className="w-full text-left flex justify-between items-center text-lg font-medium focus:outline-none"
+                style={{ color: COLORS.white }}
+                onClick={() => setOpen(open === idx ? null : idx)}
+              >
+                {faq.q}
+                <span className="ml-2 text-xl">{open === idx ? '-' : '+'}</span>
+              </button>
+              {open === idx && (
+                <div className="mt-2 text-gray-300 text-base">{faq.a}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Footer CTA Section ---
+const FooterConsultCTA: React.FC = () => (
+  <section className="py-16 bg-gradient-to-r from-[#5C3693]/80 to-[#472A71]/80">
+    <div className="container mx-auto px-6 flex flex-col items-center justify-center text-center">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: COLORS.white }}>
+        Ready to ship full-stack vertical slices?
+      </h2>
+      <p className="mb-6 text-lg text-gray-200 max-w-2xl">
+        Bring your MVP or product goals—we will align UI, APIs, environments, and milestones in one thread.
+      </p>
+      <Link
+        to="/contact"
+        className="px-8 py-3 rounded-full font-semibold bg-white text-[#5C3693] hover:bg-gray-200 transition"
+        style={{ boxShadow: '0 2px 16px 0 rgba(92,54,147,0.10)' }}
+      >
+        Get Your Free Consultation
+      </Link>
+    </div>
+  </section>
+);
 
 const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   return (
@@ -78,24 +194,20 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
               Axonary
             </div>
             <div className="text-xs" style={{ color: COLORS.textMuted }}>
-              Full-Stack Solutions
+              Full-Stack Excellence
             </div>
           </div>
         </div>
-
         <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
           <a href="#fullstack-planning" className="hover:text-white">Planning</a>
-          <a href="#fullstack-development" className="hover:text-white">Development</a>
-          <a href="#fullstack-database" className="hover:text-white">Database</a>
           <a href="#fullstack-frontend" className="hover:text-white">Frontend</a>
-          <a href="#fullstack-testing" className="hover:text-white">Testing</a>
-          <a href="#fullstack-deployment" className="hover:text-white">Deployment</a>
+          <a href="#fullstack-backend" className="hover:text-white">Backend</a>
+          <a href="#fullstack-database" className="hover:text-white">Database</a>
           <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>
             Book a Call
           </Link>
         </nav>
       </div>
-
       <div className="h-[3px] w-full" style={{ background: "rgba(255,255,255,0.02)" }}>
         <div style={{
           height: "3px",
@@ -108,202 +220,16 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => {
   );
 };
 
-const Hero: React.FC = () => {
-  return (
-    <section
-      id="hero"
-      className="min-h-[72vh] flex items-center"
-      style={{ background: COLORS.bg, color: COLORS.white }}
-    >
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
-          <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-            Complete • Integrated • Professional
-          </div>
-
-          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-            Full-Stack Development{" "}
-            <span style={{ color: COLORS.primary }}>| Axonary</span>
-          </h1>
-
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-            Complete web application development with integrated frontend, backend, and infrastructure solutions.
-          </p>
-
-          <div className="mt-6 flex items-center gap-4">
-            <a href="#fullstack-planning" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
-              Explore Services
-            </a>
-            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
-              Request Consultation
-            </a>
-          </div>
-        </div>
-
-        <div className="md:col-span-5">
-          <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-            <h5 className="text-sm text-gray-400">Full-Stack Success</h5>
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">450+</div>
-                <div className="text-xs text-gray-400">Full-Stack Projects</div>
-              </div>
-              <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-                <div className="text-2xl font-bold">98%</div>
-                <div className="text-xs text-gray-400">Client Satisfaction</div>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <p className="text-sm text-gray-300">Ready to build your complete solution? Let's get started.</p>
-              <div className="mt-4">
-                <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string }> = ({ idx, id, title, desc }) => {
   const isLeftImage = idx % 2 === 0;
-
-  const Placeholder = () => {
-    const getSVG = () => {
-      switch(idx) {
-        case 0:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fs0" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="fsGlow0"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#fsGlow0)">
-                <rect x="130" y="120" width="140" height="140" rx="8" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.5" />
-                <rect x="145" y="140" width="35" height="35" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="220" y="140" width="35" height="35" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="145" y="205" width="35" height="35" fill={COLORS.secondary} opacity="0.6" stroke={COLORS.primary} strokeWidth="1" />
-                <rect x="220" y="205" width="35" height="35" fill="url(#fs0)" opacity="0.8" stroke={COLORS.primary} strokeWidth="1" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">PLAN</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Planning</text>
-            </svg>
-          );
-        case 1:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fs1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="fsGlow1"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#fsGlow1)">
-                <circle cx="200" cy="170" r="35" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.4" />
-                <circle cx="200" cy="170" r="25" fill="url(#fs1)" opacity="0.2" stroke={COLORS.primary} strokeWidth="2" />
-                <circle cx="200" cy="170" r="12" fill={COLORS.primary} opacity="0.8" />
-              </g>
-              <path d="M 135 170 L 165 170 M 235 170 L 265 170 M 200 105 L 200 135 M 200 205 L 200 235" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.3" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">BUILD</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Development</text>
-            </svg>
-          );
-        case 2:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fs2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="fsGlow2"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#fsGlow2)">
-                <ellipse cx="200" cy="140" rx="35" ry="25" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.5" />
-                <rect x="165" y="170" width="70" height="50" fill="url(#fs2)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2" />
-                <ellipse cx="200" cy="220" rx="35" ry="25" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.5" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">STORE</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Database</text>
-            </svg>
-          );
-        case 3:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fs3" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="fsGlow3"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#fsGlow3)">
-                <rect x="120" y="120" width="160" height="140" rx="10" fill="url(#fs3)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2.5" />
-                <rect x="135" y="140" width="130" height="100" fill="none" stroke={COLORS.primary} strokeWidth="1.5" opacity="0.4" rx="6" />
-              </g>
-              <line x1="145" y1="160" x2="255" y2="160" stroke={COLORS.primary} strokeWidth="1" opacity="0.3" />
-              <line x1="145" y1="180" x2="245" y2="180" stroke={COLORS.primary} strokeWidth="1" opacity="0.3" />
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">DESIGN</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Frontend</text>
-            </svg>
-          );
-        case 4:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fs4" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="fsGlow4"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#fsGlow4)">
-                <rect x="125" y="125" width="150" height="130" rx="8" fill="none" stroke={COLORS.primary} strokeWidth="2.5" opacity="0.5" />
-                <circle cx="160" cy="160" r="12" fill={COLORS.secondary} opacity="0.6" />
-                <circle cx="200" cy="160" r="12" fill={COLORS.secondary} opacity="0.6" />
-                <circle cx="240" cy="160" r="12" fill={COLORS.secondary} opacity="0.6" />
-                <path d="M 160 175 L 200 200 L 240 185" fill="none" stroke="url(#fs4)" strokeWidth="2" opacity="0.7" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">TEST</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Testing</text>
-            </svg>
-          );
-        case 5:
-          return (
-            <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ background: `linear-gradient(135deg, ${COLORS.secondary}22 0%, ${COLORS.secondary}11 100%)` }}>
-              <defs>
-                <linearGradient id="fs5" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor={COLORS.primary} stopOpacity="0.9" />
-                  <stop offset="100%" stopColor={COLORS.secondary} stopOpacity="0.7" />
-                </linearGradient>
-                <filter id="fsGlow5"><feGaussianBlur stdDeviation="3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-              </defs>
-              <g filter="url(#fsGlow5)">
-                <rect x="130" y="120" width="140" height="140" rx="8" fill="url(#fs5)" opacity="0.15" stroke={COLORS.primary} strokeWidth="2" />
-                <path d="M 145 160 L 165 180 L 255 130" fill="none" stroke={COLORS.primary} strokeWidth="2" opacity="0.7" strokeLinecap="round" strokeLinejoin="round" />
-              </g>
-              <text x="200" y="320" fontSize="24" fontWeight="bold" fill={COLORS.primary} textAnchor="middle">LAUNCH</text>
-              <text x="200" y="350" fontSize="14" fill={COLORS.textMuted} textAnchor="middle" opacity="0.8">Deployment</text>
-            </svg>
-          );
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <div className="rounded-2xl shadow-lg w-full overflow-hidden" style={{ background: COLORS.card, aspectRatio: '1', maxWidth: '360px' }}>
-        {getSVG()}
-      </div>
-    );
-  };
-
+  const Placeholder: React.FC = () => (
+    <div
+      className="rounded-2xl shadow-lg w-full overflow-hidden flex items-center justify-center text-sm font-medium"
+      style={{ background: COLORS.card, aspectRatio: "1", maxWidth: "360px", color: COLORS.textMuted }}
+    >
+      {title.split(" ")[0]}
+    </div>
+  );
   return (
     <section id={id} className="py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -313,19 +239,15 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
-
               <div className="md:col-span-6 flex items-center">
                 <div className="max-w-xl w-full">
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -344,13 +266,10 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <div className="inline-block rounded-full px-3 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}22`, color: COLORS.white }}>
                     {title.split(" ")[0]}
                   </div>
-
                   <h3 className="mt-4 text-2xl md:text-3xl font-bold" style={{ color: COLORS.white }}>
                     {title}
                   </h3>
-
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
-
                   <div className="mt-6 flex items-center gap-3">
                     <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
@@ -361,7 +280,6 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   </div>
                 </div>
               </div>
-
               <div className="md:col-span-6 flex items-center justify-center">
                 <Placeholder />
               </div>
@@ -372,6 +290,9 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
     </section>
   );
 };
+
+
+
 
 const FooterCTA: React.FC = () => {
   return (
@@ -418,13 +339,18 @@ const FullstackSolution: React.FC = () => {
       <TopNav progress={progress} />
 
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={webGovernanceFullstack.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={webGovernanceFullstack} />
 
         <div className="mt-8">
           {services.map((s, idx) => (
             <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
+
+        <TestimonialsSection />
+        <FAQSection />
+        <FooterConsultCTA />
 
         <div style={{ height: 160 }} />
       </main>

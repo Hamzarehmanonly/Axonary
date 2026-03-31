@@ -2,6 +2,9 @@
 // MobileAppDevelopment.tsx - Mobile App Development Overview
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { mobileGovernanceMobileApp } from "../../../data/mobileServiceGovernanceContent";
 import {
   AndroidAppSVG,
   iOSAppSVG,
@@ -21,58 +24,6 @@ const COLORS = {
   textMuted: "#BDB7D6",
   white: "#FFFFFF",
 };
-
-const mobileServices = [
-  {
-    id: "android",
-    title: "Android App Development",
-    desc: "Native Android apps built with Kotlin and Java. High-performance, stable, and scalable products for Google Play.",
-    link: "/services/mobile-app-development/android",
-    icon: "🤖",
-  },
-  {
-    id: "ios",
-    title: "iOS App Development",
-    desc: "Premium iOS apps with Swift and Objective-C. Pixel-perfect design and lightning-fast performance for the App Store.",
-    link: "/services/mobile-app-development/ios",
-    icon: "🍎",
-  },
-  {
-    id: "flutter",
-    title: "Flutter App Development",
-    desc: "Cross-platform apps with beautiful UI and incredible performance. One codebase, infinite possibilities.",
-    link: "/services/mobile-app-development/flutter",
-    icon: "🎨",
-  },
-  {
-    id: "react-native",
-    title: "React Native App Development",
-    desc: "JavaScript-powered mobile apps that run on iOS and Android. Fast development, unified experience.",
-    link: "/services/mobile-app-development/react-native",
-    icon: "⚛️",
-  },
-  {
-    id: "cross-platform",
-    title: "Cross-Platform App Development",
-    desc: "Unified apps across all platforms with Xamarin and native bridges. Code reuse, maximum reach.",
-    link: "/services/mobile-app-development/cross-platform",
-    icon: "🌐",
-  },
-  {
-    id: "cloud-mobile",
-    title: "Cloud Mobile App Development",
-    desc: "Cloud-native mobile apps with real-time sync, offline capabilities, and enterprise scalability.",
-    link: "/services/mobile-app-development/cloud-mobile",
-    icon: "☁️",
-  },
-  {
-    id: "iot",
-    title: "IoT Mobile App Development",
-    desc: "Next-generation IoT apps for device connectivity, real-time control, and intelligent automation.",
-    link: "/services/mobile-app-development/iot",
-    icon: "📡",
-  },
-];
 
 const SVG_COMPONENTS = [
   AndroidAppSVG,
@@ -122,9 +73,6 @@ const FAQS = [
   },
 ];
 
-const unsplashSrc = (q: string) =>
-  `https://source.unsplash.com/collection/922197/1200x900?${encodeURIComponent(q)}`;
-
 const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
   <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm" style={{ background: "rgba(0,0,0,0.45)", borderBottom: "1px solid rgba(255,255,255,0.03)" }}>
     <div className="container mx-auto px-6 flex items-center justify-between h-16">
@@ -137,7 +85,7 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
       </div>
       <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: COLORS.textMuted }}>
         <a href="#services" className="hover:text-white">Services</a>
-        <a href="#why-us" className="hover:text-white">Why Us</a>
+        <a href="#why-choose-governance" className="hover:text-white">Why Us</a>
         <a href="#faqs" className="hover:text-white">FAQs</a>
         <Link to="/contact" className="ml-4 inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Book a Call</Link>
       </nav>
@@ -146,123 +94,6 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
       <div style={{ height: "3px", width: `${progress}%`, transition: "width 120ms linear", background: `linear-gradient(90deg, ${COLORS.primary}, ${COLORS.secondary})` }} />
     </div>
   </header>
-);
-
-const Hero: React.FC = () => (
-  <section id="hero" className="min-h-[72vh] flex items-center" style={{ background: COLORS.bg, color: COLORS.white }}>
-    <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      <div>
-        <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-          Mobile App Development Services
-        </div>
-        <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-          Mobile Apps That Win Users
-          <span style={{ color: COLORS.primary }}> | Axonary</span>
-        </h1>
-        <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-          Whether you need native Android, iOS, Flutter, React Native, or cross-platform solutions, we deliver high-performance mobile apps that users love. From MVP to enterprise scale, we build apps that drive growth.
-        </p>
-        <div className="mt-6 flex items-center gap-4">
-          <a href="#services" className="px-6 py-3 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
-            Explore Services
-          </a>
-          <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
-            Request Consultation
-          </a>
-        </div>
-      </div>
-      <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-        <h5 className="text-sm text-gray-400">Mobile Excellence</h5>
-        <div className="mt-4 grid grid-cols-2 gap-4">
-          <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-            <div className="text-2xl font-bold">500+</div>
-            <div className="text-xs text-gray-400">Apps Delivered</div>
-          </div>
-          <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-            <div className="text-2xl font-bold">10M+</div>
-            <div className="text-xs text-gray-400">Total Downloads</div>
-          </div>
-        </div>
-        <div className="mt-6">
-          <p className="text-sm text-gray-300">Axonary is the trusted partner for startups and enterprises building world-class mobile applications.</p>
-          <div className="mt-4">
-            <a href="/contact" className="inline-block px-4 py-2 rounded-full" style={{ background: COLORS.primary, color: COLORS.white }}>Schedule Consultation</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const ServicesGrid: React.FC = () => (
-  <section id="services" className="py-20 md:py-28">
-    <div className="container mx-auto px-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-left" style={{ color: COLORS.primary }}>
-        Our Mobile App Development Services
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {mobileServices.map((service) => (
-          <Link key={service.id} to={service.link}>
-            <div className="h-full rounded-2xl p-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer" style={{ background: COLORS.card }}>
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="text-xl font-bold mb-2" style={{ color: COLORS.white }}>{service.title}</h3>
-              <p className="text-gray-400 text-sm mb-6">{service.desc}</p>
-              <div className="flex items-center" style={{ color: COLORS.primary }}>
-                Learn More →
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-const WhyUs: React.FC = () => (
-  <section id="why-us" className="mt-24">
-    <div className="container mx-auto px-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-left" style={{ color: COLORS.primary }}>
-        Why Choose Axonary for Mobile App Development?
-      </h2>
-      <div className="flex flex-col gap-4 max-w-3xl">
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Multi-platform expertise across all major technologies</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">Native, hybrid, cross-platform — we master them all</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Award-winning design and user experience</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">Apps that users love, retention that drives growth</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>500+ apps delivered, 10M+ downloads, proven results</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">Track record of success across industries</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Agile development with transparent communication</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">You're in control, every step of the way</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Post-launch support and continuous optimization</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">We're with you for the long run</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 );
 
 const Testimonials: React.FC = () => (
@@ -442,7 +273,7 @@ const PlatformsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24">
+    <section id="services" className="py-16 md:py-24 scroll-mt-24">
       {platforms.map((platform, idx) => (
         <div key={idx} className="py-12 md:py-16">
           <div className="container mx-auto px-6">
@@ -512,17 +343,18 @@ const MobileAppDevelopment: React.FC = () => {
     <div style={{ background: COLORS.bg, color: COLORS.white, minHeight: "100vh" }}>
       <TopNav progress={progress} />
       <main className="pt-20">
-        <Hero />
+        <MobileServiceHero colors={COLORS} hero={mobileGovernanceMobileApp.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={mobileGovernanceMobileApp} />
         <PlatformsSection />
         <Testimonials />
         <FAQSection />
         <section className="mt-12">
           <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: '-1px' }}>
-              Ready to Build Your Mobile App?
+              Ready to scope your mobile roadmap?
             </h2>
             <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Unlock your business potential with a custom mobile app engineered for performance, scale, and user delight. Let Axonary turn your vision into a top-rated app.
+              Tell us platforms, integrations, and timeline—we will map discovery, delivery phases, store launch, and how we support after release.
             </p>
             <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
               Get Your Free Consultation

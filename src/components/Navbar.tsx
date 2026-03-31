@@ -16,10 +16,12 @@ const navItems = [
       "React Native App Development",
       "Cloud Mobile App Development",
       "IoT Mobile App Development",
+      "Overview",
       "ERP Solution",
       "CRM Solution",
       "CMS Solution",
       "HRM Solution",
+      "Web Development Overview",
       "E-Commerce Website Development",
       "Web Portals",
       "Frontend Development",
@@ -27,9 +29,11 @@ const navItems = [
       "Full-Stack Development",
       "Low-Code Development",
       "PWA Solution",
+      "Artificial Intelligence Overview",
       "Generative AI",
       "Natural Language Processing",
       "AI Agent Development",
+      "Cloud Services Overview",
       "Cloud Application Development",
       "Cloud Migration",
       "Cloud Support & Maintenance"
@@ -41,19 +45,19 @@ const navItems = [
       },
       {
         name: "Custom Software Development",
-        items: ["ERP Solution", "CRM Solution", "CMS Solution", "HRM Solution"]
+        items: ["Overview", "ERP Solution", "CRM Solution", "CMS Solution", "HRM Solution"]
       },
       {
         name: "Web Development",
-        items: ["E-Commerce Website Development", "Web Portals", "Frontend Development", "Backend Development", "Full-Stack Development", "Low-Code Development", "PWA Solution"]
+        items: ["Web Development Overview", "E-Commerce Website Development", "Web Portals", "Frontend Development", "Backend Development", "Full-Stack Development", "Low-Code Development", "PWA Solution"]
       },
       {
         name: "Artificial Intelligence",
-        items: ["Generative AI", "Natural Language Processing", "AI Agent Development"]
+        items: ["Artificial Intelligence Overview", "Generative AI", "Natural Language Processing", "AI Agent Development"]
       },
       {
         name: "Cloud Services",
-        items: ["Cloud Application Development", "Cloud Migration", "Cloud Support & Maintenance"]
+        items: ["Cloud Services Overview", "Cloud Application Development", "Cloud Migration", "Cloud Support & Maintenance"]
       }
     ]
   },
@@ -547,10 +551,12 @@ const Navbar: React.FC = () => {
                                 "React Native App Development": "/react-native-app-development",
                                 "Cloud Mobile App Development": "/cloud-mobile-app-development",
                                 "IoT Mobile App Development": "/iot-mobile-app-development",
+                                Overview: "/custom-software-development",
                                 "ERP Solution": "/erp-solution",
                                 "CRM Solution": "/crm-solution",
                                 "CMS Solution": "/cms-solution",
                                 "HRM Solution": "/hrm-solution",
+                                "Web Development Overview": "/web-development",
                                 "E-Commerce Website Development": "/ecommerce-website-development",
                                 "Web Portals": "/web-portals",
                                 "Frontend Development": "/frontend-development",
@@ -561,6 +567,7 @@ const Navbar: React.FC = () => {
                                 "Generative AI": "/generative-ai",
                                 "Natural Language Processing": "/natural-language-processing",
                                 "AI Agent Development": "/ai-agent-development",
+                                "Cloud Services Overview": "/cloud-services",
                                 "Cloud Application Development": "/cloud-application-development",
                                 "Cloud Migration": "/cloud-migration",
                                 "Cloud Support & Maintenance": "/cloud-support-maintenance"
@@ -778,12 +785,14 @@ const Navbar: React.FC = () => {
                                <Link to="/iot-mobile-app-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">IoT Mobile App Development</Link>
                                
                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Custom Software Development</p>
+                               <Link to="/custom-software-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Overview</Link>
                                <Link to="/erp-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">ERP Solution</Link>
                                <Link to="/crm-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">CRM Solution</Link>
                                <Link to="/cms-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">CMS Solution</Link>
                                <Link to="/hrm-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">HRM Solution</Link>
                                
                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Web Development</p>
+                               <Link to="/web-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Overview</Link>
                                <Link to="/ecommerce-website-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">E-Commerce Website Development</Link>
                                <Link to="/web-portals" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Web Portals</Link>
                                <Link to="/frontend-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Frontend Development</Link>
@@ -793,11 +802,13 @@ const Navbar: React.FC = () => {
                                <Link to="/pwa-solution" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">PWA Solution</Link>
                                
                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Artificial Intelligence</p>
+                               <Link to="/artificial-intelligence" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Overview</Link>
                                <Link to="/generative-ai" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Generative AI</Link>
                                <Link to="/natural-language-processing" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Natural Language Processing</Link>
                                <Link to="/ai-agent-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">AI Agent Development</Link>
                                
                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Cloud Services</p>
+                               <Link to="/cloud-services" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Overview</Link>
                                <Link to="/cloud-application-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Application Development</Link>
                                <Link to="/cloud-migration" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Migration</Link>
                                <Link to="/cloud-support-maintenance" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Support & Maintenance</Link>

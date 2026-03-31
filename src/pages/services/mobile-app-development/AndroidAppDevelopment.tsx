@@ -2,6 +2,9 @@
 // AndroidAppDevelopment.tsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MobileServiceHero } from "../../../components/MobileServiceHero";
+import { MobileServiceGovernanceSections } from "../../../components/MobileServiceGovernanceSections";
+import { mobileGovernanceAndroid } from "../../../data/mobileServiceGovernanceContent";
 
 const COLORS = {
   primary: "#5C3693",
@@ -58,8 +61,6 @@ const services = [
   },
 ];
 
-const unsplashSrc = (q: string) =>
-  `https://source.unsplash.com/collection/922197/1200x900?${encodeURIComponent(q)}`;
 
 const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
   <header
@@ -106,110 +107,6 @@ const TopNav: React.FC<{ progress: number }> = ({ progress }) => (
       }} />
     </div>
   </header>
-);
-
-const Hero: React.FC = () => (
-  <section
-    id="hero"
-    className="min-h-[72vh] flex items-center"
-    style={{ background: COLORS.bg, color: COLORS.white }}
-  >
-    <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-      <div className="md:col-span-7">
-        <div className="inline-block rounded-full px-4 py-1 text-sm font-medium" style={{ background: `${COLORS.secondary}33`, color: COLORS.white }}>
-          Android App Development Company | Axonary
-        </div>
-        <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-          Android App Development That Dominates Google Play
-          <span style={{ color: COLORS.primary }}> | Axonary</span>
-        </h1>
-        <p className="mt-4 text-lg text-gray-300 max-w-2xl">
-          Partner with Axonary for Android app development that delivers speed, beauty, and business results. Our award-winning team crafts native Android apps that launch faster, scale with your growth, and win user loyalty. From MVP to enterprise, we help you stand out in the Play Store.
-        </p>
-        <ul className="mt-4 text-gray-300 list-disc pl-6">
-          <li>Native Android expertise: Kotlin, Java, and Jetpack Compose</li>
-          <li>Pixel-perfect UI/UX and blazing-fast performance</li>
-          <li>Agile delivery, transparent process, and ongoing support</li>
-        </ul>
-        <div className="mt-6 flex items-center gap-4">
-          <a href="#native-android" className="px-4 py-2 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white, minWidth: 140, textAlign: 'center' }}>
-            Explore Services
-          </a>
-          <a href="/contact" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)] font-semibold" style={{ color: COLORS.textMuted, minWidth: 140, textAlign: 'center' }}>
-            Request Consultation
-          </a>
-        </div>
-      </div>
-      <div className="md:col-span-5">
-        <div className="rounded-2xl p-6" style={{ background: COLORS.card }}>
-          <h5 className="text-sm text-gray-400">Android Success</h5>
-          <div className="mt-4 grid grid-cols-2 gap-4">
-            <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-              <div className="text-2xl font-bold">50+</div>
-              <div className="text-xs text-gray-400">Apps Launched</div>
-            </div>
-            <div className="border border-[rgba(255,255,255,0.04)] rounded-lg p-4">
-              <div className="text-2xl font-bold">10M+</div>
-              <div className="text-xs text-gray-400">Downloads</div>
-            </div>
-          </div>
-          <div className="mt-6">
-            <p className="text-sm text-gray-300">Axonary is an Android app development company trusted by startups and enterprises worldwide. Let’s build your next big thing.</p>
-            <div className="mt-4">
-              <a href="/contact" className="inline-block px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white, minWidth: 140, textAlign: 'center' }}>Get Started</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const UniqueSellingPoints: React.FC = () => (
-  <section className="mt-24">
-    <div className="container mx-auto px-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-left" style={{ color: COLORS.primary }}>
-        Why Choose Axonary for Android App Development?
-      </h2>
-      <div className="flex flex-col gap-4 max-w-3xl">
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Google-certified Android experts and UI/UX designers</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">Certified talent for world-class results</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>End-to-end development: strategy, design, engineering, and support</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">From idea to launch and beyond</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Proven track record with 50+ successful Android apps</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">Experience you can trust</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Transparent process, agile delivery, and measurable results</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">You see progress every step</div>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <div className="w-2 h-8 rounded bg-[var(--tw-prose-bullets, #5C3693)] mt-1" style={{ background: COLORS.primary }} />
-          <div>
-            <div className="font-semibold text-base md:text-lg text-left" style={{ color: COLORS.white }}>Dedicated support and continuous optimization</div>
-            <div className="text-gray-400 text-sm md:text-base text-left">We’re with you for the long run</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 );
 
 const FAQS = [
@@ -324,7 +221,7 @@ const Testimonials: React.FC = () => (
   </section>
 );
 
-const MobilePhoneMockup: React.FC<{ image: string; title: string; id: string }> = ({ image, title, id }) => {
+const MobilePhoneMockup: React.FC<{ id: string }> = ({ id }) => {
   // Unique screen logic based on id
   function renderUniqueScreen() {
     switch (id) {
@@ -581,9 +478,8 @@ const MobilePhoneMockup: React.FC<{ image: string; title: string; id: string }> 
   );
 };
 
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; imgQuery: string; }> = ({ idx, id, title, desc, imgQuery }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; }> = ({ idx, id, title, desc }) => {
   const isLeftImage = idx % 2 === 0;
-  const image = unsplashSrc(imgQuery);
   return (
     <section id={id} className="py-20 md:py-28">
       <div className="container mx-auto px-6">
@@ -591,7 +487,7 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
           {isLeftImage ? (
             <>
               <div className="md:col-span-6 flex flex-col items-center justify-center">
-                <MobilePhoneMockup image={image} title={title} id={id} />
+                <MobilePhoneMockup id={id} />
               </div>
               <div className="md:col-span-6 flex flex-col items-center justify-center">
                 <div className="max-w-xl w-full">
@@ -635,7 +531,7 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                 </div>
               </div>
               <div className="md:col-span-6 flex flex-col items-center justify-center">
-                <MobilePhoneMockup image={image} title={title} id={id} />
+                <MobilePhoneMockup id={id} />
               </div>
             </>
           )}
@@ -683,11 +579,11 @@ const AndroidAppDevelopment: React.FC = () => {
     <div style={{ background: COLORS.bg, color: COLORS.white, minHeight: "100vh" }}>
       <TopNav progress={progress} />
       <main className="pt-20">
-        <Hero />
-        <UniqueSellingPoints />
+        <MobileServiceHero colors={COLORS} hero={mobileGovernanceAndroid.hero} />
+        <MobileServiceGovernanceSections colors={COLORS} copy={mobileGovernanceAndroid} />
         <div className="mt-8">
           {services.map((s, idx) => (
-            <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} imgQuery={s.imgQuery} />
+            <SplitSection key={s.id} idx={idx} id={s.id} title={s.title} desc={s.desc} />
           ))}
         </div>
         <Testimonials />
@@ -695,10 +591,10 @@ const AndroidAppDevelopment: React.FC = () => {
         <section className="mt-12">
           <div className="container mx-auto px-6 text-center py-8 rounded-2xl shadow-2xl">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: COLORS.primary, letterSpacing: '-1px' }}>
-              Ready to Build Your Android App?
+              Ready to ship your Android product?
             </h2>
             <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Unlock your business potential with a custom Android app engineered for performance, scale, and user delight. Let Axonary turn your vision into a top-rated app on Google Play.
+              Share your users, integrations, and timeline—we will outline discovery, build phases, testing, and what a confident Play Store release looks like for your team.
             </p>
             <a href="/contact" className="inline-block px-10 py-3 rounded-full font-bold text-lg shadow-lg transition-transform duration-200 hover:scale-105" style={{ background: COLORS.primary, color: COLORS.white }}>
               Get Your Free Consultation
