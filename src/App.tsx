@@ -164,6 +164,7 @@ function App() {
         <Route path="/pwa-solution" element={<PWASolution />} />
 
         {/* Artificial Intelligence */}
+        <Route path="/artificial-intelligence" element={<ArtificialIntelligence />} />
         <Route path="/generative-ai" element={<GenerativeAISolution />} />
         <Route path="/natural-language-processing" element={<NLPSolution />} />
         <Route path="/ai-agent-development" element={<AIAgentSolution />} />

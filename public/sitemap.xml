@@ -1,16 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://axonary.com/</loc>
-  <lastmod>2025-08-09T18:06:51+00:00</lastmod>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!--
+    Axonary is a React SPA: the initial HTML has almost no links until JavaScript runs.
+    Tools like xml-sitemaps.com only see the homepage unless they execute JS—so they
+    are not suitable as the primary way to build this file. This file lists static app
+    routes from src/App.tsx. Individual blog URLs (/blog/:slug) are dynamic—add those
+    from your CMS or build step if needed.
+  -->
+  <url><loc>https://axonary.com/</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/about</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/work</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/solutions</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/approach</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/blog</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/contact</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/support</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/staff-augmentation</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-android-app-developer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-ios-app-developer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-nodejs-developer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-flutter-developer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-java-developer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-website-developer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-smm-expert</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-seo-expert</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-graphic-designer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-ppc-expert</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-custom-software-developer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hire-content-writer</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/mobile-app-developments</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/ios-app-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/android-app-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/cross-platform-app-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/flutter-app-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/react-native-app-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/cloud-mobile-app-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/iot-mobile-app-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/custom-software-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/erp-solution</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/crm-solution</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/cms-solution</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/hrm-solution</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/web-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/ecommerce-website-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/web-portals</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/frontend-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/backend-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/fullstack-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/low-code-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/pwa-solution</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/artificial-intelligence</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/generative-ai</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/natural-language-processing</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/ai-agent-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/cloud-services</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/cloud-application-development</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/cloud-migration</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/cloud-support-maintenance</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/seo-services</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/ppc-services</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/social-media-marketing</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/search-engine-marketing</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/search-engine-optimization</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/search-intent-optimization</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/content-marketing</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/seo-ai</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/automotive</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/healthcare</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/on-demand</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/education</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/music</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/ecommerce</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/real-estate</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/saas</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/fintech</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/logistics</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/industries/retail</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/languages/dotnet</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/languages/html5</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/languages/java</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/languages/nodejs</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/languages/php</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/languages/python</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/platforms/azure</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/platforms/gcp</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/platforms/oracle</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/platforms/sap</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/platforms/meta</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/platforms/google</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/services/platforms/bing</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/privacypolicy</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/termsconditions</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/cookiepolicy</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/sitemap</loc><lastmod>2026-03-29</lastmod></url>
+  <url><loc>https://axonary.com/casestudies</loc><lastmod>2026-03-29</lastmod></url>
 </urlset>

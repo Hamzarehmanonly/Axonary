@@ -564,6 +564,7 @@ const Navbar: React.FC = () => {
                                 "Full-Stack Development": "/fullstack-development",
                                 "Low-Code Development": "/low-code-development",
                                 "PWA Solution": "/pwa-solution",
+                                "Artificial Intelligence Overview": "/artificial-intelligence",
                                 "Generative AI": "/generative-ai",
                                 "Natural Language Processing": "/natural-language-processing",
                                 "AI Agent Development": "/ai-agent-development",
