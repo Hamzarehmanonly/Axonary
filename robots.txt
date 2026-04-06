@@ -1,0 +1,8 @@
+# https://axonary.com/robots.txt
+# Axonary is a client-rendered (React) SPA. Automated crawlers that do not run JavaScript
+# cannot discover routes from HTML alone—use sitemap.xml for the full URL list.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://axonary.com/sitemap.xml
