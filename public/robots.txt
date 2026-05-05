@@ -6,3 +6,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://axonary.com/sitemap.xml
+LLM: https://axonary.com/llms.txt
