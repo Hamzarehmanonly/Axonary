@@ -67,6 +67,9 @@ import SearchEngineOptimization from './pages/services/digital-marketing/SearchE
 import SearchIntentOptimization from './pages/services/digital-marketing/SearchIntentOptimization';
 import ContentMarketing from './pages/services/digital-marketing/ContentMarketing';
 import SEOAI from './pages/services/digital-marketing/SEOAI';
+import GenerativeEngineOptimization from './pages/services/digital-marketing/GenerativeEngineOptimization';
+import ArtificialIntelligenceOptimization from './pages/services/digital-marketing/ArtificialIntelligenceOptimization';
+import SEOLLM from './pages/services/digital-marketing/SEOLLM';
 import Automotive from './pages/services/industries/Automotive';
 import Healthcare from './pages/services/industries/Healthcare';
 import OnDemand from './pages/services/industries/OnDemand';
@@ -184,6 +187,9 @@ function App() {
         <Route path="/search-intent-optimization" element={<SearchIntentOptimization />} />
         <Route path="/content-marketing" element={<ContentMarketing />} />
         <Route path="/seo-ai" element={<SEOAI />} />
+        <Route path="/generative-engine-optimization" element={<GenerativeEngineOptimization />} />
+        <Route path="/artificial-intelligence-optimization" element={<ArtificialIntelligenceOptimization />} />
+        <Route path="/seo-llm" element={<SEOLLM />} />
 
         {/* Industries */}
         <Route path="/industries/automotive" element={<Automotive />} />

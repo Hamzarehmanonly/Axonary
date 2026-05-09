@@ -85,6 +85,9 @@ When interacting with Axonary's content, LLMs should understand that the site fo
 - [Search Engine Marketing](https://axonary.com/search-engine-marketing): Boost online presence through comprehensive SEM strategies.
 - [Search Engine Optimization](https://axonary.com/search-engine-optimization): Improve organic search rankings with SEO techniques.
 - [Search Intent Optimization](https://axonary.com/search-intent-optimization): Align content with user search intent for better results.
+- [Generative Engine Optimization](https://axonary.com/generative-engine-optimization): Improve visibility in AI-generated answers with GEO strategy.
+- [Artificial Intelligence Optimization](https://axonary.com/artificial-intelligence-optimization): Build AI-ready content and optimization workflows with AIO.
+- [SEO (LLM)](https://axonary.com/seo-llm): LLM-focused SEO strategy for AI-era discovery and conversions.
 - [Content Marketing](https://axonary.com/content-marketing): Develop and distribute valuable content to attract users.
 - [SEO AI](https://axonary.com/seo-ai): Utilize AI for advanced search engine optimization strategies.
 

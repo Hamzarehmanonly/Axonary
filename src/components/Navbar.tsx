@@ -105,13 +105,25 @@ const navItems = [
       "Search Engine Marketing",
       "Search Engine Optimization",
       "Search Intent Optimization",
+      "Generative Engine Optimization",
+      "Artificial Intelligence Optimization",
+      "SEO (LLM)",
       "Content Marketing",
       "SEO AI"
     ],
     subCategories: [
       {
         name: "SEO & SEM",
-        items: ["SEO Services", "Search Engine Marketing", "Search Engine Optimization", "Search Intent Optimization", "SEO AI"]
+        items: [
+          "SEO Services",
+          "Search Engine Marketing",
+          "Search Engine Optimization",
+          "Search Intent Optimization",
+          "Generative Engine Optimization",
+          "Artificial Intelligence Optimization",
+          "SEO (LLM)",
+          "SEO AI",
+        ]
       },
       {
         name: "Paid Advertising",
@@ -620,6 +632,9 @@ const Navbar: React.FC = () => {
                                 "Search Engine Marketing": "/search-engine-marketing",
                                 "Search Engine Optimization": "/search-engine-optimization",
                                 "Search Intent Optimization": "/search-intent-optimization",
+                                "Generative Engine Optimization": "/generative-engine-optimization",
+                                "Artificial Intelligence Optimization": "/artificial-intelligence-optimization",
+                                "SEO (LLM)": "/seo-llm",
                                 "Content Marketing": "/content-marketing",
                                 "SEO AI": "/seo-ai"
                               };
@@ -813,6 +828,25 @@ const Navbar: React.FC = () => {
                                <Link to="/cloud-application-development" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Application Development</Link>
                                <Link to="/cloud-migration" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Migration</Link>
                                <Link to="/cloud-support-maintenance" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Cloud Support & Maintenance</Link>
+                             </>
+                           ) : item.label === "Digital Marketing" ? (
+                             <>
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3">SEO & SEM</p>
+                               <Link to="/seo-services" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">SEO Services</Link>
+                               <Link to="/search-engine-marketing" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Search Engine Marketing</Link>
+                               <Link to="/search-engine-optimization" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Search Engine Optimization</Link>
+                               <Link to="/search-intent-optimization" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Search Intent Optimization</Link>
+                               <Link to="/seo-ai" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">SEO AI</Link>
+                               <Link to="/generative-engine-optimization" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Generative Engine Optimization</Link>
+                               <Link to="/artificial-intelligence-optimization" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Artificial Intelligence Optimization</Link>
+                               <Link to="/seo-llm" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">SEO (LLM)</Link>
+
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Paid Advertising</p>
+                               <Link to="/ppc-services" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">PPC Services</Link>
+
+                               <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 pl-3 mt-4">Content & Social</p>
+                               <Link to="/social-media-marketing" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Social Media Marketing</Link>
+                               <Link to="/content-marketing" onClick={closeMobileMenu} className="block text-sm text-gray-300 hover:text-[#5C3693] py-1.5 transition-colors border-l-2 border-transparent hover:border-[#5C3693] pl-3">Content Marketing</Link>
                              </>
                            ) : item.label === "Industries" ? (
                              <>
