@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { setCanonicalUrl, setJsonLd, setMetaTag, SITE_URL } from '../utils/seo';
 
 // Re-use or define interfaces (ensure consistency with Blog.tsx if possible)
 interface ImageFormat {
@@ -10,6 +11,12 @@ interface PostImage {
   id: number;
   url: string;
   alternativeText: string | null;
+  caption?: string;
+  credit?: {
+    name: string;
+    profileUrl: string;
+    sourceUrl: string;
+  };
   formats: {
     thumbnail?: ImageFormat;
     small?: ImageFormat;
@@ -18,10 +25,10 @@ interface PostImage {
   };
 }
 
-// Interface for the Content block (enhanced for Strapi rich text)
+// Interface for the Content block used by the static blog JSON
 interface ContentChild {
   type: string;
-  text: string;
+  text?: string;
   bold?: boolean;
   italic?: boolean;
   underline?: boolean;
@@ -46,6 +53,11 @@ interface ContentBlock {
 interface Post {
   id: number;
   Title: string;
+  Meta_Title?: string;
+  Meta_Description?: string;
+  Category?: string;
+  Keywords?: string[];
+  Secondary_Keywords?: string[];
   Slug: string;
   Publish_Date: string;
   Image: PostImage | null;
@@ -57,6 +69,42 @@ interface ApiResponse {
   data: Post[]; // API returns an array even for a single filtered item
   meta?: { /* pagination etc. */ };
 }
+
+const BLOG_DATA_URL = '/data/blog-posts.json';
+
+const normalizeImageUrl = (imageUrl: string): string => {
+  if (/^(https?:|data:|\/)/.test(imageUrl)) {
+    return imageUrl;
+  }
+
+  return `/${imageUrl.replace(/^\/+/, '')}`;
+};
+
+const getImageUrl = (image: PostImage | null, format: keyof PostImage['formats'] | 'original' = 'large'): string | null => {
+  if (!image) return null;
+  let imageUrl = image.url;
+
+  if (format !== 'original' && image.formats?.[format]?.url) {
+    imageUrl = image.formats[format]!.url;
+  }
+
+  return imageUrl ? normalizeImageUrl(imageUrl) : null;
+};
+
+const getPostKeywords = (post: Post): string[] => [
+  ...(post.Keywords || []),
+  ...(post.Secondary_Keywords || []),
+].filter(Boolean);
+
+const getContentText = (content: ContentBlock[]): string => {
+  return content
+    .flatMap((block) => block.children || [])
+    .flatMap((child) => child.children || [child])
+    .map((child) => child.text || '')
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
 
 // Helper to render text with formatting and inline links
 const renderText = (child: ContentChild, key: number): React.ReactNode => {
@@ -109,7 +157,7 @@ const renderText = (child: ContentChild, key: number): React.ReactNode => {
   return element;
 };
 
-// Helper to render Strapi content blocks (comprehensive version)
+// Helper to render rich content blocks from the static blog JSON
 const renderContent = (content: ContentBlock[]) => {
   return content.map((block, index) => {
     switch (block.type) {
@@ -181,7 +229,7 @@ const renderContent = (content: ContentBlock[]) => {
         return (
           <pre key={index} className="bg-gray-900 rounded-lg p-6 my-8 overflow-x-auto">
             <code className="text-gray-300 text-sm">
-              {block.children.map((child, childIndex) => child.text).join('')}
+              {block.children.map((child) => child.text).join('')}
             </code>
           </pre>
         );
@@ -225,7 +273,7 @@ const renderContent = (content: ContentBlock[]) => {
         return (
           <div key={index} className="my-8">
             <img 
-              src={block.url} 
+              src={block.url ? normalizeImageUrl(block.url) : ''}
               alt={block.alternativeText || ''} 
               className="w-full h-auto rounded-lg shadow-lg"
             />
@@ -262,9 +310,6 @@ const BlogPost = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const STRAPI_BASE_URL = (import.meta.env.VITE_STRAPI_API_URL || 'https://cms-axonary-production.up.railway.app').replace('/api','');
-  const STRAPI_API_ENDPOINT = `${STRAPI_BASE_URL}/api`;
-
   useEffect(() => {
     if (!slug) return;
 
@@ -272,10 +317,7 @@ const BlogPost = () => {
       setLoading(true);
       setError(null);
       try {
-        // Fetch post by slug, populate Image and Content
-        const response = await fetch(
-          `${STRAPI_API_ENDPOINT}/posts?filters[Slug][$eq]=${slug}&populate=*`
-        );
+        const response = await fetch(BLOG_DATA_URL);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -283,10 +325,16 @@ const BlogPost = () => {
 
         const result: ApiResponse = await response.json();
 
-        if (result && Array.isArray(result.data) && result.data.length > 0) {
-          setPost(result.data[0]); // Get the first (and should be only) post
+        if (result && Array.isArray(result.data)) {
+          const matchingPost = result.data.find((item) => item.Slug === slug);
+
+          if (matchingPost) {
+            setPost(matchingPost);
+          } else {
+            throw new Error('Post not found.');
+          }
         } else {
-          throw new Error('Post not found.');
+          throw new Error('Invalid data format received from blog data.');
         }
       } catch (err) {
         console.error("Failed to fetch post:", err);
@@ -297,17 +345,77 @@ const BlogPost = () => {
     };
 
     fetchPost();
-  }, [slug, STRAPI_API_ENDPOINT]);
+  }, [slug]);
 
-  // Re-use getImageUrl logic (could be moved to a shared utility)
-  const getImageUrl = (image: PostImage | null, format: keyof PostImage['formats'] | 'original' = 'large'): string | null => {
-      if (!image) return null;
-      let imageUrl = image.url; // Default to original
-      if (format !== 'original' && image.formats?.[format]?.url) {
-          imageUrl = image.formats[format]!.url;
-      }
-      return imageUrl ? `${STRAPI_BASE_URL}${imageUrl}` : null;
-  };
+  useEffect(() => {
+    if (!post) return;
+
+    const title = post.Meta_Title || `${post.Title} | Axonary`;
+    const description = post.Meta_Description || post.Teaser || '';
+    const canonicalUrl = `${SITE_URL}/blog/${post.Slug}`;
+    const imageUrl = getImageUrl(post.Image, 'large') || undefined;
+    const keywords = getPostKeywords(post);
+
+    document.title = title;
+    setMetaTag('name', 'description', description);
+    setMetaTag('property', 'og:title', title);
+    setMetaTag('property', 'og:description', description);
+    setMetaTag('property', 'og:type', 'article');
+    setMetaTag('property', 'og:url', canonicalUrl);
+    setMetaTag('property', 'article:published_time', post.Publish_Date);
+
+    if (post.Category) {
+      setMetaTag('property', 'article:section', post.Category);
+    }
+
+    if (keywords.length > 0) {
+      const keywordList = keywords.join(', ');
+      setMetaTag('name', 'keywords', keywordList);
+      setMetaTag('property', 'article:tag', keywordList);
+    }
+
+    setMetaTag('name', 'twitter:card', imageUrl ? 'summary_large_image' : 'summary');
+    setMetaTag('name', 'twitter:title', title);
+    setMetaTag('name', 'twitter:description', description);
+
+    if (imageUrl) {
+      setMetaTag('property', 'og:image', imageUrl);
+      setMetaTag('property', 'og:image:alt', post.Image?.alternativeText || post.Title);
+      setMetaTag('name', 'twitter:image', imageUrl);
+      setMetaTag('name', 'twitter:image:alt', post.Image?.alternativeText || post.Title);
+    }
+
+    setCanonicalUrl(canonicalUrl);
+    setJsonLd('blog-post', {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.Title,
+      description,
+      image: imageUrl ? [imageUrl] : undefined,
+      datePublished: post.Publish_Date,
+      dateModified: post.Publish_Date,
+      articleSection: post.Category,
+      keywords,
+      articleBody: getContentText(post.Content),
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalUrl,
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'Axonary',
+        url: SITE_URL,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Axonary',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/AXONARY-WHITE-TRANSPARENT.png`,
+        },
+      },
+    });
+  }, [post]);
 
   if (loading) {
     // Return a full-page loading indicator
@@ -355,6 +463,11 @@ const BlogPost = () => {
         className="max-w-4xl mx-auto bg-[#1a1a1a] rounded-lg shadow-lg overflow-hidden p-6 md:p-10"
       >
         <header className="mb-8 border-b border-gray-700 pb-6">
+          {post.Category && (
+            <p className="text-sm uppercase tracking-wider text-[#a986ff] font-semibold mb-4">
+              {post.Category}
+            </p>
+          )}
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">{post.Title}</h1>
           <time dateTime={post.Publish_Date} className="text-gray-400 text-sm">
             Published on {new Date(post.Publish_Date).toLocaleDateString('en-US', {
@@ -397,4 +510,4 @@ const BlogPost = () => {
   );
 };
 
-export default BlogPost; 
+export default BlogPost;

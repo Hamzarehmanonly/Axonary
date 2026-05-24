@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom'; // Import Link for routing
+import { removeJsonLd, setCanonicalUrl, setMetaTag, SITE_URL } from '../utils/seo';
 
 // Define interface for image formats
 interface ImageFormat {
@@ -13,6 +14,7 @@ interface PostImage {
   id: number;
   url: string;
   alternativeText: string | null;
+  caption?: string;
   formats: {
     thumbnail?: ImageFormat;
     small?: ImageFormat;
@@ -28,6 +30,7 @@ interface Post {
   Teaser: string;
   Slug: string;
   Publish_Date: string;
+  Category?: string;
   Image: PostImage | null; // Image can be null if not populated/set
 }
 
@@ -44,22 +47,45 @@ interface ApiResponse {
   };
 }
 
+const BLOG_DATA_URL = '/data/blog-posts.json';
+
+const normalizeImageUrl = (imageUrl: string): string => {
+  if (/^(https?:|data:|\/)/.test(imageUrl)) {
+    return imageUrl;
+  }
+
+  return `/${imageUrl.replace(/^\/+/, '')}`;
+};
+
 const Blog = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Base URL for constructing image paths (without /api)
-  const STRAPI_BASE_URL = (import.meta.env.VITE_STRAPI_API_URL || 'https://cms-axonary-production.up.railway.app').replace('/api','');
-  const STRAPI_API_ENDPOINT = `${STRAPI_BASE_URL}/api`; // Keep API endpoint separate
+  useEffect(() => {
+    const title = 'Blog | Axonary';
+    const description = 'Read Axonary blog articles on digital strategy, SEO, AI, content, and technology.';
+    const canonicalUrl = `${SITE_URL}/blog`;
+
+    document.title = title;
+    setMetaTag('name', 'description', description);
+    setMetaTag('property', 'og:title', title);
+    setMetaTag('property', 'og:description', description);
+    setMetaTag('property', 'og:type', 'website');
+    setMetaTag('property', 'og:url', canonicalUrl);
+    setMetaTag('name', 'twitter:card', 'summary_large_image');
+    setMetaTag('name', 'twitter:title', title);
+    setMetaTag('name', 'twitter:description', description);
+    setCanonicalUrl(canonicalUrl);
+    removeJsonLd('blog-post');
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
       setError(null);
       try {
-        // Update fetch URL to populate the Image field
-        const response = await fetch(`${STRAPI_API_ENDPOINT}/posts?populate=Image`);
+        const response = await fetch(BLOG_DATA_URL);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,7 +94,7 @@ const Blog = () => {
         const result: ApiResponse = await response.json();
 
         if (result && Array.isArray(result.data)) {
-          const sortedPosts = result.data.sort((a, b) =>
+          const sortedPosts = [...result.data].sort((a, b) =>
             new Date(b.Publish_Date).getTime() - new Date(a.Publish_Date).getTime()
           );
           setPosts(sortedPosts);
@@ -86,13 +112,13 @@ const Blog = () => {
     };
 
     fetchPosts();
-  }, [STRAPI_API_ENDPOINT]); // Dependency array updated
+  }, []);
 
   // Helper function to get the image URL
   const getImageUrl = (image: PostImage | null): string | null => {
     if (!image) return null;
     const imageUrl = image.formats?.medium?.url || image.formats?.small?.url || image.url;
-    return imageUrl ? `${STRAPI_BASE_URL}${imageUrl}` : null;
+    return imageUrl ? normalizeImageUrl(imageUrl) : null;
   };
 
   return (
@@ -148,6 +174,11 @@ const Blog = () => {
                   
                                      {/* Content section with better spacing and typography */}
                    <div className="p-5 flex flex-col flex-grow">
+                     {post.Category && (
+                       <span className="text-xs uppercase tracking-wider text-[#a986ff] font-semibold mb-3">
+                         {post.Category}
+                       </span>
+                     )}
                      <h2 className="text-lg font-bold mb-3 text-white leading-tight">
                        {post.Title}
                      </h2>
@@ -170,7 +201,7 @@ const Blog = () => {
                          to={`/blog/${post.Slug}`}
                          className="text-[#5C3693] hover:text-[#7e5adb] text-sm font-semibold transition-colors duration-200"
                        >
-                         Read More →
+                         Read More {'>'}
                        </Link>
                      </div>
                    </div>
