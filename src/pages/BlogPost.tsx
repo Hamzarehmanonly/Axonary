@@ -67,7 +67,7 @@ interface Post {
 
 interface ApiResponse {
   data: Post[]; // API returns an array even for a single filtered item
-  meta?: { /* pagination etc. */ };
+  meta?: unknown;
 }
 
 const BLOG_DATA_URL = '/data/blog-posts.json';
@@ -106,6 +106,8 @@ const getContentText = (content: ContentBlock[]): string => {
     .trim();
 };
 
+const CONTENT_LINK_CLASS = "text-[#a986ff] hover:text-[#c6b3ff] underline underline-offset-4 transition-colors duration-300 cursor-pointer";
+
 // Helper to render text with formatting and inline links
 const renderText = (child: ContentChild, key: number): React.ReactNode => {
   if (!child.text && !child.children) return null;
@@ -113,7 +115,6 @@ const renderText = (child: ContentChild, key: number): React.ReactNode => {
   // Handle inline link (if type is 'link' and url exists)
   if (child.type === 'link' && child.url) {
     const isInternal = child.url.startsWith('/') || child.url.startsWith(window.location.origin);
-    const linkClass = "text-[#4a2d7a] hover:text-[#5C3693] underline transition-colors duration-300 cursor-pointer";
     const linkContent = child.children
       ? child.children.map((c, i) => renderText(c, i))
       : child.text;
@@ -122,13 +123,13 @@ const renderText = (child: ContentChild, key: number): React.ReactNode => {
         ? child.url.replace(window.location.origin, '')
         : child.url;
       return (
-        <Link key={key} to={internalUrl} className={linkClass}>
+        <Link key={key} to={internalUrl} className={CONTENT_LINK_CLASS}>
           {linkContent}
         </Link>
       );
     } else {
       return (
-        <a key={key} href={child.url} className={linkClass} target="_blank" rel="noopener noreferrer">
+        <a key={key} href={child.url} className={CONTENT_LINK_CLASS} target="_blank" rel="noopener noreferrer">
           {linkContent}
         </a>
       );
@@ -170,7 +171,7 @@ const renderContent = (content: ContentBlock[]) => {
           </p>
         );
       
-      case 'heading':
+      case 'heading': {
         const HeadingTag = `h${block.level || 2}` as keyof JSX.IntrinsicElements;
         const headingClasses = {
           1: "text-4xl md:text-5xl font-bold mb-8 mt-12 text-white",
@@ -187,8 +188,9 @@ const renderContent = (content: ContentBlock[]) => {
             )}
           </HeadingTag>
         );
+      }
       
-      case 'list':
+      case 'list': {
         const ListTag = block.format === 'ordered' ? 'ol' : 'ul';
         const listClass = block.format === 'ordered' 
           ? "list-decimal list-inside mb-6 space-y-3 text-gray-300 ml-4" 
@@ -204,6 +206,7 @@ const renderContent = (content: ContentBlock[]) => {
             ))}
           </ListTag>
         );
+      }
       
       case 'list-item':
         return (
@@ -245,7 +248,7 @@ const renderContent = (content: ContentBlock[]) => {
             <Link
               key={index}
               to={internalUrl}
-              className="text-[#4a2d7a] hover:text-[#5C3693] underline transition-colors duration-300 cursor-pointer"
+              className={CONTENT_LINK_CLASS}
             >
               {block.children.map((child, childIndex) =>
                 renderText(child, childIndex)
@@ -257,7 +260,7 @@ const renderContent = (content: ContentBlock[]) => {
             <a
               key={index}
               href={block.url || '#'}
-              className="text-[#4a2d7a] hover:text-[#5C3693] underline transition-colors duration-300 cursor-pointer"
+              className={CONTENT_LINK_CLASS}
               target="_blank"
               rel="noopener noreferrer"
             >
