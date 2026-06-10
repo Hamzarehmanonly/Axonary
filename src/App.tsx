@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -81,6 +81,7 @@ import SAAS from './pages/services/industries/SAAS';
 import Fintech from './pages/services/industries/Fintech';
 import Logistics from './pages/services/industries/Logistics';
 import Retail from './pages/services/industries/Retail';
+import SilentQrPage from './pages/SilentQrPage';
 
 // Language Pages
 import DotNet from './pages/services/languages/DotNet';
@@ -105,12 +106,17 @@ const ScrollToTop = () => {
   return null;
 };
 
-function App() {
+const standaloneRoutes = new Set(['/r4v8k2']);
+
+const AppShell = () => {
+  const location = useLocation();
+  const isStandaloneRoute = standaloneRoutes.has(location.pathname);
+
   return (
-    <Router>
-      <ScrollToTop />
-      <Navbar />
+    <>
+      {!isStandaloneRoute && <Navbar />}
       <Routes>
+        <Route path="/r4v8k2" element={<SilentQrPage />} />
         <Route path="/" element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/work' element={<Work/>} />
@@ -228,7 +234,16 @@ function App() {
         <Route path="/sitemap" element={<Sitemap />} />
         <Route path="/casestudies" element={<CaseStudies />} />
       </Routes>
-      <Footer />
+      {!isStandaloneRoute && <Footer />}
+    </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <AppShell />
     </Router>
   );
 }
