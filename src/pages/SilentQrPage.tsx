@@ -33,17 +33,15 @@ const SilentQrPage = () => {
 
   return (
     <main className="flex min-h-screen w-full items-center justify-center bg-black p-6">
-      <a href={pdfUrl} aria-label="Open PDF" className="block leading-none">
-        <QRCodeSVG
-          value={pdfUrl}
-          size={320}
-          level="H"
-          marginSize={4}
-          bgColor="#FFFFFF"
-          fgColor="#000000"
-          title="PDF QR code"
-        />
-      </a>
+      <QRCodeSVG
+        value={pdfUrl}
+        size={320}
+        level="H"
+        marginSize={4}
+        bgColor="#FFFFFF"
+        fgColor="#000000"
+        title="PDF QR code"
+      />
     </main>
   );
 };
