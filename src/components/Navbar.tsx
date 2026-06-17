@@ -96,7 +96,7 @@ const navItems = [
   },
   { 
     label: "Digital Marketing", 
-    path: "/digital-marketing",
+    path: "/services",
     hasMegaMenu: true,
     megaMenuItems: [
       "SEO Services",
@@ -137,7 +137,7 @@ const navItems = [
   },
   { 
     label: "Industries", 
-    path: "/industries",
+    path: "/services",
     hasMegaMenu: true,
     megaMenuItems: [
       "Automotive",
@@ -169,7 +169,7 @@ const navItems = [
   },
   { 
     label: "Technologies", 
-    path: "/technologies",
+    path: "/services",
     hasMegaMenu: true,
     megaMenuItems: [
       ".Net",
@@ -203,7 +203,7 @@ const navItems = [
   },
   { 
     label: "Insights", 
-    path: "/insights",
+    path: "/blog",
     hasMegaMenu: true,
     megaMenuItems: [
       "About",
@@ -970,5 +970,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
 

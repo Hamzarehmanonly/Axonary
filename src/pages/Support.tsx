@@ -107,8 +107,8 @@ const Support: React.FC = () => {
         <div className="mt-12 text-center">
           <p className="text-gray-400">
             Need more detailed information?{' '}
-            <Link to="/documentation" className="text-[#5C3693] hover:text-white transition-colors duration-300">
-              Check our documentation
+            <Link to="/contact" className="text-[#5C3693] hover:text-white transition-colors duration-300">
+              contact our team
             </Link>
           </p>
         </div>

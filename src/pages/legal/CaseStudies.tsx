@@ -163,7 +163,7 @@ const CaseStudies: React.FC = () => {
                       ))}
                     </div>
                     <Link
-                      to="#"
+                      to="/work"
                       className="inline-flex items-center text-[#5C3693] hover:text-white transition-colors duration-300"
                     >
                       View Case Study
@@ -298,7 +298,7 @@ const CaseStudies: React.FC = () => {
                   </div>
 
                   <Link
-                    to="#"
+                    to="/work"
                     className="inline-flex items-center text-[#5C3693] group-hover:text-white transition-colors duration-300"
                   >
                     View Details

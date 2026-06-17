@@ -1,21 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import WorkInProgressModal from "./WorkInProgressModal";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState("");
-
-  const handlePageClick = (pageName: string) => {
-    console.log(`Clicked on ${pageName} in footer, setting modal to open`);
-    setCurrentPage(pageName);
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
 
   const companyLinks = [
     { name: "Home", path: "/" },
@@ -25,17 +12,17 @@ const Footer: React.FC = () => {
   ];
 
   const serviceLinks = [
-    { name: "Social Media Marketing", path: "#smm", useModal: true },
-    { name: "Search Engine Optimization", path: "#seo", useModal: true },
-    { name: "Paid Advertising", path: "#ppc", useModal: true },
-    { name: "Content Marketing & Copywriting", path: "#content", useModal: true },
-    { name: "Graphic Design & Branding", path: "#branding", useModal: true }
+    { name: "Social Media Marketing", path: "/social-media-marketing" },
+    { name: "Search Engine Optimization", path: "/search-engine-optimization" },
+    { name: "Paid Advertising", path: "/ppc-services" },
+    { name: "Content Marketing & Copywriting", path: "/content-marketing" },
+    { name: "Graphic Design & Branding", path: "/services" }
   ];
 
   const resourceLinks = [
     { name: "Blog", path: "/blog" },
     { name: "Case Studies", path: "/casestudies" },
-    { name: "Documentation", path: "#docs", useModal: true },
+    { name: "Documentation", path: "/support" },
     { name: "Support", path: "/support" }
   ];
 
@@ -117,22 +104,18 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-          {/* Services Links Section (Uses Modal) */}
+          {/* Services Links Section */}
             <div>
               <h3 className="text-lg font-semibold text-white mb-4">Services</h3>
               <ul className="space-y-2">
                 {serviceLinks.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                      <a
-                        href={link.path}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handlePageClick(link.name);
-                        }}
+                      <Link
+                        to={link.path}
                         className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300 cursor-pointer"
                       >
                         {link.name}
-                      </a>
+                      </Link>
                   </li>
                 ))}
               </ul>
@@ -144,22 +127,12 @@ const Footer: React.FC = () => {
               <ul className="space-y-2">
                 {resourceLinks.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    {link.useModal ? (
-                       <a
-                        href={link.path}
-                        onClick={(e) => { e.preventDefault(); handlePageClick(link.name); }}
-                        className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300 cursor-pointer"
-                       >
-                         {link.name}
-                       </a>
-                    ) : (
-                      <Link
-                        to={link.path}
-                        className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300"
-                      >
-                        {link.name}
-                      </Link>
-                    )}
+                    <Link
+                      to={link.path}
+                      className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300"
+                    >
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -189,8 +162,6 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Work in Progress Modal */}
-      <WorkInProgressModal isOpen={modalOpen} onClose={handleCloseModal} pageName={currentPage} />
     </footer>
   );
 };

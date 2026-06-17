@@ -1,19 +1,15 @@
-import { Loader } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import ServicesLoader from '../components/Loader';
 import { motion } from 'framer-motion';
-import WorkInProgressModal from '../components/WorkInProgressModal';
+
+const MotionLink = motion(Link);
 
 const Home: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const featuresRef = useRef<HTMLDivElement>(null);
   const testimonialsRef = useRef<HTMLDivElement>(null);
-  const pricingRef = useRef<HTMLDivElement>(null);
   const platformsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -58,26 +54,8 @@ const Home: React.FC = () => {
     );
   };
 
-  const handleLoaderFinished = () => {
-    setIsLoading(false);
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
-      <WorkInProgressModal 
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        pageName="Contact Page"
-      />
-      
       <div className="relative w-full bg-black overflow-hidden">
         {/* Hero Section */}
         <div className="relative h-screen">
@@ -159,15 +137,15 @@ const Home: React.FC = () => {
             {/* CTA Button with hover effect */}
             <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-8'
               }`}>
-              <button
-                onClick={openModal}
+              <Link
+                to="/contact"
                 className="btn-gradient group relative overflow-hidden"
               >
                 <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition-all duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-[#FFFFFF]/10 opacity-30 group-hover:rotate-90 ease-out"></span>
                 <span className="relative flex items-center">
-                  Book Your Free Consultation <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  Book a Free Strategy Call <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -518,15 +496,15 @@ const Home: React.FC = () => {
                     </p>
                     
                     {/* Call to action button */}
-                    <button 
-                      onClick={openModal} 
+                    <Link
+                      to="/services"
                       className="mt-6 inline-flex items-center text-[#5C3693] hover:text-[#FFFFFF] transition-colors duration-300 group-hover:translate-x-2 transform transition-transform"
                     >
                       <span className="mr-2 font-medium">Learn more about lead generation</span>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -539,8 +517,8 @@ const Home: React.FC = () => {
               transition={{ duration: 0.6, delay: 1 }}
               className="mt-16 text-center"
             >
-              <button 
-                onClick={openModal}
+              <Link
+                to="/services"
                 className="inline-flex items-center text-[#5C3693] hover:text-[#472A71] transition-colors duration-300 hover:scale-105 transform transition-transform"
               >
                 <span className="py-2 px-6 border border-[#5C3693]/30 rounded-full hover:bg-[#5C3693]/10 transition-colors duration-300">
@@ -549,7 +527,7 @@ const Home: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                   </svg>
                 </span>
-              </button>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -679,6 +657,7 @@ const Home: React.FC = () => {
                     "Analytics and performance tracking"
                   ],
                   cta: "Explore SEO Services",
+                  path: "/seo-services",
                   color: "#5C3693"
                 },
                 {
@@ -693,6 +672,7 @@ const Home: React.FC = () => {
                     "Insights-driven reporting"
                   ],
                   cta: "Explore SMM Services",
+                  path: "/social-media-marketing",
                   color: "#472A71",
                   popular: true
                 },
@@ -708,6 +688,7 @@ const Home: React.FC = () => {
                     "Budget control & analytics"
                   ],
                   cta: "Explore Paid Ads",
+                  path: "/ppc-services",
                   color: "#5C3693"
                 }
               ].map((platform, index) => (
@@ -772,15 +753,15 @@ const Home: React.FC = () => {
                         </li>
                       ))}
                     </ul>
-                    <button
-                      onClick={openModal}
+                    <Link
+                      to={platform.path}
                       className={`w-full py-3 px-6 rounded-lg text-[#FFFFFF] font-medium transition-all duration-300 ${platform.popular
                           ? 'bg-gradient-to-r from-[#5C3693] to-[#472A71] hover:shadow-lg hover:shadow-[#5C3693]/20'
                           : 'bg-[#472A71]/80 hover:bg-[#472A71]'
                         }`}
                     >
                       {platform.cta}
-                    </button>
+                    </Link>
                   </div>
 
                   {/* Interactive animation effect on hover */}
@@ -1057,13 +1038,13 @@ const Home: React.FC = () => {
             <p className="text-gray-400 text-lg mb-8">
             If you're tired of average and ready for aggressive growth, you're in the right place. Axonary brings bold thinking and tested execution to every campaign.
             </p>
-            <motion.button
-              onClick={openModal}
+            <MotionLink
+              to="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="btn-primary-lg"
             >
-              Book a consultation
+              Get Your Growth Plan
               <svg
                 className="w-5 h-5 ml-2"
                 fill="none"
@@ -1077,7 +1058,7 @@ const Home: React.FC = () => {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </motion.button>
+            </MotionLink>
           </div>
 
           {/* Decorative Elements */}

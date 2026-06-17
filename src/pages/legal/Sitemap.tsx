@@ -16,13 +16,13 @@ const Sitemap: React.FC = () => {
     {
       title: "Solutions",
       links: [
-        { name: "UI UX CX Design", path: "#ui-ux" },
-        { name: "Website Development", path: "#web-dev" },
-        { name: "Mobile App Development", path: "#mobile-dev" },
-        { name: "Digital Marketing", path: "#digital-marketing" },
-        { name: "Cloud Solutions", path: "#cloud" },
-        { name: "AI & Machine Learning", path: "#ai-ml" },
-        { name: "Blockchain", path: "#blockchain" }
+        { name: "Solutions Overview", path: "/solutions" },
+        { name: "Website Development", path: "/web-development" },
+        { name: "Mobile App Development", path: "/mobile-app-developments" },
+        { name: "Digital Marketing", path: "/seo-services" },
+        { name: "Cloud Solutions", path: "/cloud-services" },
+        { name: "AI & Machine Learning", path: "/artificial-intelligence" },
+        { name: "Custom Software Development", path: "/custom-software-development" }
       ]
     },
     {
@@ -30,8 +30,8 @@ const Sitemap: React.FC = () => {
       links: [
         { name: "Blog", path: "/blog" },
         { name: "Case Studies", path: "/casestudies" },
-        { name: "Documentation", path: "#docs" },
-        { name: "Support", path: "#support" }
+        { name: "Documentation", path: "/support" },
+        { name: "Support", path: "/support" }
       ]
     },
     {
@@ -64,21 +64,12 @@ const Sitemap: React.FC = () => {
               <ul className="space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
-                    {link.path.startsWith('#') ? (
-                      <a
-                        href={link.path}
-                        className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300"
-                      >
-                        {link.name}
-                      </a>
-                    ) : (
-                      <Link
-                        to={link.path}
-                        className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300"
-                      >
-                        {link.name}
-                      </Link>
-                    )}
+                    <Link
+                      to={link.path}
+                      className="text-gray-400 hover:text-[#5C3693] transition-colors duration-300"
+                    >
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

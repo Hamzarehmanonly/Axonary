@@ -29,6 +29,7 @@ const services = [
     desc:
       "Performance-first social campaigns that scale ROAS. Creative experiments, audience architecture and automation that favors profit.",
     imgQuery: "digital marketing",
+    path: "/social-media-marketing",
   },
   {
     id: "seo",
@@ -36,6 +37,7 @@ const services = [
     desc:
       "Technical SEO, content velocity and white-hat link building to move organic metrics and capture high intent traffic.",
     imgQuery: "seo marketing",
+    path: "/seo-services",
   },
   {
     id: "conversion",
@@ -43,6 +45,7 @@ const services = [
     desc:
       "Landing pages and funnels built around the single metric: conversion rate. Microcopy, experiments, and analytics-driven design.",
     imgQuery: "conversion rate optimization",
+    path: "/services",
   },
   {
     id: "brand",
@@ -50,6 +53,7 @@ const services = [
     desc:
       "Positioning, visual systems, and creative ops — identities that earn attention and scale across paid and organic channels.",
     imgQuery: "branding design",
+    path: "/services",
   },
   {
     id: "web",
@@ -57,6 +61,7 @@ const services = [
     desc:
       "Production-grade frontends, Typesafe APIs and CI/CD — engineered for performance, stability and conversion.",
     imgQuery: "saas dashboard",
+    path: "/web-development",
   },
   {
     id: "email",
@@ -64,6 +69,7 @@ const services = [
     desc:
       "Journeys that increase retention and LTV. Segmentation, deliverability, and creative that drives repeat purchases.",
     imgQuery: "email marketing",
+    path: "/content-marketing",
   },
 ];
 
@@ -148,7 +154,7 @@ const Hero: React.FC = () => {
             <a href="#social" className="px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3" style={{ background: COLORS.primary, color: COLORS.white }}>
               Explore Services
             </a>
-            <a href="/audit" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
+            <a href="/contact" className="px-5 py-3 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>
               Request Audit
             </a>
           </div>
@@ -181,7 +187,7 @@ const Hero: React.FC = () => {
   );
 };
 
-const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; imgQuery: string; }> = ({ idx, id, title, desc, imgQuery }) => {
+const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: string; imgQuery: string; path: string; }> = ({ idx, id, title, desc, imgQuery, path }) => {
   const isLeftImage = idx % 2 === 0; // even -> image on left
   const image = unsplashSrc(imgQuery);
 
@@ -210,10 +216,10 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
 
                   <div className="mt-6 flex items-center gap-3">
-                    <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
+                    <a href={path} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
                     </a>
-                    <a href="/cases" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
+                    <a href="/casestudies" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
                       View Case Study
                     </a>
                   </div>
@@ -241,10 +247,10 @@ const SplitSection: React.FC<{ idx: number; id: string; title: string; desc: str
                   <p className="mt-4 text-lg text-gray-300">{desc}</p>
 
                   <div className="mt-6 flex items-center gap-3">
-                    <a href={`/${id}`} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
+                    <a href={path} className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>
                       Learn More
                     </a>
-                    <a href="/cases" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
+                    <a href="/casestudies" className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.06)]" style={{ color: COLORS.textMuted }}>
                       View Case Study
                     </a>
                   </div>
@@ -275,7 +281,7 @@ const FooterCTA: React.FC = () => {
 
         <div className="flex items-center gap-3">
           <a href="/contact" className="px-4 py-2 rounded-full font-semibold" style={{ background: COLORS.primary, color: COLORS.white }}>Request Audit</a>
-          <a href="/pricing" className="px-3 py-2 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>Pricing</a>
+          <a href="/contact" className="px-3 py-2 rounded-full border border-[rgba(255,255,255,0.06)] text-sm" style={{ color: COLORS.textMuted }}>Talk to Us</a>
         </div>
       </div>
     </div>
