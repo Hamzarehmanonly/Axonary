@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!--
     Axonary is a React SPA: the initial HTML has almost no links until JavaScript runs.
-    Tools like xml-sitemaps.com only see the homepage unless they execute JS—so they
+    Tools like xml-sitemaps.com only see the homepage unless they execute JS, so they
     are not suitable as the primary way to build this file. This file lists static app
-    routes from src/App.tsx. Individual blog URLs (/blog/:slug) are dynamic—add those
+    routes from src/App.tsx. Individual blog URLs (/blog/:slug) are dynamic, add those
     from your CMS or build step if needed.
   -->
   <url><loc>https://axonary.com/</loc><lastmod>2026-03-29</lastmod></url>
@@ -13,11 +13,11 @@
   <url><loc>https://axonary.com/solutions</loc><lastmod>2026-03-29</lastmod></url>
   <url><loc>https://axonary.com/approach</loc><lastmod>2026-03-29</lastmod></url>
   <url><loc>https://axonary.com/blog</loc><lastmod>2026-03-29</lastmod></url>
-  <url><loc>https://axonary.com/blog/what-is-answer-the-public-and-how-to-use-answer-the-public-to-create-better-content</loc><lastmod>2026-05-24</lastmod></url>
-  <url><loc>https://axonary.com/blog/how-can-i-learn-php-programming-quickly</loc><lastmod>2026-05-24</lastmod></url>
-  <url><loc>https://axonary.com/blog/how-to-use-node-js-for-real-time-applications</loc><lastmod>2026-05-24</lastmod></url>
-  <url><loc>https://axonary.com/blog/why-is-networking-important-in-the-music-industry</loc><lastmod>2026-05-24</lastmod></url>
-  <url><loc>https://axonary.com/blog/how-an-ai-agent-development-company-creates-smart-automation-for-smarter-businesses</loc><lastmod>2026-05-24</lastmod></url>
+  <url><loc>https://axonary.com/blog/what-is-answer-the-public-and-how-to-use-answer-the-public-to-create-better-content</loc><lastmod>2026-08-18</lastmod></url>
+  <url><loc>https://axonary.com/blog/how-can-i-learn-php-programming-quickly</loc><lastmod>2026-08-18</lastmod></url>
+  <url><loc>https://axonary.com/blog/how-to-use-node-js-for-real-time-applications</loc><lastmod>2026-08-18</lastmod></url>
+  <url><loc>https://axonary.com/blog/why-is-networking-important-in-the-music-industry</loc><lastmod>2026-08-18</lastmod></url>
+  <url><loc>https://axonary.com/blog/how-an-ai-agent-development-company-creates-smart-automation-for-smarter-businesses</loc><lastmod>2026-08-18</lastmod></url>
   <url><loc>https://axonary.com/blog/why-is-the-java-programming-language-still-popular-in-2026</loc><lastmod>2026-05-24</lastmod></url>
   <url><loc>https://axonary.com/blog/how-azure-cloud-programming-builds-scalable-applications</loc><lastmod>2026-05-24</lastmod></url>
   <url><loc>https://axonary.com/blog/where-sap-software-is-used-across-different-industries</loc><lastmod>2026-05-24</lastmod></url>
